@@ -35,7 +35,8 @@ export default async function TripsPage() {
       <PageHero
         title="Trips & Events"
         subtitle="Every trip is a chance to go somewhere new. Check the calendar and sign up early — spots go fast."
-        image="https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1920&q=80"
+        image="/trips-hero.jpg"
+        imagePosition="center 30%"
       />
 
       {/* Calendar embed */}

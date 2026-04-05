@@ -33,7 +33,7 @@ export default async function TripLogsPage() {
         title="Trip Logs"
         subtitle="This is where we have been recently!"
         image="/trip-logs-hero.jpg"
-        imagePosition="center 70%"
+        imagePosition="center 80%"
       />
 
       <section className="py-16 bg-parchment">
