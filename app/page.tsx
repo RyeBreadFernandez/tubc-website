@@ -53,7 +53,7 @@ export default async function Home() {
             Go further.<br />Go wilder.
           </h1>
           <p className="text-parchment/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
-            Experience the outdoors without restrictions. We run trips every quarter — no experience required.
+            Experience the outdoors with us. We run trips every quarter no experience required.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
@@ -96,7 +96,7 @@ export default async function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
           <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1527489377706-5bf97e608852?auto=format&fit=crop&w=800&q=80"
+              src="/staff-group.jpg"
               alt="Group around a campfire"
               fill
               className="object-cover"
@@ -106,13 +106,13 @@ export default async function Home() {
           <div>
             <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3">Who we are</p>
             <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-5">
-              UCLA's home for wild places
+              UCLA's home for the outdoors
             </h2>
             <p className="text-soil leading-relaxed mb-4">
-              TUBC has been taking Bruins into the backcountry for over a decade. From weekend car camps to multi-day Sierra crossings, we run trips for every experience level and budget.
+              TUBC has been taking Bruins into the backcountry for over a decade. From day hikes to weekend car camps to multi-day Sierra crossings, we run trips for every experience level and budget.
             </p>
             <p className="text-soil leading-relaxed mb-8">
-              We also host gear rentals, seminars, and social events — because the mountains are better with good people.
+              We also host seminars and social events to increase awareness in the outdoors and outdoor education.
             </p>
             <Link
               href="/about"
@@ -193,11 +193,11 @@ export default async function Home() {
             Your next adventure starts here
           </h2>
           <p className="text-soil leading-relaxed mb-8 text-lg">
-            Join hundreds of Bruins who've traded campus for the backcountry. No experience needed — just curiosity and a willingness to carry your own weight.
+            Join hundreds of Bruins who've traded campus for the backcountry. No experience needed just curiosity to explore and keeping an open mind.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
-              href="https://join.slack.com/t/uclabackpackingclub/shared_invite"
+              href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-base transition-colors"

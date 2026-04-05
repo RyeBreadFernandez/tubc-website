@@ -31,8 +31,9 @@ export default async function TripLogsPage() {
     <main className="flex-1 pt-16">
       <PageHero
         title="Trip Logs"
-        subtitle="Field reports from the trail. Real trips, real people, real mountains."
-        image="https://images.unsplash.com/photo-1476611317561-60117649dd94?auto=format&fit=crop&w=1920&q=80"
+        subtitle="This is where we have been recently!"
+        image="/trip-logs-hero.jpg"
+        imagePosition="center 70%"
       />
 
       <section className="py-16 bg-parchment">

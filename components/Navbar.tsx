@@ -29,7 +29,6 @@ const navLinks = [
   { label: 'Gallery', href: '/gallery' },
   { label: 'Newsletter', href: '/newsletter' },
   { label: 'FAQ', href: '/faq' },
-  { label: 'Contact', href: '/contact' },
 ]
 
 export default function Navbar() {

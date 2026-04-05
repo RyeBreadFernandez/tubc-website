@@ -110,26 +110,6 @@ export default async function TripsPage() {
           )}
         </div>
       </section>
-
-      {/* Sign up form */}
-      <section className="py-16 bg-rose/40">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="font-display text-2xl md:text-3xl text-bark font-bold mb-3">
-            Interested in a trip?
-          </h2>
-          <p className="text-soil mb-8">
-            Fill out the interest form and your trip leader will reach out with details.
-          </p>
-          <a
-            href="https://forms.gle/your-google-form-id"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-base transition-colors"
-          >
-            Trip Interest Form
-          </a>
-        </div>
-      </section>
     </main>
   )
 }

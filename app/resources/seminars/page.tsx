@@ -38,7 +38,7 @@ export default function SeminarsPage() {
             <p className="font-display text-lg font-bold text-bark mb-2">Want to attend or lead a seminar?</p>
             <p className="text-soil text-sm mb-4">Join the Slack to see when the next one is scheduled, or pitch an idea to the officers.</p>
             <a
-              href="https://join.slack.com/t/uclabackpackingclub/shared_invite"
+              href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-sm transition-colors"

@@ -26,24 +26,24 @@ export default function AboutPage() {
           </h2>
           <div className="prose prose-lg text-soil space-y-4 leading-relaxed">
             <p>
-              The Backpacking Club at UCLA (TUBC) has been taking Bruins into the wilderness for over a decade. We are a student-run organization dedicated to making outdoor adventure accessible to everyone — regardless of experience, budget, or gear.
+              The Backpacking Club at UCLA (TUBC) has been taking Bruins into the wilderness for over a decade. We are a student-run organization dedicated to making outdoor adventure accessible to everyone regardless of experience, budget, or gear.
             </p>
             <p>
-              From beginner-friendly day hikes in the Santa Monica Mountains to multi-day Sierra Nevada crossings, we plan and lead trips every single quarter including summer. We also host seminars, gear workshops, and social events to build community around a shared love of wild places.
+              From beginner-friendly day hikes in the Santa Monica Mountains to multi-day Sierra Nevada crossings, we plan and lead trips every single quarter. We also host seminars, gear workshops, and social events to build community around a shared love of wild places.
             </p>
             <p>
-              Our gear rental program keeps costs low. Our trip leaders keep things safe. And our community keeps bringing people back — quarter after quarter, year after year.
+              Collaboration with the gear rental program keeps costs low. Our trip leaders keep things safe. And our community keeps bringing people back quarter after quarter, year after year.
             </p>
             <p>
-              Whether you've never spent a night outside or you're a seasoned backcountry traveler, there's a place for you in TUBC. Come for the mountains. Stay for the people.
+              Whether you've never spent a night outside or you're a seasoned backcountry traveler, there's a place for you in TUBC. Come for the mountains. Stay for the vibes.
             </p>
           </div>
 
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
               { value: '10+', label: 'Years running' },
-              { value: '50+', label: 'Trips per year' },
-              { value: '200+', label: 'Active members' },
+              { value: '30+', label: 'Trips per year' },
+              { value: '1500+', label: 'Active members' },
               { value: '$0', label: 'Membership fee' },
             ].map(({ value, label }) => (
               <div key={label} className="bg-moss rounded-xl p-5 text-center">

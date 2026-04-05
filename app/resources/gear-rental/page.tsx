@@ -62,7 +62,7 @@ export default function GearRentalPage() {
             <p className="font-display text-lg text-bark font-bold mb-2">Ready to rent?</p>
             <p className="text-soil text-sm mb-4">Message the Gear Manager on Slack to check availability and reserve.</p>
             <a
-              href="https://join.slack.com/t/uclabackpackingclub/shared_invite"
+              href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-sm transition-colors"

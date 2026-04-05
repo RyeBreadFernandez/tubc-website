@@ -4,18 +4,18 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 const photos = [
-  { url: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80', caption: 'Sierra Nevada at sunrise' },
-  { url: 'https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80', caption: 'On the trail' },
-  { url: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80', caption: 'Alpine lake reflections' },
-  { url: 'https://images.unsplash.com/photo-1527489377706-5bf97e608852?auto=format&fit=crop&w=800&q=80', caption: 'Camp vibes' },
-  { url: 'https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&w=800&q=80', caption: 'High Sierra crossing' },
-  { url: 'https://images.unsplash.com/photo-1476611317561-60117649dd94?auto=format&fit=crop&w=800&q=80', caption: 'Morning mist on the trail' },
-  { url: 'https://images.unsplash.com/photo-1439853949212-36089fb60f47?auto=format&fit=crop&w=800&q=80', caption: 'Golden hour summit' },
-  { url: 'https://images.unsplash.com/photo-1445307806294-bff7f67ff225?auto=format&fit=crop&w=800&q=80', caption: 'Into the forest' },
-  { url: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80', caption: 'Valley view' },
-  { url: 'https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?auto=format&fit=crop&w=800&q=80', caption: 'Winter backpacking' },
-  { url: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=800&q=80', caption: 'Starry night at camp' },
-  { url: 'https://images.unsplash.com/photo-1543965170-e399ce108155?auto=format&fit=crop&w=800&q=80', caption: 'Desert canyon' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
+  { url: '', caption: '' },
 ]
 
 export default function GalleryPage() {
@@ -43,21 +43,29 @@ export default function GalleryPage() {
               <div
                 key={i}
                 className="break-inside-avoid cursor-pointer group relative overflow-hidden rounded-xl border border-sand shadow-sm"
-                onClick={() => setLightbox(i)}
+                onClick={() => photo.url ? setLightbox(i) : undefined}
               >
-                <Image
-                  src={photo.url}
-                  alt={photo.caption}
-                  width={400}
-                  height={300}
-                  className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
-                  unoptimized
-                />
-                <div className="absolute inset-0 bg-bark/0 group-hover:bg-bark/30 transition-colors flex items-end">
-                  <p className="text-parchment text-sm px-3 py-2 translate-y-full group-hover:translate-y-0 transition-transform w-full bg-bark/40">
-                    {photo.caption}
-                  </p>
-                </div>
+                {photo.url ? (
+                  <>
+                    <Image
+                      src={photo.url}
+                      alt={photo.caption}
+                      width={400}
+                      height={300}
+                      className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
+                      unoptimized
+                    />
+                    {photo.caption && (
+                      <div className="absolute inset-0 bg-bark/0 group-hover:bg-bark/30 transition-colors flex items-end">
+                        <p className="text-parchment text-sm px-3 py-2 translate-y-full group-hover:translate-y-0 transition-transform w-full bg-bark/40">
+                          {photo.caption}
+                        </p>
+                      </div>
+                    )}
+                  </>
+                ) : (
+                  <div className="w-full bg-white" style={{ height: '200px' }} />
+                )}
               </div>
             ))}
           </div>
