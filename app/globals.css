@@ -1,26 +1,34 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  /* Brand palette */
+  --color-parchment: #F5F0E8;
+  --color-parchment-dark: #EDE5D4;
+  --color-bark: #2C1F14;
+  --color-soil: #6B5744;
+  --color-sage: #8FAF8A;
+  --color-sage-dark: #5E7D5A;
+  --color-terra: #C17A56;
+  --color-terra-dark: #9A5C3A;
+  --color-rose: #E8D5C4;
+  --color-moss: #D4DFD0;
+  --color-sand: #E0CBA8;
+  --color-border: #C9B99A;
+
+  /* Fonts */
+  --font-display: "Fraunces", serif;
+  --font-body: "Nunito", sans-serif;
+  --font-mono: "DM Mono", monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Override any default background/color resets */
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F5F0E8;
+  color: #2C1F14;
+  font-family: "Nunito", sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Fraunces", serif;
 }
