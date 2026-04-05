@@ -16,11 +16,7 @@ async function getTrip(slug: string) {
     const supabase = await createClient(cookieStore)
     const { data } = await supabase
       .from('trip_logs')
-      .select(`
-        *,
-        profiles ( username, full_name ),
-        trip_photos ( url, caption, order_index )
-      `)
+      .select('*')
       .eq('slug', slug)
       .eq('published', true)
       .single()
@@ -46,8 +42,8 @@ export default async function TripLogPage({ params }: Props) {
 
   if (!trip) notFound()
 
-  const photos = trip.trip_photos?.sort((a: { order_index: number }, b: { order_index: number }) => a.order_index - b.order_index) ?? []
-  const author = trip.profiles?.full_name ?? trip.profiles?.username ?? 'A TUBC Member'
+  const photos: { url: string; caption?: string; order_index: number }[] = []
+  const author = 'A TUBC Member'
 
   return (
     <main className="flex-1 pt-16">

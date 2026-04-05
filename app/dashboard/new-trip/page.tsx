@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import Image from 'next/image'
 import { createClient } from '@/utils/supabase/client'
 import toast, { Toaster } from 'react-hot-toast'
 
@@ -24,9 +25,33 @@ export default function NewTripPage() {
   const router = useRouter()
   const supabase = createClient()
   const [submitting, setSubmitting] = useState(false)
+  const [coverFile, setCoverFile] = useState<File | null>(null)
+  const [coverPreview, setCoverPreview] = useState<string | null>(null)
+  const [dragging, setDragging] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement>(null)
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
+  const handleFile = useCallback((file: File) => {
+    if (!file.type.startsWith('image/')) {
+      toast.error('Please upload an image file.')
+      return
+    }
+    setCoverFile(file)
+    setCoverPreview(URL.createObjectURL(file))
+  }, [])
+
+  const onDrop = useCallback((e: React.DragEvent) => {
+    e.preventDefault()
+    setDragging(false)
+    const file = e.dataTransfer.files[0]
+    if (file) handleFile(file)
+  }, [handleFile])
+
   const onSubmit = async (data: FormData) => {
+    if (!coverFile) {
+      toast.error('Please upload a cover photo.')
+      return
+    }
     setSubmitting(true)
     try {
       const { data: { user } } = await supabase.auth.getUser()
@@ -34,6 +59,17 @@ export default function NewTripPage() {
 
       const slug = `${slugify(data.title)}-${Date.now()}`
 
+      // Upload image to Supabase Storage
+      const ext = coverFile.name.split('.').pop()
+      const path = `${user.id}/${slug}.${ext}`
+      const { error: uploadError } = await supabase.storage
+        .from('trip-covers')
+        .upload(path, coverFile, { upsert: true })
+      if (uploadError) throw new Error(`Upload failed: ${uploadError.message}`)
+
+      const { data: { publicUrl } } = supabase.storage
+        .from('trip-covers')
+        .getPublicUrl(path)
       const { error } = await supabase.from('trip_logs').insert({
         title: data.title,
         slug,
@@ -42,6 +78,7 @@ export default function NewTripPage() {
         difficulty: data.difficulty,
         miles: data.miles ? parseFloat(data.miles) : null,
         elevation_gain: data.elevation_gain ? parseInt(data.elevation_gain) : null,
+        cover_image_url: publicUrl,
         content: data.content,
         author_id: user.id,
         published: false,
@@ -69,7 +106,7 @@ export default function NewTripPage() {
         <div className="mb-8">
           <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-1">Share your adventure</p>
           <h1 className="font-display text-3xl md:text-4xl text-bark font-bold">Write a Trip Report</h1>
-          <p className="text-soil text-sm mt-2">Reports are reviewed before publishing. Photos can be added after approval.</p>
+          <p className="text-soil text-sm mt-2">Reports are reviewed before publishing.</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -137,6 +174,50 @@ export default function NewTripPage() {
             </div>
           </div>
 
+          {/* Cover photo drop zone */}
+          <div>
+            <label className="block text-sm font-medium text-bark mb-1.5">
+              Cover Photo <span className="text-terra text-xs">*required</span>
+            </label>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f) }}
+            />
+            {coverPreview ? (
+              <div className="relative rounded-xl overflow-hidden border border-sand">
+                <div className="relative h-52">
+                  <Image src={coverPreview} alt="Cover preview" fill className="object-cover" unoptimized />
+                </div>
+                <button
+                  type="button"
+                  onClick={() => { setCoverFile(null); setCoverPreview(null) }}
+                  className="absolute top-2 right-2 bg-bark/70 hover:bg-bark text-parchment text-xs px-3 py-1.5 rounded-full transition-colors"
+                >
+                  Remove
+                </button>
+              </div>
+            ) : (
+              <div
+                onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
+                onDragLeave={() => setDragging(false)}
+                onDrop={onDrop}
+                onClick={() => fileInputRef.current?.click()}
+                className={`border-2 border-dashed rounded-xl h-40 flex flex-col items-center justify-center cursor-pointer transition-colors ${
+                  dragging ? 'border-terra bg-terra/5' : 'border-sand hover:border-terra hover:bg-terra/5'
+                }`}
+              >
+                <svg className="w-8 h-8 text-soil/40 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                <p className="text-sm text-soil/60">Drag & drop a photo, or <span className="text-terra font-semibold">browse</span></p>
+                <p className="text-xs text-soil/40 mt-1">One image required</p>
+              </div>
+            )}
+          </div>
+
           <div>
             <label className="block text-sm font-medium text-bark mb-1.5">Trip Report</label>
             <p className="text-xs text-soil/60 mb-2">Write in plain text or Markdown. Tell us about the trail, the conditions, highlights, and any tips for future hikers.</p>
@@ -155,7 +236,7 @@ export default function NewTripPage() {
               disabled={submitting}
               className="flex-1 py-3.5 bg-terra hover:bg-terra-dark disabled:opacity-60 text-parchment font-semibold rounded-full transition-colors"
             >
-              {submitting ? 'Submitting…' : 'Submit for Review'}
+              {submitting ? 'Uploading & submitting…' : 'Submit for Review'}
             </button>
             <button
               type="button"

@@ -13,18 +13,15 @@ export const metadata = {
 }
 
 async function getTripLogs() {
-  try {
-    const cookieStore = await cookies()
-    const supabase = await createClient(cookieStore)
-    const { data } = await supabase
-      .from('trip_logs')
-      .select('id, title, slug, location, trip_date, difficulty, miles, elevation_gain, cover_image_url, content')
-      .eq('published', true)
-      .order('trip_date', { ascending: false })
-    return data ?? []
-  } catch {
-    return []
-  }
+  const cookieStore = await cookies()
+  const supabase = await createClient(cookieStore)
+  const { data, error } = await supabase
+    .from('trip_logs')
+    .select('id, title, slug, location, trip_date, difficulty, miles, elevation_gain, cover_image_url, content')
+    .eq('published', true)
+    .order('trip_date', { ascending: false })
+  if (error) console.error('trip_logs fetch error:', error)
+  return data ?? []
 }
 
 export default async function TripLogsPage() {

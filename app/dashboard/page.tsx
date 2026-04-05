@@ -44,12 +44,20 @@ export default async function DashboardPage() {
             </h1>
             <p className="text-soil text-sm mt-1">{user.email}</p>
           </div>
-          <Link
-            href="/dashboard/new-trip"
-            className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full transition-colors text-sm"
-          >
-            + Write a Trip Report
-          </Link>
+          <div className="flex gap-3">
+            <Link
+              href="/dashboard/review"
+              className="px-6 py-3 border border-sand hover:bg-parchment-dark text-soil font-semibold rounded-full transition-colors text-sm"
+            >
+              Review Reports
+            </Link>
+            <Link
+              href="/dashboard/new-trip"
+              className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full transition-colors text-sm"
+            >
+              + Write a Trip Report
+            </Link>
+          </div>
         </div>
 
         {/* Stats */}
