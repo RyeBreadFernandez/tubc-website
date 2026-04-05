@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
 import type { User } from '@supabase/supabase-js'
@@ -324,12 +325,14 @@ export default function Navbar() {
               </div>
             ) : (
               <div className="flex flex-col gap-2">
-                <Link
-                  href="/signup"
+                <a
+                  href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full text-center px-4 py-2.5 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-full transition-colors"
                 >
                   Join the Club
-                </Link>
+                </a>
                 <Link
                   href="/login"
                   className="w-full text-center px-4 py-2.5 text-soil hover:text-bark text-sm transition-colors"

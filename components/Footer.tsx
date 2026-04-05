@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 const quickLinks = [
   { label: 'Home', href: '/' },
@@ -47,6 +48,7 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
+            <Image src="/logo.png" alt="TUBC Logo" width={140} height={70} className="mt-5 w-36 h-auto" unoptimized />
           </div>
 
           {/* Col 2 — Quick links */}

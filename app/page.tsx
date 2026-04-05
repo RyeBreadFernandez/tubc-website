@@ -23,8 +23,8 @@ async function getLatestTripLogs() {
 }
 
 const stats = [
-  { value: '50+', label: 'Trips per year' },
-  { value: '200+', label: 'Active members' },
+  { value: '30+', label: 'Trips per year' },
+  { value: '1500+', label: 'Active members' },
   { value: '10+', label: 'Years exploring' },
 ]
 
@@ -62,12 +62,14 @@ export default async function Home() {
             >
               See Upcoming Trips
             </Link>
-            <Link
-              href="/signup"
+            <a
+              href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-3.5 bg-parchment/15 hover:bg-parchment/25 border border-parchment/40 text-parchment font-semibold rounded-full text-base transition-colors backdrop-blur-sm"
             >
               Join the Club
-            </Link>
+            </a>
           </div>
         </div>
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-parchment/50 animate-bounce">

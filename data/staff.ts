@@ -21,24 +21,4 @@ export const staff: StaffMember[] = [
     role: 'Treasurer',
     bio: 'Keeping the books balanced so we can keep the gear stocked and the permits paid.',
   },
-  {
-    name: 'Secretary',
-    role: 'Secretary',
-    bio: 'Handling communications, meeting notes, and keeping everyone in the loop.',
-  },
-  {
-    name: 'Gear Manager',
-    role: 'Gear Manager',
-    bio: 'Maintaining our rental gear inventory and helping members find the right kit for their trip.',
-  },
-  {
-    name: 'Social Chair',
-    role: 'Social Chair',
-    bio: 'Organizing socials, post-trip hangouts, and keeping the community tight-knit.',
-  },
-  {
-    name: 'Trip Coordinator',
-    role: 'Trip Coordinator',
-    bio: 'Planning and scheduling the trip calendar, wrangling permits, and supporting trip leaders.',
-  },
 ]
