@@ -22,8 +22,18 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "The Backpacking Club at UCLA",
+  title: {
+    default: "The Backpacking Club at UCLA",
+    template: "%s — TUBC",
+  },
   description: "Experience the outdoors without restrictions. UCLA's premier backpacking and hiking club.",
+  keywords: ["UCLA", "backpacking", "hiking", "outdoor club", "UCLA hiking club", "TUBC", "backpacking club", "Los Angeles hiking"],
+  openGraph: {
+    siteName: "The Backpacking Club at UCLA",
+    type: "website",
+    locale: "en_US",
+  },
+  metadataBase: new URL("https://tubc.org"),
 };
 
 export default function RootLayout({

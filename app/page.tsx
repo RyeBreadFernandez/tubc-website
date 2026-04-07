@@ -6,6 +6,11 @@ import Badge from '@/components/ui/Badge'
 import { getMountainPlaceholder } from '@/lib/utils/placeholder'
 import { format } from 'date-fns'
 
+export const metadata = {
+  title: 'The Backpacking Club at UCLA',
+  description: 'UCLA\'s premier backpacking and hiking club. Join us for trips to the Sierra Nevada, Southern California trails, and beyond.',
+}
+
 async function getLatestTripLogs() {
   try {
     const cookieStore = await cookies()
