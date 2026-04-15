@@ -34,7 +34,7 @@ export default async function TripsPage() {
     <main className="flex-1 pt-16">
       <PageHero
         title="Trips & Events"
-        subtitle="Every trip is a chance to go somewhere new. Check the calendar and sign up early — spots go fast."
+        subtitle="Every trip is a chance to go somewhere new. Our trips fill up quickly — check the calendar and sign up early."
         image="/trips-hero.jpg"
         imagePosition="center 30%"
       />

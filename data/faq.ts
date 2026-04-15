@@ -18,7 +18,7 @@ export const faqs: FAQ[] = [
   },
   {
     question: 'How much does gear cost? Do you have rental gear?',
-    answer: 'We have a gear rental program with tents, sleeping bags, pads, packs, and more available at low cost. Check the Gear Rental page for what\'s available and how to reserve it.',
+    answer: 'We have a gear rental program with tents, sleeping bags, pads, packs, and more available at low cost. The club also has a limited supply of free loaner gear for members who need it. Check the Gear Rental page for what\'s available and how to reserve it.',
   },
   {
     question: 'How do trips work? How do I sign up?',

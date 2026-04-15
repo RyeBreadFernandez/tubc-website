@@ -58,7 +58,7 @@ export default async function Home() {
             Go further.<br />Go wilder.
           </h1>
           <p className="text-parchment/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
-            Experience the outdoors with us. We run trips every quarter no experience required.
+            Experience the outdoors with us! We run trips every quarter — no experience required.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link

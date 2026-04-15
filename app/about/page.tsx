@@ -32,7 +32,7 @@ export default function AboutPage() {
               From beginner-friendly day hikes in the Santa Monica Mountains to multi-day Sierra Nevada crossings, we plan and lead trips every single quarter. We also host seminars, gear workshops, and social events to build community around a shared love of wild places.
             </p>
             <p>
-              Collaboration with the gear rental program keeps costs low. Our trip leaders keep things safe. And our community keeps bringing people back quarter after quarter, year after year.
+              Collaboration with the gear rental program keeps costs low. Our trip leaders keep things safe. Our community keeps bringing people back quarter after quarter, year after year.
             </p>
             <p>
               Whether you've never spent a night outside or you're a seasoned backcountry traveler, there's a place for you in TUBC. Come for the mountains. Stay for the vibes.
