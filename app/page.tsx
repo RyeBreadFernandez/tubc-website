@@ -46,8 +46,8 @@ export default async function Home() {
           alt="Cottonwood Lakes"
           fill
           priority
+          sizes="100vw"
           className="object-cover object-center"
-          unoptimized
         />
         <div className="absolute inset-0 bg-bark/40" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
@@ -106,8 +106,8 @@ export default async function Home() {
               src="/staff-group.jpg"
               alt="Group around a campfire"
               fill
+              sizes="(max-width: 768px) 100vw, 50vw"
               className="object-cover"
-              unoptimized
             />
           </div>
           <div>
@@ -157,8 +157,8 @@ export default async function Home() {
                         src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
                         alt={trip.title}
                         fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        unoptimized
                       />
                     </div>
                     <div className="p-5">

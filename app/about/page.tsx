@@ -67,7 +67,7 @@ export default function AboutPage() {
               <div key={member.name} className="bg-parchment border border-sand rounded-2xl overflow-hidden shadow-sm">
                 <div className="relative h-48 bg-moss">
                   {member.imageUrl ? (
-                    <Image src={member.imageUrl} alt={member.name} fill className="object-cover" unoptimized />
+                    <Image src={member.imageUrl} alt={member.name} fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" className="object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
                       <div className="w-20 h-20 rounded-full bg-sand flex items-center justify-center">

@@ -49,8 +49,8 @@ export default async function TripLogsPage() {
                         src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
                         alt={trip.title}
                         fill
+                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
-                        unoptimized
                       />
                     </div>
                     <div className="p-5 flex flex-col flex-1">

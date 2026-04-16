@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
   },
-  metadataBase: new URL("https://tubc.org"),
+  metadataBase: new URL("https://uclabackpackingclub.com"),
 };
 
 export default function RootLayout({

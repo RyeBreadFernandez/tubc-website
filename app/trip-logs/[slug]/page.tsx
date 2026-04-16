@@ -55,8 +55,8 @@ export default async function TripLogPage({ params }: Props) {
           alt={trip.title}
           fill
           priority
+          sizes="100vw"
           className="object-cover"
-          unoptimized
         />
         <div className="absolute inset-0 bg-gradient-to-t from-bark/70 via-transparent to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 max-w-4xl mx-auto">
@@ -117,8 +117,8 @@ export default async function TripLogPage({ params }: Props) {
                     src={photo.url}
                     alt={photo.caption ?? 'Trip photo'}
                     fill
+                    sizes="(max-width: 768px) 50vw, 33vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    unoptimized
                   />
                   {photo.caption && (
                     <div className="absolute inset-0 bg-bark/0 group-hover:bg-bark/40 transition-colors flex items-end">

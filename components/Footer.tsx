@@ -48,7 +48,7 @@ export default function Footer() {
                 </svg>
               </a>
             </div>
-            <Image src="/logo.png" alt="TUBC Logo" width={140} height={70} className="mt-5 w-36 h-auto" unoptimized />
+            <Image src="/logo.png" alt="TUBC Logo" width={140} height={70} className="mt-5 w-36 h-auto" />
           </div>
 
           {/* Col 2 — Quick links */}
