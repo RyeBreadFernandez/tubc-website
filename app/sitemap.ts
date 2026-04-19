@@ -1,6 +1,5 @@
 import type { MetadataRoute } from 'next'
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
+import { createClient } from '@supabase/supabase-js'
 
 const BASE = 'https://uclabackpackingclub.com'
 
@@ -30,8 +29,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let tripLogRoutes: MetadataRoute.Sitemap = []
 
   try {
-    const cookieStore = await cookies()
-    const supabase = await createClient(cookieStore)
+    const supabase = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!,
+    )
     const { data } = await supabase
       .from('trip_logs')
       .select('slug, trip_date')
