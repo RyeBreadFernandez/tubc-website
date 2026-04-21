@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/dashboard/', '/auth/'],
     },
-    sitemap: 'https://uclabackpackingclub.com/sitemap.xml',
+    sitemap: 'https://www.uclabackpackingclub.com/sitemap.xml',
   }
 }

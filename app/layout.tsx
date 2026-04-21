@@ -33,7 +33,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
   },
-  metadataBase: new URL("https://uclabackpackingclub.com"),
+  metadataBase: new URL("https://www.uclabackpackingclub.com"),
+  alternates: {
+    canonical: "https://www.uclabackpackingclub.com",
+  },
 };
 
 export default function RootLayout({
