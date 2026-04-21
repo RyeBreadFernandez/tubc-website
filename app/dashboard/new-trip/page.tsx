@@ -55,13 +55,13 @@ export default function NewTripPage() {
     setSubmitting(true)
     try {
       const { data: { user } } = await supabase.auth.getUser()
-      if (!user) { toast.error('You must be logged in.'); return }
 
       const slug = `${slugify(data.title)}-${Date.now()}`
 
       // Upload image to Supabase Storage
       const ext = coverFile.name.split('.').pop()
-      const path = `${user.id}/${slug}.${ext}`
+      const uploadFolder = user ? user.id : 'public'
+      const path = `${uploadFolder}/${slug}.${ext}`
       const { error: uploadError } = await supabase.storage
         .from('trip-covers')
         .upload(path, coverFile, { upsert: true })
@@ -80,14 +80,14 @@ export default function NewTripPage() {
         elevation_gain: data.elevation_gain ? parseInt(data.elevation_gain) : null,
         cover_image_url: publicUrl,
         content: data.content,
-        author_id: user.id,
+        author_id: user?.id ?? null,
         published: false,
       })
 
       if (error) throw error
 
       toast.success('Trip report submitted! An officer will review and publish it shortly.')
-      setTimeout(() => router.push('/dashboard'), 1500)
+      setTimeout(() => router.push('/trip-logs'), 1500)
     } catch (err: unknown) {
       toast.error((err as Error).message ?? 'Something went wrong.')
     } finally {

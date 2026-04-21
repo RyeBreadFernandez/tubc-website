@@ -162,54 +162,35 @@ export default function Navbar() {
           </div>
 
           {/* Desktop right side */}
-          <div className="hidden lg:flex items-center gap-2">
-            {user ? (
-              <>
-                <Link
-                  href="/dashboard/new-trip"
-                  className="px-4 py-1.5 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-full transition-colors"
-                >
-                  Post a Trip
-                </Link>
-                <Link
-                  href="/dashboard"
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
-                    transparent
-                      ? 'bg-parchment/20 text-parchment hover:bg-parchment/30'
-                      : 'bg-sand text-bark hover:bg-border'
-                  }`}
-                  title="Dashboard"
-                >
-                  {user.email?.[0].toUpperCase() ?? 'U'}
-                </Link>
-                <button
-                  onClick={handleSignOut}
-                  className={`text-sm transition-colors ${
-                    transparent ? 'text-parchment/70 hover:text-parchment' : 'text-soil hover:text-bark'
-                  }`}
-                >
-                  Sign out
-                </button>
-              </>
-            ) : (
-              <>
-                <Link
-                  href="/login"
-                  className={`px-3 py-1.5 text-sm font-medium transition-colors ${
-                    transparent ? 'text-parchment/80 hover:text-parchment' : 'text-soil hover:text-bark'
-                  }`}
-                >
-                  Login
-                </Link>
-                <Link
-                  href="/signup"
-                  className="px-4 py-1.5 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-full transition-colors"
-                >
-                  Join
-                </Link>
-              </>
-            )}
-          </div>
+          {user && (
+            <div className="hidden lg:flex items-center gap-2">
+              <Link
+                href="/dashboard/new-trip"
+                className="px-4 py-1.5 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-full transition-colors"
+              >
+                Post a Trip
+              </Link>
+              <Link
+                href="/dashboard"
+                className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
+                  transparent
+                    ? 'bg-parchment/20 text-parchment hover:bg-parchment/30'
+                    : 'bg-sand text-bark hover:bg-border'
+                }`}
+                title="Dashboard"
+              >
+                {user.email?.[0].toUpperCase() ?? 'U'}
+              </Link>
+              <button
+                onClick={handleSignOut}
+                className={`text-sm transition-colors ${
+                  transparent ? 'text-parchment/70 hover:text-parchment' : 'text-soil hover:text-bark'
+                }`}
+              >
+                Sign out
+              </button>
+            </div>
+          )}
 
           {/* Mobile hamburger */}
           <button
@@ -306,9 +287,8 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Auth buttons */}
-          <div className="px-4 py-4 border-t border-border shrink-0">
-            {user ? (
+          {user && (
+            <div className="px-4 py-4 border-t border-border shrink-0">
               <div className="flex flex-col gap-2">
                 <Link
                   href="/dashboard/new-trip"
@@ -323,25 +303,8 @@ export default function Navbar() {
                   Sign out
                 </button>
               </div>
-            ) : (
-              <div className="flex flex-col gap-2">
-                <a
-                  href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full text-center px-4 py-2.5 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-full transition-colors"
-                >
-                  Join the Club
-                </a>
-                <Link
-                  href="/login"
-                  className="w-full text-center px-4 py-2.5 text-soil hover:text-bark text-sm transition-colors"
-                >
-                  Login
-                </Link>
-              </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </>
