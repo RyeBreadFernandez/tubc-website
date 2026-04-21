@@ -32,6 +32,14 @@ export const metadata: Metadata = {
     siteName: "The Backpacking Club at UCLA",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "/staff-group.jpg",
+        width: 1200,
+        height: 630,
+        alt: "The Backpacking Club at UCLA",
+      },
+    ],
   },
   metadataBase: new URL("https://www.uclabackpackingclub.com"),
   alternates: {
