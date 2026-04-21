@@ -17,9 +17,6 @@ interface FormData {
   content: string
 }
 
-function slugify(text: string) {
-  return text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '')
-}
 
 export default function NewTripPage() {
   const router = useRouter()
@@ -56,35 +53,20 @@ export default function NewTripPage() {
     try {
       const { data: { user } } = await supabase.auth.getUser()
 
-      const slug = `${slugify(data.title)}-${Date.now()}`
+      const body = new globalThis.FormData()
+      body.append('title', data.title)
+      body.append('location', data.location)
+      body.append('trip_date', data.trip_date)
+      body.append('difficulty', data.difficulty)
+      body.append('miles', data.miles ?? '')
+      body.append('elevation_gain', data.elevation_gain ?? '')
+      body.append('content', data.content)
+      body.append('cover', coverFile)
+      if (user) body.append('author_id', user.id)
 
-      // Upload image to Supabase Storage
-      const ext = coverFile.name.split('.').pop()
-      const uploadFolder = user ? user.id : 'public'
-      const path = `${uploadFolder}/${slug}.${ext}`
-      const { error: uploadError } = await supabase.storage
-        .from('trip-covers')
-        .upload(path, coverFile, { upsert: true })
-      if (uploadError) throw new Error(`Upload failed: ${uploadError.message}`)
-
-      const { data: { publicUrl } } = supabase.storage
-        .from('trip-covers')
-        .getPublicUrl(path)
-      const { error } = await supabase.from('trip_logs').insert({
-        title: data.title,
-        slug,
-        location: data.location,
-        trip_date: data.trip_date,
-        difficulty: data.difficulty,
-        miles: data.miles ? parseFloat(data.miles) : null,
-        elevation_gain: data.elevation_gain ? parseInt(data.elevation_gain) : null,
-        cover_image_url: publicUrl,
-        content: data.content,
-        author_id: user?.id ?? null,
-        published: false,
-      })
-
-      if (error) throw error
+      const res = await fetch('/api/submit-trip', { method: 'POST', body })
+      const json = await res.json()
+      if (!res.ok) throw new Error(json.error ?? 'Something went wrong.')
 
       toast.success('Trip report submitted! An officer will review and publish it shortly.')
       setTimeout(() => router.push(user ? '/dashboard' : '/trip-logs'), 1500)
