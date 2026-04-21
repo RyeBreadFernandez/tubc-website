@@ -87,7 +87,7 @@ export default function NewTripPage() {
       if (error) throw error
 
       toast.success('Trip report submitted! An officer will review and publish it shortly.')
-      setTimeout(() => router.push('/trip-logs'), 1500)
+      setTimeout(() => router.push(user ? '/dashboard' : '/trip-logs'), 1500)
     } catch (err: unknown) {
       toast.error((err as Error).message ?? 'Something went wrong.')
     } finally {
