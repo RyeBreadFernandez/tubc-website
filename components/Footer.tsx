@@ -26,7 +26,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 mt-5">
               <a
-                href="https://www.instagram.com/uclabackpackingclub"
+                href="https://www.instagram.com/uclabackpackingclub/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
@@ -108,10 +108,6 @@ export default function Footer() {
           <p className="text-xs text-soil/70">
             © {new Date().getFullYear()} The Backpacking Club at UCLA. All rights reserved.
           </p>
-          <div className="flex gap-4 text-xs text-soil/70">
-            <Link href="/login" className="hover:text-terra transition-colors">Member Login</Link>
-            <Link href="/signup" className="hover:text-terra transition-colors">Join</Link>
-          </div>
         </div>
       </div>
     </footer>

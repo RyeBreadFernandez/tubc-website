@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import PageHero from '@/components/ui/PageHero'
 import Badge from '@/components/ui/Badge'
+import CalendarEvents from '@/components/CalendarEvents'
 import Link from 'next/link'
 import { format } from 'date-fns'
 
@@ -38,25 +39,6 @@ export default async function TripsPage() {
         image="/trips-hero.jpg"
         imagePosition="center 30%"
       />
-
-      {/* Calendar embed */}
-      <section className="py-16 bg-parchment">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3 text-center">Club calendar</p>
-          <h2 className="font-display text-2xl md:text-3xl text-bark font-bold mb-8 text-center">
-            Upcoming Events
-          </h2>
-          <div className="rounded-2xl overflow-hidden border border-border shadow-sm bg-parchment-dark">
-            <iframe
-              src="https://calendar.google.com/calendar/embed?src=uclabackpackingclub%40gmail.com&ctz=America%2FLos_Angeles&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=0&showCalendars=0&showTz=0&bgcolor=%23F5F0E8"
-              style={{ border: 0 }}
-              width="100%"
-              height="500"
-              title="TUBC Club Calendar"
-            />
-          </div>
-        </div>
-      </section>
 
       {/* Upcoming trips list */}
       <section className="py-16 bg-moss">
@@ -109,6 +91,17 @@ export default async function TripsPage() {
               <p className="text-soil text-sm">Check back soon or follow us on Instagram for announcements.</p>
             </div>
           )}
+        </div>
+      </section>
+
+      {/* Calendar events */}
+      <section className="py-16 bg-parchment">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3 text-center">Club calendar</p>
+          <h2 className="font-display text-2xl md:text-3xl text-bark font-bold mb-8 text-center">
+            Upcoming Events
+          </h2>
+          <CalendarEvents />
         </div>
       </section>
     </main>

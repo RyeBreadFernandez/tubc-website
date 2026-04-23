@@ -39,15 +39,6 @@ export default async function TripLogsPage() {
       <section className="py-16 bg-parchment">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          <div className="flex justify-end mb-8">
-            <Link
-              href="/dashboard/new-trip"
-              className="inline-block px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-full transition-colors"
-            >
-              Write a Trip Log
-            </Link>
-          </div>
-
           {trips.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {trips.map((trip) => (
@@ -92,13 +83,7 @@ export default async function TripLogsPage() {
           ) : (
             <div className="text-center py-24">
               <p className="font-display text-2xl text-bark mb-3">No trip logs yet</p>
-              <p className="text-soil mb-8">Be the first member to share a trip report.</p>
-              <Link
-                href="/dashboard/new-trip"
-                className="inline-block px-8 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full transition-colors"
-              >
-                Post a Trip Log
-              </Link>
+              <p className="text-soil">Check back after our next trip!</p>
             </div>
           )}
         </div>
