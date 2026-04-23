@@ -96,11 +96,20 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           href="/"
-          onClick={(e) => {
-            if (pathname === '/') {
-              e.preventDefault()
-              window.scrollTo({ top: 0, behavior: 'smooth' })
+          scroll={false}
+          onClick={() => {
+            const start = window.scrollY
+            const duration = 1600
+            const startTime = performance.now()
+            const easeInOutQuint = (t: number) =>
+              t < 0.5 ? 16 * t * t * t * t * t : 1 - Math.pow(-2 * t + 2, 5) / 2
+            const step = (now: number) => {
+              const elapsed = now - startTime
+              const progress = Math.min(elapsed / duration, 1)
+              window.scrollTo(0, start * (1 - easeInOutQuint(progress)))
+              if (progress < 1) requestAnimationFrame(step)
             }
+            requestAnimationFrame(step)
           }}
           className="flex items-center gap-2 shrink-0"
         >
