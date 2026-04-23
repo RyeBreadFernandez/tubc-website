@@ -94,7 +94,16 @@ export default function Navbar() {
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
 
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 shrink-0">
+        <Link
+          href="/"
+          onClick={(e) => {
+            if (pathname === '/') {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }
+          }}
+          className="flex items-center gap-2 shrink-0"
+        >
           <span className={`font-display text-xl font-bold tracking-tight transition-colors ${transparent ? 'text-parchment' : 'text-bark'}`}>
             TUBC
           </span>
