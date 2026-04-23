@@ -1,7 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
+import { Card, CardContent } from '@/components/ui/card'
 
 type Category = 'All' | 'Planning' | 'Gear' | 'On the Trail' | 'Club'
 
@@ -22,17 +23,34 @@ const resources: { title: string; href: string; icon: string; description: strin
 
 const categories: Category[] = ['All', 'Planning', 'Gear', 'On the Trail', 'Club']
 
-export default function ResourcesPage() {
-  const [active, setActive] = useState<Category>('All')
-  const filtered = active === 'All' ? resources : resources.filter((r) => r.category === active)
+function ResourceGrid({ items }: { items: typeof resources }) {
+  return (
+    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      {items.map(({ title, href, icon, description }) => (
+        <Link key={href} href={href} className="group block">
+          <Card className="h-full border-secondary hover:shadow-md hover:border-primary/30 transition-all bg-parchment-dark">
+            <CardContent className="p-6">
+              <span className="text-3xl mb-4 block">{icon}</span>
+              <h2 className="font-display text-lg font-bold text-bark group-hover:text-primary transition-colors mb-2">
+                {title}
+              </h2>
+              <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+            </CardContent>
+          </Card>
+        </Link>
+      ))}
+    </div>
+  )
+}
 
+export default function ResourcesPage() {
   return (
     <main className="flex-1 pt-16">
       <section className="pt-16 pb-10 bg-parchment">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-2">Knowledge base</p>
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">Knowledge base</p>
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-3">Resources</h1>
-          <p className="text-soil text-lg max-w-2xl">
+          <p className="text-muted-foreground text-lg max-w-2xl">
             Everything you need to plan your next adventure — from picking a destination to knowing what to eat at 11,000 feet.
           </p>
         </div>
@@ -40,35 +58,28 @@ export default function ResourcesPage() {
 
       <section className="py-12 bg-parchment">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-2 mb-8">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActive(cat)}
-                className={`px-4 py-1.5 rounded-full text-sm font-semibold border transition-colors ${
-                  active === cat
-                    ? 'bg-terra text-parchment border-terra'
-                    : 'bg-transparent text-soil border-sand hover:border-terra/50 hover:text-bark'
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
+          <Tabs defaultValue="All">
+            <TabsList className="mb-8 flex flex-wrap gap-1 h-auto bg-transparent p-0">
+              {categories.map((cat) => (
+                <TabsTrigger
+                  key={cat}
+                  value={cat}
+                  className="rounded-full border border-secondary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-bark transition-colors"
+                >
+                  {cat}
+                </TabsTrigger>
+              ))}
+            </TabsList>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filtered.map(({ title, href, icon, description }) => (
-              <Link key={href} href={href} className="group block">
-                <div className="bg-parchment-dark border border-sand rounded-2xl p-6 hover:shadow-md hover:border-terra/30 transition-all h-full">
-                  <span className="text-3xl mb-4 block">{icon}</span>
-                  <h2 className="font-display text-lg font-bold text-bark group-hover:text-terra transition-colors mb-2">
-                    {title}
-                  </h2>
-                  <p className="text-soil text-sm leading-relaxed">{description}</p>
-                </div>
-              </Link>
+            <TabsContent value="All">
+              <ResourceGrid items={resources} />
+            </TabsContent>
+            {categories.slice(1).map((cat) => (
+              <TabsContent key={cat} value={cat}>
+                <ResourceGrid items={resources.filter((r) => r.category === cat)} />
+              </TabsContent>
             ))}
-          </div>
+          </Tabs>
         </div>
       </section>
     </main>

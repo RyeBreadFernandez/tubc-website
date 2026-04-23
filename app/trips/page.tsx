@@ -1,7 +1,7 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import PageHero from '@/components/ui/PageHero'
-import Badge from '@/components/ui/Badge'
+import Badge from '@/components/ui/DifficultyBadge'
 import CalendarEvents from '@/components/CalendarEvents'
 import Link from 'next/link'
 import { format } from 'date-fns'

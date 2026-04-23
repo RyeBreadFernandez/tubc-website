@@ -1,7 +1,9 @@
 import Image from 'next/image'
 import PageHero from '@/components/ui/PageHero'
 import { staff } from '@/data/staff'
-import { getMountainPlaceholder } from '@/lib/utils/placeholder'
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
+import { Card, CardContent } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 
 export const metadata = {
   title: 'About — TUBC',
@@ -20,11 +22,11 @@ export default function AboutPage() {
       {/* About section */}
       <section className="py-20 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3">Who we are</p>
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3">Who we are</p>
           <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-6">
             UCLA's home for the backcountry
           </h2>
-          <div className="prose prose-lg text-soil space-y-4 leading-relaxed">
+          <div className="prose prose-lg text-muted-foreground space-y-4 leading-relaxed">
             <p>
               The Backpacking Club at UCLA (TUBC) has been taking Bruins into the wilderness for over a decade. We are a student-run organization dedicated to making outdoor adventure accessible to everyone regardless of experience, budget, or gear.
             </p>
@@ -46,44 +48,51 @@ export default function AboutPage() {
               { value: '1500+', label: 'Active members' },
               { value: '$0', label: 'Membership fee' },
             ].map(({ value, label }) => (
-              <div key={label} className="bg-moss rounded-xl p-5 text-center">
+              <div key={label} className="bg-muted rounded-xl p-5 text-center">
                 <p className="font-display text-3xl font-bold text-bark">{value}</p>
-                <p className="text-soil text-sm mt-1">{label}</p>
+                <p className="text-muted-foreground text-sm mt-1">{label}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
+      <Separator />
+
       {/* Staff grid */}
       <section className="py-20 bg-parchment-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3 text-center">The people behind the trips</p>
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3 text-center">The people behind the trips</p>
           <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-12 text-center">
             Meet the Team
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {staff.map((member) => (
-              <div key={member.name} className="bg-parchment border border-sand rounded-2xl overflow-hidden shadow-sm">
-                <div className="relative h-48 bg-moss">
+              <Card key={member.name} className="overflow-hidden border-secondary shadow-sm bg-parchment">
+                <div className="relative h-48 bg-muted flex items-center justify-center">
                   {member.imageUrl ? (
-                    <Image src={member.imageUrl} alt={member.name} fill sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw" className="object-cover" />
+                    <Image
+                      src={member.imageUrl}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="object-cover"
+                    />
                   ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <div className="w-20 h-20 rounded-full bg-sand flex items-center justify-center">
-                        <svg className="w-10 h-10 text-soil/50" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                      </div>
-                    </div>
+                    <Avatar className="size-20">
+                      <AvatarImage src={undefined} alt={member.name} />
+                      <AvatarFallback className="bg-secondary text-foreground text-2xl font-bold">
+                        {member.name.charAt(0)}
+                      </AvatarFallback>
+                    </Avatar>
                   )}
                 </div>
-                <div className="p-5">
+                <CardContent className="p-5">
                   <p className="font-display text-lg font-bold text-bark">{member.name}</p>
-                  <p className="text-terra text-sm font-semibold mb-2">{member.role}</p>
-                  <p className="text-soil text-sm leading-relaxed">{member.bio}</p>
-                </div>
-              </div>
+                  <p className="text-primary text-sm font-semibold mb-2">{member.role}</p>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>

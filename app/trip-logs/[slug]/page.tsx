@@ -2,7 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import Badge from '@/components/ui/Badge'
+import Badge from '@/components/ui/DifficultyBadge'
 import { getMountainPlaceholder } from '@/lib/utils/placeholder'
 import { format } from 'date-fns'
 

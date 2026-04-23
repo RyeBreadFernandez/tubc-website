@@ -3,9 +3,11 @@ import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
-import Badge from '@/components/ui/Badge'
+import DifficultyBadge from '@/components/ui/DifficultyBadge'
 import { getMountainPlaceholder } from '@/lib/utils/placeholder'
 import { format } from 'date-fns'
+import { Card, CardContent } from '@/components/ui/card'
+import { Separator } from '@/components/ui/separator'
 
 export const metadata = {
   title: 'Trip Logs — TUBC',
@@ -38,12 +40,11 @@ export default async function TripLogsPage() {
 
       <section className="py-16 bg-parchment">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
           {trips.length > 0 ? (
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {trips.map((trip) => (
-                <Link key={trip.id} href={`/trip-logs/${trip.slug}`} className="group block">
-                  <div className="bg-parchment border border-sand rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow h-full flex flex-col">
+                <Link key={trip.id} href={`/trip-logs/${trip.slug}`} className="group block h-full">
+                  <Card className="h-full overflow-hidden border-secondary shadow-sm hover:shadow-md transition-shadow bg-parchment flex flex-col">
                     <div className="relative h-52 overflow-hidden shrink-0">
                       <Image
                         src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
@@ -53,37 +54,44 @@ export default async function TripLogsPage() {
                         className="object-cover group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
-                    <div className="p-5 flex flex-col flex-1">
+                    <CardContent className="p-5 flex flex-col flex-1">
                       <div className="flex items-center gap-2 mb-3 flex-wrap">
-                        {trip.difficulty && <Badge difficulty={trip.difficulty as 'Easy' | 'Moderate' | 'Strenuous' | 'Expert'} />}
+                        {trip.difficulty && (
+                          <DifficultyBadge difficulty={trip.difficulty as 'Easy' | 'Moderate' | 'Strenuous' | 'Expert'} />
+                        )}
                         {trip.trip_date && (
-                          <span className="text-xs text-soil/60">
+                          <span className="text-xs text-muted-foreground">
                             {format(new Date(trip.trip_date), 'MMM d, yyyy')}
                           </span>
                         )}
                       </div>
-                      <h3 className="font-display text-lg font-bold text-bark group-hover:text-terra transition-colors mb-1">
+                      <h3 className="font-display text-lg font-bold text-bark group-hover:text-primary transition-colors mb-1">
                         {trip.title}
                       </h3>
-                      <p className="text-soil text-sm mb-3">{trip.location}</p>
+                      <p className="text-muted-foreground text-sm mb-3">{trip.location}</p>
                       {trip.content && (
-                        <p className="text-soil/70 text-sm leading-relaxed line-clamp-3 flex-1">
+                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 flex-1">
                           {trip.content.replace(/[#*`]/g, '').slice(0, 150)}…
                         </p>
                       )}
-                      <div className="flex gap-4 mt-4 pt-4 border-t border-sand text-xs text-soil/60">
-                        {trip.miles && <span>{trip.miles} mi</span>}
-                        {trip.elevation_gain && <span>{trip.elevation_gain.toLocaleString()} ft</span>}
-                      </div>
-                    </div>
-                  </div>
+                      {(trip.miles || trip.elevation_gain) && (
+                        <>
+                          <Separator className="mt-4 mb-3" />
+                          <div className="flex gap-4 text-xs text-muted-foreground">
+                            {trip.miles && <span>{trip.miles} mi</span>}
+                            {trip.elevation_gain && <span>{trip.elevation_gain.toLocaleString()} ft</span>}
+                          </div>
+                        </>
+                      )}
+                    </CardContent>
+                  </Card>
                 </Link>
               ))}
             </div>
           ) : (
             <div className="text-center py-24">
               <p className="font-display text-2xl text-bark mb-3">No trip logs yet</p>
-              <p className="text-soil">Check back after our next trip!</p>
+              <p className="text-muted-foreground">Check back after our next trip!</p>
             </div>
           )}
         </div>

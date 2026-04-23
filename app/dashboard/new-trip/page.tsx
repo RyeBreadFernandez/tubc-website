@@ -5,7 +5,13 @@ import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import Image from 'next/image'
 import { createClient } from '@/utils/supabase/client'
-import toast, { Toaster } from 'react-hot-toast'
+import { toast } from 'sonner'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
+import { Button } from '@/components/ui/button'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Toaster } from '@/components/ui/sonner'
 
 interface FormData {
   title: string
@@ -17,7 +23,6 @@ interface FormData {
   content: string
 }
 
-
 export default function NewTripPage() {
   const router = useRouter()
   const supabase = createClient()
@@ -25,6 +30,7 @@ export default function NewTripPage() {
   const [coverFile, setCoverFile] = useState<File | null>(null)
   const [coverPreview, setCoverPreview] = useState<string | null>(null)
   const [dragging, setDragging] = useState(false)
+  const [difficulty, setDifficulty] = useState<string>('')
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
@@ -49,6 +55,10 @@ export default function NewTripPage() {
       toast.error('Please upload a cover photo.')
       return
     }
+    if (!difficulty) {
+      toast.error('Please select a difficulty.')
+      return
+    }
     setSubmitting(true)
     try {
       const { data: { user } } = await supabase.auth.getUser()
@@ -57,7 +67,7 @@ export default function NewTripPage() {
       body.append('title', data.title)
       body.append('location', data.location)
       body.append('trip_date', data.trip_date)
-      body.append('difficulty', data.difficulty)
+      body.append('difficulty', difficulty)
       body.append('miles', data.miles ?? '')
       body.append('elevation_gain', data.elevation_gain ?? '')
       body.append('content', data.content)
@@ -77,90 +87,93 @@ export default function NewTripPage() {
     }
   }
 
-  const inputClass = 'w-full px-4 py-3 bg-parchment border border-border rounded-xl text-bark placeholder-soil/50 focus:outline-none focus:border-terra transition-colors text-sm'
-  const errorClass = 'text-terra text-xs mt-1'
-
   return (
     <main className="flex-1 pt-16 bg-parchment min-h-screen">
-      <Toaster position="top-right" toastOptions={{ style: { background: '#F5F0E8', color: '#2C1F14' } }} />
+      <Toaster position="top-right" />
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-1">Share your adventure</p>
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-1">Share your adventure</p>
           <h1 className="font-display text-3xl md:text-4xl text-bark font-bold">Write a Trip Report</h1>
-          <p className="text-soil text-sm mt-2">Reports are reviewed before publishing.</p>
+          <p className="text-muted-foreground text-sm mt-2">Reports are reviewed before publishing.</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-          <div>
-            <label className="block text-sm font-medium text-bark mb-1.5">Trip Title</label>
-            <input
+          <div className="space-y-1.5">
+            <Label htmlFor="title">Trip Title</Label>
+            <Input
+              id="title"
               {...register('title', { required: 'Title is required' })}
               placeholder="e.g. Mount Whitney via Main Trail"
-              className={inputClass}
+              aria-invalid={!!errors.title}
             />
-            {errors.title && <p className={errorClass}>{errors.title.message}</p>}
+            {errors.title && <p className="text-destructive text-xs">{errors.title.message}</p>}
           </div>
 
           <div className="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label className="block text-sm font-medium text-bark mb-1.5">Location / Trail Name</label>
-              <input
+            <div className="space-y-1.5">
+              <Label htmlFor="location">Location / Trail Name</Label>
+              <Input
+                id="location"
                 {...register('location', { required: 'Location is required' })}
                 placeholder="e.g. Inyo National Forest, CA"
-                className={inputClass}
+                aria-invalid={!!errors.location}
               />
-              {errors.location && <p className={errorClass}>{errors.location.message}</p>}
+              {errors.location && <p className="text-destructive text-xs">{errors.location.message}</p>}
             </div>
-            <div>
-              <label className="block text-sm font-medium text-bark mb-1.5">Trip Date</label>
-              <input
+            <div className="space-y-1.5">
+              <Label htmlFor="trip_date">Trip Date</Label>
+              <Input
+                id="trip_date"
                 {...register('trip_date', { required: 'Date is required' })}
                 type="date"
-                className={inputClass}
+                aria-invalid={!!errors.trip_date}
               />
-              {errors.trip_date && <p className={errorClass}>{errors.trip_date.message}</p>}
+              {errors.trip_date && <p className="text-destructive text-xs">{errors.trip_date.message}</p>}
             </div>
           </div>
 
           <div className="grid sm:grid-cols-3 gap-5">
-            <div>
-              <label className="block text-sm font-medium text-bark mb-1.5">Difficulty</label>
-              <select {...register('difficulty', { required: true })} className={inputClass}>
-                <option value="">Select…</option>
-                <option value="Easy">Easy</option>
-                <option value="Moderate">Moderate</option>
-                <option value="Strenuous">Strenuous</option>
-                <option value="Expert">Expert</option>
-              </select>
-              {errors.difficulty && <p className={errorClass}>Required</p>}
+            <div className="space-y-1.5">
+              <Label>Difficulty</Label>
+              <Select onValueChange={(v) => { if (v != null) setDifficulty(String(v)) }}>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select…" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="Easy">Easy</SelectItem>
+                  <SelectItem value="Moderate">Moderate</SelectItem>
+                  <SelectItem value="Strenuous">Strenuous</SelectItem>
+                  <SelectItem value="Expert">Expert</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-            <div>
-              <label className="block text-sm font-medium text-bark mb-1.5">Miles</label>
-              <input
+            <div className="space-y-1.5">
+              <Label htmlFor="miles">Miles</Label>
+              <Input
+                id="miles"
                 {...register('miles')}
                 type="number"
                 step="0.1"
                 placeholder="e.g. 22.5"
-                className={inputClass}
               />
             </div>
-            <div>
-              <label className="block text-sm font-medium text-bark mb-1.5">Elevation Gain (ft)</label>
-              <input
+            <div className="space-y-1.5">
+              <Label htmlFor="elevation_gain">Elevation Gain (ft)</Label>
+              <Input
+                id="elevation_gain"
                 {...register('elevation_gain')}
                 type="number"
                 placeholder="e.g. 6200"
-                className={inputClass}
               />
             </div>
           </div>
 
           {/* Cover photo drop zone */}
-          <div>
-            <label className="block text-sm font-medium text-bark mb-1.5">
-              Cover Photo <span className="text-terra text-xs">*required</span>
-            </label>
+          <div className="space-y-1.5">
+            <Label>
+              Cover Photo <span className="text-primary text-xs">*required</span>
+            </Label>
             <input
               ref={fileInputRef}
               type="file"
@@ -169,14 +182,14 @@ export default function NewTripPage() {
               onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f) }}
             />
             {coverPreview ? (
-              <div className="relative rounded-xl overflow-hidden border border-sand">
+              <div className="relative rounded-xl overflow-hidden border border-secondary">
                 <div className="relative h-52">
                   <Image src={coverPreview} alt="Cover preview" fill className="object-cover" unoptimized />
                 </div>
                 <button
                   type="button"
                   onClick={() => { setCoverFile(null); setCoverPreview(null) }}
-                  className="absolute top-2 right-2 bg-bark/70 hover:bg-bark text-parchment text-xs px-3 py-1.5 rounded-full transition-colors"
+                  className="absolute top-2 right-2 bg-foreground/70 hover:bg-foreground text-background text-xs px-3 py-1.5 rounded-full transition-colors"
                 >
                   Remove
                 </button>
@@ -188,45 +201,48 @@ export default function NewTripPage() {
                 onDrop={onDrop}
                 onClick={() => fileInputRef.current?.click()}
                 className={`border-2 border-dashed rounded-xl h-40 flex flex-col items-center justify-center cursor-pointer transition-colors ${
-                  dragging ? 'border-terra bg-terra/5' : 'border-sand hover:border-terra hover:bg-terra/5'
+                  dragging ? 'border-primary bg-primary/5' : 'border-secondary hover:border-primary hover:bg-primary/5'
                 }`}
               >
-                <svg className="w-8 h-8 text-soil/40 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="size-8 text-muted-foreground/60 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
-                <p className="text-sm text-soil/60">Drag & drop a photo, or <span className="text-terra font-semibold">browse</span></p>
-                <p className="text-xs text-soil/40 mt-1">One image required</p>
+                <p className="text-sm text-muted-foreground">Drag & drop a photo, or <span className="text-primary font-semibold">browse</span></p>
+                <p className="text-xs text-muted-foreground/60 mt-1">One image required</p>
               </div>
             )}
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-bark mb-1.5">Trip Report</label>
-            <p className="text-xs text-soil/60 mb-2">Write in plain text or Markdown. Tell us about the trail, the conditions, highlights, and any tips for future hikers.</p>
-            <textarea
+          <div className="space-y-1.5">
+            <Label htmlFor="content">Trip Report</Label>
+            <p className="text-xs text-muted-foreground">Write in plain text or Markdown. Tell us about the trail, the conditions, highlights, and any tips for future hikers.</p>
+            <Textarea
+              id="content"
               {...register('content', { required: 'Please write your trip report' })}
               rows={14}
               placeholder="The alarm went off at 3am..."
-              className={`${inputClass} resize-none font-mono text-xs leading-relaxed`}
+              className="resize-none font-mono text-xs leading-relaxed"
+              aria-invalid={!!errors.content}
             />
-            {errors.content && <p className={errorClass}>{errors.content.message}</p>}
+            {errors.content && <p className="text-destructive text-xs">{errors.content.message}</p>}
           </div>
 
           <div className="flex gap-3 pt-2">
-            <button
+            <Button
               type="submit"
               disabled={submitting}
-              className="flex-1 py-3.5 bg-terra hover:bg-terra-dark disabled:opacity-60 text-parchment font-semibold rounded-full transition-colors"
+              className="flex-1 py-3.5 h-auto rounded-full"
             >
               {submitting ? 'Uploading & submitting…' : 'Submit for Review'}
-            </button>
-            <button
+            </Button>
+            <Button
               type="button"
+              variant="outline"
               onClick={() => router.back()}
-              className="px-6 py-3.5 border border-border hover:bg-parchment-dark text-soil rounded-full transition-colors text-sm"
+              className="px-6 py-3.5 h-auto rounded-full"
             >
               Cancel
-            </button>
+            </Button>
           </div>
         </form>
       </div>
