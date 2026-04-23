@@ -29,17 +29,17 @@ export default async function ReviewPage() {
         </div>
 
         {all.length === 0 ? (
-          <div className="text-center py-16 bg-parchment-dark border border-sand rounded-2xl">
+          <div className="text-center py-16 bg-parchment-dark border border-sand rounded-md">
             <p className="font-display text-xl text-bark mb-2">No reports submitted yet</p>
           </div>
         ) : (
           <div className="space-y-3">
             {all.map((trip) => (
-              <div key={trip.id} className="bg-parchment-dark border border-sand rounded-xl p-5 flex items-center gap-4 flex-wrap">
+              <div key={trip.id} className="bg-parchment-dark border border-sand rounded-md p-5 flex items-center gap-4 flex-wrap">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap mb-0.5">
                     <h3 className="font-semibold text-bark">{trip.title}</h3>
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${trip.published ? 'bg-moss text-sage-dark' : 'bg-sand text-soil'}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-md font-medium ${trip.published ? 'bg-moss text-sage-dark' : 'bg-sand text-soil'}`}>
                       {trip.published ? 'Published' : 'Pending'}
                     </span>
                   </div>
@@ -62,7 +62,7 @@ export default async function ReviewPage() {
                   <form action={setPublished.bind(null, trip.id, !trip.published)}>
                     <button
                       type="submit"
-                      className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-colors whitespace-nowrap ${
+                      className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-colors whitespace-nowrap ${
                         trip.published
                           ? 'border border-sand text-soil hover:bg-sand'
                           : 'bg-terra hover:bg-terra-dark text-parchment'

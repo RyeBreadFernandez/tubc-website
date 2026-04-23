@@ -22,12 +22,12 @@ export default function GearRentalPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mt-4 mb-3">Gear Rental</h1>
-          <p className="text-soil text-lg">Don't have gear? Borrow from the club. Rental is open to all TUBC members.</p>
+          <p className="text-soil text-lg">Don&apos;t have gear? Borrow from the club. Rental is open to all TUBC members.</p>
         </div>
       </section>
       <section className="pb-20 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-moss rounded-2xl p-6 mb-8">
+          <div className="bg-moss rounded-md p-6 mb-8">
             <h2 className="font-display text-lg font-bold text-bark mb-2">How to Rent</h2>
             <ol className="space-y-2 text-soil text-sm list-decimal list-inside">
               <li>Check availability by messaging the Gear Manager on Slack (#gear-rental)</li>
@@ -37,7 +37,7 @@ export default function GearRentalPage() {
             </ol>
           </div>
 
-          <div className="overflow-hidden border border-sand rounded-2xl">
+          <div className="overflow-hidden border border-sand rounded-md">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-parchment-dark border-b border-sand">
@@ -58,14 +58,14 @@ export default function GearRentalPage() {
             </table>
           </div>
 
-          <div className="mt-8 bg-rose/50 border border-sand rounded-2xl p-6 text-center">
+          <div className="mt-8 bg-rose/50 border border-sand rounded-md p-6 text-center">
             <p className="font-display text-lg text-bark font-bold mb-2">Ready to rent?</p>
             <p className="text-soil text-sm mb-4">Message the Gear Manager on Slack to check availability and reserve.</p>
             <a
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-sm transition-colors"
+              className="inline-block px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors"
             >
               Join Slack to Rent
             </a>

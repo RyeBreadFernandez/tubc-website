@@ -63,7 +63,7 @@ export default async function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/trips"
-              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-base transition-colors"
+              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-base transition-colors"
             >
               See Upcoming Trips
             </Link>
@@ -71,7 +71,7 @@ export default async function Home() {
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-parchment/15 hover:bg-parchment/25 border border-parchment/40 text-parchment font-semibold rounded-full text-base transition-colors backdrop-blur-sm"
+              className="px-8 py-3.5 bg-parchment/15 hover:bg-parchment/25 border border-parchment/40 text-parchment font-semibold rounded-md text-base transition-colors backdrop-blur-sm"
             >
               Join the Club
             </a>
@@ -101,7 +101,7 @@ export default async function Home() {
       {/* About preview */}
       <section className="py-20 bg-parchment">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
-          <div className="relative h-80 md:h-96 rounded-2xl overflow-hidden">
+          <div className="relative h-80 md:h-96 rounded-md overflow-hidden">
             <Image
               src="/staff-group.jpg"
               alt="Group around a campfire"
@@ -113,7 +113,7 @@ export default async function Home() {
           <div>
             <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3">Who we are</p>
             <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-5">
-              UCLA's home for the outdoors
+              UCLA&apos;s home for the outdoors
             </h2>
             <p className="text-soil leading-relaxed mb-4">
               TUBC has been taking Bruins into the backcountry for over a decade. From day hikes to weekend car camps to multi-day Sierra crossings, we run trips for every experience level and budget.
@@ -151,7 +151,7 @@ export default async function Home() {
             <div className="grid md:grid-cols-3 gap-6">
               {tripLogs.map((trip) => (
                 <Link key={trip.id} href={`/trip-logs/${trip.slug}`} className="group block">
-                  <div className="bg-parchment border border-sand rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+                  <div className="bg-parchment border border-sand rounded-md overflow-hidden shadow-sm hover:shadow-md transition-shadow">
                     <div className="relative h-48 overflow-hidden">
                       <Image
                         src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
@@ -200,20 +200,20 @@ export default async function Home() {
             Your next adventure starts here
           </h2>
           <p className="text-soil leading-relaxed mb-8 text-lg">
-            Join hundreds of Bruins who've traded campus for the backcountry. No experience needed just curiosity to explore and keeping an open mind.
+            Join hundreds of Bruins who&apos;ve traded campus for the backcountry. No experience needed just curiosity to explore and keeping an open mind.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-base transition-colors"
+              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-base transition-colors"
             >
               Join our Slack
             </Link>
             <Link
               href="/trips"
-              className="px-8 py-3.5 border border-border hover:bg-parchment-dark text-bark font-semibold rounded-full text-base transition-colors"
+              className="px-8 py-3.5 border border-border hover:bg-parchment-dark text-bark font-semibold rounded-md text-base transition-colors"
             >
               Browse trips
             </Link>
@@ -230,9 +230,9 @@ export default async function Home() {
             <input
               type="email"
               placeholder="your@email.com"
-              className="flex-1 px-4 py-3 bg-parchment border border-border rounded-full text-bark placeholder-soil/60 focus:outline-none focus:border-terra transition-colors text-sm"
+              className="flex-1 px-4 py-3 bg-parchment border border-border rounded-md text-bark placeholder-soil/60 focus:outline-none focus:border-terra transition-colors text-sm"
             />
-            <button className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-sm transition-colors whitespace-nowrap">
+            <button className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors whitespace-nowrap">
               Subscribe
             </button>
           </div>

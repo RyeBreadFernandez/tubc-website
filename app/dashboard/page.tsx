@@ -47,13 +47,13 @@ export default async function DashboardPage() {
           <div className="flex gap-3">
             <Link
               href="/dashboard/review"
-              className="px-6 py-3 border border-sand hover:bg-parchment-dark text-soil font-semibold rounded-full transition-colors text-sm"
+              className="px-6 py-3 border border-sand hover:bg-parchment-dark text-soil font-semibold rounded-md transition-colors text-sm"
             >
               Review Reports
             </Link>
             <Link
               href="/dashboard/new-trip"
-              className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full transition-colors text-sm"
+              className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md transition-colors text-sm"
             >
               + Write a Trip Report
             </Link>
@@ -67,7 +67,7 @@ export default async function DashboardPage() {
             { value: published.length, label: 'Published' },
             { value: drafts.length, label: 'Pending review' },
           ].map(({ value, label }) => (
-            <div key={label} className="bg-parchment-dark border border-sand rounded-xl p-5 text-center">
+            <div key={label} className="bg-parchment-dark border border-sand rounded-md p-5 text-center">
               <p className="font-display text-3xl font-bold text-bark">{value}</p>
               <p className="text-soil text-xs mt-1">{label}</p>
             </div>
@@ -78,12 +78,12 @@ export default async function DashboardPage() {
         <h2 className="font-display text-xl text-bark font-bold mb-4">Your Trip Reports</h2>
 
         {trips.length === 0 ? (
-          <div className="text-center py-16 bg-parchment-dark border border-sand rounded-2xl">
+          <div className="text-center py-16 bg-parchment-dark border border-sand rounded-md">
             <p className="font-display text-xl text-bark mb-2">No trip reports yet</p>
             <p className="text-soil text-sm mb-6">Share your adventures with the club.</p>
             <Link
               href="/dashboard/new-trip"
-              className="inline-block px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-sm transition-colors"
+              className="inline-block px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors"
             >
               Write your first report
             </Link>
@@ -91,11 +91,11 @@ export default async function DashboardPage() {
         ) : (
           <div className="space-y-3">
             {trips.map((trip) => (
-              <div key={trip.id} className="bg-parchment-dark border border-sand rounded-xl p-5 flex items-center gap-4 flex-wrap">
+              <div key={trip.id} className="bg-parchment-dark border border-sand rounded-md p-5 flex items-center gap-4 flex-wrap">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
                     <h3 className="font-semibold text-bark truncate">{trip.title}</h3>
-                    <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${trip.published ? 'bg-moss text-sage-dark' : 'bg-sand text-soil'}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-md font-medium ${trip.published ? 'bg-moss text-sage-dark' : 'bg-sand text-soil'}`}>
                       {trip.published ? 'Published' : 'Pending review'}
                     </span>
                   </div>

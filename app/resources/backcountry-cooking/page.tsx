@@ -33,7 +33,7 @@ export default function BackcountryCookingPage() {
             <h2 className="font-display text-2xl text-bark font-bold mb-5">Meal Ideas</h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {meals.map(({ meal, ideas }) => (
-                <div key={meal} className="bg-parchment-dark border border-sand rounded-2xl p-5">
+                <div key={meal} className="bg-parchment-dark border border-sand rounded-md p-5">
                   <h3 className="font-display text-lg font-bold text-bark mb-3">{meal}</h3>
                   <ul className="space-y-1.5">
                     {ideas.map((idea) => (
@@ -50,7 +50,7 @@ export default function BackcountryCookingPage() {
             <h2 className="font-display text-2xl text-bark font-bold mb-5">Tips</h2>
             <div className="space-y-4">
               {tips.map(({ tip, body }) => (
-                <div key={tip} className="bg-parchment-dark border border-sand rounded-2xl p-5">
+                <div key={tip} className="bg-parchment-dark border border-sand rounded-md p-5">
                   <h3 className="font-semibold text-bark mb-2">{tip}</h3>
                   <p className="text-soil text-sm leading-relaxed">{body}</p>
                 </div>

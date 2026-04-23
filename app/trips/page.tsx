@@ -51,7 +51,7 @@ export default async function TripsPage() {
             <div className="space-y-4">
               {trips.map((trip) => (
                 <Link key={trip.id} href={`/trip-logs/${trip.slug}`} className="group block">
-                  <div className="bg-parchment border border-sand rounded-2xl p-6 hover:shadow-md transition-shadow flex flex-col sm:flex-row sm:items-center gap-4">
+                  <div className="bg-parchment border border-sand rounded-md p-6 hover:shadow-md transition-shadow flex flex-col sm:flex-row sm:items-center gap-4">
                     <div className="sm:w-24 shrink-0 text-center">
                       <p className="font-display text-2xl font-bold text-terra">
                         {format(new Date(trip.trip_date), 'd')}
@@ -86,7 +86,7 @@ export default async function TripsPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 bg-parchment rounded-2xl border border-sand">
+            <div className="text-center py-16 bg-parchment rounded-md border border-sand">
               <p className="font-display text-xl text-bark mb-2">No trips scheduled yet</p>
               <p className="text-soil text-sm">Check back soon or follow us on Instagram for announcements.</p>
             </div>

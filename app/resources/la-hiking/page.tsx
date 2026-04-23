@@ -27,7 +27,7 @@ export default function LAHikingPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 gap-5">
             {hikes.map((hike) => (
-              <div key={hike.name} className="bg-parchment-dark border border-sand rounded-2xl p-6">
+              <div key={hike.name} className="bg-parchment-dark border border-sand rounded-md p-6">
                 <h2 className="font-display text-lg font-bold text-bark mb-0.5">{hike.name}</h2>
                 <p className="text-terra text-xs font-semibold mb-3">{hike.area}</p>
                 <p className="text-soil text-sm leading-relaxed mb-4">{hike.notes}</p>

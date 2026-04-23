@@ -24,7 +24,7 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3">Who we are</p>
           <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-6">
-            UCLA's home for the backcountry
+            UCLA&apos;s home for the backcountry
           </h2>
           <div className="prose prose-lg text-muted-foreground space-y-4 leading-relaxed">
             <p>
@@ -37,7 +37,7 @@ export default function AboutPage() {
               Collaboration with the gear rental program keeps costs low. Our trip leaders keep things safe. Our community keeps bringing people back quarter after quarter, year after year.
             </p>
             <p>
-              Whether you've never spent a night outside or you're a seasoned backcountry traveler, there's a place for you in TUBC. Come for the mountains. Stay for the vibes.
+              Whether you&apos;ve never spent a night outside or you&apos;re a seasoned backcountry traveler, there&apos;s a place for you in TUBC. Come for the mountains. Stay for the vibes.
             </p>
           </div>
 
@@ -48,7 +48,7 @@ export default function AboutPage() {
               { value: '1500+', label: 'Active members' },
               { value: '$0', label: 'Membership fee' },
             ].map(({ value, label }) => (
-              <div key={label} className="bg-muted rounded-xl p-5 text-center">
+              <div key={label} className="bg-muted rounded-md p-5 text-center">
                 <p className="font-display text-3xl font-bold text-bark">{value}</p>
                 <p className="text-muted-foreground text-sm mt-1">{label}</p>
               </div>

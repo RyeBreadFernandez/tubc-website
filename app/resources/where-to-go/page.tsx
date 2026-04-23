@@ -37,13 +37,13 @@ export default function WhereToGoPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid sm:grid-cols-2 gap-5">
             {destinations.map((dest) => (
-              <div key={dest.name} className="bg-parchment-dark border border-sand rounded-2xl p-6">
+              <div key={dest.name} className="bg-parchment-dark border border-sand rounded-md p-6">
                 <div className="flex items-start justify-between gap-3 mb-3">
                   <div>
                     <h2 className="font-display text-lg font-bold text-bark">{dest.name}</h2>
                     <p className="text-soil text-xs mt-0.5">{dest.region}</p>
                   </div>
-                  <span className={`text-xs px-2.5 py-1 rounded-full font-medium shrink-0 ${difficultyColor[dest.difficulty] ?? 'bg-sand text-soil'}`}>
+                  <span className={`text-xs px-2.5 py-1 rounded-md font-medium shrink-0 ${difficultyColor[dest.difficulty] ?? 'bg-sand text-soil'}`}>
                     {dest.difficulty}
                   </span>
                 </div>

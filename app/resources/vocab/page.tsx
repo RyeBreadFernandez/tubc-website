@@ -40,7 +40,7 @@ export default function VocabPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-3">
             {terms.map(({ term, def }) => (
-              <div key={term} className="bg-parchment-dark border border-sand rounded-xl px-6 py-4 flex gap-5">
+              <div key={term} className="bg-parchment-dark border border-sand rounded-md px-6 py-4 flex gap-5">
                 <span className="font-display font-bold text-terra shrink-0 w-36 text-sm pt-0.5">{term}</span>
                 <p className="text-soil text-sm leading-relaxed">{def}</p>
               </div>

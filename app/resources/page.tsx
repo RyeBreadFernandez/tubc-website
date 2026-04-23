@@ -64,7 +64,7 @@ export default function ResourcesPage() {
                 <TabsTrigger
                   key={cat}
                   value={cat}
-                  className="rounded-full border border-secondary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-bark transition-colors"
+                  className="rounded-md border border-secondary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-bark transition-colors"
                 >
                   {cat}
                 </TabsTrigger>

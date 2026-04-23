@@ -21,12 +21,12 @@ export default function EntranceFeesPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mt-4 mb-3">Entrance Fees</h1>
-          <p className="text-soil text-lg">Know what you'll pay before you get to the gate — and how to save.</p>
+          <p className="text-soil text-lg">Know what you&apos;ll pay before you get to the gate — and how to save.</p>
         </div>
       </section>
       <section className="pb-20 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-moss rounded-2xl p-6 mb-8">
+          <div className="bg-moss rounded-md p-6 mb-8">
             <h2 className="font-display text-xl font-bold text-bark mb-3">America the Beautiful Pass — $80/year</h2>
             <p className="text-soil text-sm leading-relaxed mb-3">
               The single best investment for frequent hikers. One pass covers the entrance fee for all national parks and many federal recreation areas for one full year. Split with a friend or carpool group and it pays for itself in one trip.
@@ -36,7 +36,7 @@ export default function EntranceFeesPage() {
             </p>
           </div>
 
-          <div className="overflow-x-auto rounded-2xl border border-sand">
+          <div className="overflow-x-auto rounded-md border border-sand">
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-parchment-dark border-b border-sand">

@@ -66,7 +66,7 @@ export default function CalendarEvents() {
 
   if (status === 'unconfigured') {
     return (
-      <div className="text-center py-12 bg-parchment rounded-2xl border border-secondary">
+      <div className="text-center py-12 bg-parchment rounded-md border border-secondary">
         <p className="font-display text-xl text-bark mb-2">Calendar coming soon</p>
         <p className="text-muted-foreground text-sm">Follow us on Instagram for event announcements.</p>
       </div>
@@ -75,8 +75,8 @@ export default function CalendarEvents() {
 
   if (status === 'error') {
     return (
-      <div className="text-center py-12 bg-parchment rounded-2xl border border-secondary">
-        <p className="font-display text-xl text-bark mb-2">Couldn't load events</p>
+      <div className="text-center py-12 bg-parchment rounded-md border border-secondary">
+        <p className="font-display text-xl text-bark mb-2">Couldn&apos;t load events</p>
         <p className="text-muted-foreground text-sm">Try refreshing the page.</p>
       </div>
     )
@@ -84,7 +84,7 @@ export default function CalendarEvents() {
 
   if (events.length === 0) {
     return (
-      <div className="text-center py-12 bg-parchment rounded-2xl border border-secondary">
+      <div className="text-center py-12 bg-parchment rounded-md border border-secondary">
         <p className="font-display text-xl text-bark mb-2">No upcoming events</p>
         <p className="text-muted-foreground text-sm">Check back soon or follow us on Instagram.</p>
       </div>

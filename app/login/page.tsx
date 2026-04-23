@@ -26,14 +26,14 @@ export default function LoginPage() {
     setLoading(false)
   }
 
-  const inputClass = 'w-full px-4 py-3 bg-parchment border border-border rounded-xl text-bark placeholder-soil/50 focus:outline-none focus:border-terra transition-colors text-sm'
+  const inputClass = 'w-full px-4 py-3 bg-parchment border border-border rounded-md text-bark placeholder-soil/50 focus:outline-none focus:border-terra transition-colors text-sm'
 
   return (
     <main className="flex-1 pt-16 flex items-center justify-center min-h-screen bg-parchment">
       <Toaster position="top-right" toastOptions={{ style: { background: '#F5F0E8', color: '#2C1F14' } }} />
 
       <div className="w-full max-w-md px-4">
-        <div className="bg-parchment-dark border border-sand rounded-2xl p-8 shadow-sm">
+        <div className="bg-parchment-dark border border-sand rounded-md p-8 shadow-sm">
           <div className="text-center mb-8">
             <Link href="/" className="font-display text-2xl font-bold text-bark">TUBC</Link>
             <h1 className="font-display text-2xl text-bark font-bold mt-4">Welcome back</h1>
@@ -66,14 +66,14 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-3.5 bg-terra hover:bg-terra-dark disabled:opacity-60 text-parchment font-semibold rounded-full transition-colors mt-2"
+              className="w-full py-3.5 bg-terra hover:bg-terra-dark disabled:opacity-60 text-parchment font-semibold rounded-md transition-colors mt-2"
             >
               {loading ? 'Signing in…' : 'Sign In'}
             </button>
           </form>
 
           <p className="text-center text-sm text-soil mt-6">
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link href="/signup" className="text-terra hover:text-terra-dark font-semibold transition-colors">
               Join TUBC
             </Link>

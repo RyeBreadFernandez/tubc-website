@@ -42,7 +42,7 @@ export default function GalleryPage() {
             {photos.map((photo, i) => (
               <div
                 key={i}
-                className="break-inside-avoid cursor-pointer group relative overflow-hidden rounded-xl border border-sand shadow-sm"
+                className="break-inside-avoid cursor-pointer group relative overflow-hidden rounded-md border border-sand shadow-sm"
                 onClick={() => photo.url ? setLightbox(i) : undefined}
               >
                 {photo.url ? (

@@ -25,23 +25,23 @@ export default function SeminarsPage() {
       <section className="pb-20 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
           {seminars.map(({ title, description, frequency }) => (
-            <div key={title} className="bg-parchment-dark border border-sand rounded-2xl p-6">
+            <div key={title} className="bg-parchment-dark border border-sand rounded-md p-6">
               <div className="flex items-start justify-between gap-4 flex-wrap mb-3">
                 <h2 className="font-display text-xl font-bold text-bark">{title}</h2>
-                <span className="text-xs text-terra font-semibold bg-rose/60 px-3 py-1 rounded-full shrink-0">{frequency}</span>
+                <span className="text-xs text-terra font-semibold bg-rose/60 px-3 py-1 rounded-md shrink-0">{frequency}</span>
               </div>
               <p className="text-soil text-sm leading-relaxed">{description}</p>
             </div>
           ))}
 
-          <div className="bg-moss rounded-2xl p-6 text-center">
+          <div className="bg-moss rounded-md p-6 text-center">
             <p className="font-display text-lg font-bold text-bark mb-2">Want to attend or lead a seminar?</p>
             <p className="text-soil text-sm mb-4">Join the Slack to see when the next one is scheduled, or pitch an idea to the officers.</p>
             <a
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-sm transition-colors"
+              className="inline-block px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors"
             >
               Join Slack
             </a>

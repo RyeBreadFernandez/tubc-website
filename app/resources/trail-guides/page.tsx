@@ -31,13 +31,13 @@ export default function TrailGuidesPage() {
       <section className="pb-20 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-5">
           {guides.map((guide) => (
-            <div key={guide.name} className="bg-parchment-dark border border-sand rounded-2xl p-6">
+            <div key={guide.name} className="bg-parchment-dark border border-sand rounded-md p-6">
               <div className="flex items-start justify-between gap-3 flex-wrap mb-3">
                 <div>
                   <h2 className="font-display text-xl font-bold text-bark">{guide.name}</h2>
                   <p className="text-soil text-xs mt-0.5">{guide.park}</p>
                 </div>
-                <span className={`text-xs px-2.5 py-1 rounded-full font-medium ${difficultyColor[guide.difficulty]}`}>
+                <span className={`text-xs px-2.5 py-1 rounded-md font-medium ${difficultyColor[guide.difficulty]}`}>
                   {guide.difficulty}
                 </span>
               </div>

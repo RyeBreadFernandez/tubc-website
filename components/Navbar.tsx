@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, startTransition } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { createClient } from '@/utils/supabase/client'
@@ -69,9 +69,11 @@ export default function Navbar() {
   }, [])
 
   useEffect(() => {
-    setSheetOpen(false)
-    setResourcesOpen(false)
-    setMobileResourcesOpen(false)
+    startTransition(() => {
+      setSheetOpen(false)
+      setResourcesOpen(false)
+      setMobileResourcesOpen(false)
+    })
   }, [pathname])
 
   const handleSignOut = async () => {
@@ -131,7 +133,7 @@ export default function Navbar() {
             </button>
 
             {resourcesOpen && (
-              <div className="absolute top-full left-0 mt-2 w-52 bg-parchment border border-border rounded-xl shadow-lg py-1 z-50">
+              <div className="absolute top-full left-0 mt-2 w-52 bg-parchment border border-border rounded-md shadow-lg py-1 z-50">
                 {resourceLinks.map(({ label, href }) => (
                   <Link
                     key={href}
@@ -151,13 +153,13 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center gap-2">
             <Link
               href="/dashboard/new-trip"
-              className="px-4 py-1.5 bg-primary hover:bg-terra-dark text-primary-foreground text-sm font-semibold rounded-full transition-colors"
+              className="px-4 py-1.5 bg-primary hover:bg-terra-dark text-primary-foreground text-sm font-semibold rounded-md transition-colors"
             >
               Post a Trip
             </Link>
             <Link
               href="/dashboard"
-              className={`size-8 rounded-full flex items-center justify-center text-sm font-bold transition-colors ${
+              className={`size-8 rounded-md flex items-center justify-center text-sm font-bold transition-colors ${
                 transparent ? 'bg-parchment/20 text-parchment hover:bg-parchment/30' : 'bg-secondary text-bark hover:bg-border'
               }`}
               title="Dashboard"
@@ -234,7 +236,7 @@ export default function Navbar() {
                 <div className="px-4 py-4 shrink-0 flex flex-col gap-2">
                   <Link
                     href="/dashboard/new-trip"
-                    className="w-full text-center px-4 py-2.5 bg-primary hover:bg-terra-dark text-primary-foreground text-sm font-semibold rounded-full transition-colors"
+                    className="w-full text-center px-4 py-2.5 bg-primary hover:bg-terra-dark text-primary-foreground text-sm font-semibold rounded-md transition-colors"
                   >
                     Post a Trip
                   </Link>

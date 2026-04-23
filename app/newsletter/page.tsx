@@ -42,9 +42,9 @@ export default async function NewsletterPage() {
             <input
               type="email"
               placeholder="your@email.com"
-              className="flex-1 px-4 py-3 bg-parchment border border-border rounded-full text-bark placeholder-soil/60 focus:outline-none focus:border-terra transition-colors text-sm"
+              className="flex-1 px-4 py-3 bg-parchment border border-border rounded-md text-bark placeholder-soil/60 focus:outline-none focus:border-terra transition-colors text-sm"
             />
-            <button className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-full text-sm transition-colors whitespace-nowrap">
+            <button className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors whitespace-nowrap">
               Subscribe
             </button>
           </div>
@@ -59,7 +59,7 @@ export default async function NewsletterPage() {
           {issues.length > 0 ? (
             <div className="space-y-4">
               {issues.map((issue) => (
-                <div key={issue.id} className="bg-parchment-dark border border-sand rounded-2xl p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+                <div key={issue.id} className="bg-parchment-dark border border-sand rounded-md p-6 flex flex-col sm:flex-row sm:items-center gap-4">
                   <div className="sm:w-24 shrink-0">
                     <p className="font-display text-3xl font-bold text-terra">#{issue.issue_number}</p>
                     <p className="text-xs text-soil/60">{issue.quarter} {issue.year}</p>
@@ -73,7 +73,7 @@ export default async function NewsletterPage() {
                       href={issue.file_url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="shrink-0 px-5 py-2 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-full transition-colors"
+                      className="shrink-0 px-5 py-2 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-md transition-colors"
                     >
                       Read
                     </a>

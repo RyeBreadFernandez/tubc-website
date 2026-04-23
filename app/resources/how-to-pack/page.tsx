@@ -44,13 +44,13 @@ export default function HowToPackPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mt-4 mb-3">How to Pack</h1>
-          <p className="text-soil text-lg">Pack smart and your back will thank you. Here's how to load a backpack properly.</p>
+          <p className="text-soil text-lg">Pack smart and your back will thank you. Here&apos;s how to load a backpack properly.</p>
         </div>
       </section>
       <section className="pb-20 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6">
           {sections.map((s) => (
-            <div key={s.title} className="bg-parchment-dark border border-sand rounded-2xl p-6">
+            <div key={s.title} className="bg-parchment-dark border border-sand rounded-md p-6">
               <h2 className="font-display text-lg font-bold text-bark mb-3">{s.title}</h2>
               <p className="text-soil text-sm leading-relaxed">{s.content}</p>
             </div>

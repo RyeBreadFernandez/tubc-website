@@ -28,7 +28,7 @@ export default function ParksMonumentsPage() {
       <section className="pb-20 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
           {parks.map(({ name, state, description }) => (
-            <div key={name} className="bg-parchment-dark border border-sand rounded-2xl p-6 flex gap-5">
+            <div key={name} className="bg-parchment-dark border border-sand rounded-md p-6 flex gap-5">
               <div className="shrink-0 w-14 text-center">
                 <span className="text-xs font-semibold text-soil/60 uppercase tracking-wide">{state}</span>
               </div>

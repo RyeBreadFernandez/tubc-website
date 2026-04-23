@@ -32,17 +32,17 @@ export default function SignupPage() {
     setLoading(false)
   }
 
-  const inputClass = 'w-full px-4 py-3 bg-parchment border border-border rounded-xl text-bark placeholder-soil/50 focus:outline-none focus:border-terra transition-colors text-sm'
+  const inputClass = 'w-full px-4 py-3 bg-parchment border border-border rounded-md text-bark placeholder-soil/50 focus:outline-none focus:border-terra transition-colors text-sm'
 
   return (
     <main className="flex-1 pt-16 flex items-center justify-center min-h-screen bg-parchment">
       <Toaster position="top-right" toastOptions={{ style: { background: '#F5F0E8', color: '#2C1F14' } }} />
 
       <div className="w-full max-w-md px-4">
-        <div className="bg-parchment-dark border border-sand rounded-2xl p-8 shadow-sm">
+        <div className="bg-parchment-dark border border-sand rounded-md p-8 shadow-sm">
           {done ? (
             <div className="text-center py-4">
-              <div className="w-14 h-14 bg-moss rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-14 h-14 bg-moss rounded-md flex items-center justify-center mx-auto mb-4">
                 <svg className="w-7 h-7 text-sage-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
@@ -101,7 +101,7 @@ export default function SignupPage() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3.5 bg-terra hover:bg-terra-dark disabled:opacity-60 text-parchment font-semibold rounded-full transition-colors mt-2"
+                  className="w-full py-3.5 bg-terra hover:bg-terra-dark disabled:opacity-60 text-parchment font-semibold rounded-md transition-colors mt-2"
                 >
                   {loading ? 'Creating account…' : 'Create Account'}
                 </button>

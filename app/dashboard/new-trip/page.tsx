@@ -182,14 +182,14 @@ export default function NewTripPage() {
               onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f) }}
             />
             {coverPreview ? (
-              <div className="relative rounded-xl overflow-hidden border border-secondary">
+              <div className="relative rounded-md overflow-hidden border border-secondary">
                 <div className="relative h-52">
                   <Image src={coverPreview} alt="Cover preview" fill className="object-cover" unoptimized />
                 </div>
                 <button
                   type="button"
                   onClick={() => { setCoverFile(null); setCoverPreview(null) }}
-                  className="absolute top-2 right-2 bg-foreground/70 hover:bg-foreground text-background text-xs px-3 py-1.5 rounded-full transition-colors"
+                  className="absolute top-2 right-2 bg-foreground/70 hover:bg-foreground text-background text-xs px-3 py-1.5 rounded-md transition-colors"
                 >
                   Remove
                 </button>
@@ -200,7 +200,7 @@ export default function NewTripPage() {
                 onDragLeave={() => setDragging(false)}
                 onDrop={onDrop}
                 onClick={() => fileInputRef.current?.click()}
-                className={`border-2 border-dashed rounded-xl h-40 flex flex-col items-center justify-center cursor-pointer transition-colors ${
+                className={`border-2 border-dashed rounded-md h-40 flex flex-col items-center justify-center cursor-pointer transition-colors ${
                   dragging ? 'border-primary bg-primary/5' : 'border-secondary hover:border-primary hover:bg-primary/5'
                 }`}
               >
@@ -231,7 +231,7 @@ export default function NewTripPage() {
             <Button
               type="submit"
               disabled={submitting}
-              className="flex-1 py-3.5 h-auto rounded-full"
+              className="flex-1 py-3.5 h-auto rounded-md"
             >
               {submitting ? 'Uploading & submitting…' : 'Submit for Review'}
             </Button>
@@ -239,7 +239,7 @@ export default function NewTripPage() {
               type="button"
               variant="outline"
               onClick={() => router.back()}
-              className="px-6 py-3.5 h-auto rounded-full"
+              className="px-6 py-3.5 h-auto rounded-md"
             >
               Cancel
             </Button>

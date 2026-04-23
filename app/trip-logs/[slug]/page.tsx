@@ -112,7 +112,7 @@ export default async function TripLogPage({ params }: Props) {
             <h2 className="font-display text-2xl text-bark font-bold mb-8">Photos</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {photos.map((photo: { url: string; caption?: string; order_index: number }) => (
-                <div key={photo.order_index} className="relative aspect-square rounded-xl overflow-hidden group">
+                <div key={photo.order_index} className="relative aspect-square rounded-md overflow-hidden group">
                   <Image
                     src={photo.url}
                     alt={photo.caption ?? 'Trip photo'}

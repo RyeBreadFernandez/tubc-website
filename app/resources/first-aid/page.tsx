@@ -25,13 +25,13 @@ export default function FirstAidPage() {
       </section>
       <section className="pb-20 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-rose/50 border border-sand rounded-2xl p-5 mb-8">
+          <div className="bg-rose/50 border border-sand rounded-md p-5 mb-8">
             <p className="text-bark text-sm font-semibold">Disclaimer</p>
             <p className="text-soil text-sm mt-1">This page covers general wilderness first aid concepts only. For real preparedness, take a Wilderness First Aid (WFA) or Wilderness First Responder (WFR) course. TUBC recommends all trip leaders be WFA certified.</p>
           </div>
           <div className="space-y-5">
             {topics.map(({ title, content }) => (
-              <div key={title} className="bg-parchment-dark border border-sand rounded-2xl p-6">
+              <div key={title} className="bg-parchment-dark border border-sand rounded-md p-6">
                 <h2 className="font-display text-lg font-bold text-bark mb-3">{title}</h2>
                 <p className="text-soil text-sm leading-relaxed">{content}</p>
               </div>

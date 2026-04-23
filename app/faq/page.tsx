@@ -21,9 +21,9 @@ export default function FAQPage() {
               <AccordionItem
                 key={i}
                 value={`item-${i}`}
-                className="border border-secondary rounded-xl overflow-hidden bg-parchment px-2"
+                className="border border-secondary rounded-md overflow-hidden bg-parchment px-2"
               >
-                <AccordionTrigger className="font-display text-bark font-semibold text-base px-4 py-5 hover:bg-parchment-dark rounded-xl hover:no-underline">
+                <AccordionTrigger className="font-display text-bark font-semibold text-base px-4 py-5 hover:bg-parchment-dark rounded-md hover:no-underline">
                   {faq.question}
                 </AccordionTrigger>
                 <AccordionContent className="px-4 pb-5 text-muted-foreground leading-relaxed text-sm">
@@ -33,12 +33,12 @@ export default function FAQPage() {
             ))}
           </Accordion>
 
-          <div className="mt-12 bg-muted rounded-2xl p-8 text-center">
+          <div className="mt-12 bg-muted rounded-md p-8 text-center">
             <p className="font-display text-xl text-bark font-bold mb-2">Still have questions?</p>
-            <p className="text-muted-foreground text-sm mb-5">We're happy to help. Reach out anytime.</p>
+            <p className="text-muted-foreground text-sm mb-5">We&apos;re happy to help. Reach out anytime.</p>
             <a
               href="mailto:uclabackpackingclub@gmail.com"
-              className="inline-block px-6 py-2.5 bg-primary hover:bg-terra-dark text-primary-foreground font-semibold rounded-full text-sm transition-colors"
+              className="inline-block px-6 py-2.5 bg-primary hover:bg-terra-dark text-primary-foreground font-semibold rounded-md text-sm transition-colors"
             >
               Email us
             </a>

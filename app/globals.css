@@ -24,7 +24,7 @@
   --border:              oklch(0.80 0.04 70);      /* border     #C9B99A */
   --input:               oklch(0.80 0.04 70);
   --ring:                oklch(0.65 0.10 50);      /* terra */
-  --radius:              0.625rem;
+  --radius:              0.25rem;
 
   /* charts (not used on this site, but required by shadcn) */
   --chart-1: oklch(0.65 0.10 50);

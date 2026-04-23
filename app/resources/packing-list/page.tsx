@@ -46,7 +46,7 @@ export default function PackingListPage() {
       <section className="pb-20 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           {categories.map((cat) => (
-            <div key={cat.name} className="bg-parchment-dark border border-sand rounded-2xl p-6">
+            <div key={cat.name} className="bg-parchment-dark border border-sand rounded-md p-6">
               <h2 className="font-display text-xl text-bark font-bold mb-4">{cat.name}</h2>
               <ul className="space-y-2">
                 {cat.items.map((item) => (
