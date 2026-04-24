@@ -3,6 +3,7 @@ import { Fraunces, Nunito, DM_Mono, Geist } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PageEntryLoader from "@/components/PageEntryLoader";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -66,6 +67,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <Analytics />
+        <PageEntryLoader />
       </body>
     </html>
   );

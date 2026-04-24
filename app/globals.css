@@ -99,6 +99,7 @@
   --color-rose:           #E8D5C4;
   --color-moss:           #D4DFD0;
   --color-sand:           #E0CBA8;
+  --color-forest:         #1B4332;
 
   /* Fonts */
   --font-display: "Fraunces", serif;
@@ -118,4 +119,27 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: "Fraunces", serif;
   }
+}
+
+@keyframes hiker-screen-fadein {
+  0%, 30% { opacity: 0; }
+  100%     { opacity: 1; }
+}
+
+/* Walk-cycle keyframes */
+@keyframes hiker-bob {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-4px); }
+}
+@keyframes pose-a {
+  0%,  50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+@keyframes pose-b {
+  0%,  50% { opacity: 0; }
+  51%, 100% { opacity: 1; }
+}
+@keyframes ground-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-300px); }
 }
