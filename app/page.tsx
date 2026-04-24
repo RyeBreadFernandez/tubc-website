@@ -51,27 +51,21 @@ export default async function Home() {
         />
         <div className="absolute inset-0 bg-bark/40" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <p className="text-parchment/80 font-body text-sm uppercase tracking-widest mb-4">
+          <p className="text-parchment/80 font-body text-sm uppercase tracking-widest mb-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]">
             The Backpacking Club at UCLA
           </p>
-          <h1 className="font-display text-5xl md:text-7xl text-parchment font-bold leading-tight mb-6">
+          <h1 className="font-display text-5xl md:text-7xl text-parchment font-bold leading-tight mb-6 [text-shadow:0_2px_16px_rgba(0,0,0,0.7)]">
             Go further.<br />Go wilder.
           </h1>
-          <p className="text-parchment/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed">
-            Experience the outdoors with us! We run trips every quarter — no experience required.
+          <p className="text-parchment/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">
+            Experience the outdoors with us. We run quarterly trips — no experience required.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/trips"
-              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-base transition-colors"
-            >
-              See Upcoming Trips
-            </Link>
+          <div className="flex justify-center">
             <a
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-parchment/15 hover:bg-parchment/25 border border-parchment/40 text-parchment font-semibold rounded-md text-base transition-colors backdrop-blur-sm"
+              className="px-8 py-3.5 bg-black hover:bg-black/80 text-white font-semibold rounded-none text-base transition-colors"
             >
               Join the Club
             </a>

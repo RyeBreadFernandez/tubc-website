@@ -125,6 +125,8 @@ export default function Navbar() {
               key={href}
               href={href}
               className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                transparent ? '[text-shadow:0_1px_6px_rgba(0,0,0,0.5)]' : ''
+              } ${
                 pathname === href
                   ? transparent ? 'text-parchment underline underline-offset-4' : 'text-primary'
                   : transparent ? 'text-parchment/80 hover:text-parchment' : 'text-muted-foreground hover:text-bark'
@@ -139,6 +141,8 @@ export default function Navbar() {
             <button
               onClick={() => setResourcesOpen((o) => !o)}
               className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+                transparent ? '[text-shadow:0_1px_6px_rgba(0,0,0,0.5)]' : ''
+              } ${
                 pathname.startsWith('/resources')
                   ? transparent ? 'text-parchment underline underline-offset-4' : 'text-primary'
                   : transparent ? 'text-parchment/80 hover:text-parchment' : 'text-muted-foreground hover:text-bark'
