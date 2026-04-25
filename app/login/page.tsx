@@ -29,7 +29,7 @@ export default function LoginPage() {
   const inputClass = 'w-full px-4 py-3 bg-parchment border border-border rounded-md text-bark placeholder-soil/50 focus:outline-none focus:border-terra transition-colors text-sm'
 
   return (
-    <main className="flex-1 pt-16 flex items-center justify-center min-h-screen bg-parchment">
+    <main className="flex-1 pt-16 flex items-center justify-center min-h-screen bg-muted">
       <Toaster position="top-right" toastOptions={{ style: { background: '#F5F0E8', color: '#2C1F14' } }} />
 
       <div className="w-full max-w-md px-4">
@@ -37,7 +37,7 @@ export default function LoginPage() {
           <div className="text-center mb-8">
             <Link href="/" className="font-display text-2xl font-bold text-bark">TUBC</Link>
             <h1 className="font-display text-2xl text-bark font-bold mt-4">Welcome back</h1>
-            <p className="text-soil text-sm mt-1">Sign in to your member account</p>
+            <p className="text-soil text-sm mt-1">See you on the trail.</p>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-4">

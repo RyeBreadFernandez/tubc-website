@@ -95,7 +95,7 @@ export default async function TripsPage() {
       </section>
 
       {/* Calendar events */}
-      <section className="py-16 bg-parchment">
+      <section className="py-16 bg-secondary">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3 text-center">Club calendar</p>
           <h2 className="font-display text-2xl md:text-3xl text-bark font-bold mb-8 text-center">

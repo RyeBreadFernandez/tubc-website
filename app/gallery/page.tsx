@@ -1,29 +1,4 @@
-'use client'
-
-import { useState } from 'react'
-import Image from 'next/image'
-
-const photos = [
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-  { url: '', caption: '' },
-]
-
 export default function GalleryPage() {
-  const [lightbox, setLightbox] = useState<number | null>(null)
-
-  const prev = () => setLightbox((i) => (i !== null ? (i - 1 + photos.length) % photos.length : null))
-  const next = () => setLightbox((i) => (i !== null ? (i + 1) % photos.length : null))
-
   return (
     <main className="flex-1 pt-16">
       {/* Hero */}
@@ -35,89 +10,26 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Masonry grid */}
-      <section className="pb-20 bg-parchment">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4">
-            {photos.map((photo, i) => (
-              <div
-                key={i}
-                className="break-inside-avoid cursor-pointer group relative overflow-hidden rounded-md border border-sand shadow-sm"
-                onClick={() => photo.url ? setLightbox(i) : undefined}
-              >
-                {photo.url ? (
-                  <>
-                    <Image
-                      src={photo.url}
-                      alt={photo.caption}
-                      width={400}
-                      height={300}
-                      className="w-full h-auto group-hover:scale-105 transition-transform duration-300"
-                      unoptimized
-                    />
-                    {photo.caption && (
-                      <div className="absolute inset-0 bg-bark/0 group-hover:bg-bark/30 transition-colors flex items-end">
-                        <p className="text-parchment text-sm px-3 py-2 translate-y-full group-hover:translate-y-0 transition-transform w-full bg-bark/40">
-                          {photo.caption}
-                        </p>
-                      </div>
-                    )}
-                  </>
-                ) : (
-                  <div className="w-full bg-white" style={{ height: '200px' }} />
-                )}
-              </div>
-            ))}
+      {/* Coming soon */}
+      <section className="pb-32 pt-16 bg-parchment">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-6">
+            <svg className="w-8 h-8 text-soil" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+            </svg>
           </div>
+          <p className="font-display text-2xl text-bark font-bold mb-3">Photos coming soon</p>
+          <p className="text-soil text-base max-w-md mx-auto">We&apos;re building out the gallery. In the meantime, follow us on Instagram for trip photos.</p>
+          <a
+            href="https://www.instagram.com/uclabackpackingclub/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 mt-6 px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors"
+          >
+            Follow on Instagram
+          </a>
         </div>
       </section>
-
-      {/* Lightbox */}
-      {lightbox !== null && (
-        <div
-          className="fixed inset-0 z-50 bg-bark/90 flex items-center justify-center p-4"
-          onClick={() => setLightbox(null)}
-        >
-          <button
-            className="absolute top-4 right-4 text-parchment/70 hover:text-parchment p-2"
-            onClick={() => setLightbox(null)}
-          >
-            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-          <button
-            className="absolute left-4 top-1/2 -translate-y-1/2 text-parchment/70 hover:text-parchment p-2"
-            onClick={(e) => { e.stopPropagation(); prev() }}
-          >
-            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <div
-            className="max-w-4xl max-h-full relative"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <Image
-              src={photos[lightbox].url.replace('w=800', 'w=1200')}
-              alt={photos[lightbox].caption}
-              width={1200}
-              height={800}
-              className="max-h-[80vh] w-auto object-contain rounded-lg"
-              unoptimized
-            />
-            <p className="text-parchment/80 text-center text-sm mt-3">{photos[lightbox].caption}</p>
-          </div>
-          <button
-            className="absolute right-4 top-1/2 -translate-y-1/2 text-parchment/70 hover:text-parchment p-2"
-            onClick={(e) => { e.stopPropagation(); next() }}
-          >
-            <svg className="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
-      )}
     </main>
   )
 }

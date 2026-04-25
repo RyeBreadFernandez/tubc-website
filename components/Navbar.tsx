@@ -200,7 +200,7 @@ export default function Navbar() {
         {/* Mobile hamburger — Sheet trigger */}
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger
-            className={`lg:hidden p-2 rounded-md transition-colors ${transparent ? 'text-parchment hover:bg-parchment/10' : 'text-bark hover:bg-parchment-dark'}`}
+            className={`lg:hidden p-3 rounded-md transition-colors ${transparent ? 'text-parchment hover:bg-parchment/10' : 'text-bark hover:bg-parchment-dark'}`}
             aria-label="Toggle menu"
           >
             <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

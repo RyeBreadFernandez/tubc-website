@@ -22,7 +22,7 @@ export default function Footer() {
           <div>
             <span className="font-display text-2xl font-bold text-bark">TUBC</span>
             <p className="mt-2 text-soil text-sm leading-relaxed max-w-xs">
-              Experience the outdoors without restrictions. The Backpacking Club at UCLA.
+              Bruins in the backcountry since 2012.
             </p>
             <div className="flex gap-4 mt-5">
               <a

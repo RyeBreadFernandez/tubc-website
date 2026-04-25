@@ -27,12 +27,6 @@ async function getLatestTripLogs() {
   }
 }
 
-const stats = [
-  { value: '30+', label: 'Trips per year' },
-  { value: '1500+', label: 'Active members' },
-  { value: '10+', label: 'Years exploring' },
-]
-
 export default async function Home() {
   const tripLogs = await getLatestTripLogs()
 
@@ -58,16 +52,16 @@ export default async function Home() {
             Go further.<br />Go wilder.
           </h1>
           <p className="text-parchment/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">
-            Experience the outdoors with us. We run quarterly trips — no experience required.
+            From the Santa Monica Mountains to the Sierra Nevada — we run trips every quarter, free to join, no experience required.
           </p>
           <div className="flex justify-center">
             <a
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-black hover:bg-black/80 text-white font-semibold rounded-none text-base transition-colors"
+              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-base transition-colors"
             >
-              Join the Club
+              Join our Slack
             </a>
           </div>
         </div>
@@ -75,20 +69,6 @@ export default async function Home() {
           <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
           </svg>
-        </div>
-      </section>
-
-      {/* Stats strip */}
-      <section className="bg-moss py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-3 gap-4 text-center">
-            {stats.map(({ value, label }) => (
-              <div key={label}>
-                <p className="font-display text-4xl md:text-5xl font-bold text-bark">{value}</p>
-                <p className="text-soil text-sm mt-1">{label}</p>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -129,7 +109,7 @@ export default async function Home() {
       </section>
 
       {/* Latest trip logs */}
-      <section className="py-20 bg-rose/40">
+      <section className="py-20 bg-secondary">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between mb-10">
             <div>
@@ -215,23 +195,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="py-16 bg-moss">
-        <div className="max-w-xl mx-auto px-4 text-center">
-          <h2 className="font-display text-2xl text-bark font-bold mb-2">Stay in the loop</h2>
-          <p className="text-soil text-sm mb-6">Quarterly newsletter — trip recaps, gear tips, upcoming adventures.</p>
-          <div className="flex gap-2">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 px-4 py-3 bg-parchment border border-border rounded-md text-bark placeholder-soil/60 focus:outline-none focus:border-terra transition-colors text-sm"
-            />
-            <button className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors whitespace-nowrap">
-              Subscribe
-            </button>
-          </div>
-        </div>
-      </section>
 
     </main>
   )

@@ -9,7 +9,7 @@ export default function FAQPage() {
       <section className="pt-16 pb-10 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">Got questions?</p>
-          <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-3">FAQ</h1>
+          <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-3">Before Your First Trip</h1>
           <p className="text-muted-foreground text-lg">Everything you need to know before your first trip.</p>
         </div>
       </section>

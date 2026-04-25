@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 
 export const metadata = {
-  title: 'About — TUBC',
+  title: 'About',
   description: 'Learn about The Backpacking Club at UCLA and meet our team.',
 }
 
@@ -15,14 +15,14 @@ export default function AboutPage() {
     <main className="flex-1 pt-16">
       <PageHero
         title="About TUBC"
-        subtitle="Experience the outdoors without restrictions."
+        subtitle="Backcountry adventures for every Bruin."
         image="/about-hero.jpg"
       />
 
       {/* About section */}
       <section className="py-20 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3">Who we are</p>
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3">Our story</p>
           <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-6">
             UCLA&apos;s home for the backcountry
           </h2>

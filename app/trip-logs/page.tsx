@@ -10,7 +10,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 
 export const metadata = {
-  title: 'Trip Logs — TUBC',
+  title: 'Trip Logs',
   description: 'Read trip reports and adventure logs from The Backpacking Club at UCLA.',
 }
 
@@ -33,7 +33,7 @@ export default async function TripLogsPage() {
     <main className="flex-1 pt-16">
       <PageHero
         title="Trip Logs"
-        subtitle="This is where we have been recently!"
+        subtitle="Reports from the trail."
         image="/trip-logs-hero.jpg"
         imagePosition="center 80%"
       />
