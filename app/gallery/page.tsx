@@ -21,7 +21,7 @@ export default function GalleryPage() {
           <p className="font-display text-2xl text-bark font-bold mb-3">Photos coming soon</p>
           <p className="text-soil text-base max-w-md mx-auto">We&apos;re building out the gallery. In the meantime, follow us on Instagram for trip photos.</p>
           <a
-            href="https://www.instagram.com/uclabackpackingclub/"
+            href="https://www.instagram.com/uclabackpacking/"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 mt-6 px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors"

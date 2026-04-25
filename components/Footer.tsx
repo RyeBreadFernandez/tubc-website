@@ -26,7 +26,7 @@ export default function Footer() {
             </p>
             <div className="flex gap-4 mt-5">
               <a
-                href="https://www.instagram.com/uclabackpackingclub/"
+                href="https://www.instagram.com/uclabackpacking/"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram"
