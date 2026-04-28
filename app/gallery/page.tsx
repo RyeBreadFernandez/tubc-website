@@ -1,3 +1,13 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Gallery',
+  description: 'Photos from UCLA Backpacking Club trips — summits, trails, and campsites across the Sierra Nevada, Southern California, and beyond.',
+  alternates: {
+    canonical: 'https://www.uclabackpackingclub.com/gallery',
+  },
+}
+
 export default function GalleryPage() {
   return (
     <main className="flex-1 pt-16">
