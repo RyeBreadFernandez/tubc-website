@@ -33,10 +33,16 @@ export const metadata: Metadata = {
   },
   description: "Experience the outdoors without restrictions. UCLA's premier backpacking and hiking club.",
   keywords: ["UCLA", "backpacking", "hiking", "outdoor club", "UCLA hiking club", "TUBC", "backpacking club", "Los Angeles hiking"],
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true },
+  },
   openGraph: {
     siteName: "The Backpacking Club at UCLA",
     type: "website",
     locale: "en_US",
+    url: "/",
     images: [
       {
         url: "/staff-group.jpg",
@@ -46,10 +52,13 @@ export const metadata: Metadata = {
       },
     ],
   },
-  metadataBase: new URL("https://www.uclabackpackingclub.com"),
-  alternates: {
-    canonical: "https://www.uclabackpackingclub.com",
+  twitter: {
+    card: "summary_large_image",
+    title: "The Backpacking Club at UCLA",
+    description: "Experience the outdoors without restrictions. UCLA's premier backpacking and hiking club.",
+    images: ["/staff-group.jpg"],
   },
+  metadataBase: new URL("https://www.uclabackpackingclub.com"),
 };
 
 export default function RootLayout({
