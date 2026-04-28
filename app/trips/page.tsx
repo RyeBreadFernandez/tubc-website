@@ -15,7 +15,7 @@ export default function TripsPage() {
     <main className="flex-1 pt-16">
       <PageHero
         title="Trips & Events"
-        subtitle="Every trip is a chance to go somewhere new. Our trips fill up quickly — check the calendar and sign up early."
+        subtitle="This page is only to show when trips are. If you are interested in joining a trip, join the Slack for more information."
         image="/trips-hero.jpg"
         imagePosition="center 30%"
       />
