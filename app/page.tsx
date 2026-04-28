@@ -49,7 +49,7 @@ export default async function Home() {
             The Backpacking Club at UCLA
           </p>
           <h1 className="font-display text-5xl md:text-7xl text-parchment font-bold leading-tight mb-6 [text-shadow:0_2px_16px_rgba(0,0,0,0.7)]">
-            Go further.<br />Go wilder.
+            Come explore with us!
           </h1>
           <p className="text-parchment/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">
             From the Santa Monica Mountains to the Sierra Nevada — we run trips every quarter, free to join, no experience required.
