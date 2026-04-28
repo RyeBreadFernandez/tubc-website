@@ -99,14 +99,13 @@ export default function Footer() {
                 Subscribe
               </button>
             </div>
-            <p className="text-xs text-soil/60 mt-2">No spam. Quarterly issues only.</p>
           </div>
         </div>
 
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="text-xs text-soil/70">
-            © {new Date().getFullYear()} The Backpacking Club at UCLA. All rights reserved.
+            © {new Date().getFullYear()} The Backpacking Club at UCLA.
           </p>
         </div>
       </div>
