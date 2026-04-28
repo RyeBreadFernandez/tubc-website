@@ -46,58 +46,61 @@ export default async function TripLogPage({ params }: Props) {
   const author = 'A TUBC Member'
 
   return (
-    <main className="flex-1 pt-16">
+    <main className="flex-1 pt-16 bg-parchment min-h-screen">
 
-      {/* Hero image */}
-      <div className="relative h-[60vh] min-h-80">
-        <Image
-          src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
-          alt={trip.title}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-bark/70 via-transparent to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-8 max-w-4xl mx-auto">
+      {/* Header — clean title block, no image background */}
+      <div className="bg-secondary/40 border-b border-border">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           {trip.difficulty && <Badge difficulty={trip.difficulty} className="mb-4" />}
-          <h1 className="font-display text-4xl md:text-5xl text-parchment font-bold mb-2">
+          <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-2">
             {trip.title}
           </h1>
-          <p className="text-parchment/80">{trip.location}</p>
-        </div>
-      </div>
+          <p className="text-muted-foreground text-base">{trip.location}</p>
 
-      {/* Meta bar */}
-      <div className="bg-parchment-dark border-b border-border">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex flex-wrap gap-6 text-sm text-soil">
-          {trip.trip_date && (
+          {/* Meta row */}
+          <div className="flex flex-wrap gap-6 text-sm text-soil mt-6 pt-6 border-t border-border">
+            {trip.trip_date && (
+              <div>
+                <span className="text-xs text-soil/60 uppercase tracking-wide block mb-0.5">Date</span>
+                {format(new Date(trip.trip_date), 'MMMM d, yyyy')}
+              </div>
+            )}
+            {trip.miles && (
+              <div>
+                <span className="text-xs text-soil/60 uppercase tracking-wide block mb-0.5">Distance</span>
+                {trip.miles} miles
+              </div>
+            )}
+            {trip.elevation_gain && (
+              <div>
+                <span className="text-xs text-soil/60 uppercase tracking-wide block mb-0.5">Elevation Gain</span>
+                {trip.elevation_gain.toLocaleString()} ft
+              </div>
+            )}
             <div>
-              <span className="text-xs text-soil/60 uppercase tracking-wide block">Date</span>
-              {format(new Date(trip.trip_date), 'MMMM d, yyyy')}
+              <span className="text-xs text-soil/60 uppercase tracking-wide block mb-0.5">Posted by</span>
+              {author}
             </div>
-          )}
-          {trip.miles && (
-            <div>
-              <span className="text-xs text-soil/60 uppercase tracking-wide block">Distance</span>
-              {trip.miles} miles
-            </div>
-          )}
-          {trip.elevation_gain && (
-            <div>
-              <span className="text-xs text-soil/60 uppercase tracking-wide block">Elevation Gain</span>
-              {trip.elevation_gain.toLocaleString()} ft
-            </div>
-          )}
-          <div>
-            <span className="text-xs text-soil/60 uppercase tracking-wide block">Posted by</span>
-            {author}
           </div>
         </div>
       </div>
 
-      {/* Content */}
-      <section className="py-12 bg-parchment">
+      {/* Cover photo — contained, max-width, no full-bleed stretch */}
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <div className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-sm border border-border">
+          <Image
+            src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
+            alt={trip.title}
+            fill
+            priority
+            sizes="(max-width: 896px) 100vw, 896px"
+            className="object-cover object-center"
+          />
+        </div>
+      </div>
+
+      {/* Trip report content */}
+      <section className="py-10">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="prose prose-lg prose-stone max-w-none text-soil leading-relaxed whitespace-pre-wrap">
             {trip.content}
@@ -107,7 +110,7 @@ export default async function TripLogPage({ params }: Props) {
 
       {/* Photo gallery */}
       {photos.length > 0 && (
-        <section className="py-12 bg-parchment-dark">
+        <section className="py-12 bg-secondary/30">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <h2 className="font-display text-2xl text-bark font-bold mb-8">Photos</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
