@@ -61,16 +61,16 @@ export default function AboutPage() {
           </h2>
           <div className="prose prose-lg text-muted-foreground space-y-4 leading-relaxed">
             <p>
-              The Backpacking Club at UCLA (TUBC) has been taking Bruins into the wilderness for over a decade. We are a student-run organization dedicated to making outdoor adventure accessible to everyone regardless of experience, budget, or gear.
+              The Backpacking Club at UCLA (TUBC) has been taking Bruins into the backcountry for over a decade. We&apos;re a student-run club built on the idea that the outdoors should be for everyone — no gear, no experience, and no budget required to show up and get outside.
             </p>
             <p>
-              From beginner-friendly day hikes in the Santa Monica Mountains to multi-day Sierra Nevada crossings, we plan and lead trips every single quarter. We also host seminars, gear workshops, and social events to build community around a shared love of wild places.
+              Every quarter we run a full lineup of trips: day hikes through the Santa Monica Mountains, car camps at Joshua Tree, weekend backpacks in the San Gabriels, and multi-day Sierra crossings for the ones who want to go deep. Whatever your level, there&apos;s a trip on the calendar for you.
             </p>
             <p>
-              Collaboration with the gear rental program keeps costs low. Our trip leaders keep things safe. Our community keeps bringing people back quarter after quarter, year after year.
+              We also do gear workshops, Leave No Trace clinics, and the occasional social event for when you just want to hang out with people who get unreasonably excited about topo maps. Our gear rental program keeps costs low so that a tight budget is never a reason to miss a trip.
             </p>
             <p>
-              Whether you&apos;ve never spent a night outside or you&apos;re a seasoned backcountry traveler, there&apos;s a place for you in TUBC. Come for the mountains. Stay for the vibes.
+              Whether this is your first time sleeping under the stars or you&apos;ve logged more miles than you can count, there&apos;s a spot for you in TUBC. Come for the mountains. Stay for the people.
             </p>
           </div>
 

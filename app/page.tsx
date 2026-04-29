@@ -125,7 +125,7 @@ export default async function Home() {
               TUBC has been taking Bruins into the backcountry for over a decade. From day hikes to weekend car camps to multi-day Sierra crossings, we run trips for every experience level and budget.
             </p>
             <p className="text-soil leading-relaxed mb-8">
-              We also host seminars and social events to increase awareness in the outdoors and outdoor education.
+              We also host gear workshops, Leave No Trace clinics, and social events so you can learn the ropes and meet people who care about the same places you do.
             </p>
             <Link
               href="/about"
@@ -206,7 +206,7 @@ export default async function Home() {
             Your next adventure starts here
           </h2>
           <p className="text-soil leading-relaxed mb-8 text-lg">
-            Join hundreds of Bruins who&apos;ve traded campus for the backcountry. No experience needed just curiosity to explore and keeping an open mind.
+            Join hundreds of Bruins who&apos;ve traded campus for the backcountry. All you need is a UCLA email and a willingness to go outside.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
