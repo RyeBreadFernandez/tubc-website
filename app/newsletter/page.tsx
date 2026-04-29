@@ -1,6 +1,6 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
-import PageHero from '@/components/ui/PageHero'
+import NewsletterSignup from '@/components/NewsletterSignup'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -49,16 +49,7 @@ export default async function NewsletterPage() {
       <section className="py-10 bg-moss">
         <div className="max-w-xl mx-auto px-4 text-center">
           <p className="text-bark font-semibold mb-4">Get the next issue in your inbox</p>
-          <div className="flex gap-2">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 px-4 py-3 bg-parchment border border-border rounded-md text-bark placeholder-soil/60 focus:outline-none focus:border-terra transition-colors text-sm"
-            />
-            <button className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors whitespace-nowrap">
-              Subscribe
-            </button>
-          </div>
+          <NewsletterSignup />
         </div>
       </section>
 
