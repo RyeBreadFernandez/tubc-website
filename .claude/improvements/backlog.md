@@ -5,11 +5,11 @@ _Last updated: 2026-04-28 — Quinn (UX audit) findings added_
 ## Critical — Site is broken or content is missing
 
 - [ ] Gallery page is a stub with no content — needs photo grid using trip cover images from Supabase storage | file: app/gallery/page.tsx
-- [ ] Newsletter page has no backend — form submissions go nowhere | file: app/newsletter/page.tsx
+- [x] Newsletter page wired up — POST /api/newsletter, controlled input, sonner toasts — done by Casey
 - [ ] Individual resource sub-pages are empty stubs (12 routes under /resources/*) — need actual backpacking content | file: app/resources/*/page.tsx
-- [ ] **[Quinn]** /trips hero subtitle is draft internal copy visible to all users: "This page is only to show when trips are. If you are interested in joining a trip, join the Slack for more information." — must be replaced with real UX copy | file: app/trips/page.tsx
+- [x] **[Quinn]** /trips hero subtitle replaced with real UX copy — done by Casey
 - [ ] **[Quinn]** /trips Google Calendar iframe renders as a blank white void — large dead space on the page, likely blocked by X-Frame-Options | file: app/trips/page.tsx
-- [ ] **[Quinn]** /newsletter Subscribe button has no onClick, no form action, no API call — clicking it does literally nothing | file: app/newsletter/page.tsx
+- [x] **[Quinn]** /newsletter Subscribe button wired — done by Casey
 - [ ] **[Quinn — SEO]** Canonical domain is split: most pages use `tubcla.com` but `app/layout.tsx` metadataBase still points to `www.uclabackpackingclub.com` — Google sees duplicate content across two hostnames. Consolidate everything to `tubcla.com` | file: app/layout.tsx
 
 ## High — Significant UX or SEO impact
