@@ -4,6 +4,8 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import PageEntryLoader from "@/components/PageEntryLoader";
+import SplashScreen from "@/components/SplashScreen";
+import RouteProgressBar from "@/components/RouteProgressBar";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -78,6 +80,8 @@ export default function RootLayout({
         >
           Skip to main content
         </a>
+        <SplashScreen />
+        <RouteProgressBar />
         <Navbar />
         {children}
         <Footer />

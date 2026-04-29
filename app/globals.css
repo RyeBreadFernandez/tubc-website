@@ -145,3 +145,52 @@
   from { transform: translateX(0); }
   to   { transform: translateX(-300px); }
 }
+
+@layer components {
+  [data-slot="button"]:active:not(:disabled) {
+    transform: scale(0.95);
+    filter: brightness(0.88);
+  }
+}
+
+/* ── Loading / transition animations ─────────────────────────────────────── */
+
+@keyframes mountain-draw {
+  from { stroke-dashoffset: 600; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes splash-fade-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+@keyframes progress-run {
+  0%   { width: 0%;   opacity: 1; }
+  70%  { width: 85%;  opacity: 1; }
+  90%  { width: 100%; opacity: 1; }
+  100% { width: 100%; opacity: 0; }
+}
+
+.animate-mountain-draw {
+  stroke-dasharray: 600;
+  stroke-dashoffset: 600;
+  animation: mountain-draw 1.2s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out 0.8s both;
+}
+
+.animate-splash-fade-out {
+  animation: splash-fade-out 0.4s ease-out forwards;
+}
+
+.animate-progress-run {
+  animation: progress-run 1.4s ease-out forwards;
+}

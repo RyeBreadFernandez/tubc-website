@@ -1,5 +1,9 @@
 @AGENTS.md
 
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # TUBC Website — Claude Instructions
 
 ## Stack
@@ -58,6 +62,34 @@ Dark mode variant is `.dark *` — use `dark:` prefix. No arbitrary color values
 - Don't hardcode color values — always use the token system above
 - Don't bypass RLS from the client — route writes through API routes
 - Don't use `@supabase/auth-helpers-nextjs` for new code
+
+## Commands
+```bash
+npm run dev      # start dev server at localhost:3000
+npm run build    # type-check + build (run after every change)
+npm run lint     # ESLint — auto-runs via PostToolUse hook on .ts/.tsx edits
+```
+
+## Architecture
+
+### Supabase client files
+Three files in `utils/supabase/` — use the right one for context:
+- `client.ts` — browser client (`createBrowserClient`), for `"use client"` components
+- `server.ts` — server client (`createServerClient` + cookie store), for Server Components and API routes
+- `middleware.ts` — session refresh, used by `middleware.ts` at repo root
+
+### Auth & middleware
+`middleware.ts` (root) refreshes the Supabase session on every request. Protected routes (e.g. `/dashboard`) redirect to `/login` if no session. Auth state in client components comes from `supabase.auth.onAuthStateChange`.
+
+### Trip logs
+Stored in the `trip_logs` Supabase table with a `slug` field and `published` boolean. The submission flow (`/dashboard/new-trip`) posts to `app/api/submit-trip/route.ts` which uses the service role key to bypass RLS and insert + upload cover images to Supabase Storage. Direct client writes would be blocked by RLS.
+
+### Calendar
+`app/api/calendar/route.ts` fetches upcoming events from the Google Calendar API (calendar ID: `uclabackpackingclub@gmail.com`) using `GOOGLE_CALENDAR_API_KEY`. The `CalendarEvents` component calls this route client-side.
+
+### Utilities
+- `lib/utils.ts` — `cn()` helper (clsx + tailwind-merge)
+- `lib/utils/placeholder.ts` — `getMountainPlaceholder()` for trip log cover image fallbacks
 
 ## Verification
 After making changes, always run:
