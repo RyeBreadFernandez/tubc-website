@@ -91,7 +91,7 @@ export default function Navbar() {
           : 'bg-parchment/95 backdrop-blur-sm shadow-sm border-b border-border'
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
+      <nav aria-label="Main navigation" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
 
         {/* Logo */}
         <Link
@@ -124,6 +124,7 @@ export default function Navbar() {
             <Link
               key={href}
               href={href}
+              aria-current={pathname === href ? 'page' : undefined}
               className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                 transparent ? '[text-shadow:0_1px_6px_rgba(0,0,0,0.5)]' : ''
               } ${
@@ -140,6 +141,9 @@ export default function Navbar() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setResourcesOpen((o) => !o)}
+              aria-expanded={resourcesOpen}
+              aria-haspopup="true"
+              aria-controls="resources-dropdown"
               className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                 transparent ? '[text-shadow:0_1px_6px_rgba(0,0,0,0.5)]' : ''
               } ${
@@ -149,17 +153,19 @@ export default function Navbar() {
               }`}
             >
               Resources
-              <svg className={`size-3.5 transition-transform ${resourcesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <svg className={`size-3.5 transition-transform ${resourcesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
               </svg>
             </button>
 
             {resourcesOpen && (
-              <div className="absolute top-full left-0 mt-2 w-52 bg-parchment border border-border rounded-md shadow-lg py-1 z-50">
+              <div id="resources-dropdown" role="menu" className="absolute top-full left-0 mt-2 w-52 bg-parchment border border-border rounded-md shadow-lg py-1 z-50">
                 {resourceLinks.map(({ label, href }) => (
                   <Link
                     key={href}
                     href={href}
+                    role="menuitem"
+                    aria-current={pathname === href ? 'page' : undefined}
                     className="block px-4 py-2 text-sm text-muted-foreground hover:text-bark hover:bg-parchment-dark transition-colors"
                   >
                     {label}
@@ -181,12 +187,12 @@ export default function Navbar() {
             </Link>
             <Link
               href="/dashboard"
+              aria-label="Dashboard"
               className={`size-8 rounded-md flex items-center justify-center text-sm font-bold transition-colors ${
                 transparent ? 'bg-parchment/20 text-parchment hover:bg-parchment/30' : 'bg-secondary text-bark hover:bg-border'
               }`}
-              title="Dashboard"
             >
-              {user.email?.[0].toUpperCase() ?? 'U'}
+              <span aria-hidden="true">{user.email?.[0].toUpperCase() ?? 'U'}</span>
             </Link>
             <button
               onClick={handleSignOut}
@@ -203,7 +209,7 @@ export default function Navbar() {
             className={`lg:hidden p-3 rounded-md transition-colors ${transparent ? 'text-parchment hover:bg-parchment/10' : 'text-bark hover:bg-parchment-dark'}`}
             aria-label="Toggle menu"
           >
-            <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </SheetTrigger>
@@ -218,6 +224,7 @@ export default function Navbar() {
                 <Link
                   key={href}
                   href={href}
+                  aria-current={pathname === href ? 'page' : undefined}
                   className={`flex items-center px-3 py-2.5 rounded-lg text-sm font-medium mb-0.5 transition-colors ${
                     pathname === href ? 'bg-rose text-primary' : 'text-muted-foreground hover:bg-parchment-dark hover:text-bark'
                   }`}
@@ -229,19 +236,22 @@ export default function Navbar() {
               <div className="mt-2 mb-0.5">
                 <button
                   onClick={() => setMobileResourcesOpen((o) => !o)}
+                  aria-expanded={mobileResourcesOpen}
+                  aria-controls="mobile-resources-menu"
                   className="w-full flex items-center justify-between px-3 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:bg-parchment-dark hover:text-bark transition-colors"
                 >
                   Resources
-                  <svg className={`size-3.5 transition-transform ${mobileResourcesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <svg className={`size-3.5 transition-transform ${mobileResourcesOpen ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
                 {mobileResourcesOpen && (
-                  <div className="ml-3 mt-1 border-l-2 border-secondary pl-3">
+                  <div id="mobile-resources-menu" className="ml-3 mt-1 border-l-2 border-secondary pl-3">
                     {resourceLinks.map(({ label, href }) => (
                       <Link
                         key={href}
                         href={href}
+                        aria-current={pathname === href ? 'page' : undefined}
                         className="flex items-center px-2 py-2 text-sm text-muted-foreground hover:text-bark transition-colors"
                       >
                         {label}
