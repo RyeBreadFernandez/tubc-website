@@ -53,7 +53,7 @@ const sections = [
 
 export default function HowToPackPage() {
   return (
-    <main className="flex-1 pt-16">
+    <main id="main-content" className="flex-1 pt-16">
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>

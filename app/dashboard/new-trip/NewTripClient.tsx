@@ -88,7 +88,7 @@ export default function NewTripPage() {
   }
 
   return (
-    <main className="flex-1 pt-16 bg-parchment min-h-screen">
+    <main id="main-content" className="flex-1 pt-16 bg-parchment min-h-screen">
       <Toaster position="top-right" />
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">

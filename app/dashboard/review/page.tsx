@@ -29,7 +29,7 @@ export default async function ReviewPage() {
   const all = trips ?? []
 
   return (
-    <main className="flex-1 pt-16 bg-parchment min-h-screen">
+    <main id="main-content" className="flex-1 pt-16 bg-parchment min-h-screen">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-10">
           <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-1">Officer area</p>

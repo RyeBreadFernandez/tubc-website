@@ -45,7 +45,7 @@ function ResourceGrid({ items }: { items: typeof resources }) {
 
 export default function ResourcesPage() {
   return (
-    <main className="flex-1 pt-16">
+    <main id="main-content" className="flex-1 pt-16">
       <section className="pt-16 pb-10 bg-parchment">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">Knowledge base</p>
