@@ -9,16 +9,16 @@ export const staff: StaffMember[] = [
   {
     name: 'Noah',
     role: 'Co-President',
-    bio: 'Leading the club and coordinating with UCLA to keep the adventure going for everyone.',
+    bio: 'First got hooked on the Sierra after a TUBC trip to Cottonwood Lakes sophomore year and never really came back. Now runs the club, wrangles the permits, and is probably texting someone about next quarter\'s trip schedule right now.',
   },
   {
     name: 'Emilia',
     role: 'Co-President',
-    bio: 'Supporting club operations and helping plan an amazing lineup of trips each quarter.',
+    bio: 'Joined TUBC with zero camping experience and somehow ended up leading Whitney Portal trips. Obsessed with trip logistics, knows every gear rental policy by heart, and will absolutely talk your ear off about ultralight sleep systems.',
   },
   {
     name: 'Ryan',
     role: 'Treasurer',
-    bio: 'Keeping the books balanced so we can keep the gear stocked and the permits paid.',
+    bio: 'Keeps the budget tight so trip fees stay low and the gear closet stays stocked. Favorite route is the Tahoe Rim Trail. Has opinions about bear canisters.',
   },
 ]

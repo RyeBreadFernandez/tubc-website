@@ -37,7 +37,7 @@ export default async function NewsletterPage() {
       {/* Signup */}
       <section className="py-10 bg-moss">
         <div className="max-w-xl mx-auto px-4 text-center">
-          <p className="text-bark font-semibold mb-4">Subscribe to future issues</p>
+          <p className="text-bark font-semibold mb-4">Get the next issue in your inbox</p>
           <div className="flex gap-2">
             <input
               type="email"
@@ -83,8 +83,8 @@ export default async function NewsletterPage() {
             </div>
           ) : (
             <div className="text-center py-16 text-soil">
-              <p className="font-display text-xl mb-2">First issue coming soon</p>
-              <p className="text-sm">Subscribe above to be the first to know.</p>
+              <p className="font-display text-xl mb-2">First issue dropping soon</p>
+              <p className="text-sm">Subscribe above and you&apos;ll be the first to get it.</p>
             </div>
           )}
         </div>
