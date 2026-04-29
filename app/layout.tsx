@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     default: "The Backpacking Club at UCLA",
     template: "%s — TUBC",
   },
-  description: "Experience the outdoors without restrictions. UCLA's premier backpacking and hiking club.",
+  description: "The Backpacking Club is an inclusive community of outgoing and adventurous people who enjoy exploring the outdoors, love nature, and are dedicated to outdoor stewardship.",
   keywords: ["UCLA", "backpacking", "hiking", "outdoor club", "UCLA hiking club", "TUBC", "backpacking club", "Los Angeles hiking"],
   robots: {
     index: true,
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "The Backpacking Club at UCLA",
-    description: "Experience the outdoors without restrictions. UCLA's premier backpacking and hiking club.",
+    description: "The Backpacking Club is an inclusive community of outgoing and adventurous people who enjoy exploring the outdoors, love nature, and are dedicated to outdoor stewardship.",
     images: ["/staff-group.jpg"],
   },
   metadataBase: new URL("https://www.uclabackpackingclub.com"),

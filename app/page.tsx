@@ -8,7 +8,7 @@ import { format } from 'date-fns'
 
 export const metadata = {
   title: 'The Backpacking Club at UCLA',
-  description: 'UCLA\'s premier backpacking and hiking club. Join us for trips to the Sierra Nevada, Southern California trails, and beyond.',
+  description: 'The Backpacking Club is an inclusive community of outgoing and adventurous people who enjoy exploring the outdoors, love nature, and are dedicated to outdoor stewardship.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com',
   },
