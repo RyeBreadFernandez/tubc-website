@@ -15,7 +15,11 @@ Fans out 4 worker agents simultaneously using worktree isolation, then validates
    - **a11y-guardian** — Reviews all components for accessibility violations and fixes them
    - **content-refresher** — Finds placeholder/generic content and rewrites it with authentic voice
 
-2. **After all workers complete**, run the build-validator agent to confirm the codebase is clean.
+2. **After all workers complete**, verify each agent's branch has a descriptive name. Each agent should have renamed its own branch, but if any still have the auto-generated `worktree-agent-*` name, rename them:
+   ```bash
+   git branch -m worktree-agent-<id> improve/<what-it-did>
+   ```
+   Then run the build-validator agent to confirm the codebase is clean.
 
 3. **Report a summary** in this format:
    ```

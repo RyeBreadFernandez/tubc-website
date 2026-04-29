@@ -41,10 +41,25 @@ Read `.claude/improvements/backlog.md`, pick the highest-priority uncompleted fe
    ```
 7. **Fix any errors** — don't finish until build and lint pass clean
 8. **Mark done in backlog** — change `[ ]` to `[x]` and move to Completed section
-9. **Commit:**
+9. **Rename branch and commit with a detailed message:**
    ```bash
+   # Rename the auto-generated worktree branch to describe the feature
+   git branch -m "$(git branch --show-current)" feat/<feature-name>
+   # Examples: feat/gallery-photo-grid, feat/newsletter-backend, feat/trip-log-filtering
+
    git add -A
-   git commit -m "feat: [short description of what was implemented]"
+   git commit -m "$(cat <<'EOF'
+   feat(<feature-name>): <short summary of what was built>
+
+   <Why this feature was needed — what was missing or broken for users.>
+   <What was implemented — specific components, API routes, data fetching.>
+   <Any notable decisions: why this approach over alternatives.>
+
+   Files added/changed:
+   - app/gallery/page.tsx: built photo grid with lightbox
+   - app/api/newsletter/route.ts: new API route for email capture
+   EOF
+   )"
    ```
 
 ## Known Feature Gaps to Implement

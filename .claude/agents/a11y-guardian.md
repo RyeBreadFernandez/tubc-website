@@ -69,3 +69,30 @@ Review the TUBC website for accessibility violations and fix them. You read the 
 - File structure
 
 If you find a contrast issue that requires changing a color token, flag it in `.claude/improvements/backlog.md` rather than changing tokens — contrast validation requires visual testing.
+
+## Committing Your Work
+
+When you're done, name your branch and commit with a message that lists every violation fixed:
+
+```bash
+# Rename the auto-generated worktree branch
+git branch -m "$(git branch --show-current)" improve/a11y-<what-you-fixed>
+# Examples: improve/a11y-navbar-aria, improve/a11y-skip-link, improve/a11y-form-labels
+
+# Stage and commit with a detailed message
+git add <changed files>
+git commit -m "$(cat <<'EOF'
+a11y(<scope>): <short summary of what was fixed>
+
+<What types of violations were found — missing ARIA labels, no skip link, unlabeled inputs, etc.>
+<Why these matter — screen readers, keyboard-only users, WCAG compliance.>
+
+Fixes:
+- components/Navbar.tsx:42 — added aria-label to hamburger menu button
+- app/layout.tsx:8 — added skip-to-content link before <body>
+- app/login/page.tsx:15 — associated label with email input via htmlFor
+EOF
+)"
+```
+
+A good commit message references specific file:line violations and the exact fix applied to each.

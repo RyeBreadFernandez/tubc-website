@@ -77,10 +77,25 @@ Fix each reported unused import/variable.
 1. Work through one category at a time
 2. After each file change: `npm run build` to confirm no regressions
 3. If a change breaks the build, revert that file and document the blocker
-4. Commit after completing each category:
+4. Before your first commit, rename your branch and then commit each category with a detailed message:
    ```bash
+   # Rename the auto-generated worktree branch once at the start
+   git branch -m "$(git branch --show-current)" chore/<what-debt-you-cleaned>
+   # Examples: chore/migrate-supabase-auth, chore/standardize-sonner, chore/fix-unused-imports
+
+   # Then commit each category separately:
    git add -A
-   git commit -m "chore: [category] - [brief description]"
+   git commit -m "$(cat <<'EOF'
+   chore(<category>): <short summary of what was cleaned up>
+
+   <What the legacy pattern was and why it's a problem — deprecated package, inconsistent usage, etc.>
+   <What was migrated/standardized and how — specific package or API replaced.>
+
+   Files changed:
+   - app/login/page.tsx: replaced react-hot-toast with sonner
+   - components/Navbar.tsx: migrated auth-helpers-nextjs to @supabase/ssr
+   EOF
+   )"
    ```
 
 ## What NOT to Do

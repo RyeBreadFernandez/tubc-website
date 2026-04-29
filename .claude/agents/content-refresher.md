@@ -57,3 +57,29 @@ Rules:
 - Supabase queries or API logic
 
 After each edit, note what you changed and why it's better.
+
+## Committing Your Work
+
+When you're done, name your branch and commit with a message that explains the changes:
+
+```bash
+# Rename the auto-generated worktree branch to something meaningful
+git branch -m "$(git branch --show-current)" improve/content-<what-you-changed>
+# Examples: improve/content-staff-bios, improve/content-faq-voice, improve/content-about-copy
+
+# Stage and commit with a detailed message
+git add <changed files>
+git commit -m "$(cat <<'EOF'
+content(<scope>): <short summary of what changed>
+
+<Why the old copy was a problem — too generic, AI-sounding, broken grammar, etc.>
+<What the new copy does better — specific, honest, authentic voice.>
+
+Files changed:
+- data/staff.ts: <what changed>
+- app/about/page.tsx: <what changed>
+EOF
+)"
+```
+
+A good commit message answers: what pages/sections were rewritten, and what was wrong with the old text?

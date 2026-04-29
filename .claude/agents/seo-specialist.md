@@ -84,3 +84,29 @@ For JSON-LD, add a `<script>` tag in the page component:
 4. Note: Dynamic route pages (e.g., `app/trip-logs/[slug]/page.tsx`) should use `generateMetadata` function, not `export const metadata`
 
 After each file, confirm what was added.
+
+## Committing Your Work
+
+When you're done, name your branch and commit with a message that explains what SEO was missing and what you added:
+
+```bash
+# Rename the auto-generated worktree branch
+git branch -m "$(git branch --show-current)" improve/seo-<what-you-added>
+# Examples: improve/seo-metadata-all-pages, improve/seo-og-tags, improve/seo-json-ld
+
+# Stage and commit with a detailed message
+git add <changed files>
+git commit -m "$(cat <<'EOF'
+seo(<scope>): <short summary>
+
+<Which pages were missing metadata and what the gaps were.>
+<What was added — metadata titles/descriptions, OG tags, canonical URLs, JSON-LD.>
+
+Pages updated:
+- app/trips/page.tsx: added metadata + OG tags
+- app/gallery/page.tsx: added metadata + canonical
+EOF
+)"
+```
+
+A good commit message lists every page touched and exactly what metadata field was added or fixed.
