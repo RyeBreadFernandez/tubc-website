@@ -8,10 +8,21 @@ import { getMountainPlaceholder } from '@/lib/utils/placeholder'
 import { format } from 'date-fns'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Trip Logs',
-  description: 'Read trip reports and adventure logs from The Backpacking Club at UCLA.',
+  description: 'Read trip reports from The Backpacking Club at UCLA — Sierra Nevada, Joshua Tree, Angeles National Forest, and more. Real accounts from real Bruins on the trail.',
+  alternates: {
+    canonical: 'https://tubcla.com/trip-logs',
+  },
+  openGraph: {
+    title: 'Trip Logs | UCLA Backpacking Club',
+    description: 'Read trip reports from The Backpacking Club at UCLA — Sierra Nevada, Joshua Tree, Angeles National Forest, and more.',
+    url: 'https://tubcla.com/trip-logs',
+    images: [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: 'TUBC trip logs' }],
+    type: 'website',
+  },
 }
 
 async function getTripLogs() {
@@ -30,7 +41,7 @@ export default async function TripLogsPage() {
   const trips = await getTripLogs()
 
   return (
-    <main className="flex-1 pt-16">
+    <main id="main-content" className="flex-1 pt-16">
       <PageHero
         title="Trip Logs"
         subtitle="Reports from the trail."

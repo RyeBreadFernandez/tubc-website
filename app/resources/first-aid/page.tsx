@@ -1,6 +1,20 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-export const metadata = { title: 'First Aid — TUBC Resources' }
+export const metadata: Metadata = {
+  title: 'First Aid',
+  description: 'Wilderness first aid basics for backpackers — blisters, altitude sickness, hypothermia, sprains, and when to evacuate. A practical trail guide from UCLA Backpacking Club.',
+  alternates: {
+    canonical: 'https://tubcla.com/resources/first-aid',
+  },
+  openGraph: {
+    title: 'First Aid | UCLA Backpacking Club',
+    description: 'Wilderness first aid basics for backpackers — blisters, altitude sickness, hypothermia, sprains, and when to evacuate.',
+    url: 'https://tubcla.com/resources/first-aid',
+    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Wilderness first aid guide' }],
+    type: 'website',
+  },
+}
 
 const topics = [
   { title: 'Blisters', content: 'Drain with a sterile needle at the blister edge, not the center. Apply antibiotic ointment and cover with Moleskin or a blister bandage. Don\'t remove the skin. Prevention: break in boots before the trip, wear liner socks, use Bodyglide on hot spots.' },

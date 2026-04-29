@@ -1,6 +1,20 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-export const metadata = { title: 'Where to Go — TUBC Resources' }
+export const metadata: Metadata = {
+  title: 'Where to Go',
+  description: 'Backpacking destinations near UCLA — the John Muir Trail, Kings Canyon, Yosemite, Joshua Tree, Channel Islands, Zion, and more curated by TUBC trip leaders.',
+  alternates: {
+    canonical: 'https://tubcla.com/resources/where-to-go',
+  },
+  openGraph: {
+    title: 'Where to Go | UCLA Backpacking Club',
+    description: 'Backpacking destinations near UCLA — the John Muir Trail, Kings Canyon, Yosemite, Joshua Tree, Channel Islands, Zion, and more.',
+    url: 'https://tubcla.com/resources/where-to-go',
+    images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Backpacking destinations guide' }],
+    type: 'website',
+  },
+}
 
 const destinations = [
   { name: 'John Muir Trail', region: 'Sierra Nevada', difficulty: 'Expert', distance: '211 miles end-to-end', description: 'The classic long-distance trail through the High Sierra. Section hikes are popular for shorter trips.' },

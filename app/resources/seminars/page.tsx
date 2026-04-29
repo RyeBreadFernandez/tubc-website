@@ -1,6 +1,20 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-export const metadata = { title: 'Seminars — TUBC Resources' }
+export const metadata: Metadata = {
+  title: 'Seminars',
+  description: 'Free workshops from UCLA Backpacking Club — intro to backpacking, navigation, wilderness first aid, gear deep dives, Sierra permit strategy, and more.',
+  alternates: {
+    canonical: 'https://tubcla.com/resources/seminars',
+  },
+  openGraph: {
+    title: 'Seminars | UCLA Backpacking Club',
+    description: 'Free workshops from UCLA Backpacking Club — intro to backpacking, navigation, wilderness first aid, gear deep dives, and Sierra permit strategy.',
+    url: 'https://tubcla.com/resources/seminars',
+    images: [{ url: '/staff-group.jpg', width: 1200, height: 630, alt: 'TUBC seminars and workshops' }],
+    type: 'website',
+  },
+}
 
 const seminars = [
   { title: 'Intro to Backpacking', description: 'Everything a first-timer needs to know before their first overnight trip. Gear overview, packing demo, leave no trace principles, and trip planning basics.', frequency: 'Each new quarter' },

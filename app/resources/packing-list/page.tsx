@@ -1,6 +1,20 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-export const metadata = { title: 'Packing List — TUBC Resources' }
+export const metadata: Metadata = {
+  title: 'Packing List',
+  description: 'Complete backpacking packing list for overnight and multi-day trips — gear, clothing, food, safety, and Leave No Trace essentials from UCLA Backpacking Club.',
+  alternates: {
+    canonical: 'https://tubcla.com/resources/packing-list',
+  },
+  openGraph: {
+    title: 'Packing List | UCLA Backpacking Club',
+    description: 'Complete backpacking packing list for overnight and multi-day trips — gear, clothing, food, safety, and Leave No Trace essentials.',
+    url: 'https://tubcla.com/resources/packing-list',
+    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Backpacking packing list' }],
+    type: 'website',
+  },
+}
 
 const categories = [
   {

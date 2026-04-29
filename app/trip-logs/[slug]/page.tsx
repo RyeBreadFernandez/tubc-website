@@ -29,10 +29,27 @@ async function getTrip(slug: string) {
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
   const trip = await getTrip(slug)
-  if (!trip) return { title: 'Trip Not Found — TUBC' }
+  if (!trip) return { title: 'Trip Not Found' }
+
+  const description = trip.content
+    ? trip.content.replace(/[#*`]/g, '').slice(0, 155).trim() + '…'
+    : `${trip.location} · ${trip.difficulty} · A trip report from The Backpacking Club at UCLA.`
+
   return {
-    title: `${trip.title} — TUBC`,
-    description: `${trip.location} · ${trip.difficulty}`,
+    title: trip.title,
+    description,
+    alternates: {
+      canonical: `https://tubcla.com/trip-logs/${slug}`,
+    },
+    openGraph: {
+      title: `${trip.title} | UCLA Backpacking Club`,
+      description,
+      url: `https://tubcla.com/trip-logs/${slug}`,
+      images: trip.cover_image_url
+        ? [{ url: trip.cover_image_url, width: 1200, height: 630, alt: trip.title }]
+        : [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: trip.title }],
+      type: 'article',
+    },
   }
 }
 
@@ -46,7 +63,39 @@ export default async function TripLogPage({ params }: Props) {
   const author = 'A TUBC Member'
 
   return (
-    <main className="flex-1 pt-16 bg-parchment min-h-screen">
+    <main id="main-content" className="flex-1 pt-16 bg-parchment min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Article',
+            headline: trip.title,
+            description: `${trip.location}${trip.difficulty ? ' · ' + trip.difficulty : ''}`,
+            image: trip.cover_image_url ?? 'https://tubcla.com/trip-logs-hero.jpg',
+            datePublished: trip.trip_date ?? undefined,
+            author: {
+              '@type': 'Organization',
+              name: 'The Backpacking Club at UCLA',
+              url: 'https://tubcla.com',
+            },
+            publisher: {
+              '@type': 'Organization',
+              name: 'The Backpacking Club at UCLA',
+              url: 'https://tubcla.com',
+              logo: {
+                '@type': 'ImageObject',
+                url: 'https://tubcla.com/logo.png',
+              },
+            },
+            url: `https://tubcla.com/trip-logs/${trip.slug}`,
+            mainEntityOfPage: {
+              '@type': 'WebPage',
+              '@id': `https://tubcla.com/trip-logs/${trip.slug}`,
+            },
+          }),
+        }}
+      />
 
       {/* Header — clean title block, no image background */}
       <div className="bg-secondary/40 border-b border-border">

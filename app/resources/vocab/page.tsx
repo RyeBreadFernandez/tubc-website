@@ -1,6 +1,20 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-export const metadata = { title: 'Vocab — TUBC Resources' }
+export const metadata: Metadata = {
+  title: 'Vocab',
+  description: 'Backpacking and hiking terms explained for beginners — base weight, bear canister, bivy, LNT, thru-hike, and more. A glossary from UCLA Backpacking Club.',
+  alternates: {
+    canonical: 'https://tubcla.com/resources/vocab',
+  },
+  openGraph: {
+    title: 'Vocab | UCLA Backpacking Club',
+    description: 'Backpacking and hiking terms explained for beginners — base weight, bear canister, bivy, LNT, thru-hike, and more.',
+    url: 'https://tubcla.com/resources/vocab',
+    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Backpacking vocabulary glossary' }],
+    type: 'website',
+  },
+}
 
 const terms = [
   { term: 'Backcountry', def: 'Remote areas away from roads and developed facilities. Usually requires a permit to camp.' },

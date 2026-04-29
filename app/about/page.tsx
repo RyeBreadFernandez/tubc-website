@@ -4,15 +4,48 @@ import { staff } from '@/data/staff'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'About',
-  description: 'Learn about The Backpacking Club at UCLA and meet our team.',
+  description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
+  alternates: {
+    canonical: 'https://tubcla.com/about',
+  },
+  openGraph: {
+    title: 'About | UCLA Backpacking Club',
+    description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
+    url: 'https://tubcla.com/about',
+    images: [{ url: '/about-hero.jpg', width: 1200, height: 630, alt: 'TUBC club photo' }],
+    type: 'website',
+  },
 }
 
 export default function AboutPage() {
   return (
-    <main className="flex-1 pt-16">
+    <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'The Backpacking Club at UCLA',
+            alternateName: 'TUBC',
+            url: 'https://tubcla.com',
+            logo: 'https://tubcla.com/logo.png',
+            description: 'A student-run outdoor club at UCLA dedicated to making backpacking and hiking accessible to everyone.',
+            contactPoint: {
+              '@type': 'ContactPoint',
+              email: 'uclabackpackingclub@gmail.com',
+              contactType: 'customer support',
+            },
+            sameAs: [
+              'https://www.instagram.com/uclabackpacking/',
+            ],
+          }),
+        }}
+      />
       <PageHero
         title="About TUBC"
         subtitle="Backcountry adventures for every Bruin."

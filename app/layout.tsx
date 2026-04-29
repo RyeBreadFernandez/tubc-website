@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     description: "The Backpacking Club is an inclusive community of outgoing and adventurous people who enjoy exploring the outdoors, love nature, and are dedicated to outdoor stewardship.",
     images: ["/staff-group.jpg"],
   },
-  metadataBase: new URL("https://www.uclabackpackingclub.com"),
+  metadataBase: new URL("https://tubcla.com"),
 };
 
 export default function RootLayout({
@@ -72,6 +72,12 @@ export default function RootLayout({
       className={cn("h-full", "antialiased", fraunces.variable, nunito.variable, dmMono.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col bg-parchment text-bark font-body">
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:text-sm focus:font-semibold focus:outline-none"
+        >
+          Skip to main content
+        </a>
         <Navbar />
         {children}
         <Footer />

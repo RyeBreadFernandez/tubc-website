@@ -1,9 +1,20 @@
 import PageHero from '@/components/ui/PageHero'
 import CalendarEvents from '@/components/CalendarEvents'
+import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Trips & Events',
-  description: 'Upcoming backpacking and hiking trips from The Backpacking Club at UCLA.',
+  description: 'Browse upcoming backpacking and hiking trips from The Backpacking Club at UCLA. Free to join — all levels welcome, from day hikes to multi-day Sierra crossings.',
+  alternates: {
+    canonical: 'https://tubcla.com/trips',
+  },
+  openGraph: {
+    title: 'Trips & Events | UCLA Backpacking Club',
+    description: 'Browse upcoming backpacking and hiking trips from The Backpacking Club at UCLA. Free to join — all levels welcome.',
+    url: 'https://tubcla.com/trips',
+    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC trips and events' }],
+    type: 'website',
+  },
 }
 
 const CALENDAR_ID = 'uclabackpackingclub@gmail.com'
@@ -12,7 +23,7 @@ const CALENDAR_ADD_URL = `https://calendar.google.com/calendar/r?cid=${encodeURI
 
 export default function TripsPage() {
   return (
-    <main className="flex-1 pt-16">
+    <main id="main-content" className="flex-1 pt-16">
       <PageHero
         title="Trips & Events"
         subtitle="This page is only to show when trips are. If you are interested in joining a trip, join the Slack for more information."

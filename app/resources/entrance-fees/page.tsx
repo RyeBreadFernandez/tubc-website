@@ -1,6 +1,20 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-export const metadata = { title: 'Entrance Fees — TUBC Resources' }
+export const metadata: Metadata = {
+  title: 'Entrance Fees',
+  description: 'National park and forest entrance fees for TUBC destinations — Yosemite, Kings Canyon, Joshua Tree, and more. Plus how the America the Beautiful pass saves you money.',
+  alternates: {
+    canonical: 'https://tubcla.com/resources/entrance-fees',
+  },
+  openGraph: {
+    title: 'Entrance Fees | UCLA Backpacking Club',
+    description: 'National park entrance fees and pass tips for UCLA backpackers — Yosemite, Kings Canyon, Joshua Tree, and more.',
+    url: 'https://tubcla.com/resources/entrance-fees',
+    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'National park entrance fees guide' }],
+    type: 'website',
+  },
+}
 
 const fees = [
   { park: 'Yosemite NP', vehicle: '$35', individual: '$20', annual: 'America the Beautiful', notes: 'Reservations required May–Sept in addition to fee.' },

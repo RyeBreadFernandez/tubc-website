@@ -4,7 +4,16 @@ import { redirect } from 'next/navigation'
 import { format } from 'date-fns'
 import { setPublished } from './actions'
 
-export const metadata = { title: 'Review Trip Reports — TUBC' }
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Review Trip Reports',
+  description: 'Officer dashboard for reviewing and publishing trip reports.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
 export default async function ReviewPage() {
   const cookieStore = await cookies()

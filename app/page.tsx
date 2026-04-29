@@ -5,12 +5,20 @@ import { cookies } from 'next/headers'
 import Badge from '@/components/ui/DifficultyBadge'
 import { getMountainPlaceholder } from '@/lib/utils/placeholder'
 import { format } from 'date-fns'
+import type { Metadata } from 'next'
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'The Backpacking Club at UCLA',
-  description: 'The Backpacking Club is an inclusive community of outgoing and adventurous people who enjoy exploring the outdoors, love nature, and are dedicated to outdoor stewardship.',
+  description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
   alternates: {
-    canonical: 'https://www.uclabackpackingclub.com',
+    canonical: 'https://tubcla.com',
+  },
+  openGraph: {
+    title: 'The Backpacking Club at UCLA',
+    description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
+    url: 'https://tubcla.com',
+    images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Cottonwood Lakes — TUBC' }],
+    type: 'website',
   },
 }
 
@@ -34,7 +42,28 @@ export default async function Home() {
   const tripLogs = await getLatestTripLogs()
 
   return (
-    <main className="flex-1">
+    <main id="main-content" className="flex-1">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'The Backpacking Club at UCLA',
+            url: 'https://tubcla.com',
+            description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level.',
+            publisher: {
+              '@type': 'Organization',
+              name: 'The Backpacking Club at UCLA',
+              url: 'https://tubcla.com',
+              logo: {
+                '@type': 'ImageObject',
+                url: 'https://tubcla.com/logo.png',
+              },
+            },
+          }),
+        }}
+      />
 
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">

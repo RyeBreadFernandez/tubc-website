@@ -4,7 +4,16 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { format } from 'date-fns'
 
-export const metadata = { title: 'Dashboard — TUBC' }
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Dashboard',
+  description: 'Your UCLA Backpacking Club member dashboard — view and manage your trip reports.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
 async function getUserAndTrips() {
   const cookieStore = await cookies()

@@ -1,6 +1,20 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-export const metadata = { title: 'How to Pack — TUBC Resources' }
+export const metadata: Metadata = {
+  title: 'How to Pack',
+  description: 'How to load a backpack properly — weight distribution, what goes where, and fitting your pack for comfort. Practical tips from UCLA Backpacking Club trip leaders.',
+  alternates: {
+    canonical: 'https://tubcla.com/resources/how-to-pack',
+  },
+  openGraph: {
+    title: 'How to Pack | UCLA Backpacking Club',
+    description: 'How to load a backpack properly — weight distribution, what goes where, and fitting your pack for comfort on the trail.',
+    url: 'https://tubcla.com/resources/how-to-pack',
+    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'How to pack a backpack guide' }],
+    type: 'website',
+  },
+}
 
 const sections = [
   {

@@ -1,6 +1,20 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-export const metadata = { title: 'Parks & Monuments — TUBC Resources' }
+export const metadata: Metadata = {
+  title: 'Parks & Monuments',
+  description: 'Overview of national parks and forests visited by UCLA Backpacking Club — Yosemite, Kings Canyon, Joshua Tree, Zion, Angeles NF, and more. Know before you go.',
+  alternates: {
+    canonical: 'https://tubcla.com/resources/parks-monuments',
+  },
+  openGraph: {
+    title: 'Parks & Monuments | UCLA Backpacking Club',
+    description: 'Overview of national parks and forests visited by TUBC — Yosemite, Kings Canyon, Joshua Tree, Zion, Angeles NF, and more.',
+    url: 'https://tubcla.com/resources/parks-monuments',
+    images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'National parks guide' }],
+    type: 'website',
+  },
+}
 
 const parks = [
   { name: 'Yosemite National Park', state: 'CA', description: 'Valley, High Sierra, Tuolumne Meadows. Iconic for a reason. Reservations required May–Sept for day use. Wilderness permits required for overnight.' },

@@ -1,6 +1,20 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-export const metadata = { title: 'Gear Rental — TUBC Resources' }
+export const metadata: Metadata = {
+  title: 'Gear Rental',
+  description: 'Borrow backpacking gear from UCLA Backpacking Club — tents, sleeping bags, packs, stoves, bear canisters, and more. Affordable rates for all TUBC members.',
+  alternates: {
+    canonical: 'https://tubcla.com/resources/gear-rental',
+  },
+  openGraph: {
+    title: 'Gear Rental | UCLA Backpacking Club',
+    description: 'Borrow backpacking gear from UCLA Backpacking Club — tents, sleeping bags, packs, stoves, bear canisters, and more at affordable rates.',
+    url: 'https://tubcla.com/resources/gear-rental',
+    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC gear rental' }],
+    type: 'website',
+  },
+}
 
 const gear = [
   { item: 'Backpack (50–65L)', price: '$10/weekend', notes: 'Multiple sizes. Osprey and Gregory frames.' },

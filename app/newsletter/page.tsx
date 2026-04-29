@@ -1,10 +1,21 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import PageHero from '@/components/ui/PageHero'
+import type { Metadata } from 'next'
 
-export const metadata = {
-  title: 'Newsletter — TUBC',
-  description: 'The TUBC quarterly newsletter archive.',
+export const metadata: Metadata = {
+  title: 'Newsletter',
+  description: 'The UCLA Backpacking Club quarterly newsletter — trip recaps, gear tips, and club news delivered four times a year. Read past issues and subscribe.',
+  alternates: {
+    canonical: 'https://tubcla.com/newsletter',
+  },
+  openGraph: {
+    title: 'Newsletter | UCLA Backpacking Club',
+    description: 'The UCLA Backpacking Club quarterly newsletter — trip recaps, gear tips, and club news delivered four times a year.',
+    url: 'https://tubcla.com/newsletter',
+    images: [{ url: '/staff-group.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club Newsletter' }],
+    type: 'website',
+  },
 }
 
 async function getNewsletters() {
@@ -25,7 +36,7 @@ export default async function NewsletterPage() {
   const issues = await getNewsletters()
 
   return (
-    <main className="flex-1 pt-16">
+    <main id="main-content" className="flex-1 pt-16">
       <section className="pt-16 pb-10 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-2">Quarterly dispatches</p>

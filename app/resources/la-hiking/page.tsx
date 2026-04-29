@@ -1,6 +1,20 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 
-export const metadata = { title: 'LA Hiking — TUBC Resources' }
+export const metadata: Metadata = {
+  title: 'LA Hiking',
+  description: 'The best hikes near UCLA — Griffith Park, Angeles National Forest, Santa Monica Mountains, and more. Day hike recommendations from The Backpacking Club at UCLA.',
+  alternates: {
+    canonical: 'https://tubcla.com/resources/la-hiking',
+  },
+  openGraph: {
+    title: 'LA Hiking | UCLA Backpacking Club',
+    description: 'The best hikes near UCLA — Griffith Park, Angeles National Forest, Santa Monica Mountains, and more. Day hike recommendations for Bruins.',
+    url: 'https://tubcla.com/resources/la-hiking',
+    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'LA hiking guide' }],
+    type: 'website',
+  },
+}
 
 const hikes = [
   { name: 'Runyon Canyon', area: 'Hollywood Hills', distance: '1.5–3.5 miles', difficulty: 'Easy–Moderate', notes: 'Off-leash dog park + city views. Crowded but quick. Great for a weekday workout.' },
