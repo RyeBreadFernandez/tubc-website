@@ -10,7 +10,7 @@ _Last updated: 2026-04-28 — Quinn (UX audit) findings added_
 - [x] **[Quinn]** /trips hero subtitle replaced with real UX copy — done by Casey
 - [ ] **[Quinn]** /trips Google Calendar iframe renders as a blank white void — large dead space on the page, likely blocked by X-Frame-Options | file: app/trips/page.tsx
 - [x] **[Quinn]** /newsletter Subscribe button wired — done by Casey
-- [ ] **[Quinn — SEO]** Canonical domain is split: most pages use `tubcla.com` but `app/layout.tsx` metadataBase still points to `www.uclabackpackingclub.com` — Google sees duplicate content across two hostnames. Consolidate everything to `tubcla.com` | file: app/layout.tsx
+- [ ] **[Quinn — SEO]** Canonical domain is split: some pages may use inconsistent hostnames — consolidate everything to `uclabackpackingclub.com` | file: app/layout.tsx
 
 ## High — Significant UX or SEO impact
 
@@ -41,7 +41,7 @@ _Last updated: 2026-04-28 — Quinn (UX audit) findings added_
 - [ ] Alt text audit: verify all `<Image>` components have descriptive alt text | file: all components
 - [ ] TypeScript: add explicit return types to untyped Supabase query responses | file: app/trip-logs/page.tsx, app/dashboard/page.tsx
 - [ ] Replace boilerplate README with actual project documentation | file: README.md
-- [ ] Canonical URL: verify canonical points to www.tubcla.com consistently | file: app/layout.tsx
+- [ ] Canonical URL: verify canonical points to uclabackpackingclub.com consistently | file: app/layout.tsx
 - [ ] Add keyboard focus styles (visible focus ring) to interactive elements that lack them | file: global CSS
 - [ ] **[Quinn]** /resources sub-page destination cards (JMT, Yosemite, etc.) are display-only with no link — if intentional, fine; otherwise add links | file: app/resources/*/page.tsx
 
