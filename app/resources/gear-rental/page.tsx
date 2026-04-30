@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: 'Gear Rental',
   description: 'Borrow backpacking gear from UCLA Backpacking Club — tents, sleeping bags, packs, stoves, bear canisters, and more. Affordable rates for all TUBC members.',
   alternates: {
-    canonical: 'https://tubcla.com/resources/gear-rental',
+    canonical: 'https://www.uclabackpackingclub.com/resources/gear-rental',
   },
   openGraph: {
     title: 'Gear Rental | UCLA Backpacking Club',
     description: 'Borrow backpacking gear from UCLA Backpacking Club — tents, sleeping bags, packs, stoves, bear canisters, and more at affordable rates.',
-    url: 'https://tubcla.com/resources/gear-rental',
+    url: 'https://www.uclabackpackingclub.com/resources/gear-rental',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC gear rental' }],
     type: 'website',
   },

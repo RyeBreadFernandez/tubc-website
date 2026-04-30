@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: 'Backcountry Cooking',
   description: 'Meal ideas and cooking tips for backpacking trips — what to eat, how to pack light, altitude cooking notes, and Leave No Trace food prep from TUBC.',
   alternates: {
-    canonical: 'https://tubcla.com/resources/backcountry-cooking',
+    canonical: 'https://www.uclabackpackingclub.com/resources/backcountry-cooking',
   },
   openGraph: {
     title: 'Backcountry Cooking | UCLA Backpacking Club',
     description: 'Meal ideas and cooking tips for backpacking trips — what to eat, how to pack light, altitude cooking notes, and Leave No Trace food prep.',
-    url: 'https://tubcla.com/resources/backcountry-cooking',
+    url: 'https://www.uclabackpackingclub.com/resources/backcountry-cooking',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Backcountry cooking guide' }],
     type: 'website',
   },

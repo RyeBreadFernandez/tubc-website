@@ -39,12 +39,12 @@ export async function generateMetadata({ params }: Props) {
     title: trip.title,
     description,
     alternates: {
-      canonical: `https://tubcla.com/trip-logs/${slug}`,
+      canonical: `https://www.uclabackpackingclub.com/trip-logs/${slug}`,
     },
     openGraph: {
       title: `${trip.title} | UCLA Backpacking Club`,
       description,
-      url: `https://tubcla.com/trip-logs/${slug}`,
+      url: `https://www.uclabackpackingclub.com/trip-logs/${slug}`,
       images: trip.cover_image_url
         ? [{ url: trip.cover_image_url, width: 1200, height: 630, alt: trip.title }]
         : [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: trip.title }],
@@ -72,26 +72,26 @@ export default async function TripLogPage({ params }: Props) {
             '@type': 'Article',
             headline: trip.title,
             description: `${trip.location}${trip.difficulty ? ' · ' + trip.difficulty : ''}`,
-            image: trip.cover_image_url ?? 'https://tubcla.com/trip-logs-hero.jpg',
+            image: trip.cover_image_url ?? 'https://www.uclabackpackingclub.com/trip-logs-hero.jpg',
             datePublished: trip.trip_date ?? undefined,
             author: {
               '@type': 'Organization',
               name: 'The Backpacking Club at UCLA',
-              url: 'https://tubcla.com',
+              url: 'https://www.uclabackpackingclub.com',
             },
             publisher: {
               '@type': 'Organization',
               name: 'The Backpacking Club at UCLA',
-              url: 'https://tubcla.com',
+              url: 'https://www.uclabackpackingclub.com',
               logo: {
                 '@type': 'ImageObject',
-                url: 'https://tubcla.com/logo.png',
+                url: 'https://www.uclabackpackingclub.com/logo.png',
               },
             },
-            url: `https://tubcla.com/trip-logs/${trip.slug}`,
+            url: `https://www.uclabackpackingclub.com/trip-logs/${trip.slug}`,
             mainEntityOfPage: {
               '@type': 'WebPage',
-              '@id': `https://tubcla.com/trip-logs/${trip.slug}`,
+              '@id': `https://www.uclabackpackingclub.com/trip-logs/${trip.slug}`,
             },
           }),
         }}

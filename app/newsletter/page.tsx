@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: 'Newsletter',
   description: 'The UCLA Backpacking Club quarterly newsletter — trip recaps, gear tips, and club news delivered four times a year. Read past issues and subscribe.',
   alternates: {
-    canonical: 'https://tubcla.com/newsletter',
+    canonical: 'https://www.uclabackpackingclub.com/newsletter',
   },
   openGraph: {
     title: 'Newsletter | UCLA Backpacking Club',
     description: 'The UCLA Backpacking Club quarterly newsletter — trip recaps, gear tips, and club news delivered four times a year.',
-    url: 'https://tubcla.com/newsletter',
+    url: 'https://www.uclabackpackingclub.com/newsletter',
     images: [{ url: '/staff-group.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club Newsletter' }],
     type: 'website',
   },

@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: 'Seminars',
   description: 'Free workshops from UCLA Backpacking Club — intro to backpacking, navigation, wilderness first aid, gear deep dives, Sierra permit strategy, and more.',
   alternates: {
-    canonical: 'https://tubcla.com/resources/seminars',
+    canonical: 'https://www.uclabackpackingclub.com/resources/seminars',
   },
   openGraph: {
     title: 'Seminars | UCLA Backpacking Club',
     description: 'Free workshops from UCLA Backpacking Club — intro to backpacking, navigation, wilderness first aid, gear deep dives, and Sierra permit strategy.',
-    url: 'https://tubcla.com/resources/seminars',
+    url: 'https://www.uclabackpackingclub.com/resources/seminars',
     images: [{ url: '/staff-group.jpg', width: 1200, height: 630, alt: 'TUBC seminars and workshops' }],
     type: 'website',
   },

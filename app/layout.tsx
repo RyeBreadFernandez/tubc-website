@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     description: "The Backpacking Club is an inclusive community of outgoing and adventurous people who enjoy exploring the outdoors, love nature, and are dedicated to outdoor stewardship.",
     images: ["/staff-group.jpg"],
   },
-  metadataBase: new URL("https://tubcla.com"),
+  metadataBase: new URL("https://www.uclabackpackingclub.com"),
 };
 
 export default function RootLayout({

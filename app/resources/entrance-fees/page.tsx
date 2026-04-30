@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: 'Entrance Fees',
   description: 'National park and forest entrance fees for TUBC destinations — Yosemite, Kings Canyon, Joshua Tree, and more. Plus how the America the Beautiful pass saves you money.',
   alternates: {
-    canonical: 'https://tubcla.com/resources/entrance-fees',
+    canonical: 'https://www.uclabackpackingclub.com/resources/entrance-fees',
   },
   openGraph: {
     title: 'Entrance Fees | UCLA Backpacking Club',
     description: 'National park entrance fees and pass tips for UCLA backpackers — Yosemite, Kings Canyon, Joshua Tree, and more.',
-    url: 'https://tubcla.com/resources/entrance-fees',
+    url: 'https://www.uclabackpackingclub.com/resources/entrance-fees',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'National park entrance fees guide' }],
     type: 'website',
   },

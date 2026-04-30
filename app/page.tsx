@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: 'The Backpacking Club at UCLA',
   description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
   alternates: {
-    canonical: 'https://tubcla.com',
+    canonical: 'https://www.uclabackpackingclub.com',
   },
   openGraph: {
     title: 'The Backpacking Club at UCLA',
     description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
-    url: 'https://tubcla.com',
+    url: 'https://www.uclabackpackingclub.com',
     images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Cottonwood Lakes — TUBC' }],
     type: 'website',
   },
@@ -50,15 +50,15 @@ export default async function Home() {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             name: 'The Backpacking Club at UCLA',
-            url: 'https://tubcla.com',
+            url: 'https://www.uclabackpackingclub.com',
             description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level.',
             publisher: {
               '@type': 'Organization',
               name: 'The Backpacking Club at UCLA',
-              url: 'https://tubcla.com',
+              url: 'https://www.uclabackpackingclub.com',
               logo: {
                 '@type': 'ImageObject',
-                url: 'https://tubcla.com/logo.png',
+                url: 'https://www.uclabackpackingclub.com/logo.png',
               },
             },
           }),

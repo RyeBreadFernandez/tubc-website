@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: 'Trail Guides',
   description: 'Trail guides for TUBC favorites — Rae Lakes Loop, Mount Whitney, Half Dome, Condor Gulch, and more. Distances, difficulty, permits, and trip beta.',
   alternates: {
-    canonical: 'https://tubcla.com/resources/trail-guides',
+    canonical: 'https://www.uclabackpackingclub.com/resources/trail-guides',
   },
   openGraph: {
     title: 'Trail Guides | UCLA Backpacking Club',
     description: 'Trail guides for TUBC favorites — Rae Lakes Loop, Mount Whitney, Half Dome, and more. Distances, difficulty, permits, and trip beta.',
-    url: 'https://tubcla.com/resources/trail-guides',
+    url: 'https://www.uclabackpackingclub.com/resources/trail-guides',
     images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Trail guides for backpacking' }],
     type: 'website',
   },
