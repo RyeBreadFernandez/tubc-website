@@ -4,6 +4,7 @@ export interface StaffMember {
   bio: string
   imageUrl?: string
   objectPosition?: string
+  imageScale?: number
 }
 
 export const staff: StaffMember[] = [
@@ -54,7 +55,8 @@ export const staff: StaffMember[] = [
     role: 'Potential Treasurer',
     bio: 'Handling the money and club card next year',
     imageUrl: '/staff/summer-frazier.jpg',
-    objectPosition: 'center 70%',
+    objectPosition: 'center 40%',
+    imageScale: 1.15,
   },
   {
     name: 'Maris Durant-Bender',
