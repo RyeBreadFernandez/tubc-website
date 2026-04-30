@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import Badge from '@/components/ui/DifficultyBadge'
 import { getMountainPlaceholder } from '@/lib/utils/placeholder'
-import { format } from 'date-fns'
+import { format, parse } from 'date-fns'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -111,7 +111,7 @@ export default async function TripLogPage({ params }: Props) {
             {trip.trip_date && (
               <div>
                 <span className="text-xs text-soil/60 uppercase tracking-wide block mb-0.5">Date</span>
-                {format(new Date(trip.trip_date), 'MMMM d, yyyy')}
+                {format(parse(trip.trip_date, 'yyyy-MM-dd', new Date()), 'MMMM d, yyyy')}
               </div>
             )}
             {trip.miles && (

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import PageHero from '@/components/ui/PageHero'
 import DifficultyBadge from '@/components/ui/DifficultyBadge'
 import { getMountainPlaceholder } from '@/lib/utils/placeholder'
-import { format } from 'date-fns'
+import { format, parse } from 'date-fns'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import type { Metadata } from 'next'
@@ -72,7 +72,7 @@ export default async function TripLogsPage() {
                         )}
                         {trip.trip_date && (
                           <span className="text-xs text-muted-foreground">
-                            {format(new Date(trip.trip_date), 'MMM d, yyyy')}
+                            {format(parse(trip.trip_date, 'yyyy-MM-dd', new Date()), 'MMM d, yyyy')}
                           </span>
                         )}
                       </div>
