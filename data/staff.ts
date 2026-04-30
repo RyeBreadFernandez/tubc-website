@@ -56,8 +56,7 @@ export const staff: StaffMember[] = [
     role: 'Potential Treasurer',
     bio: 'Handling the money and club card next year',
     imageUrl: '/staff/summer-frazier.jpg',
-    objectPosition: 'center 40%',
-    imageScale: 1.15,
+    objectPosition: 'center 55%',
   },
   {
     name: 'Maris Durant-Bender',
