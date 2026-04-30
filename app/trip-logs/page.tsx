@@ -107,6 +107,21 @@ export default async function TripLogsPage() {
           )}
         </div>
       </section>
+
+      <section className="py-16 bg-secondary">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="font-display text-3xl font-bold text-bark mb-4">Been on a TUBC trip?</h2>
+          <p className="text-muted-foreground mb-8">
+            Share your experience with the club. Write up your trip and we'll add it to the log.
+          </p>
+          <Link
+            href="/dashboard/new-trip"
+            className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground px-6 py-3 text-sm font-medium hover:bg-primary/90 transition-colors"
+          >
+            Submit a Trip Log
+          </Link>
+        </div>
+      </section>
     </main>
   )
 }
