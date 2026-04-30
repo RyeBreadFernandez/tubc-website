@@ -1,5 +1,4 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
+import { createClient } from '@supabase/supabase-js'
 import { format } from 'date-fns'
 import { setPublished } from './actions'
 
@@ -15,10 +14,13 @@ export const metadata: Metadata = {
 }
 
 export default async function ReviewPage() {
-  const cookieStore = await cookies()
-  const supabase = await createClient(cookieStore)
+  const admin = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    { auth: { persistSession: false } },
+  )
 
-  const { data: trips } = await supabase
+  const { data: trips } = await admin
     .from('trip_logs')
     .select('id, title, location, trip_date, difficulty, miles, published, slug, author_id')
     .order('created_at', { ascending: false })
