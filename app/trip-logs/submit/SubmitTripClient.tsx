@@ -4,7 +4,6 @@ import { useState, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import Image from 'next/image'
-import { createClient } from '@/utils/supabase/client'
 import { toast } from 'sonner'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -17,15 +16,13 @@ interface FormData {
   title: string
   location: string
   trip_date: string
-  difficulty: 'Easy' | 'Moderate' | 'Strenuous' | 'Expert'
   miles: string
   elevation_gain: string
   content: string
 }
 
-export default function NewTripPage() {
+export default function SubmitTripClient() {
   const router = useRouter()
-  const supabase = createClient()
   const [submitting, setSubmitting] = useState(false)
   const [coverFile, setCoverFile] = useState<File | null>(null)
   const [coverPreview, setCoverPreview] = useState<string | null>(null)
@@ -61,8 +58,6 @@ export default function NewTripPage() {
     }
     setSubmitting(true)
     try {
-      const { data: { user } } = await supabase.auth.getUser()
-
       const body = new globalThis.FormData()
       body.append('title', data.title)
       body.append('location', data.location)
@@ -72,14 +67,13 @@ export default function NewTripPage() {
       body.append('elevation_gain', data.elevation_gain ?? '')
       body.append('content', data.content)
       body.append('cover', coverFile)
-      if (user) body.append('author_id', user.id)
 
       const res = await fetch('/api/submit-trip', { method: 'POST', body })
       const json = await res.json()
       if (!res.ok) throw new Error(json.error ?? 'Something went wrong.')
 
       toast.success('Trip report submitted! An officer will review and publish it shortly.')
-      setTimeout(() => router.push(user ? '/dashboard' : '/trip-logs'), 1500)
+      setTimeout(() => router.push('/trip-logs'), 1500)
     } catch (err: unknown) {
       toast.error((err as Error).message ?? 'Something went wrong.')
     } finally {
@@ -169,7 +163,6 @@ export default function NewTripPage() {
             </div>
           </div>
 
-          {/* Cover photo drop zone */}
           <div className="space-y-1.5">
             <Label>
               Cover Photo <span className="text-primary text-xs">*required</span>

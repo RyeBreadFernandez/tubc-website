@@ -1,6 +1,5 @@
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
-import { redirect } from 'next/navigation'
 import { format } from 'date-fns'
 import { setPublished } from './actions'
 
@@ -18,8 +17,6 @@ export const metadata: Metadata = {
 export default async function ReviewPage() {
   const cookieStore = await cookies()
   const supabase = await createClient(cookieStore)
-  const { data: { user } } = await supabase.auth.getUser()
-  if (!user) redirect('/login')
 
   const { data: trips } = await supabase
     .from('trip_logs')

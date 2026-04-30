@@ -63,6 +63,17 @@ Dark mode variant is `.dark *` — use `dark:` prefix. No arbitrary color values
 - Don't bypass RLS from the client — route writes through API routes
 - Don't use `@supabase/auth-helpers-nextjs` for new code
 
+## Git Branch Naming
+All branches **must** have a descriptive name that explains what the branch does. Random or generated names are not acceptable.
+
+Use the format `type/short-description`:
+- `feat/public-trip-submission`
+- `fix/trip-log-date-parsing`
+- `improve/seo-metadata`
+- `chore/remove-stale-branches`
+
+Never use auto-generated names like `claude/nice-pare-55ef84`.
+
 ## Commands
 ```bash
 npm run dev      # start dev server at localhost:3000
@@ -78,11 +89,11 @@ Three files in `utils/supabase/` — use the right one for context:
 - `server.ts` — server client (`createServerClient` + cookie store), for Server Components and API routes
 - `middleware.ts` — session refresh, used by `middleware.ts` at repo root
 
-### Auth & middleware
-`middleware.ts` (root) refreshes the Supabase session on every request. Protected routes (e.g. `/dashboard`) redirect to `/login` if no session. Auth state in client components comes from `supabase.auth.onAuthStateChange`.
+### Auth
+There is no public login/signup flow. The `/login`, `/signup`, and `/auth` routes have been removed. The Navbar has no auth state.
 
 ### Trip logs
-Stored in the `trip_logs` Supabase table with a `slug` field and `published` boolean. The submission flow (`/dashboard/new-trip`) posts to `app/api/submit-trip/route.ts` which uses the service role key to bypass RLS and insert + upload cover images to Supabase Storage. Direct client writes would be blocked by RLS.
+Stored in the `trip_logs` Supabase table with a `slug` field and `published` boolean. The public submission form is at `/trip-logs/submit` and posts to `app/api/submit-trip/route.ts`, which uses the service role key to bypass RLS and insert rows + upload cover images to Supabase Storage. The officer review page is at `/dashboard/review` — publish/unpublish actions also use the service role key.
 
 ### Calendar
 `app/api/calendar/route.ts` fetches upcoming events from the Google Calendar API (calendar ID: `uclabackpackingclub@gmail.com`) using `GOOGLE_CALENDAR_API_KEY`. The `CalendarEvents` component calls this route client-side.

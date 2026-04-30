@@ -3,10 +3,7 @@
 import { useState, useEffect, useRef, startTransition } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { createClient } from '@/utils/supabase/client'
-import type { User } from '@supabase/supabase-js'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
-import { Separator } from '@/components/ui/separator'
 
 const resourceLinks = [
   { label: 'Where to Go', href: '/resources/where-to-go' },
@@ -34,7 +31,6 @@ const navLinks = [
 ]
 
 export default function Navbar() {
-  const [user, setUser] = useState<User | null>(null)
   const [scrolled, setScrolled] = useState(false)
   const [resourcesOpen, setResourcesOpen] = useState(false)
   const [mobileResourcesOpen, setMobileResourcesOpen] = useState(false)
@@ -42,15 +38,6 @@ export default function Navbar() {
   const pathname = usePathname()
   const isHome = pathname === '/'
   const dropdownRef = useRef<HTMLDivElement>(null)
-  const supabase = createClient()
-
-  useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => setUser(data.user))
-    const { data: listener } = supabase.auth.onAuthStateChange((_e, session) => {
-      setUser(session?.user ?? null)
-    })
-    return () => listener.subscription.unsubscribe()
-  }, [])
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -75,11 +62,6 @@ export default function Navbar() {
       setMobileResourcesOpen(false)
     })
   }, [pathname])
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    setUser(null)
-  }
 
   const transparent = isHome && !scrolled && !sheetOpen
 
@@ -159,14 +141,19 @@ export default function Navbar() {
             </button>
 
             {resourcesOpen && (
-              <div id="resources-dropdown" role="menu" className="absolute top-full left-0 mt-2 w-52 bg-parchment border border-border rounded-md shadow-lg py-1 z-50">
+              <div
+                id="resources-dropdown"
+                role="menu"
+                className="absolute top-full left-0 mt-1 w-52 bg-parchment border border-border rounded-md shadow-md py-1 z-50"
+              >
                 {resourceLinks.map(({ label, href }) => (
                   <Link
                     key={href}
                     href={href}
                     role="menuitem"
-                    aria-current={pathname === href ? 'page' : undefined}
-                    className="block px-4 py-2 text-sm text-muted-foreground hover:text-bark hover:bg-parchment-dark transition-colors"
+                    className={`block px-4 py-2 text-sm transition-colors ${
+                      pathname === href ? 'text-primary font-medium' : 'text-muted-foreground hover:text-bark hover:bg-parchment-dark'
+                    }`}
                   >
                     {label}
                   </Link>
@@ -176,34 +163,17 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop right side */}
-        {user && (
-          <div className="hidden lg:flex items-center gap-2">
-            <Link
-              href="/dashboard/new-trip"
-              className="px-4 py-1.5 bg-primary hover:bg-terra-dark text-primary-foreground text-sm font-semibold rounded-md transition-colors"
-            >
-              Post a Trip
-            </Link>
-            <Link
-              href="/dashboard"
-              aria-label="Dashboard"
-              className={`size-8 rounded-md flex items-center justify-center text-sm font-bold transition-colors ${
-                transparent ? 'bg-parchment/20 text-parchment hover:bg-parchment/30' : 'bg-secondary text-bark hover:bg-border'
-              }`}
-            >
-              <span aria-hidden="true">{user.email?.[0].toUpperCase() ?? 'U'}</span>
-            </Link>
-            <button
-              onClick={handleSignOut}
-              className={`text-sm transition-colors ${transparent ? 'text-parchment/70 hover:text-parchment' : 'text-muted-foreground hover:text-bark'}`}
-            >
-              Sign out
-            </button>
-          </div>
-        )}
+        {/* Desktop right — always-visible Post a Trip */}
+        <div className="hidden lg:flex items-center gap-2">
+          <Link
+            href="/trip-logs/submit"
+            className="px-4 py-1.5 bg-primary hover:bg-terra-dark text-primary-foreground text-sm font-semibold rounded-md transition-colors"
+          >
+            Post a Trip
+          </Link>
+        </div>
 
-        {/* Mobile hamburger — Sheet trigger */}
+        {/* Mobile hamburger */}
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger
             className={`lg:hidden p-3 rounded-md transition-colors ${transparent ? 'text-parchment hover:bg-parchment/10' : 'text-bark hover:bg-parchment-dark'}`}
@@ -262,25 +232,15 @@ export default function Navbar() {
               </div>
             </div>
 
-            {user && (
-              <>
-                <Separator />
-                <div className="px-4 py-4 shrink-0 flex flex-col gap-2">
-                  <Link
-                    href="/dashboard/new-trip"
-                    className="w-full text-center px-4 py-2.5 bg-primary hover:bg-terra-dark text-primary-foreground text-sm font-semibold rounded-md transition-colors"
-                  >
-                    Post a Trip
-                  </Link>
-                  <button
-                    onClick={handleSignOut}
-                    className="w-full text-center px-4 py-2.5 text-muted-foreground hover:text-bark text-sm transition-colors"
-                  >
-                    Sign out
-                  </button>
-                </div>
-              </>
-            )}
+            {/* Always-visible Post a Trip in mobile sheet */}
+            <div className="px-4 py-4 border-t border-border shrink-0">
+              <Link
+                href="/trip-logs/submit"
+                className="w-full text-center block px-4 py-2.5 bg-primary hover:bg-terra-dark text-primary-foreground text-sm font-semibold rounded-md transition-colors"
+              >
+                Post a Trip
+              </Link>
+            </div>
           </SheetContent>
         </Sheet>
       </nav>
