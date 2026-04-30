@@ -110,7 +110,10 @@ export default function AboutPage() {
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover"
-                      style={member.objectPosition ? { objectPosition: member.objectPosition } : undefined}
+                      style={{
+                        ...(member.objectPosition ? { objectPosition: member.objectPosition } : {}),
+                        ...(member.imageScale ? { transform: `scale(${member.imageScale})` } : {}),
+                      }}
                     />
                   ) : (
                     <Avatar className="size-20">
