@@ -14,12 +14,12 @@ export const metadata: Metadata = {
   title: 'Trip Logs',
   description: 'Read trip reports from The Backpacking Club at UCLA — Sierra Nevada, Joshua Tree, Angeles National Forest, and more. Real accounts from real Bruins on the trail.',
   alternates: {
-    canonical: 'https://tubcla.com/trip-logs',
+    canonical: 'https://www.uclabackpackingclub.com/trip-logs',
   },
   openGraph: {
     title: 'Trip Logs | UCLA Backpacking Club',
     description: 'Read trip reports from The Backpacking Club at UCLA — Sierra Nevada, Joshua Tree, Angeles National Forest, and more.',
-    url: 'https://tubcla.com/trip-logs',
+    url: 'https://www.uclabackpackingclub.com/trip-logs',
     images: [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: 'TUBC trip logs' }],
     type: 'website',
   },

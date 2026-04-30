@@ -11,12 +11,12 @@ export const metadata: Metadata = {
   title: 'The Backpacking Club at UCLA',
   description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
   alternates: {
-    canonical: 'https://tubcla.com',
+    canonical: 'https://www.uclabackpackingclub.com',
   },
   openGraph: {
     title: 'The Backpacking Club at UCLA',
     description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
-    url: 'https://tubcla.com',
+    url: 'https://www.uclabackpackingclub.com',
     images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Cottonwood Lakes — TUBC' }],
     type: 'website',
   },
@@ -50,15 +50,15 @@ export default async function Home() {
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             name: 'The Backpacking Club at UCLA',
-            url: 'https://tubcla.com',
+            url: 'https://www.uclabackpackingclub.com',
             description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level.',
             publisher: {
               '@type': 'Organization',
               name: 'The Backpacking Club at UCLA',
-              url: 'https://tubcla.com',
+              url: 'https://www.uclabackpackingclub.com',
               logo: {
                 '@type': 'ImageObject',
-                url: 'https://tubcla.com/logo.png',
+                url: 'https://www.uclabackpackingclub.com/logo.png',
               },
             },
           }),
@@ -77,9 +77,6 @@ export default async function Home() {
         />
         <div className="absolute inset-0 bg-bark/40" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <p className="text-parchment/80 font-body text-sm uppercase tracking-widest mb-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]">
-            The Backpacking Club at UCLA
-          </p>
           <h1 className="font-display text-5xl md:text-7xl text-parchment font-bold leading-tight mb-6 [text-shadow:0_2px_16px_rgba(0,0,0,0.7)]">
             Come explore with us!
           </h1>

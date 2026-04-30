@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: 'Gear Rental',
   description: 'Rent backpacking gear through UCLA Outdoor Adventures Equipment Rental Center — tents, sleeping bags, packs, bear canisters, and more. Recreation membership included in UCLA student fees.',
   alternates: {
-    canonical: 'https://uclabackpackingclub.com/resources/gear-rental',
+    canonical: 'https://www.uclabackpackingclub.com/resources/gear-rental',
   },
   openGraph: {
     title: 'Gear Rental | UCLA Backpacking Club',
     description: 'Rent backpacking gear through UCLA Outdoor Adventures Equipment Rental Center — affordable rates for Recreation members (included in UCLA student fees).',
-    url: 'https://uclabackpackingclub.com/resources/gear-rental',
+    url: 'https://www.uclabackpackingclub.com/resources/gear-rental',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC gear rental' }],
     type: 'website',
   },

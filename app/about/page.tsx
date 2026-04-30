@@ -10,12 +10,12 @@ export const metadata: Metadata = {
   title: 'About',
   description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
   alternates: {
-    canonical: 'https://tubcla.com/about',
+    canonical: 'https://www.uclabackpackingclub.com/about',
   },
   openGraph: {
     title: 'About | UCLA Backpacking Club',
     description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
-    url: 'https://tubcla.com/about',
+    url: 'https://www.uclabackpackingclub.com/about',
     images: [{ url: '/about-hero.jpg', width: 1200, height: 630, alt: 'TUBC club photo' }],
     type: 'website',
   },
@@ -32,8 +32,8 @@ export default function AboutPage() {
             '@type': 'Organization',
             name: 'The Backpacking Club at UCLA',
             alternateName: 'TUBC',
-            url: 'https://tubcla.com',
-            logo: 'https://tubcla.com/logo.png',
+            url: 'https://www.uclabackpackingclub.com',
+            logo: 'https://www.uclabackpackingclub.com/logo.png',
             description: 'A student-run outdoor club at UCLA dedicated to making backpacking and hiking accessible to everyone.',
             contactPoint: {
               '@type': 'ContactPoint',

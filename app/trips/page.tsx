@@ -6,12 +6,12 @@ export const metadata: Metadata = {
   title: 'Trips & Events',
   description: 'Browse upcoming backpacking and hiking trips from The Backpacking Club at UCLA. Free to join — all levels welcome, from day hikes to multi-day Sierra crossings.',
   alternates: {
-    canonical: 'https://tubcla.com/trips',
+    canonical: 'https://www.uclabackpackingclub.com/trips',
   },
   openGraph: {
     title: 'Trips & Events | UCLA Backpacking Club',
     description: 'Browse upcoming backpacking and hiking trips from The Backpacking Club at UCLA. Free to join — all levels welcome.',
-    url: 'https://tubcla.com/trips',
+    url: 'https://www.uclabackpackingclub.com/trips',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC trips and events' }],
     type: 'website',
   },

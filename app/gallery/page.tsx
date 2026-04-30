@@ -4,12 +4,12 @@ export const metadata: Metadata = {
   title: 'Gallery',
   description: 'Photos from UCLA Backpacking Club trips — summits, trails, and campsites across the Sierra Nevada, Southern California, and beyond.',
   alternates: {
-    canonical: 'https://tubcla.com/gallery',
+    canonical: 'https://www.uclabackpackingclub.com/gallery',
   },
   openGraph: {
     title: 'Gallery | UCLA Backpacking Club',
     description: 'Photos from UCLA Backpacking Club trips — summits, trails, and campsites across the Sierra Nevada, Southern California, and beyond.',
-    url: 'https://tubcla.com/gallery',
+    url: 'https://www.uclabackpackingclub.com/gallery',
     images: [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: 'TUBC trip photos' }],
     type: 'website',
   },

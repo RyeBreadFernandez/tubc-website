@@ -5,12 +5,12 @@ export const metadata: Metadata = {
   title: 'LA Hiking',
   description: 'The best hikes near UCLA — Griffith Park, Angeles National Forest, Santa Monica Mountains, and more. Day hike recommendations from The Backpacking Club at UCLA.',
   alternates: {
-    canonical: 'https://tubcla.com/resources/la-hiking',
+    canonical: 'https://www.uclabackpackingclub.com/resources/la-hiking',
   },
   openGraph: {
     title: 'LA Hiking | UCLA Backpacking Club',
     description: 'The best hikes near UCLA — Griffith Park, Angeles National Forest, Santa Monica Mountains, and more. Day hike recommendations for Bruins.',
-    url: 'https://tubcla.com/resources/la-hiking',
+    url: 'https://www.uclabackpackingclub.com/resources/la-hiking',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'LA hiking guide' }],
     type: 'website',
   },
