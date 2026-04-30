@@ -4,6 +4,8 @@ import { setPublished } from './actions'
 
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
+
 export const metadata: Metadata = {
   title: 'Review Trip Reports',
   description: 'Officer dashboard for reviewing and publishing trip reports.',
