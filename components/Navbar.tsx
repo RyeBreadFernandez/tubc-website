@@ -163,16 +163,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Desktop right — always-visible Post a Trip */}
-        <div className="hidden lg:flex items-center gap-2">
-          <Link
-            href="/trip-logs/submit"
-            className="px-4 py-1.5 bg-primary hover:bg-terra-dark text-primary-foreground text-sm font-semibold rounded-md transition-colors"
-          >
-            Post a Trip
-          </Link>
-        </div>
-
         {/* Mobile hamburger */}
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger
@@ -232,15 +222,6 @@ export default function Navbar() {
               </div>
             </div>
 
-            {/* Always-visible Post a Trip in mobile sheet */}
-            <div className="px-4 py-4 border-t border-border shrink-0">
-              <Link
-                href="/trip-logs/submit"
-                className="w-full text-center block px-4 py-2.5 bg-primary hover:bg-terra-dark text-primary-foreground text-sm font-semibold rounded-md transition-colors"
-              >
-                Post a Trip
-              </Link>
-            </div>
           </SheetContent>
         </Sheet>
       </nav>
