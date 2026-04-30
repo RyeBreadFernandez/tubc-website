@@ -13,6 +13,7 @@ export const staff: StaffMember[] = [
     name: 'Noah',
     role: 'Dot Connector',
     bio: 'Help manage the behind the scenes stuff and make sure our club embodies the values we want to share!',
+    imageUrl: '/staff/noah.png',
   },
   {
     name: 'Emilia Podesta',
