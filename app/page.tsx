@@ -128,7 +128,7 @@ export default async function Home() {
               We also host gear workshops, Leave No Trace clinics, and social events so you can learn the ropes and meet people who care about the same places you do.
             </p>
             <Link
-              href="/about"
+              href="/about#meet-the-team"
               className="inline-flex items-center gap-2 text-terra hover:text-terra-dark font-semibold transition-colors"
             >
               Meet the team

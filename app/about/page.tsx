@@ -93,7 +93,7 @@ export default function AboutPage() {
       <Separator />
 
       {/* Staff grid */}
-      <section className="py-20 bg-parchment-dark">
+      <section id="meet-the-team" className="py-20 bg-parchment-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3 text-center">The people behind the trips</p>
           <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-12 text-center">
