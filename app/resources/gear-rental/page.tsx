@@ -143,7 +143,7 @@ export default function GearRentalPage() {
           <p className="text-muted-foreground text-lg max-w-2xl">
             UCLA students can rent backpacking gear through the{' '}
             <span className="text-foreground font-medium">UCLA Outdoor Adventures Equipment Rental Center</span>{' '}
-            at Sunset Recreation. Recreation membership is included in UCLA student fees — most members qualify for the Recreation Member rate.
+            at the back of the John Wooden Center. Recreation membership is included in UCLA student fees — most members qualify for the Recreation Member rate.
           </p>
         </div>
       </section>
@@ -153,7 +153,7 @@ export default function GearRentalPage() {
           <div className="bg-muted rounded-md p-6 mb-8">
             <h2 className="font-display text-lg font-bold text-foreground mb-3">How to Rent</h2>
             <ol className="space-y-2 text-muted-foreground text-sm list-decimal list-inside">
-              <li>Head to the Equipment Rental Center inside <span className="text-foreground">Sunset Recreation</span> (John Wooden Center area)</li>
+              <li>Head to the Equipment Rental Center at the <span className="text-foreground">back of the John Wooden Center</span></li>
               <li>Bring your BruinCard — Recreation membership is bundled with UCLA student fees</li>
               <li>Check in-person availability; reservations recommended for busy weekends</li>
               <li>Inspect all gear at pickup and report any pre-existing damage before leaving</li>
