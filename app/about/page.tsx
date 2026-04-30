@@ -101,8 +101,8 @@ export default function AboutPage() {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {staff.map((member) => (
-              <Card key={member.name} className="overflow-hidden border-secondary shadow-sm bg-parchment">
-                <div className="relative h-48 bg-muted flex items-center justify-center">
+              <Card key={member.name} className="overflow-hidden border-secondary shadow-sm bg-parchment pt-0">
+                <div className="relative aspect-square w-full bg-muted flex items-center justify-center">
                   {member.imageUrl ? (
                     <Image
                       src={member.imageUrl}
@@ -110,6 +110,7 @@ export default function AboutPage() {
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover"
+                      style={member.objectPosition ? { objectPosition: member.objectPosition } : undefined}
                     />
                   ) : (
                     <Avatar className="size-20">
