@@ -68,10 +68,6 @@ export default function SplashScreen() {
         />
       </svg>
 
-      {/* Club name */}
-      <p className="mt-4 font-display text-xl text-bark tracking-wide animate-fade-in-up">
-        The Backpacking Club at UCLA
-      </p>
     </div>
   );
 }

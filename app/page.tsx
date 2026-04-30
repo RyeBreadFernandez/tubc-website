@@ -77,6 +77,9 @@ export default async function Home() {
         />
         <div className="absolute inset-0 bg-bark/40" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
+          <p className="text-parchment/80 font-body text-sm uppercase tracking-widest mb-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]">
+            The Backpacking Club at UCLA
+          </p>
           <h1 className="font-display text-5xl md:text-7xl text-parchment font-bold leading-tight mb-6 [text-shadow:0_2px_16px_rgba(0,0,0,0.7)]">
             Come explore with us!
           </h1>
