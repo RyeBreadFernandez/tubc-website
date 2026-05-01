@@ -87,9 +87,8 @@ export default async function NewsletterPage() {
                   key={issue.id}
                   className="bg-parchment border border-sand rounded-md p-6 flex flex-col sm:flex-row sm:items-center gap-4"
                 >
-                  <div className="sm:w-24 shrink-0">
-                    <p className="font-display text-3xl font-bold text-terra">#{issues.length - 1 - index}</p>
-                    <p className="text-xs text-soil/60">{formatDate(issue.sentAt)}</p>
+                  <div className="shrink-0">
+                    <p className="text-sm text-soil/60">{formatDate(issue.sentAt)}</p>
                   </div>
                   <div className="flex-1">
                     <h3 className="font-display text-lg font-bold text-bark">{issue.title}</h3>

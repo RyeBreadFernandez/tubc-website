@@ -29,7 +29,7 @@ export async function fetchNewsletters(): Promise<MailchimpNewsletter[]> {
   const dc = apiKey.split('-').pop()
   if (!dc) return []
 
-  const url = `https://${dc}.api.mailchimp.com/3.0/campaigns?status=sent&type=regular&count=50&sort_field=send_time&sort_dir=DESC`
+  const url = `https://${dc}.api.mailchimp.com/3.0/campaigns?status=sent&type=regular&count=50&sort_field=send_time&sort_dir=DESC&since_send_time=2025-01-01T00:00:00Z`
 
   try {
     const res = await fetch(url, {
