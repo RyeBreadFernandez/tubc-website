@@ -144,7 +144,7 @@ export default function Navbar() {
               <div
                 id="resources-dropdown"
                 role="menu"
-                className="absolute top-full left-0 mt-1 w-52 bg-parchment border border-border rounded-md shadow-md py-1 z-50"
+                className="absolute top-full right-0 mt-1 w-52 bg-parchment border border-border rounded-md shadow-md py-1 z-50"
               >
                 {resourceLinks.map(({ label, href }) => (
                   <Link
