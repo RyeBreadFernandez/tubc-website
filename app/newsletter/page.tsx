@@ -36,7 +36,7 @@ export default async function NewsletterPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-2">Quarterly dispatches</p>
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-3">Newsletter</h1>
-          <p className="text-soil text-lg">Trip recaps, gear tips, and club news.</p>
+          <p className="text-soil text-lg">Trip recaps, gear tips, and club news — delivered four times a year.</p>
         </div>
       </section>
 
@@ -87,9 +87,8 @@ export default async function NewsletterPage() {
                   key={issue.id}
                   className="bg-parchment border border-sand rounded-md p-6 flex flex-col sm:flex-row sm:items-center gap-4"
                 >
-                  <div className="sm:w-24 shrink-0">
-                    <p className="font-display text-3xl font-bold text-terra">#{issues.length - 1 - index}</p>
-                    <p className="text-xs text-soil/60">{formatDate(issue.sentAt)}</p>
+                  <div className="shrink-0">
+                    <p className="text-sm text-soil/60">{formatDate(issue.sentAt)}</p>
                   </div>
                   <div className="flex-1">
                     <h3 className="font-display text-lg font-bold text-bark">{issue.title}</h3>
