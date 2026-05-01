@@ -36,7 +36,7 @@ export default async function NewsletterPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-3">Newsletter</h1>
-          <p className="text-soil text-lg">Trip recaps, gear tips, and club news — delivered four times a year.</p>
+          <p className="text-soil text-lg">Trip recaps, gear tips, and club news.</p>
         </div>
       </section>
 
