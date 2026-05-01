@@ -14,6 +14,7 @@ interface MailchimpCampaign {
   }
   send_time: string
   archive_url: string
+  long_archive_url: string
 }
 
 interface MailchimpResponse {
@@ -47,7 +48,7 @@ export async function fetchNewsletters(): Promise<MailchimpNewsletter[]> {
       title: c.settings.title || c.settings.subject_line,
       subject: c.settings.subject_line,
       sentAt: c.send_time,
-      archiveUrl: c.archive_url,
+      archiveUrl: c.long_archive_url || c.archive_url,
     }))
   } catch {
     return []
