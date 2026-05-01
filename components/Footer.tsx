@@ -74,7 +74,9 @@ export default function Footer() {
             <h3 className="font-display text-bark font-semibold mb-4">Stay Connected</h3>
             <p className="text-sm text-soil mb-1">
               <a
-                href="mailto:uclabackpackingclub@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&to=uclabackpackingclub@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="hover:text-terra transition-colors"
               >
                 uclabackpackingclub@gmail.com

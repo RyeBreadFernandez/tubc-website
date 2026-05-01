@@ -37,7 +37,9 @@ export default function FAQPage() {
             <p className="font-display text-xl text-bark font-bold mb-2">Still have questions?</p>
             <p className="text-muted-foreground text-sm mb-5">We&apos;re happy to help. Reach out anytime.</p>
             <a
-              href="mailto:uclabackpackingclub@gmail.com"
+              href="https://mail.google.com/mail/?view=cm&to=uclabackpackingclub@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-block px-6 py-2.5 bg-primary hover:bg-terra-dark text-primary-foreground font-semibold rounded-md text-sm transition-colors"
             >
               Email us
