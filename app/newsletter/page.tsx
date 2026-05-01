@@ -1,7 +1,8 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
 import NewsletterSignup from '@/components/NewsletterSignup'
+import { fetchNewsletters } from '@/lib/mailchimp'
 import type { Metadata } from 'next'
+
+export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Newsletter',
@@ -18,22 +19,15 @@ export const metadata: Metadata = {
   },
 }
 
-async function getNewsletters() {
-  try {
-    const cookieStore = await cookies()
-    const supabase = await createClient(cookieStore)
-    const { data } = await supabase
-      .from('newsletter_issues')
-      .select('*')
-      .order('published_at', { ascending: false })
-    return data ?? []
-  } catch {
-    return []
-  }
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('en-US', {
+    month: 'long',
+    year: 'numeric',
+  })
 }
 
 export default async function NewsletterPage() {
-  const issues = await getNewsletters()
+  const issues = await fetchNewsletters()
 
   return (
     <main id="main-content" className="flex-1 pt-16">
@@ -60,26 +54,29 @@ export default async function NewsletterPage() {
 
           {issues.length > 0 ? (
             <div className="space-y-4">
-              {issues.map((issue) => (
-                <div key={issue.id} className="bg-parchment-dark border border-sand rounded-md p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+              {issues.map((issue, index) => (
+                <div
+                  key={issue.id}
+                  className="bg-parchment-dark border border-sand rounded-md p-6 flex flex-col sm:flex-row sm:items-center gap-4"
+                >
                   <div className="sm:w-24 shrink-0">
-                    <p className="font-display text-3xl font-bold text-terra">#{issue.issue_number}</p>
-                    <p className="text-xs text-soil/60">{issue.quarter} {issue.year}</p>
+                    <p className="font-display text-3xl font-bold text-terra">#{issues.length - index}</p>
+                    <p className="text-xs text-soil/60">{formatDate(issue.sentAt)}</p>
                   </div>
                   <div className="flex-1">
                     <h3 className="font-display text-lg font-bold text-bark">{issue.title}</h3>
-                    {issue.description && <p className="text-soil text-sm mt-1">{issue.description}</p>}
+                    {issue.subject !== issue.title && (
+                      <p className="text-soil text-sm mt-1">{issue.subject}</p>
+                    )}
                   </div>
-                  {issue.file_url && (
-                    <a
-                      href={issue.file_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="shrink-0 px-5 py-2 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-md transition-colors"
-                    >
-                      Read
-                    </a>
-                  )}
+                  <a
+                    href={issue.archiveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="shrink-0 px-5 py-2 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-md transition-colors"
+                  >
+                    Read
+                  </a>
                 </div>
               ))}
             </div>
