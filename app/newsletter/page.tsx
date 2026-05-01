@@ -6,13 +6,13 @@ export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
   title: 'Newsletter',
-  description: 'The UCLA Backpacking Club quarterly newsletter — trip recaps, gear tips, and club news delivered four times a year. Read past issues and subscribe.',
+  description: 'The UCLA Backpacking Club newsletter — trip recaps, gear tips, and club news. Read past issues and subscribe.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/newsletter',
   },
   openGraph: {
     title: 'Newsletter | UCLA Backpacking Club',
-    description: 'The UCLA Backpacking Club quarterly newsletter — trip recaps, gear tips, and club news delivered four times a year.',
+    description: 'The UCLA Backpacking Club newsletter — trip recaps, gear tips, and club news.',
     url: 'https://www.uclabackpackingclub.com/newsletter',
     images: [{ url: '/staff-group.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club Newsletter' }],
     type: 'website',
@@ -34,7 +34,7 @@ export default async function NewsletterPage() {
     <main id="main-content" className="flex-1 pt-16">
       <section className="pt-16 pb-10 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-2">Quarterly dispatches</p>
+
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-3">Newsletter</h1>
           <p className="text-soil text-lg">Trip recaps, gear tips, and club news — delivered four times a year.</p>
         </div>
