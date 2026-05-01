@@ -1,15 +1,11 @@
-import { createClient } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 
 export async function POST(request: Request) {
-  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+  const apiKey = process.env.MAILCHIMP_API_KEY
+  const audienceId = process.env.MAILCHIMP_AUDIENCE_ID
 
-  if (!serviceRoleKey || !supabaseUrl) {
-    return NextResponse.json(
-      { error: 'Server misconfiguration: missing service role key.' },
-      { status: 500 }
-    )
+  if (!apiKey || !audienceId) {
+    return NextResponse.json({ error: 'Server misconfiguration.' }, { status: 500 })
   }
 
   let body: unknown
@@ -28,25 +24,31 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: 'Missing or invalid email.' }, { status: 400 })
   }
 
-  const email = ((body as Record<string, string>).email).trim().toLowerCase()
-
-  // Basic format check
+  const email = (body as Record<string, string>).email.trim().toLowerCase()
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
   if (!email || !emailRegex.test(email)) {
     return NextResponse.json({ error: 'Invalid email address.' }, { status: 400 })
   }
 
-  const admin = createClient(supabaseUrl, serviceRoleKey, {
-    auth: { persistSession: false },
+  const dc = apiKey.split('-').pop()
+  const url = `https://${dc}.api.mailchimp.com/3.0/lists/${audienceId}/members`
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Basic ${Buffer.from(`anystring:${apiKey}`).toString('base64')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ email_address: email, status: 'subscribed' }),
   })
 
-  // Upsert so duplicate emails are handled gracefully
-  const { error } = await admin
-    .from('newsletter_subscribers')
-    .upsert({ email }, { onConflict: 'email', ignoreDuplicates: true })
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
+  // 400 with title "Member Exists" means already subscribed — treat as success
+  if (!res.ok) {
+    const data = await res.json() as { title?: string }
+    if (data.title === 'Member Exists') {
+      return NextResponse.json({ success: true })
+    }
+    return NextResponse.json({ error: data.title ?? 'Subscription failed.' }, { status: 500 })
   }
 
   return NextResponse.json({ success: true })
