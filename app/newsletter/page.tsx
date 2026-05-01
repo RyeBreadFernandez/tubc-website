@@ -28,6 +28,7 @@ function formatDate(iso: string) {
 
 export default async function NewsletterPage() {
   const issues = await fetchNewsletters()
+  const [latest, ...rest] = issues
 
   return (
     <main id="main-content" className="flex-1 pt-16">
@@ -47,20 +48,47 @@ export default async function NewsletterPage() {
         </div>
       </section>
 
+      {/* Latest issue hero */}
+      {latest && (
+        <section className="py-16 bg-parchment border-b border-sand">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <p className="text-terra text-xs font-semibold uppercase tracking-widest mb-4">Latest Issue</p>
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+              <div>
+                <p className="text-soil/60 text-sm mb-1">{formatDate(latest.sentAt)}</p>
+                <h2 className="font-display text-3xl md:text-4xl text-bark font-bold leading-tight">{latest.title}</h2>
+                {latest.subject !== latest.title && (
+                  <p className="text-soil mt-2 text-base">{latest.subject}</p>
+                )}
+              </div>
+              <a
+                href={latest.archiveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="shrink-0 inline-flex items-center gap-2 px-8 py-4 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md transition-colors text-base"
+              >
+                Read Issue
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* Archive */}
-      <section className="py-16 bg-parchment">
+      <section className="py-16 bg-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="font-display text-2xl text-bark font-bold mb-8">Past Issues</h2>
 
           {issues.length > 0 ? (
             <div className="space-y-4">
-              {issues.map((issue, index) => (
+              {rest.map((issue, index) => (
                 <div
                   key={issue.id}
-                  className="bg-parchment-dark border border-sand rounded-md p-6 flex flex-col sm:flex-row sm:items-center gap-4"
+                  className="bg-parchment border border-sand rounded-md p-6 flex flex-col sm:flex-row sm:items-center gap-4"
                 >
                   <div className="sm:w-24 shrink-0">
-                    <p className="font-display text-3xl font-bold text-terra">#{issues.length - index}</p>
+                    <p className="font-display text-3xl font-bold text-terra">#{issues.length - 1 - index}</p>
                     <p className="text-xs text-soil/60">{formatDate(issue.sentAt)}</p>
                   </div>
                   <div className="flex-1">
