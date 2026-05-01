@@ -8,6 +8,7 @@ import SplashScreen from "@/components/SplashScreen";
 import RouteProgressBar from "@/components/RouteProgressBar";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
+import { Toaster } from "sonner";
 
 const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
@@ -86,6 +87,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <Analytics />
+        <Toaster position="bottom-center" richColors />
         <PageEntryLoader />
       </body>
     </html>
