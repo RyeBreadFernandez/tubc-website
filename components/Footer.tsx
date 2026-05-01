@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import NewsletterSignup from '@/components/NewsletterSignup'
 
 const quickLinks = [
   { label: 'Home', href: '/' },
@@ -89,16 +90,7 @@ export default function Footer() {
             </a>
 
             <p className="text-sm text-soil font-medium mb-2">Newsletter signup</p>
-            <div className="flex gap-2">
-              <input
-                type="email"
-                placeholder="your@email.com"
-                className="flex-1 min-w-0 px-3 py-2 text-sm bg-parchment border border-border rounded-lg text-bark placeholder-soil/60 focus:outline-none focus:border-terra transition-colors"
-              />
-              <button className="px-4 py-2 bg-terra hover:bg-terra-dark text-parchment text-sm font-semibold rounded-lg transition-colors whitespace-nowrap">
-                Subscribe
-              </button>
-            </div>
+            <NewsletterSignup />
           </div>
         </div>
 
