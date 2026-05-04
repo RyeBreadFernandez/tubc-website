@@ -91,7 +91,7 @@ export default async function Home() {
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-colors uppercase tracking-[0.18em] font-light"
+              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-colors uppercase tracking-[0.08em] font-light"
               style={{ fontFamily: "var(--font-label)" }}
             >
               Join our Slack
@@ -212,7 +212,7 @@ export default async function Home() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/trips"
-              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-colors uppercase tracking-[0.18em] font-light"
+              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-colors uppercase tracking-[0.08em] font-light"
               style={{ fontFamily: "var(--font-label)" }}
             >
               Browse trips
@@ -221,7 +221,7 @@ export default async function Home() {
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 border border-border hover:bg-parchment-dark text-bark rounded-md text-sm transition-colors uppercase tracking-[0.18em] font-light"
+              className="px-8 py-3.5 border border-border hover:bg-parchment-dark text-bark rounded-md text-sm transition-colors uppercase tracking-[0.08em] font-light"
               style={{ fontFamily: "var(--font-label)" }}
             >
               Join our Slack
