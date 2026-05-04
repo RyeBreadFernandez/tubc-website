@@ -16,7 +16,7 @@ export default function FAQPage() {
 
       <section className="pb-20 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Accordion type="single" collapsible className="space-y-2">
+          <Accordion className="space-y-2">
             {faqs.map((faq, i) => (
               <AccordionItem
                 key={i}
