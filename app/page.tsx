@@ -78,13 +78,13 @@ export default async function Home() {
         <div className="absolute inset-0 bg-bark/40" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <p className="text-parchment/80 font-body text-sm uppercase tracking-widest mb-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.7)]">
-            Sierra Nevada · Santa Monica Mountains · Joshua Tree
+            The Backpacking Club at UCLA
           </p>
           <h1 className="font-display text-5xl md:text-7xl text-parchment font-bold leading-tight mb-6 [text-shadow:0_2px_16px_rgba(0,0,0,0.7)]">
-            The backcountry is closer than you think
+            Come explore with us!
           </h1>
           <p className="text-parchment/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed [text-shadow:0_1px_8px_rgba(0,0,0,0.6)]">
-            TUBC runs trips every quarter — free to join, no experience required. A UCLA email is all you need to get started.
+            From the Santa Monica Mountains to the Sierra Nevada — we run trips every quarter, free to join, no experience required.
           </p>
           <div className="flex justify-center">
             <a
@@ -120,7 +120,7 @@ export default async function Home() {
           <div>
             <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3">Who we are</p>
             <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-5">
-              UCLA&apos;s student-run backpacking club
+              UCLA&apos;s home for the outdoors
             </h2>
             <p className="text-soil leading-relaxed mb-4">
               TUBC has been taking Bruins into the backcountry for over a decade. From day hikes to weekend car camps to multi-day Sierra crossings, we run trips for every experience level and budget.
@@ -202,29 +202,28 @@ export default async function Home() {
       {/* Join CTA */}
       <section className="py-20 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 text-center">
-          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3">No gear. No experience.</p>
+          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3">Ready?</p>
           <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-5">
-            Just show up.
+            Your next adventure starts here
           </h2>
           <p className="text-soil leading-relaxed mb-8 text-lg">
-            Hundreds of Bruins have traded campus for the backcountry with TUBC — many on their very first backpacking trip. All you need is a UCLA email.
+            Join hundreds of Bruins who&apos;ve traded campus for the backcountry. All you need is a UCLA email and a willingness to go outside.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/trips"
-              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-colors uppercase tracking-[0.08em] font-light"
-              style={{ fontFamily: "var(--font-label)" }}
-            >
-              Browse trips
-            </Link>
             <Link
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 border border-border hover:bg-parchment-dark text-bark rounded-md text-sm transition-colors uppercase tracking-[0.08em] font-light"
+              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-colors uppercase tracking-[0.08em] font-light"
               style={{ fontFamily: "var(--font-label)" }}
             >
               Join our Slack
+            </Link>
+            <Link
+              href="/trips"
+              className="px-8 py-3.5 border border-border hover:bg-parchment-dark text-bark font-semibold rounded-md text-base transition-colors"
+            >
+              Browse trips
             </Link>
           </div>
         </div>
