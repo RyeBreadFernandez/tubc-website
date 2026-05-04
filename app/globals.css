@@ -109,6 +109,7 @@
   --font-mono:    "DM Mono", monospace;
   --font-sans:    "Nunito", sans-serif;
   --font-heading: "Fraunces", serif;
+  --font-label:   "Josefin Sans", sans-serif;
 }
 
 @layer base {

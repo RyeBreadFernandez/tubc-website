@@ -91,7 +91,8 @@ export default async function Home() {
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-base transition-colors"
+              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-colors uppercase tracking-[0.18em] font-light"
+              style={{ fontFamily: "var(--font-label)" }}
             >
               Join our Slack
             </a>
@@ -213,7 +214,8 @@ export default async function Home() {
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-base transition-colors"
+              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-colors uppercase tracking-[0.18em] font-light"
+              style={{ fontFamily: "var(--font-label)" }}
             >
               Join our Slack
             </Link>

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Fraunces, Nunito, DM_Mono, Geist } from "next/font/google";
+import { Fraunces, Nunito, DM_Mono, Geist, Josefin_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -27,6 +27,12 @@ const dmMono = DM_Mono({
   subsets: ["latin"],
   weight: ["400"],
   variable: "--font-mono",
+});
+
+const josefinSans = Josefin_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400"],
+  variable: "--font-label",
 });
 
 export const metadata: Metadata = {
@@ -72,7 +78,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", fraunces.variable, nunito.variable, dmMono.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", fraunces.variable, nunito.variable, dmMono.variable, josefinSans.variable, "font-sans", geist.variable)}
     >
       <body className="min-h-full flex flex-col bg-parchment text-bark font-body">
         <a
