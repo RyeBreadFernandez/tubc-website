@@ -138,7 +138,7 @@ export default function GearRentalPage() {
     <main id="main-content" className="flex-1 pt-16">
       <section className="pt-16 pb-8 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link href="/resources" className="text-primary text-sm hover:underline transition-colors">← Resources</Link>
+          <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>
           <h1 className="font-display text-4xl md:text-5xl text-foreground font-bold mt-4 mb-3">Gear Rental</h1>
           <p className="text-muted-foreground text-lg max-w-2xl">
             UCLA students can rent backpacking gear through the{' '}

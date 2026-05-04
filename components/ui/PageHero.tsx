@@ -1,3 +1,5 @@
+import Image from 'next/image'
+
 interface Props {
   title: string
   subtitle?: string
@@ -7,10 +9,18 @@ interface Props {
 
 export default function PageHero({ title, subtitle, image, imagePosition = 'center' }: Props) {
   return (
-    <section
-      className="relative pt-32 pb-20 flex items-center"
-      style={image ? { backgroundImage: `url(${image})`, backgroundSize: 'cover', backgroundPosition: imagePosition } : {}}
-    >
+    <section className="relative pt-32 pb-20 flex items-center">
+      {image && (
+        <Image
+          src={image}
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+          style={{ objectPosition: imagePosition }}
+        />
+      )}
       {image && <div className="absolute inset-0 bg-bark/50" />}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h1 className={`font-display text-4xl md:text-5xl font-bold ${image ? 'text-parchment' : 'text-bark'}`}>

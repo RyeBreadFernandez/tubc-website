@@ -48,7 +48,7 @@ export default function AboutPage() {
       />
       <PageHero
         title="About TUBC"
-        subtitle="Backcountry adventures for every Bruin."
+        subtitle="A decade of taking Bruins into the backcountry — no gear, no experience, no cost to join."
         image="/about-hero.jpg"
       />
 
@@ -61,6 +61,9 @@ export default function AboutPage() {
           </h2>
           <div className="prose prose-lg text-muted-foreground space-y-4 leading-relaxed">
             <p>
+              Come for the mountains. Stay for the people.
+            </p>
+            <p>
               The Backpacking Club at UCLA (TUBC) has been taking Bruins into the backcountry for over a decade. We&apos;re a student-run club built on the idea that the outdoors should be for everyone — no gear, no experience, and no budget required to show up and get outside.
             </p>
             <p>
@@ -69,21 +72,18 @@ export default function AboutPage() {
             <p>
               We also do gear workshops, Leave No Trace clinics, and the occasional social event for when you just want to hang out with people who get unreasonably excited about topo maps. Our gear rental program keeps costs low so that a tight budget is never a reason to miss a trip.
             </p>
-            <p>
-              Whether this is your first time sleeping under the stars or you&apos;ve logged more miles than you can count, there&apos;s a spot for you in TUBC. Come for the mountains. Stay for the people.
-            </p>
           </div>
 
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { value: '10+', label: 'Years running' },
-              { value: '30+', label: 'Trips per year' },
-              { value: '1500+', label: 'Active members' },
-              { value: '$0', label: 'Membership fee' },
-            ].map(({ value, label }) => (
-              <div key={label} className="bg-muted rounded-md p-5 text-center">
-                <p className="font-display text-3xl font-bold text-bark">{value}</p>
-                <p className="text-muted-foreground text-sm mt-1">{label}</p>
+              { value: '10+', label: 'Years running', highlight: false },
+              { value: '30+', label: 'Trips per year', highlight: false },
+              { value: '1500+', label: 'Active members', highlight: false },
+              { value: '$0', label: 'Membership fee', highlight: true },
+            ].map(({ value, label, highlight }) => (
+              <div key={label} className={`rounded-md p-5 text-center ${highlight ? 'bg-primary text-primary-foreground' : 'bg-muted'}`}>
+                <p className={`font-display font-bold ${highlight ? 'text-4xl text-primary-foreground' : 'text-3xl text-bark'}`}>{value}</p>
+                <p className={`text-sm mt-1 ${highlight ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>{label}</p>
               </div>
             ))}
           </div>
@@ -97,7 +97,7 @@ export default function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3 text-center">The people behind the trips</p>
           <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-12 text-center">
-            Meet the Team
+            Who&apos;s Taking You Out There
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {staff.map((member) => (
@@ -126,8 +126,8 @@ export default function AboutPage() {
                 </div>
                 <CardContent className="p-5">
                   <p className="font-display text-lg font-bold text-bark">{member.name}</p>
-                  <p className="text-primary text-sm font-semibold mb-2">{member.role}</p>
-                  <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>
+                  <p className={`text-primary text-sm font-semibold ${member.bio ? 'mb-2' : ''}`}>{member.role}</p>
+                  {member.bio && <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>}
                 </CardContent>
               </Card>
             ))}

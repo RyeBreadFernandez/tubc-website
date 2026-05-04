@@ -3,22 +3,37 @@
 import Link from 'next/link'
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Card, CardContent } from '@/components/ui/card'
+import {
+  Map,
+  Compass,
+  List,
+  Tent,
+  Package,
+  BookOpen,
+  Flame,
+  HeartPulse,
+  Trees,
+  Mountain,
+  Ticket,
+  GraduationCap,
+} from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 type Category = 'All' | 'Planning' | 'Gear' | 'On the Trail' | 'Club'
 
-const resources: { title: string; href: string; icon: string; description: string; category: Category }[] = [
-  { title: 'Where to Go', href: '/resources/where-to-go', icon: '🗺', description: 'Curated destinations for every level — from day hikes to week-long expeditions.', category: 'Planning' },
-  { title: 'Trail Guides', href: '/resources/trail-guides', icon: '🥾', description: 'Detailed info on the trails we love, including maps, conditions, and beta.', category: 'Planning' },
-  { title: 'Packing List', href: '/resources/packing-list', icon: '🎒', description: 'Our tried-and-true gear checklist for overnight and multi-day trips.', category: 'Gear' },
-  { title: 'Gear Rental', href: '/resources/gear-rental', icon: '⛺', description: 'Borrow a pack, tent, sleeping bag, or pad from the club gear library.', category: 'Gear' },
-  { title: 'How to Pack', href: '/resources/how-to-pack', icon: '📦', description: 'Pack smarter, not heavier. Techniques for fitting everything in your bag.', category: 'Gear' },
-  { title: 'Vocab', href: '/resources/vocab', icon: '📖', description: 'Backpacking and outdoor terms explained for beginners.', category: 'On the Trail' },
-  { title: 'Backcountry Cooking', href: '/resources/backcountry-cooking', icon: '🍲', description: 'Meal ideas, stove tips, and how to eat well on the trail.', category: 'On the Trail' },
-  { title: 'First Aid', href: '/resources/first-aid', icon: '🩹', description: 'Wilderness first aid basics every hiker should know.', category: 'On the Trail' },
-  { title: 'LA Hiking', href: '/resources/la-hiking', icon: '🌇', description: 'The best hikes within an hour of UCLA campus.', category: 'Planning' },
-  { title: 'Parks & Monuments', href: '/resources/parks-monuments', icon: '🏔', description: 'Know before you go — info on the parks we frequent.', category: 'Planning' },
-  { title: 'Entrance Fees', href: '/resources/entrance-fees', icon: '💳', description: 'Fees, passes, and how to save money in the national parks.', category: 'Planning' },
-  { title: 'Seminars', href: '/resources/seminars', icon: '📋', description: 'Notes and recordings from our workshops and skill sessions.', category: 'Club' },
+const resources: { title: string; href: string; icon: LucideIcon; description: string; category: Category }[] = [
+  { title: 'Where to Go', href: '/resources/where-to-go', icon: Map, description: 'Curated destinations for every level — from day hikes to week-long expeditions.', category: 'Planning' },
+  { title: 'Trail Guides', href: '/resources/trail-guides', icon: Compass, description: 'Detailed info on the trails we love, including maps, conditions, and beta.', category: 'Planning' },
+  { title: 'Packing List', href: '/resources/packing-list', icon: List, description: 'Our tried-and-true gear checklist for overnight and multi-day trips.', category: 'Gear' },
+  { title: 'Gear Rental', href: '/resources/gear-rental', icon: Tent, description: 'Borrow a pack, tent, sleeping bag, or pad from the club gear library.', category: 'Gear' },
+  { title: 'How to Pack', href: '/resources/how-to-pack', icon: Package, description: 'Pack smarter, not heavier. Techniques for fitting everything in your bag.', category: 'Gear' },
+  { title: 'Vocab', href: '/resources/vocab', icon: BookOpen, description: 'Backpacking and outdoor terms explained for beginners.', category: 'On the Trail' },
+  { title: 'Backcountry Cooking', href: '/resources/backcountry-cooking', icon: Flame, description: 'Meal ideas, stove tips, and how to eat well on the trail.', category: 'On the Trail' },
+  { title: 'First Aid', href: '/resources/first-aid', icon: HeartPulse, description: 'Wilderness first aid basics every hiker should know.', category: 'On the Trail' },
+  { title: 'LA Hiking', href: '/resources/la-hiking', icon: Trees, description: 'The best hikes within an hour of UCLA campus.', category: 'Planning' },
+  { title: 'Parks & Monuments', href: '/resources/parks-monuments', icon: Mountain, description: 'Know before you go — info on the parks we frequent.', category: 'Planning' },
+  { title: 'Entrance Fees', href: '/resources/entrance-fees', icon: Ticket, description: 'Fees, passes, and how to save money in the national parks.', category: 'Planning' },
+  { title: 'Seminars', href: '/resources/seminars', icon: GraduationCap, description: 'Notes and recordings from our workshops and skill sessions.', category: 'Club' },
 ]
 
 const categories: Category[] = ['All', 'Planning', 'Gear', 'On the Trail', 'Club']
@@ -26,11 +41,11 @@ const categories: Category[] = ['All', 'Planning', 'Gear', 'On the Trail', 'Club
 function ResourceGrid({ items }: { items: typeof resources }) {
   return (
     <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {items.map(({ title, href, icon, description }) => (
+      {items.map(({ title, href, icon: Icon, description }) => (
         <Link key={href} href={href} className="group block">
           <Card className="h-full border-secondary hover:shadow-md hover:border-primary/30 transition-all bg-parchment-dark">
             <CardContent className="p-6">
-              <span className="text-3xl mb-4 block">{icon}</span>
+              <Icon className="w-7 h-7 text-terra mb-4" strokeWidth={1.5} />
               <h2 className="font-display text-lg font-bold text-bark group-hover:text-primary transition-colors mb-2">
                 {title}
               </h2>
@@ -59,17 +74,19 @@ export default function ResourcesPage() {
       <section className="py-12 bg-parchment">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <Tabs defaultValue="All">
-            <TabsList className="mb-8 flex flex-wrap gap-1 h-auto bg-transparent p-0">
-              {categories.map((cat) => (
-                <TabsTrigger
-                  key={cat}
-                  value={cat}
-                  className="rounded-md border border-secondary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-bark transition-colors"
-                >
-                  {cat}
-                </TabsTrigger>
-              ))}
-            </TabsList>
+            <div className="overflow-x-auto mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
+              <TabsList className="flex flex-nowrap gap-1 h-auto bg-transparent p-0 w-max">
+                {categories.map((cat) => (
+                  <TabsTrigger
+                    key={cat}
+                    value={cat}
+                    className="rounded-md border border-secondary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-bark transition-colors whitespace-nowrap"
+                  >
+                    {cat}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </div>
 
             <TabsContent value="All">
               <ResourceGrid items={resources} />

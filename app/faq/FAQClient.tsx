@@ -10,13 +10,13 @@ export default function FAQPage() {
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">Got questions?</p>
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-3">Before Your First Trip</h1>
-          <p className="text-muted-foreground text-lg">Everything you need to know before your first trip.</p>
+          <p className="text-muted-foreground text-lg">Answers to what people ask before they sign up — and a few things worth knowing before you hit the trail.</p>
         </div>
       </section>
 
       <section className="pb-20 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Accordion className="space-y-2">
+          <Accordion type="single" collapsible className="space-y-2">
             {faqs.map((faq, i) => (
               <AccordionItem
                 key={i}

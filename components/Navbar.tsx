@@ -186,7 +186,7 @@ export default function Navbar() {
                   href={href}
                   aria-current={pathname === href ? 'page' : undefined}
                   className={`flex items-center px-3 py-2.5 rounded-lg text-sm font-medium mb-0.5 transition-colors ${
-                    pathname === href ? 'bg-rose text-primary' : 'text-muted-foreground hover:bg-parchment-dark hover:text-bark'
+                    pathname === href ? 'bg-primary/15 text-primary font-semibold' : 'text-muted-foreground hover:bg-parchment-dark hover:text-bark'
                   }`}
                 >
                   {label}

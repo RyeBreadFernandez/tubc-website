@@ -36,7 +36,7 @@ export default function TripsPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3 text-center">Club calendar</p>
           <h2 className="font-display text-2xl md:text-3xl text-bark font-bold mb-8 text-center">
-            Upcoming Events
+            What&apos;s Coming Up
           </h2>
           <CalendarEvents />
         </div>

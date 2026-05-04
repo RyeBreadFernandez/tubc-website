@@ -1,7 +1,7 @@
 export interface StaffMember {
   name: string
   role: string
-  bio: string
+  bio?: string
   imageUrl?: string
   objectPosition?: string
   imageScale?: number
@@ -47,7 +47,6 @@ export const staff: StaffMember[] = [
   {
     name: 'Kristi Tomlinson',
     role: 'Ikon Representative',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/kristi-tomlinson.jpg',
   },
   // Staff Members / Trip Leads
@@ -61,58 +60,49 @@ export const staff: StaffMember[] = [
   {
     name: 'Maris Durant-Bender',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/maris-durant-bender.jpg',
   },
   {
     name: 'Sloane Beeli',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/sloane-beeli.jpg',
   },
   {
     name: 'Yaas Motamedinia',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/yaas-motamedinia.jpg',
     objectPosition: 'center 70%',
   },
   {
     name: 'Anna Stuart',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/anna-stuart.jpg',
   },
   {
     name: 'Dahlia Shapiro',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/dahlia-shapiro.png',
     objectPosition: '25% center',
   },
   {
     name: 'Tallis Arnold',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/tallis-arnold.jpg',
   },
   {
     name: 'Jacob Bobrowsky',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/jacob-bobrowsky.jpg',
     objectPosition: '15% center',
   },
   {
     name: 'Laurel Anderson',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/laurel-anderson.jpg',
   },
   {
     name: 'Kendyl Gilbert',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/kendyl-gilbert.jpg',
   },
   {
@@ -124,12 +114,10 @@ export const staff: StaffMember[] = [
   {
     name: 'Abigail Lynch',
     role: 'Finance',
-    bio: 'Staff Member / Trip Lead',
   },
   {
     name: 'Oscar Bowring',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/oscar-bowring.jpg',
   },
   {
@@ -159,7 +147,6 @@ export const staff: StaffMember[] = [
   {
     name: 'Saskia Freedberg',
     role: 'Staff Member / Trip Lead',
-    bio: 'Staff Member / Trip Lead',
     imageUrl: '/staff/saskia-freedberg.jpg',
   },
 ]

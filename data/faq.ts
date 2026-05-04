@@ -30,6 +30,6 @@ export const faqs: FAQ[] = [
   },
   {
     question: 'I have more questions. Who do I contact?',
-    answer: 'Shoot us an email at uclabackpackingclub@gmail.com or message us directly on Slack. You can also use the Contact form on this site — we try to respond within a day or two.',
+    answer: 'Shoot us an email at uclabackpackingclub@gmail.com or message us directly on Slack. We try to respond within a day or two.',
   },
 ]

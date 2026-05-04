@@ -78,7 +78,7 @@ export default async function NewsletterPage() {
       {/* Archive */}
       <section className="py-16 bg-secondary">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="font-display text-2xl text-bark font-bold mb-8">Past Issues</h2>
+          {rest.length > 0 && <h2 className="font-display text-2xl text-bark font-bold mb-8">Past Issues</h2>}
 
           {issues.length > 0 ? (
             <div className="space-y-4">
