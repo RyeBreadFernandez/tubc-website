@@ -128,6 +128,7 @@ export const staff: StaffMember[] = [
   {
     name: 'Abigail Lynch',
     role: 'Finance',
+    imageUrl: '/staff/abigail-lynch.jpg',
   },
   {
     name: 'Oscar Bowring',
