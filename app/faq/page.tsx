@@ -3,23 +3,42 @@ import { faqs } from '@/data/faq'
 import FAQClient from './FAQClient'
 
 export const metadata: Metadata = {
-  title: 'FAQ',
+  title: 'FAQ | The Backpacking Club at UCLA',
   description: 'Answers to common questions about The Backpacking Club at UCLA — how to join, gear rental, trip sign-ups, and what to expect on your first outing.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/faq',
   },
   openGraph: {
-    title: 'FAQ | UCLA Backpacking Club',
+    title: 'FAQ | The Backpacking Club at UCLA',
     description: 'Answers to common questions about The Backpacking Club at UCLA — how to join, gear rental, trip sign-ups, and what to expect on your first outing.',
     url: 'https://www.uclabackpackingclub.com/faq',
     images: [{ url: '/staff-group.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FAQ | The Backpacking Club at UCLA',
+    description: 'Answers to common questions about The Backpacking Club at UCLA — how to join, gear rental, trip sign-ups, and what to expect on your first outing.',
+    images: ['/staff-group.jpg'],
   },
 }
 
 export default function FAQPage() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://www.uclabackpackingclub.com/faq' },
+            ],
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

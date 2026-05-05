@@ -2,17 +2,23 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Backcountry Cooking',
+  title: 'Backcountry Cooking | The Backpacking Club at UCLA',
   description: 'Meal ideas and cooking tips for backpacking trips — what to eat, how to pack light, altitude cooking notes, and Leave No Trace food prep from TUBC.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/backcountry-cooking',
   },
   openGraph: {
-    title: 'Backcountry Cooking | UCLA Backpacking Club',
+    title: 'Backcountry Cooking | The Backpacking Club at UCLA',
     description: 'Meal ideas and cooking tips for backpacking trips — what to eat, how to pack light, altitude cooking notes, and Leave No Trace food prep.',
     url: 'https://www.uclabackpackingclub.com/resources/backcountry-cooking',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Backcountry cooking guide' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Backcountry Cooking | The Backpacking Club at UCLA',
+    description: 'Meal ideas and cooking tips for backpacking trips — what to eat, how to pack light, altitude cooking notes, and Leave No Trace food prep from TUBC.',
+    images: ['/trips-hero.jpg'],
   },
 }
 
@@ -34,6 +40,20 @@ const tips = [
 export default function BackcountryCookingPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.uclabackpackingclub.com/resources' },
+              { '@type': 'ListItem', position: 3, name: 'Backcountry Cooking', item: 'https://www.uclabackpackingclub.com/resources/backcountry-cooking' },
+            ],
+          }),
+        }}
+      />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>

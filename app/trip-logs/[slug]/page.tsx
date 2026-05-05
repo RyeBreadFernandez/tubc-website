@@ -35,20 +35,28 @@ export async function generateMetadata({ params }: Props) {
     ? trip.content.replace(/[#*`]/g, '').slice(0, 155).trim() + '…'
     : `${trip.location} · ${trip.difficulty} · A trip report from The Backpacking Club at UCLA.`
 
+  const ogImage = trip.cover_image_url
+    ? [{ url: trip.cover_image_url, width: 1200, height: 630, alt: trip.title }]
+    : [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: trip.title }]
+
   return {
-    title: trip.title,
+    title: `${trip.title} | The Backpacking Club at UCLA`,
     description,
     alternates: {
       canonical: `https://www.uclabackpackingclub.com/trip-logs/${slug}`,
     },
     openGraph: {
-      title: `${trip.title} | UCLA Backpacking Club`,
+      title: `${trip.title} | The Backpacking Club at UCLA`,
       description,
       url: `https://www.uclabackpackingclub.com/trip-logs/${slug}`,
-      images: trip.cover_image_url
-        ? [{ url: trip.cover_image_url, width: 1200, height: 630, alt: trip.title }]
-        : [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: trip.title }],
+      images: ogImage,
       type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${trip.title} | The Backpacking Club at UCLA`,
+      description,
+      images: trip.cover_image_url ? [trip.cover_image_url] : ['/trip-logs-hero.jpg'],
     },
   }
 }
@@ -64,6 +72,20 @@ export default async function TripLogPage({ params }: Props) {
 
   return (
     <main id="main-content" className="flex-1 pt-16 bg-parchment min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Trip Logs', item: 'https://www.uclabackpackingclub.com/trip-logs' },
+              { '@type': 'ListItem', position: 3, name: trip.title, item: `https://www.uclabackpackingclub.com/trip-logs/${trip.slug}` },
+            ],
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

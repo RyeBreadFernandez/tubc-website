@@ -2,17 +2,23 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'First Aid',
+  title: 'First Aid | The Backpacking Club at UCLA',
   description: 'Wilderness first aid basics for backpackers — blisters, altitude sickness, hypothermia, sprains, and when to evacuate. A practical trail guide from UCLA Backpacking Club.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/first-aid',
   },
   openGraph: {
-    title: 'First Aid | UCLA Backpacking Club',
+    title: 'First Aid | The Backpacking Club at UCLA',
     description: 'Wilderness first aid basics for backpackers — blisters, altitude sickness, hypothermia, sprains, and when to evacuate.',
     url: 'https://www.uclabackpackingclub.com/resources/first-aid',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Wilderness first aid guide' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'First Aid | The Backpacking Club at UCLA',
+    description: 'Wilderness first aid basics for backpackers — blisters, altitude sickness, hypothermia, sprains, and when to evacuate. A practical trail guide from UCLA Backpacking Club.',
+    images: ['/trips-hero.jpg'],
   },
 }
 
@@ -30,6 +36,20 @@ const topics = [
 export default function FirstAidPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.uclabackpackingclub.com/resources' },
+              { '@type': 'ListItem', position: 3, name: 'First Aid', item: 'https://www.uclabackpackingclub.com/resources/first-aid' },
+            ],
+          }),
+        }}
+      />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>

@@ -2,17 +2,23 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Where to Go',
+  title: 'Where to Go | The Backpacking Club at UCLA',
   description: 'Backpacking destinations near UCLA — the John Muir Trail, Kings Canyon, Yosemite, Joshua Tree, Channel Islands, Zion, and more curated by TUBC trip leaders.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/where-to-go',
   },
   openGraph: {
-    title: 'Where to Go | UCLA Backpacking Club',
+    title: 'Where to Go | The Backpacking Club at UCLA',
     description: 'Backpacking destinations near UCLA — the John Muir Trail, Kings Canyon, Yosemite, Joshua Tree, Channel Islands, Zion, and more.',
     url: 'https://www.uclabackpackingclub.com/resources/where-to-go',
     images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Backpacking destinations guide' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Where to Go | The Backpacking Club at UCLA',
+    description: 'Backpacking destinations near UCLA — the John Muir Trail, Kings Canyon, Yosemite, Joshua Tree, Channel Islands, Zion, and more curated by TUBC trip leaders.',
+    images: ['/cottonwood-lakes.jpg'],
   },
 }
 
@@ -40,6 +46,20 @@ const difficultyColor: Record<string, string> = {
 export default function WhereToGoPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.uclabackpackingclub.com/resources' },
+              { '@type': 'ListItem', position: 3, name: 'Where to Go', item: 'https://www.uclabackpackingclub.com/resources/where-to-go' },
+            ],
+          }),
+        }}
+      />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>

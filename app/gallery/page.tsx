@@ -1,23 +1,42 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Gallery',
+  title: 'Gallery | The Backpacking Club at UCLA',
   description: 'Photos from UCLA Backpacking Club trips — summits, trails, and campsites across the Sierra Nevada, Southern California, and beyond.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/gallery',
   },
   openGraph: {
-    title: 'Gallery | UCLA Backpacking Club',
+    title: 'Gallery | The Backpacking Club at UCLA',
     description: 'Photos from UCLA Backpacking Club trips — summits, trails, and campsites across the Sierra Nevada, Southern California, and beyond.',
     url: 'https://www.uclabackpackingclub.com/gallery',
     images: [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: 'TUBC trip photos' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gallery | The Backpacking Club at UCLA',
+    description: 'Photos from UCLA Backpacking Club trips — summits, trails, and campsites across the Sierra Nevada, Southern California, and beyond.',
+    images: ['/trip-logs-hero.jpg'],
   },
 }
 
 export default function GalleryPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Gallery', item: 'https://www.uclabackpackingclub.com/gallery' },
+            ],
+          }),
+        }}
+      />
       {/* Hero */}
       <section className="pt-16 pb-10 bg-parchment border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

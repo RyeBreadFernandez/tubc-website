@@ -11,17 +11,23 @@ import { Separator } from '@/components/ui/separator'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Trip Logs',
+  title: 'Trip Logs | The Backpacking Club at UCLA',
   description: 'Read trip reports from The Backpacking Club at UCLA — Sierra Nevada, Joshua Tree, Angeles National Forest, and more. Real accounts from real Bruins on the trail.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/trip-logs',
   },
   openGraph: {
-    title: 'Trip Logs | UCLA Backpacking Club',
+    title: 'Trip Logs | The Backpacking Club at UCLA',
     description: 'Read trip reports from The Backpacking Club at UCLA — Sierra Nevada, Joshua Tree, Angeles National Forest, and more.',
     url: 'https://www.uclabackpackingclub.com/trip-logs',
     images: [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: 'TUBC trip logs' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Trip Logs | The Backpacking Club at UCLA',
+    description: 'Read trip reports from The Backpacking Club at UCLA — Sierra Nevada, Joshua Tree, Angeles National Forest, and more.',
+    images: ['/trip-logs-hero.jpg'],
   },
 }
 
@@ -42,6 +48,19 @@ export default async function TripLogsPage() {
 
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Trip Logs', item: 'https://www.uclabackpackingclub.com/trip-logs' },
+            ],
+          }),
+        }}
+      />
       <PageHero
         title="Trip Logs"
         subtitle="Reports from the trail."

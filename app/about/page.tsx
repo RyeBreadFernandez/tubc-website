@@ -7,23 +7,42 @@ import { Separator } from '@/components/ui/separator'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'About | The Backpacking Club at UCLA',
   description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/about',
   },
   openGraph: {
-    title: 'About | UCLA Backpacking Club',
+    title: 'About | The Backpacking Club at UCLA',
     description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
     url: 'https://www.uclabackpackingclub.com/about',
     images: [{ url: '/about-hero.jpg', width: 1200, height: 630, alt: 'TUBC club photo' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About | The Backpacking Club at UCLA',
+    description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
+    images: ['/about-hero.jpg'],
   },
 }
 
 export default function AboutPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'About', item: 'https://www.uclabackpackingclub.com/about' },
+            ],
+          }),
+        }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

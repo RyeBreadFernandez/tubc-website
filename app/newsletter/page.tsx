@@ -5,17 +5,23 @@ import type { Metadata } from 'next'
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'Newsletter',
-  description: 'The UCLA Backpacking Club newsletter — trip recaps, gear tips, and club news. Read past issues and subscribe.',
+  title: 'Newsletter | The Backpacking Club at UCLA',
+  description: 'The UCLA Backpacking Club newsletter — trip recaps, gear tips, and club news. Read past issues and subscribe to get the next one in your inbox.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/newsletter',
   },
   openGraph: {
-    title: 'Newsletter | UCLA Backpacking Club',
-    description: 'The UCLA Backpacking Club newsletter — trip recaps, gear tips, and club news.',
+    title: 'Newsletter | The Backpacking Club at UCLA',
+    description: 'The UCLA Backpacking Club newsletter — trip recaps, gear tips, and club news. Read past issues and subscribe.',
     url: 'https://www.uclabackpackingclub.com/newsletter',
     images: [{ url: '/staff-group.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club Newsletter' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Newsletter | The Backpacking Club at UCLA',
+    description: 'The UCLA Backpacking Club newsletter — trip recaps, gear tips, and club news. Read past issues and subscribe.',
+    images: ['/staff-group.jpg'],
   },
 }
 
@@ -32,6 +38,19 @@ export default async function NewsletterPage() {
 
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Newsletter', item: 'https://www.uclabackpackingclub.com/newsletter' },
+            ],
+          }),
+        }}
+      />
       <section className="pt-16 pb-10 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 

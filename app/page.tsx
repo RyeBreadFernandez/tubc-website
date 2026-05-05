@@ -21,6 +21,12 @@ export const metadata: Metadata = {
     images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Cottonwood Lakes — TUBC' }],
     type: 'website',
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Backpacking Club at UCLA',
+    description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
+    images: ['/cottonwood-lakes.jpg'],
+  },
 }
 
 async function getLatestTripLogs() {
@@ -62,6 +68,24 @@ export default async function Home() {
                 url: 'https://www.uclabackpackingclub.com/logo.png',
               },
             },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'The Backpacking Club at UCLA',
+            alternateName: 'TUBC',
+            url: 'https://www.uclabackpackingclub.com',
+            logo: 'https://www.uclabackpackingclub.com/logo.png',
+            description: 'A student-run outdoor club at UCLA dedicated to making backpacking and hiking accessible to every Bruin.',
+            email: 'uclabackpackingclub@gmail.com',
+            sameAs: [
+              'https://www.instagram.com/uclabackpacking/',
+            ],
           }),
         }}
       />

@@ -2,17 +2,23 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Gear Rental',
+  title: 'Gear Rental | The Backpacking Club at UCLA',
   description: 'Rent backpacking gear through UCLA Outdoor Adventures Equipment Rental Center — tents, sleeping bags, packs, bear canisters, and more. Recreation membership included in UCLA student fees.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/gear-rental',
   },
   openGraph: {
-    title: 'Gear Rental | UCLA Backpacking Club',
+    title: 'Gear Rental | The Backpacking Club at UCLA',
     description: 'Rent backpacking gear through UCLA Outdoor Adventures Equipment Rental Center — affordable rates for Recreation members (included in UCLA student fees).',
     url: 'https://www.uclabackpackingclub.com/resources/gear-rental',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC gear rental' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Gear Rental | The Backpacking Club at UCLA',
+    description: 'Rent backpacking gear through UCLA Outdoor Adventures Equipment Rental Center — tents, sleeping bags, packs, bear canisters, and more. Recreation membership included in UCLA student fees.',
+    images: ['/trips-hero.jpg'],
   },
 }
 
@@ -136,6 +142,20 @@ function GearRow({ row, shade }: { row: GearItem; shade: boolean }) {
 export default function GearRentalPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.uclabackpackingclub.com/resources' },
+              { '@type': 'ListItem', position: 3, name: 'Gear Rental', item: 'https://www.uclabackpackingclub.com/resources/gear-rental' },
+            ],
+          }),
+        }}
+      />
       <section className="pt-16 pb-8 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>

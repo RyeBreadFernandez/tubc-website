@@ -2,17 +2,23 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'LA Hiking',
+  title: 'LA Hiking | The Backpacking Club at UCLA',
   description: 'The best hikes near UCLA — Griffith Park, Angeles National Forest, Santa Monica Mountains, and more. Day hike recommendations from The Backpacking Club at UCLA.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/la-hiking',
   },
   openGraph: {
-    title: 'LA Hiking | UCLA Backpacking Club',
+    title: 'LA Hiking | The Backpacking Club at UCLA',
     description: 'The best hikes near UCLA — Griffith Park, Angeles National Forest, Santa Monica Mountains, and more. Day hike recommendations for Bruins.',
     url: 'https://www.uclabackpackingclub.com/resources/la-hiking',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'LA hiking guide' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'LA Hiking | The Backpacking Club at UCLA',
+    description: 'The best hikes near UCLA — Griffith Park, Angeles National Forest, Santa Monica Mountains, and more. Day hike recommendations from The Backpacking Club at UCLA.',
+    images: ['/trips-hero.jpg'],
   },
 }
 
@@ -30,6 +36,20 @@ const hikes = [
 export default function LAHikingPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.uclabackpackingclub.com/resources' },
+              { '@type': 'ListItem', position: 3, name: 'LA Hiking', item: 'https://www.uclabackpackingclub.com/resources/la-hiking' },
+            ],
+          }),
+        }}
+      />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>

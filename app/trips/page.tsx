@@ -3,17 +3,23 @@ import CalendarEvents from '@/components/CalendarEvents'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Trips & Events',
+  title: 'Trips & Events | The Backpacking Club at UCLA',
   description: 'Browse upcoming backpacking and hiking trips from The Backpacking Club at UCLA. Free to join — all levels welcome, from day hikes to multi-day Sierra crossings.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/trips',
   },
   openGraph: {
-    title: 'Trips & Events | UCLA Backpacking Club',
+    title: 'Trips & Events | The Backpacking Club at UCLA',
     description: 'Browse upcoming backpacking and hiking trips from The Backpacking Club at UCLA. Free to join — all levels welcome.',
     url: 'https://www.uclabackpackingclub.com/trips',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC trips and events' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Trips & Events | The Backpacking Club at UCLA',
+    description: 'Browse upcoming backpacking and hiking trips from The Backpacking Club at UCLA. Free to join — all levels welcome.',
+    images: ['/trips-hero.jpg'],
   },
 }
 
@@ -24,6 +30,19 @@ const CALENDAR_ADD_URL = `https://calendar.google.com/calendar/r?cid=${encodeURI
 export default function TripsPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Trips & Events', item: 'https://www.uclabackpackingclub.com/trips' },
+            ],
+          }),
+        }}
+      />
       <PageHero
         title="Trips & Events"
         subtitle="Browse upcoming trips and add them to your calendar. Join our Slack to sign up once you spot one you want."

@@ -2,17 +2,23 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Packing List',
+  title: 'Packing List | The Backpacking Club at UCLA',
   description: 'Complete backpacking packing list for overnight and multi-day trips — gear, clothing, food, safety, and Leave No Trace essentials from UCLA Backpacking Club.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/packing-list',
   },
   openGraph: {
-    title: 'Packing List | UCLA Backpacking Club',
+    title: 'Packing List | The Backpacking Club at UCLA',
     description: 'Complete backpacking packing list for overnight and multi-day trips — gear, clothing, food, safety, and Leave No Trace essentials.',
     url: 'https://www.uclabackpackingclub.com/resources/packing-list',
     images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Backpacking packing list' }],
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Packing List | The Backpacking Club at UCLA',
+    description: 'Complete backpacking packing list for overnight and multi-day trips — gear, clothing, food, safety, and Leave No Trace essentials from UCLA Backpacking Club.',
+    images: ['/trips-hero.jpg'],
   },
 }
 
@@ -50,6 +56,20 @@ const categories = [
 export default function PackingListPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
+              { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.uclabackpackingclub.com/resources' },
+              { '@type': 'ListItem', position: 3, name: 'Packing List', item: 'https://www.uclabackpackingclub.com/resources/packing-list' },
+            ],
+          }),
+        }}
+      />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>
