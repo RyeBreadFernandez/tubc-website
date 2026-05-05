@@ -85,7 +85,7 @@ export default function PackingListPage() {
               <ul className="space-y-2">
                 {cat.items.map((item) => (
                   <li key={item} className="flex items-start gap-3 text-soil text-sm">
-                    <span className="mt-0.5 w-4 h-4 rounded border border-border shrink-0 inline-block" />
+                    <span className="mt-0.5 w-4 h-4 rounded border border-border shrink-0 inline-block" aria-hidden="true" />
                     {item}
                   </li>
                 ))}

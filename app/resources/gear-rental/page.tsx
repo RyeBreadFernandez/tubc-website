@@ -111,9 +111,9 @@ const other: GearItem[] = [
 function SectionRow({ label }: { label: string }) {
   return (
     <tr className="bg-accent">
-      <td colSpan={10} className="px-4 py-2 text-bark font-semibold text-xs uppercase tracking-wide">
+      <th scope="colgroup" colSpan={10} className="px-4 py-2 text-bark font-semibold text-xs uppercase tracking-wide text-left">
         {label}
-      </td>
+      </th>
     </tr>
   )
 }
@@ -122,10 +122,10 @@ function GearRow({ row, shade }: { row: GearItem; shade: boolean }) {
   const bg = shade ? 'bg-secondary' : 'bg-background'
   return (
     <tr className={bg}>
-      <td className="px-4 py-3 text-bark font-medium text-sm align-top min-w-[130px]">
+      <th scope="row" className="px-4 py-3 text-bark font-medium text-sm align-top min-w-[130px]">
         <span className="block">{row.item}</span>
         <span className="block text-muted-foreground text-xs mt-0.5 font-normal hidden md:block">{row.description}</span>
-      </td>
+      </th>
       <td className="px-3 py-3 text-center text-sm text-foreground">{row.member.d5}</td>
       <td className="px-3 py-3 text-center text-sm text-foreground hidden sm:table-cell">{row.member.d6_9}</td>
       <td className="px-3 py-3 text-center text-sm text-foreground hidden lg:table-cell">{row.member.d21}</td>
@@ -195,24 +195,24 @@ export default function GearRentalPage() {
             <table className="w-full text-sm min-w-[600px]">
               <thead>
                 <tr className="bg-secondary border-b border-border">
-                  <th className="px-4 py-3 text-left text-foreground font-semibold" rowSpan={2}>Item</th>
-                  <th colSpan={4} className="px-3 py-2 text-center text-foreground font-semibold border-b border-border border-l border-border">
+                  <th scope="col" className="px-4 py-3 text-left text-foreground font-semibold" rowSpan={2}>Item</th>
+                  <th scope="colgroup" colSpan={4} className="px-3 py-2 text-center text-foreground font-semibold border-b border-border border-l border-border">
                     Recreation Member
                   </th>
-                  <th colSpan={5} className="px-3 py-2 text-center text-foreground font-semibold border-b border-border border-l border-border">
+                  <th scope="colgroup" colSpan={5} className="px-3 py-2 text-center text-foreground font-semibold border-b border-border border-l border-border">
                     Non-Member of Recreation
                   </th>
                 </tr>
                 <tr className="bg-secondary border-b border-border">
-                  <th className="px-3 py-2 text-center text-muted-foreground font-medium text-xs border-l border-border">Up to 5 days</th>
-                  <th className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden sm:table-cell">6–9 Days</th>
-                  <th className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Up to 3 Weeks</th>
-                  <th className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Late Fee/day</th>
-                  <th className="px-3 py-2 text-center text-muted-foreground font-medium text-xs border-l border-border">Up to 5 days</th>
-                  <th className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden sm:table-cell">6–9 Days</th>
-                  <th className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Up to 3 Weeks</th>
-                  <th className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Late Fee/day</th>
-                  <th className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden xl:table-cell">Replacement</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs border-l border-border">Up to 5 days</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden sm:table-cell">6–9 Days</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Up to 3 Weeks</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Late Fee/day</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs border-l border-border">Up to 5 days</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden sm:table-cell">6–9 Days</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Up to 3 Weeks</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Late Fee/day</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden xl:table-cell">Replacement</th>
                 </tr>
               </thead>
               <tbody>

@@ -134,10 +134,10 @@ export default async function Home() {
         </div>
 
         {/* Scroll indicator with pulse ring */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-parchment/70">
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-parchment/70" aria-hidden="true">
           <div className="relative flex items-center justify-center">
             <span className="absolute inline-flex size-7 rounded-full bg-parchment/30 animate-pulse-ring" />
-            <svg className="w-7 h-7 animate-bounce relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+            <svg className="w-7 h-7 animate-bounce relative z-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5} aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
             </svg>
           </div>
@@ -178,6 +178,7 @@ export default async function Home() {
                 <svg
                   className="w-4 h-4 transition-transform duration-200 group-hover/link:translate-x-1"
                   fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
@@ -200,10 +201,11 @@ export default async function Home() {
                 href="/trip-logs"
                 className="text-sm text-terra hover:text-terra-dark font-semibold transition-colors hidden sm:inline-flex items-center gap-1 group/link"
               >
-                View all
+                View all trip logs
                 <svg
                   className="w-3.5 h-3.5 transition-transform duration-200 group-hover/link:translate-x-0.5"
                   fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}
+                  aria-hidden="true"
                 >
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>

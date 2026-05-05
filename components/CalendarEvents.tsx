@@ -113,6 +113,7 @@ export default function CalendarEvents() {
             href={event.htmlLink ?? '#'}
             target="_blank"
             rel="noopener noreferrer"
+            aria-label={`View ${event.summary} on Google Calendar`}
             className="group block"
           >
             <Card className="h-full border-2 border-sand hover:border-terra/40 hover:shadow-md transition-all">
@@ -134,7 +135,7 @@ export default function CalendarEvents() {
                     </h3>
                     {event.location && (
                       <p className="flex items-center gap-1 text-muted-foreground text-xs mt-1.5 truncate">
-                        <MapPin className="w-3 h-3 shrink-0" />
+                        <MapPin className="w-3 h-3 shrink-0" aria-hidden="true" />
                         {event.location}
                       </p>
                     )}
@@ -145,9 +146,9 @@ export default function CalendarEvents() {
                     )}
                   </div>
                 </div>
-                <div className="text-terra text-xs font-semibold group-hover:gap-1.5 flex items-center gap-1 transition-all">
+                <div className="text-terra text-xs font-semibold group-hover:gap-1.5 flex items-center gap-1 transition-all" aria-hidden="true">
                   View on calendar
-                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>

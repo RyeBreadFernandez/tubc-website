@@ -99,9 +99,12 @@ export default function SubmitTripClient() {
               id="title"
               {...register('title', { required: 'Title is required' })}
               placeholder="e.g. Mount Whitney via Main Trail"
+              required
+              aria-required="true"
               aria-invalid={!!errors.title}
+              aria-describedby={errors.title ? 'title-error' : undefined}
             />
-            {errors.title && <p className="text-destructive text-xs">{errors.title.message}</p>}
+            {errors.title && <p id="title-error" role="alert" className="text-destructive text-xs">{errors.title.message}</p>}
           </div>
 
           <div className="grid sm:grid-cols-2 gap-5">
@@ -111,9 +114,12 @@ export default function SubmitTripClient() {
                 id="location"
                 {...register('location', { required: 'Location is required' })}
                 placeholder="e.g. Inyo National Forest, CA"
+                required
+                aria-required="true"
                 aria-invalid={!!errors.location}
+                aria-describedby={errors.location ? 'location-error' : undefined}
               />
-              {errors.location && <p className="text-destructive text-xs">{errors.location.message}</p>}
+              {errors.location && <p id="location-error" role="alert" className="text-destructive text-xs">{errors.location.message}</p>}
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="trip_date">Trip Date</Label>
@@ -121,17 +127,20 @@ export default function SubmitTripClient() {
                 id="trip_date"
                 {...register('trip_date', { required: 'Date is required' })}
                 type="date"
+                required
+                aria-required="true"
                 aria-invalid={!!errors.trip_date}
+                aria-describedby={errors.trip_date ? 'trip-date-error' : undefined}
               />
-              {errors.trip_date && <p className="text-destructive text-xs">{errors.trip_date.message}</p>}
+              {errors.trip_date && <p id="trip-date-error" role="alert" className="text-destructive text-xs">{errors.trip_date.message}</p>}
             </div>
           </div>
 
           <div className="grid sm:grid-cols-3 gap-5">
             <div className="space-y-1.5">
-              <Label>Difficulty</Label>
+              <Label htmlFor="difficulty">Difficulty</Label>
               <Select onValueChange={(v) => { if (v != null) setDifficulty(String(v)) }}>
-                <SelectTrigger className="w-full">
+                <SelectTrigger id="difficulty" className="w-full" aria-required="true">
                   <SelectValue placeholder="Select…" />
                 </SelectTrigger>
                 <SelectContent>
@@ -164,24 +173,27 @@ export default function SubmitTripClient() {
           </div>
 
           <div className="space-y-1.5">
-            <Label>
+            <Label htmlFor="cover-photo">
               Cover Photo <span className="text-primary text-xs">*required</span>
             </Label>
             <input
               ref={fileInputRef}
+              id="cover-photo"
               type="file"
               accept="image/*"
+              aria-required="true"
               className="hidden"
               onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f) }}
             />
             {coverPreview ? (
               <div className="relative rounded-md overflow-hidden border border-secondary">
                 <div className="relative h-52">
-                  <Image src={coverPreview} alt="Cover preview" fill className="object-cover" unoptimized />
+                  <Image src={coverPreview} alt="Cover photo preview" fill className="object-cover" unoptimized />
                 </div>
                 <button
                   type="button"
                   onClick={() => { setCoverFile(null); setCoverPreview(null) }}
+                  aria-label="Remove cover photo"
                   className="absolute top-2 right-2 bg-foreground/70 hover:bg-foreground text-background text-xs px-3 py-1.5 rounded-md transition-colors"
                 >
                   Remove
@@ -189,15 +201,19 @@ export default function SubmitTripClient() {
               </div>
             ) : (
               <div
+                role="button"
+                tabIndex={0}
+                aria-label="Upload cover photo — drag and drop or press Enter to browse"
                 onDragOver={(e) => { e.preventDefault(); setDragging(true) }}
                 onDragLeave={() => setDragging(false)}
                 onDrop={onDrop}
                 onClick={() => fileInputRef.current?.click()}
-                className={`border-2 border-dashed rounded-md h-40 flex flex-col items-center justify-center cursor-pointer transition-colors ${
+                onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInputRef.current?.click() } }}
+                className={`border-2 border-dashed rounded-md h-40 flex flex-col items-center justify-center cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 ${
                   dragging ? 'border-primary bg-primary/5' : 'border-secondary hover:border-primary hover:bg-primary/5'
                 }`}
               >
-                <svg className="size-8 text-muted-foreground/60 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg className="size-8 text-muted-foreground/60 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
                 </svg>
                 <p className="text-sm text-muted-foreground">Drag & drop a photo, or <span className="text-primary font-semibold">browse</span></p>
@@ -208,16 +224,19 @@ export default function SubmitTripClient() {
 
           <div className="space-y-1.5">
             <Label htmlFor="content">Trip Report</Label>
-            <p className="text-xs text-muted-foreground">Write in plain text or Markdown. Tell us about the trail, the conditions, highlights, and any tips for future hikers.</p>
+            <p id="content-hint" className="text-xs text-muted-foreground">Write in plain text or Markdown. Tell us about the trail, the conditions, highlights, and any tips for future hikers.</p>
             <Textarea
               id="content"
               {...register('content', { required: 'Please write your trip report' })}
               rows={14}
               placeholder="The alarm went off at 3am..."
+              required
+              aria-required="true"
               className="resize-none font-mono text-xs leading-relaxed"
               aria-invalid={!!errors.content}
+              aria-describedby={errors.content ? 'content-error content-hint' : 'content-hint'}
             />
-            {errors.content && <p className="text-destructive text-xs">{errors.content.message}</p>}
+            {errors.content && <p id="content-error" role="alert" className="text-destructive text-xs">{errors.content.message}</p>}
           </div>
 
           <div className="flex gap-3 pt-2">

@@ -123,8 +123,9 @@ export default function Navbar() {
           <div className="relative" ref={dropdownRef}>
             <button
               onClick={() => setResourcesOpen((o) => !o)}
+              onKeyDown={(e) => { if (e.key === 'Escape') setResourcesOpen(false) }}
               aria-expanded={resourcesOpen}
-              aria-haspopup="true"
+              aria-haspopup="menu"
               aria-controls="resources-dropdown"
               className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
                 transparent ? '[text-shadow:0_1px_6px_rgba(0,0,0,0.5)]' : ''
@@ -144,6 +145,7 @@ export default function Navbar() {
               <div
                 id="resources-dropdown"
                 role="menu"
+                aria-label="Resources"
                 className="animate-dropdown-in absolute top-full right-0 mt-1 w-52 bg-parchment border border-border rounded-md shadow-md py-1 z-50"
               >
                 {resourceLinks.map(({ label, href }) => (
@@ -151,6 +153,7 @@ export default function Navbar() {
                     key={href}
                     href={href}
                     role="menuitem"
+                    aria-current={pathname === href ? 'page' : undefined}
                     className={`block px-4 py-2 text-sm transition-all duration-150 border-l-2 ${
                       pathname === href
                         ? 'text-primary font-medium border-primary bg-primary/5'
