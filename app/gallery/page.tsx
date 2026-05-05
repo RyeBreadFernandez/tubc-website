@@ -55,7 +55,7 @@ export default function GalleryPage() {
             </svg>
           </div>
           <p className="font-display text-2xl text-bark font-bold mb-3">Photos coming soon</p>
-          <p className="text-soil text-base max-w-md mx-auto">We&apos;re curating the best shots from our trips. In the meantime, our Instagram has everything — summits, campsites, and the faces behind the club.</p>
+          <p className="text-soil text-base max-w-md mx-auto">We&apos;re pulling together the best shots from our trips. For now, the Instagram has it all — Whitney sunrises, Cottonwood Lakes camp setups, and everyone&apos;s post-hike faces.</p>
           <a
             href="https://www.instagram.com/uclabackpacking/"
             target="_blank"

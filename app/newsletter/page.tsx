@@ -55,14 +55,14 @@ export default async function NewsletterPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-3">Newsletter</h1>
-          <p className="text-soil text-lg">Trip recaps, gear tips, and club news.</p>
+          <p className="text-soil text-lg">Trip reports, gear writeups, and what we&apos;re planning next — straight from the people running the club.</p>
         </div>
       </section>
 
       {/* Signup */}
       <section className="py-10 bg-moss">
         <div className="max-w-xl mx-auto px-4 text-center">
-          <p className="text-bark font-semibold mb-4">Get the next issue in your inbox</p>
+          <p className="text-bark font-semibold mb-4">Drop your email — we&apos;ll send you the next one</p>
           <NewsletterSignup />
         </div>
       </section>
@@ -130,8 +130,8 @@ export default async function NewsletterPage() {
             </div>
           ) : (
             <div className="text-center py-16 text-soil">
-              <p className="font-display text-xl mb-2">First issue dropping soon</p>
-              <p className="text-sm">Subscribe above and you&apos;ll be the first to get it.</p>
+              <p className="font-display text-xl mb-2">No issues yet</p>
+              <p className="text-sm">Subscribe above and you&apos;ll get it when the first one goes out.</p>
             </div>
           )}
         </div>

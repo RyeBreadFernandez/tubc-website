@@ -87,9 +87,9 @@ export default function SubmitTripClient() {
 
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="mb-8">
-          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-1">Share your adventure</p>
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-1">From the field</p>
           <h1 className="font-display text-3xl md:text-4xl text-bark font-bold">Write a Trip Report</h1>
-          <p className="text-muted-foreground text-sm mt-2">Reports are reviewed before publishing.</p>
+          <p className="text-muted-foreground text-sm mt-2">Tell us what the trail was actually like. An officer will review it before it goes live.</p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
@@ -224,7 +224,7 @@ export default function SubmitTripClient() {
 
           <div className="space-y-1.5">
             <Label htmlFor="content">Trip Report</Label>
-            <p id="content-hint" className="text-xs text-muted-foreground">Write in plain text or Markdown. Tell us about the trail, the conditions, highlights, and any tips for future hikers.</p>
+            <p id="content-hint" className="text-xs text-muted-foreground">Plain text or Markdown. What were conditions like? Any route-finding issues? What would you tell someone doing it next month?</p>
             <Textarea
               id="content"
               {...register('content', { required: 'Please write your trip report' })}

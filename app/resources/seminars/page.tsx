@@ -23,13 +23,13 @@ export const metadata: Metadata = {
 }
 
 const seminars = [
-  { title: 'Intro to Backpacking', description: 'Everything a first-timer needs to know before their first overnight trip. Gear overview, packing demo, leave no trace principles, and trip planning basics.', frequency: 'Each new quarter' },
-  { title: 'Navigation 101', description: 'How to read a topo map and use a compass. We cover declination, triangulation, and how to navigate when your phone dies.', frequency: 'Fall quarter' },
-  { title: 'Wilderness First Aid Basics', description: 'An overview of common trail emergencies and how to respond: blisters, sprains, altitude sickness, hypothermia, and when to evacuate.', frequency: 'Winter quarter' },
-  { title: 'Gear Deep Dive', description: 'Side-by-side comparisons of packs, shelters, sleep systems, and stoves. How to evaluate gear for your style and budget.', frequency: 'Spring quarter' },
-  { title: 'Sierra Permit Workshop', description: 'A step-by-step walkthrough of the Yosemite, Whitney, and Kings Canyon permit systems. How to apply, backup strategies, and alternate routes.', frequency: 'Winter quarter (before permit season)' },
-  { title: 'Women in the Outdoors', description: 'Gear, safety, and community for women and gender-nonconforming hikers. Led by TUBC members who want to see more representation on the trail.', frequency: 'As scheduled' },
-  { title: 'Photography on the Trail', description: 'How to take great photos with your phone or camera on a backpacking trip. Light, composition, and protecting your gear.', frequency: 'As scheduled' },
+  { title: 'Intro to Backpacking', description: 'Never backpacked before? This is the one to start with. We cover what to pack, how to fit a rental pack, Leave No Trace basics, and what to actually expect on your first overnight.', frequency: 'Each new quarter' },
+  { title: 'Navigation 101', description: 'How to read a topo map and use a compass — because your phone dies at the worst moment. We cover contour lines, declination, triangulation, and how to navigate off-trail in the Sierra.', frequency: 'Fall quarter' },
+  { title: 'Wilderness First Aid Basics', description: 'Blisters, altitude sickness, twisted ankles, hypothermia. What to do when something goes wrong on the trail and the trailhead is 10 miles back. Not a substitute for a WFA course, but a solid starting point.', frequency: 'Winter quarter' },
+  { title: 'Gear Deep Dive', description: 'We bring out the gear and compare it side-by-side — packs, shelters, sleep systems, stoves. How to tell what\'s actually worth the money versus what\'s just expensive.', frequency: 'Spring quarter' },
+  { title: 'Sierra Permit Workshop', description: 'The Whitney lottery. Yosemite wilderness permits. Kings Canyon zone quotas. We walk through how each system works, when to apply, and what your backup options look like if you miss the first round.', frequency: 'Winter quarter (before permit season)' },
+  { title: 'Women in the Outdoors', description: 'Gear fit, safety considerations, and trail community for women and gender-nonconforming hikers. Led by TUBC members. The backcountry should feel like yours too.', frequency: 'As scheduled' },
+  { title: 'Photography on the Trail', description: 'Golden hour at 11,000 feet looks incredible. This session covers how to actually capture it — phone or camera, composition, light, and keeping your gear alive in the cold.', frequency: 'As scheduled' },
 ]
 
 export default function SeminarsPage() {
@@ -69,8 +69,8 @@ export default function SeminarsPage() {
           ))}
 
           <div className="bg-moss rounded-md p-6 text-center">
-            <p className="font-display text-lg font-bold text-bark mb-2">Want to attend or lead a seminar?</p>
-            <p className="text-soil text-sm mb-4">Join the Slack to see when the next one is scheduled, or pitch an idea to the officers.</p>
+            <p className="font-display text-lg font-bold text-bark mb-2">Want to come — or run one yourself?</p>
+            <p className="text-soil text-sm mb-4">Dates and RSVP links go out in Slack. If you have a topic you want to see covered, message the officers and we can make it happen.</p>
             <a
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"

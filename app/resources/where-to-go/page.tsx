@@ -23,14 +23,14 @@ export const metadata: Metadata = {
 }
 
 const destinations = [
-  { name: 'John Muir Trail', region: 'Sierra Nevada', difficulty: 'Expert', distance: '211 miles end-to-end', description: 'The classic long-distance trail through the High Sierra. Section hikes are popular for shorter trips.' },
-  { name: 'Sequoia & Kings Canyon', region: 'Sierra Nevada', difficulty: 'Moderate–Expert', distance: 'Various', description: 'Giant trees, deep canyons, and incredible backcountry. Rae Lakes Loop is a TUBC favorite.' },
-  { name: 'Yosemite High Country', region: 'Sierra Nevada', difficulty: 'Moderate–Strenuous', distance: 'Various', description: 'Tuolumne Meadows area. Less crowded than the valley with stunning alpine scenery.' },
-  { name: 'Joshua Tree', region: 'Southern California', difficulty: 'Easy–Moderate', distance: 'Various', description: 'Desert scrambling, bouldering, and stargazing. Great for fall, winter, and spring trips.' },
-  { name: 'Angeles National Forest', region: 'Los Angeles', difficulty: 'Easy–Strenuous', distance: 'Various', description: 'Right in our backyard. San Gabriels have excellent trails 45 minutes from campus.' },
-  { name: 'Channel Islands', region: 'Southern California', difficulty: 'Moderate', distance: 'Various', description: 'Island camping with incredible marine wildlife. Requires a ferry — plan ahead.' },
-  { name: 'Zion National Park', region: 'Utah', difficulty: 'Moderate–Expert', distance: 'Various', description: 'Narrows, Angels Landing, and the backcountry Zion Traverse. A classic road trip destination.' },
-  { name: 'Death Valley', region: 'California', difficulty: 'Easy–Strenuous', distance: 'Various', description: 'Best in November–February. Dunes, canyons, and the lowest point in North America.' },
+  { name: 'John Muir Trail', region: 'Sierra Nevada', difficulty: 'Expert', distance: '211 miles end-to-end', description: 'The full JMT runs from Yosemite Valley to the Whitney summit. Most people do it in 3 weeks. Section hikes — Reds Meadow to VVR, or the Cottonwood Pass entry — make it doable in a week.' },
+  { name: 'Sequoia & Kings Canyon', region: 'Sierra Nevada', difficulty: 'Moderate–Expert', distance: '41-mile Rae Lakes Loop or custom', description: 'The Rae Lakes Loop is the most-run TUBC trip for good reason: alpine lakes, manageable permits, and enough elevation to feel like the real Sierra. The backcountry here is massive and less picked-over than Yosemite.' },
+  { name: 'Yosemite High Country', region: 'Sierra Nevada', difficulty: 'Moderate–Strenuous', distance: 'Various from Tuolumne Meadows', description: 'Tuolumne Meadows is the staging point for dozens of backcountry routes. Far fewer crowds than the valley. Cathedral Lakes, Young Lakes, and the Vogelsang loop are all solid options.' },
+  { name: 'Joshua Tree', region: 'Southern California', difficulty: 'Easy–Moderate', distance: 'Various', description: '2.5 hours from Westwood. Desert bouldering, sunrise from Skull Rock, and some of the best stargazing in SoCal. Best months are October through April — summer is brutal.' },
+  { name: 'Angeles National Forest', region: 'Los Angeles', difficulty: 'Easy–Strenuous', distance: 'Various', description: '45 minutes from campus. The San Gabriels are genuinely good — Mt. Baldy, Mount Islip, Mt. Wilson. Great for training hikes or quick overnight trips before a bigger Sierra push.' },
+  { name: 'Channel Islands', region: 'Southern California', difficulty: 'Moderate', distance: 'Various by island', description: 'Anacapa and Santa Cruz are the most accessible. Book the Island Packers ferry early — it fills up. No resupply, no water on most islands, but almost no other people either.' },
+  { name: 'Zion National Park', region: 'Utah', difficulty: 'Moderate–Expert', distance: 'Various', description: 'The Narrows and the Zion Traverse are both worth the drive. Permits for Angels Landing and the Narrows bottom-up fill fast. Great shoulder-season destination — hit it in March or October.' },
+  { name: 'Death Valley', region: 'California', difficulty: 'Easy–Strenuous', distance: 'Various', description: 'November through February only. Mesquite Flat Dunes, Mosaic Canyon, Telescope Peak. The landscape is genuinely unlike anywhere else — go at least once.' },
 ]
 
 const difficultyColor: Record<string, string> = {
@@ -64,7 +64,7 @@ export default function WhereToGoPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link href="/resources" className="text-terra text-sm hover:text-terra-dark transition-colors">← Resources</Link>
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mt-4 mb-3">Where to Go</h1>
-          <p className="text-soil text-lg">From backyard hikes to bucket-list Sierra crossings — destinations we love.</p>
+          <p className="text-soil text-lg">Spots we&apos;ve actually been, with real beta on what to expect. From the San Gabriels to the Sierra to southern Utah.</p>
         </div>
       </section>
       <section className="pb-20 bg-parchment">

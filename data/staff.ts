@@ -12,34 +12,34 @@ export const staff: StaffMember[] = [
   {
     name: 'Noah',
     role: 'Dot Connector',
-    bio: 'Help manage the behind the scenes stuff and make sure our club embodies the values we want to share!',
+    bio: 'Keeps the wheels turning behind the scenes — wrangling logistics, connecting officers, and making sure nothing falls through the cracks.',
     imageUrl: '/staff/noah.png',
   },
   {
     name: 'Emilia Podesta',
     role: 'Dot Connector',
-    bio: 'Help manage the behind the scenes stuff and make sure our club embodies the values we want to share!',
+    bio: 'Keeps the wheels turning behind the scenes — wrangling logistics, connecting officers, and making sure nothing falls through the cracks.',
     imageUrl: '/staff/emilia-podesta.jpg',
   },
   // Finance
   {
     name: 'Ryan',
     role: 'Finance',
-    bio: 'Breaking down financial walls in the outdoors! Making sure club funds are in accordance and grant writing to keep trip costs down.',
+    bio: 'Writes grants and manages the club card so trip costs stay low. If your trip subsidy came through, this is why.',
     imageUrl: '/staff/ryan.jpg',
   },
   // Gear Lead
   {
     name: 'Quinn Koch',
     role: 'Gear Lead',
-    bio: 'I organize, acquire, distribute, and maintain backpacking and camping gear owned by TUBC.',
+    bio: 'Runs the club gear stash — tents, packs, sleep systems. If you need to borrow something before a trip, Quinn is the person to ask.',
     imageUrl: '/staff/quinn-koch.jpg',
   },
   // Social Media
   {
     name: 'Lucy Samuels',
     role: 'Social Media',
-    bio: 'I co manage the Instagram (posting for socials, all of our pictures from trips, reaching out to sponsors) with Claire!',
+    bio: 'Handles the Instagram — trip photos, sponsor outreach, and making sure the feed actually looks like the Sierra and not a stock photo site.',
     imageUrl: '/staff/lucy-samuels.jpg',
     objectPosition: 'center 55%',
   },
@@ -53,7 +53,7 @@ export const staff: StaffMember[] = [
   {
     name: 'Summer Frazier',
     role: 'Finance',
-    bio: 'Handling the money and club card next year',
+    bio: 'Manages the club card and keeps spending on track so we can keep subsidizing trips.',
     imageUrl: '/staff/summer-frazier.jpg',
     objectPosition: 'center 55%',
   },
@@ -108,7 +108,7 @@ export const staff: StaffMember[] = [
   {
     name: 'Everett Harriss',
     role: 'Finance',
-    bio: 'Handling the money',
+    bio: 'Tracks club finances and helps make sure grant money actually gets to the trips that need it.',
     imageUrl: '/staff/everett-harriss.jpg',
   },
   {
@@ -123,25 +123,25 @@ export const staff: StaffMember[] = [
   {
     name: 'Katherine Chen',
     role: 'Trip Lead / Social Chair',
-    bio: 'Plan super awesome events for everyone',
+    bio: 'Plans the off-trail stuff — socials, events, anything that happens when we\'re not on a mountain.',
     imageUrl: '/staff/katherine-chen.png',
   },
   {
     name: 'Sofia Nyez',
     role: 'Social Planning / Newsletter',
-    bio: 'I plan social events for our wonderful club, both for members & staff to cultivate our wonderful community! We have put on a Halloween fundrager, craft night, game night, and make-your-own granola social. In addition, I started a TUBC newsletter showcasing our journalistic & photography skills while showing off what our club has to offer!',
+    bio: 'Started the TUBC newsletter and runs the social calendar. Halloween fundraisers, craft nights, make-your-own granola — all Sofia.',
     imageUrl: '/staff/sofia-nyez.jpg',
   },
   {
     name: 'Meg Houseworth',
     role: 'Socials / Trip Lead',
-    bio: 'Plan fun events that allow our staff and general members to get to know each other better!',
+    bio: 'Organizes events that get members and staff in the same room — without a permit requirement.',
     imageUrl: '/staff/meg-houseworth.jpg',
   },
   {
     name: 'Yash Goyal',
     role: 'Safety Officer',
-    bio: 'Keeping members safe in the outdoors',
+    bio: 'Makes sure trip leads are trained, first aid kits are stocked, and our risk management actually holds up in the field.',
     imageUrl: '/staff/yash-goyal.jpg',
   },
   {

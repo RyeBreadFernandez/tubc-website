@@ -233,8 +233,8 @@ export default function GearRentalPage() {
           </p>
 
           <div className="mt-8 bg-secondary border border-border rounded-md p-6 text-center">
-            <p className="font-display text-lg text-foreground font-bold mb-2">Need the full price list?</p>
-            <p className="text-muted-foreground text-sm mb-4">Download the official UCLA Outdoor Adventures pricing sheet for all rates and policies.</p>
+            <p className="font-display text-lg text-foreground font-bold mb-2">Want the full breakdown?</p>
+            <p className="text-muted-foreground text-sm mb-4">The UCLA Outdoor Adventures pricing sheet has every item, rate tier, and policy in one place.</p>
             <a
               href="https://ucla.app.box.com/s/dqib8ox9wi48az372vydypkd8qnp1o3x"
               target="_blank"

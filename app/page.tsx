@@ -112,13 +112,13 @@ export default async function Home() {
             className="font-display text-5xl md:text-7xl text-parchment font-bold leading-tight mb-6 [text-shadow:0_2px_16px_rgba(0,0,0,0.7)] animate-reveal"
             style={{ animationDelay: '120ms' }}
           >
-            Come explore with us!
+            The Sierra is closer than you think.
           </h1>
           <p
             className="text-parchment/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed [text-shadow:0_1px_8px_rgba(0,0,0,0.6)] animate-reveal"
             style={{ animationDelay: '260ms' }}
           >
-            From the Santa Monica Mountains to the Sierra Nevada — we run trips every quarter, free to join, no experience required.
+            TUBC runs trips every quarter — day hikes in the Santa Monicas, car camps at Joshua Tree, multi-day Sierra crossings. Free to join. No experience required.
           </p>
           <div className="flex justify-center animate-reveal" style={{ animationDelay: '400ms' }}>
             <a
@@ -247,8 +247,8 @@ export default async function Home() {
             </div>
           ) : (
             <div className="text-center py-16 text-soil">
-              <p className="font-display text-xl mb-2">Trip logs coming soon</p>
-              <p className="text-sm">Be the first to share a trip report.</p>
+              <p className="font-display text-xl mb-2">No trip logs yet</p>
+              <p className="text-sm">Go on a trip. Write it up. Be the first one in the archive.</p>
             </div>
           )}
 
@@ -264,12 +264,12 @@ export default async function Home() {
       <section className="py-20 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 text-center">
           <Reveal>
-            <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3">Ready?</p>
+            <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-3">Get outside</p>
             <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-5">
-              Your next adventure starts here
+              You don&apos;t need gear. You don&apos;t need experience.
             </h2>
             <p className="text-soil leading-relaxed mb-8 text-lg">
-              Join hundreds of Bruins who&apos;ve traded campus for the backcountry. All you need is a UCLA email and a willingness to go outside.
+              Most of our members went on their first backpacking trip with TUBC. All you need is a UCLA email and a free weekend. We handle the rest.
             </p>
           </Reveal>
           <Reveal delay={120}>

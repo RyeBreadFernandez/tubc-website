@@ -80,16 +80,13 @@ export default function AboutPage() {
           </h2>
           <div className="prose prose-lg text-muted-foreground space-y-4 leading-relaxed">
             <p>
-              Come for the mountains. Stay for the people.
+              TUBC has been taking Bruins into the backcountry for over a decade. We&apos;re student-run, free to join, and built around a simple idea: the outdoors should be accessible to anyone at UCLA, regardless of experience or budget.
             </p>
             <p>
-              The Backpacking Club at UCLA (TUBC) has been taking Bruins into the backcountry for over a decade. We&apos;re a student-run club built on the idea that the outdoors should be for everyone — no gear, no experience, and no budget required to show up and get outside.
+              Every quarter we run a full lineup of trips. Day hikes through the Santa Monica Mountains. Car camps at Joshua Tree or at the Eastern Sierra. Weekend backpacks in the San Gabriels or San Bernardinos. Multi-day Sierra crossings to places like Cottonwood Lakes, Rae Lakes, or Whitney for the ones who want to go deep.
             </p>
             <p>
-              Every quarter we run a full lineup of trips: day hikes through the Santa Monica Mountains, car camps at Joshua Tree, weekend backpacks in the San Gabriels, and multi-day Sierra crossings for the ones who want to go deep. Whatever your level, there&apos;s a trip on the calendar for you.
-            </p>
-            <p>
-              We also do gear workshops, Leave No Trace clinics, and the occasional social event for when you just want to hang out with people who get unreasonably excited about topo maps. Our gear rental program keeps costs low so that a tight budget is never a reason to miss a trip.
+              We also do gear workshops, Leave No Trace clinics, and social events — for when you just want to hang out with people who get unreasonably excited about topo maps. Our club gear stash and rental hookup with UCLA Recreation means a tight budget is never a reason to miss a trip.
             </p>
           </div>
 
