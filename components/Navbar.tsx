@@ -112,7 +112,7 @@ export default function Navbar() {
               } ${
                 pathname === href
                   ? transparent ? 'text-parchment underline underline-offset-4' : 'text-primary'
-                  : transparent ? 'text-parchment/80 hover:text-parchment' : 'text-muted-foreground hover:text-bark'
+                  : `nav-underline ${transparent ? 'text-parchment/80 hover:text-parchment' : 'text-muted-foreground hover:text-bark'}`
               }`}
             >
               {label}
@@ -131,7 +131,7 @@ export default function Navbar() {
               } ${
                 pathname.startsWith('/resources')
                   ? transparent ? 'text-parchment underline underline-offset-4' : 'text-primary'
-                  : transparent ? 'text-parchment/80 hover:text-parchment' : 'text-muted-foreground hover:text-bark'
+                  : `nav-underline ${transparent ? 'text-parchment/80 hover:text-parchment' : 'text-muted-foreground hover:text-bark'}`
               }`}
             >
               Resources
@@ -144,15 +144,17 @@ export default function Navbar() {
               <div
                 id="resources-dropdown"
                 role="menu"
-                className="absolute top-full right-0 mt-1 w-52 bg-parchment border border-border rounded-md shadow-md py-1 z-50"
+                className="animate-dropdown-in absolute top-full right-0 mt-1 w-52 bg-parchment border border-border rounded-md shadow-md py-1 z-50"
               >
                 {resourceLinks.map(({ label, href }) => (
                   <Link
                     key={href}
                     href={href}
                     role="menuitem"
-                    className={`block px-4 py-2 text-sm transition-colors ${
-                      pathname === href ? 'text-primary font-medium' : 'text-muted-foreground hover:text-bark hover:bg-parchment-dark'
+                    className={`block px-4 py-2 text-sm transition-all duration-150 border-l-2 ${
+                      pathname === href
+                        ? 'text-primary font-medium border-primary bg-primary/5'
+                        : 'text-muted-foreground hover:text-bark hover:bg-parchment-dark border-transparent hover:border-terra/40 hover:pl-5'
                     }`}
                   >
                     {label}
