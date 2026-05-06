@@ -167,4 +167,89 @@ export const staff: StaffMember[] = [
     role: 'Staff Member / Trip Lead',
     imageUrl: '/staff/katie-chang.jpg',
   },
+  {
+    name: 'Aleena Munshi',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/aleena-munshi.jpg',
+  },
+  {
+    name: 'Angela Ke',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/angela-ke.jpg',
+  },
+  {
+    name: 'Antonio Maldonado',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/antonio-maldonado.jpg',
+  },
+  {
+    name: 'Claire Miller',
+    role: 'Social Media',
+    imageUrl: '/staff/claire-miller.jpg',
+  },
+  {
+    name: 'Colin Soohoo',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/colin-soohoo.jpg',
+  },
+  {
+    name: 'Dante Zanger',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/dante-zanger.jpg',
+  },
+  {
+    name: 'Grace Gallego',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/grace-gallego.jpg',
+  },
+  {
+    name: 'Jack Johns',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/jack-johns.jpg',
+  },
+  {
+    name: 'Kira Dirghalli',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/kira-dirghalli.jpg',
+  },
+  {
+    name: 'Lola McFarlane',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/lola-mcfarlane.jpg',
+  },
+  {
+    name: 'Nour Rayess',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/nour-rayess.jpg',
+  },
+  {
+    name: 'Sierra Anderson',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/sierra-anderson.jpg',
+  },
+  {
+    name: 'Sofia Brown',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/sofia-brown.jpg',
+  },
+  {
+    name: 'Sophia Woehl',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/sophia-woehl.jpg',
+  },
+  {
+    name: 'Valerie Munerman',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/valerie-munerman.jpg',
+  },
+  {
+    name: 'Will Orchard',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/will-orchard.jpg',
+  },
+  {
+    name: 'Xander Pfistner',
+    role: 'Staff Member / Trip Lead',
+    imageUrl: '/staff/xander-pfistner.jpg',
+  },
 ]
