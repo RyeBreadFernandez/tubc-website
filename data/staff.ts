@@ -178,11 +178,6 @@ export const staff: StaffMember[] = [
     imageUrl: '/staff/angela-ke.jpg',
   },
   {
-    name: 'Antonio Maldonado',
-    role: 'Staff Member / Trip Lead',
-    imageUrl: '/staff/antonio-maldonado.jpg',
-  },
-  {
     name: 'Claire Miller',
     role: 'Social Media',
     imageUrl: '/staff/claire-miller.jpg',
