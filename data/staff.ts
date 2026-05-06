@@ -35,7 +35,6 @@ export const staff: StaffMember[] = [
     bio: 'Runs the club gear stash — tents, packs, sleep systems. If you need to borrow something before a trip, Quinn is the person to ask.',
     imageUrl: '/staff/quinn-koch.jpg',
   },
-  // TODO: drop ellie-sellman.jpg into public/staff/ before deploying
   {
     name: 'Ellie Sellman',
     role: 'Gear Lead',
@@ -56,7 +55,6 @@ export const staff: StaffMember[] = [
     role: 'Ikon Representative',
     imageUrl: '/staff/kristi-tomlinson.jpg',
   },
-  // TODO: drop georgiana-morris.jpg into public/staff/ before deploying
   {
     name: 'Georgiana Morris',
     role: 'IKON Pass Representative',
@@ -164,7 +162,6 @@ export const staff: StaffMember[] = [
     role: 'Staff Member / Trip Lead',
     imageUrl: '/staff/saskia-freedberg.jpg',
   },
-  // TODO: drop katie-chang.jpg into public/staff/ before deploying
   {
     name: 'Katie Chang',
     role: 'Staff Member / Trip Lead',
