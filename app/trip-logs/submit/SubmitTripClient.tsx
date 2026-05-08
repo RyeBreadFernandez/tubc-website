@@ -21,6 +21,38 @@ interface FormData {
   content: string
 }
 
+async function cropToFocalPoint(previewUrl: string, fileName: string, focalX: number, focalY: number): Promise<File> {
+  return new Promise((resolve, reject) => {
+    const img = new window.Image()
+    img.onload = () => {
+      const targetAspect = 3 / 2
+      let cropW = img.width
+      let cropH = img.width / targetAspect
+      if (cropH > img.height) {
+        cropH = img.height
+        cropW = img.height * targetAspect
+      }
+      let cropX = img.width * focalX - cropW / 2
+      let cropY = img.height * focalY - cropH / 2
+      cropX = Math.max(0, Math.min(img.width - cropW, cropX))
+      cropY = Math.max(0, Math.min(img.height - cropH, cropY))
+
+      const canvas = document.createElement('canvas')
+      canvas.width = Math.round(cropW)
+      canvas.height = Math.round(cropH)
+      const ctx = canvas.getContext('2d')
+      if (!ctx) { reject(new Error('Canvas unavailable')); return }
+      ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, canvas.width, canvas.height)
+      canvas.toBlob((blob) => {
+        if (!blob) { reject(new Error('Canvas export failed')); return }
+        resolve(new File([blob], fileName, { type: 'image/jpeg' }))
+      }, 'image/jpeg', 0.92)
+    }
+    img.onerror = () => reject(new Error('Image load failed'))
+    img.src = previewUrl
+  })
+}
+
 export default function SubmitTripClient() {
   const router = useRouter()
   const [submitting, setSubmitting] = useState(false)
@@ -28,6 +60,8 @@ export default function SubmitTripClient() {
   const [coverPreview, setCoverPreview] = useState<string | null>(null)
   const [dragging, setDragging] = useState(false)
   const [difficulty, setDifficulty] = useState<string>('')
+  const [focalX, setFocalX] = useState(0.5)
+  const [focalY, setFocalY] = useState(0.5)
   const fileInputRef = useRef<HTMLInputElement>(null)
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
@@ -38,6 +72,8 @@ export default function SubmitTripClient() {
     }
     setCoverFile(file)
     setCoverPreview(URL.createObjectURL(file))
+    setFocalX(0.5)
+    setFocalY(0.5)
   }, [])
 
   const onDrop = useCallback((e: React.DragEvent) => {
@@ -47,8 +83,14 @@ export default function SubmitTripClient() {
     if (file) handleFile(file)
   }, [handleFile])
 
+  const handleFocalClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    setFocalX(Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width)))
+    setFocalY(Math.max(0, Math.min(1, (e.clientY - rect.top) / rect.height)))
+  }, [])
+
   const onSubmit = async (data: FormData) => {
-    if (!coverFile) {
+    if (!coverFile || !coverPreview) {
       toast.error('Please upload a cover photo.')
       return
     }
@@ -58,6 +100,8 @@ export default function SubmitTripClient() {
     }
     setSubmitting(true)
     try {
+      const croppedFile = await cropToFocalPoint(coverPreview, coverFile.name, focalX, focalY)
+
       const body = new globalThis.FormData()
       body.append('title', data.title)
       body.append('location', data.location)
@@ -66,7 +110,7 @@ export default function SubmitTripClient() {
       body.append('miles', data.miles ?? '')
       body.append('elevation_gain', data.elevation_gain ?? '')
       body.append('content', data.content)
-      body.append('cover', coverFile)
+      body.append('cover', croppedFile)
 
       const res = await fetch('/api/submit-trip', { method: 'POST', body })
       const json = await res.json()
@@ -186,18 +230,59 @@ export default function SubmitTripClient() {
               onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f) }}
             />
             {coverPreview ? (
-              <div className="relative rounded-md overflow-hidden border border-secondary">
-                <div className="relative h-52">
-                  <Image src={coverPreview} alt="Cover photo preview" fill className="object-cover" unoptimized />
+              <div className="space-y-2">
+                <div className="relative rounded-md overflow-hidden border border-secondary">
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Click to set focal point for the cover photo crop"
+                    className="relative aspect-[3/2] cursor-crosshair select-none"
+                    onClick={handleFocalClick}
+                    onKeyDown={(e) => {
+                      const step = 0.05
+                      if (e.key === 'ArrowLeft') { e.preventDefault(); setFocalX(x => Math.max(0, x - step)) }
+                      if (e.key === 'ArrowRight') { e.preventDefault(); setFocalX(x => Math.min(1, x + step)) }
+                      if (e.key === 'ArrowUp') { e.preventDefault(); setFocalY(y => Math.max(0, y - step)) }
+                      if (e.key === 'ArrowDown') { e.preventDefault(); setFocalY(y => Math.min(1, y + step)) }
+                    }}
+                  >
+                    <Image
+                      src={coverPreview}
+                      alt="Cover photo preview"
+                      fill
+                      className="object-cover pointer-events-none"
+                      style={{ objectPosition: `${focalX * 100}% ${focalY * 100}%` }}
+                      unoptimized
+                    />
+                    {/* Focal point crosshair */}
+                    <div
+                      className="absolute size-6 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white shadow-lg pointer-events-none transition-all duration-100"
+                      style={{
+                        left: `${focalX * 100}%`,
+                        top: `${focalY * 100}%`,
+                        background: 'rgba(var(--color-primary) / 0.7)',
+                        boxShadow: '0 0 0 1px rgba(0,0,0,0.4), 0 2px 6px rgba(0,0,0,0.4)',
+                      }}
+                      aria-hidden="true"
+                    />
+                    <div className="absolute bottom-2 left-1/2 -translate-x-1/2">
+                      <span className="bg-bark/70 text-parchment text-xs px-2.5 py-1 rounded-full whitespace-nowrap pointer-events-none">
+                        Click to set focal point
+                      </span>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => { setCoverFile(null); setCoverPreview(null); setFocalX(0.5); setFocalY(0.5) }}
+                    aria-label="Remove cover photo"
+                    className="absolute top-2 right-2 bg-foreground/70 hover:bg-foreground text-background text-xs px-3 py-1.5 rounded-md transition-colors"
+                  >
+                    Remove
+                  </button>
                 </div>
-                <button
-                  type="button"
-                  onClick={() => { setCoverFile(null); setCoverPreview(null) }}
-                  aria-label="Remove cover photo"
-                  className="absolute top-2 right-2 bg-foreground/70 hover:bg-foreground text-background text-xs px-3 py-1.5 rounded-md transition-colors"
-                >
-                  Remove
-                </button>
+                <p className="text-xs text-muted-foreground">
+                  This preview shows how your photo will be cropped. Click anywhere to move the focus point.
+                </p>
               </div>
             ) : (
               <div
