@@ -219,13 +219,13 @@ export default async function Home() {
                 <Reveal key={trip.id} delay={i * 110}>
                   <Link href={`/trip-logs/${trip.slug}`} className="group block h-full">
                     <div className="bg-parchment border border-sand rounded-md overflow-hidden shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-bark/10 h-full">
-                      <div className="relative h-48 overflow-hidden">
+                      <div className="relative aspect-[3/2] w-full overflow-hidden">
                         <Image
                           src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
                           alt={trip.title}
                           fill
                           sizes="(max-width: 768px) 100vw, 33vw"
-                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                         />
                       </div>
                       <div className="p-5">
