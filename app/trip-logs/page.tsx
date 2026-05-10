@@ -74,14 +74,14 @@ export default async function TripLogsPage() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {trips.map((trip) => (
                 <Link key={trip.id} href={`/trip-logs/${trip.slug}`} className="group block h-full">
-                  <Card className="h-full overflow-hidden border-secondary shadow-sm hover:shadow-md transition-shadow bg-parchment flex flex-col">
-                    <div className="relative h-52 overflow-hidden shrink-0">
+                  <Card className="h-full gap-0 overflow-hidden border-secondary bg-parchment py-0 shadow-sm transition-shadow hover:shadow-md flex flex-col">
+                    <div className="relative aspect-[3/2] w-full overflow-hidden shrink-0">
                       <Image
                         src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
                         alt={trip.title}
                         fill
                         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
                       />
                     </div>
                     <CardContent className="p-5 flex flex-col flex-1">
