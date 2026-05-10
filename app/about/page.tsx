@@ -108,50 +108,6 @@ export default function AboutPage() {
 
       <Separator />
 
-      {/* Alumni grid */}
-      <section id="alumni" className="py-20 bg-parchment">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3 text-center">The greats who have Graduated.</p>
-          <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-12 text-center">
-            Alumni
-          </h2>
-          <div className="flex flex-wrap justify-center gap-6">
-            {alumniTripLeads.map((member) => (
-              <Card key={member.name} className="w-full overflow-hidden border-secondary bg-parchment-dark pt-0 shadow-sm sm:w-96">
-                <div className="relative aspect-square w-full bg-muted flex items-center justify-center">
-                  {member.imageUrl ? (
-                    <Image
-                      src={member.imageUrl}
-                      alt={member.name}
-                      fill
-                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                      className="object-cover"
-                      style={{
-                        ...(member.objectPosition ? { objectPosition: member.objectPosition } : {}),
-                        ...(member.imageScale ? { transform: `scale(${member.imageScale})` } : {}),
-                      }}
-                    />
-                  ) : (
-                    <Avatar className="size-20">
-                      <AvatarImage src={undefined} alt={member.name} />
-                      <AvatarFallback className="bg-secondary text-foreground text-2xl font-bold">
-                        {member.name.charAt(0)}
-                      </AvatarFallback>
-                    </Avatar>
-                  )}
-                </div>
-                <CardContent className="p-5">
-                  <p className="font-display text-lg font-bold text-bark">{member.name}</p>
-                  <p className="text-primary text-sm font-semibold">{member.role}</p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <Separator />
-
       {/* Staff grid */}
       <section id="meet-the-team" className="py-20 bg-parchment-dark">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -188,6 +144,50 @@ export default function AboutPage() {
                   <p className="font-display text-lg font-bold text-bark">{member.name}</p>
                   <p className={`text-primary text-sm font-semibold ${member.bio ? 'mb-2' : ''}`}>{member.role}</p>
                   {member.bio && <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* Alumni grid */}
+      <section id="alumni" className="py-20 bg-parchment">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3 text-center">The greats who have Graduated.</p>
+          <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-12 text-center">
+            Alumni
+          </h2>
+          <div className="flex flex-wrap justify-center gap-6">
+            {alumniTripLeads.map((member) => (
+              <Card key={member.name} className="w-full overflow-hidden border-secondary bg-parchment-dark pt-0 shadow-sm sm:w-96">
+                <div className="relative aspect-square w-full bg-muted flex items-center justify-center">
+                  {member.imageUrl ? (
+                    <Image
+                      src={member.imageUrl}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="object-cover"
+                      style={{
+                        ...(member.objectPosition ? { objectPosition: member.objectPosition } : {}),
+                        ...(member.imageScale ? { transform: `scale(${member.imageScale})` } : {}),
+                      }}
+                    />
+                  ) : (
+                    <Avatar className="size-20">
+                      <AvatarImage src={undefined} alt={member.name} />
+                      <AvatarFallback className="bg-secondary text-foreground text-2xl font-bold">
+                        {member.name.charAt(0)}
+                      </AvatarFallback>
+                    </Avatar>
+                  )}
+                </div>
+                <CardContent className="p-5">
+                  <p className="font-display text-lg font-bold text-bark">{member.name}</p>
+                  <p className="text-primary text-sm font-semibold">{member.role}</p>
                 </CardContent>
               </Card>
             ))}

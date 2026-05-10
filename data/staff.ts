@@ -244,11 +244,6 @@ export const staff: StaffMember[] = [
 
 export const alumniTripLeads: StaffMember[] = [
   {
-    name: 'Antonio Maldonado',
-    role: 'Alumni Trip Lead',
-    imageUrl: '/staff/antonio-maldonado.jpg',
-  },
-  {
     name: 'Will Orchard',
     role: 'Alumni Trip Lead',
     imageUrl: '/staff/will-orchard.jpg',
