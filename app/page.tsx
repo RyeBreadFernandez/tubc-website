@@ -112,7 +112,7 @@ export default async function Home() {
             className="font-display text-5xl md:text-7xl text-parchment font-bold leading-tight mb-6 [text-shadow:0_2px_16px_rgba(0,0,0,0.7)] animate-reveal"
             style={{ animationDelay: '120ms' }}
           >
-            The Sierra is closer than you think.
+            We take you to the outdoors.
           </h1>
           <p
             className="text-parchment/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed [text-shadow:0_1px_8px_rgba(0,0,0,0.6)] animate-reveal"
