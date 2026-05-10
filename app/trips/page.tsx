@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld'
 import PageHero from '@/components/ui/PageHero'
 import CalendarEvents from '@/components/CalendarEvents'
 import type { Metadata } from 'next'
@@ -33,7 +34,7 @@ export default function TripsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [

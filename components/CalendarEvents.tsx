@@ -73,7 +73,7 @@ export default function CalendarEvents() {
 
   if (status === 'loading') {
     return (
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div role="status" aria-live="polite" aria-busy="true" aria-label="Loading upcoming events" className="grid sm:grid-cols-2 gap-4">
         {Array.from({ length: 4 }).map((_, i) => (
           <Card key={i} className="border-2 border-sand">
             <CardContent className="p-5 flex gap-4">
@@ -107,7 +107,7 @@ export default function CalendarEvents() {
       <div className="text-center py-12 bg-parchment rounded-md border border-secondary">
         <p className="font-display text-xl text-bark mb-2">Couldn&apos;t load events</p>
         <p className="text-muted-foreground text-sm">
-          The calendar is taking too long. Use the monthly view below or join Slack for the latest signups.
+          The calendar is taking too long. Use the monthly view below or check back soon.
         </p>
       </div>
     )
@@ -127,54 +127,64 @@ export default function CalendarEvents() {
       {events.map((event, i) => {
         const { day, monthYear, time } = formatEventDate(event.start)
         const duration = formatDuration(event.start, event.end)
-        return (
-          <a
-            key={i}
-            href={event.htmlLink ?? '#'}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`View ${event.summary} on Google Calendar`}
-            className="group block"
-          >
-            <Card className="h-full border-2 border-sand hover:border-terra/40 hover:shadow-md transition-all">
-              <CardContent className="p-5 flex gap-4 flex-col">
-                <div className="flex gap-4">
-                  <div className="shrink-0 w-14 text-center">
-                    <p className="font-display text-2xl font-bold text-primary leading-none">{day}</p>
-                    <p className="text-muted-foreground text-xs uppercase tracking-wide mt-0.5">{monthYear}</p>
-                    {time && <p className="text-muted-foreground/60 text-xs mt-1">{time}</p>}
-                    {duration && (
-                      <span className="inline-block mt-1.5 text-[10px] bg-terra/10 text-terra px-1.5 py-0.5 rounded-full font-semibold uppercase tracking-wide">
-                        {duration}
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-display text-base font-bold text-bark group-hover:text-terra transition-colors leading-snug">
-                      {event.summary}
-                    </h3>
-                    {event.location && (
-                      <p className="flex items-center gap-1 text-muted-foreground text-xs mt-1.5 truncate">
-                        <MapPin className="w-3 h-3 shrink-0" aria-hidden="true" />
-                        {event.location}
-                      </p>
-                    )}
-                    {event.description && (
-                      <p className="text-soil/80 text-xs mt-2 line-clamp-2 leading-relaxed">
-                        {event.description.replace(/<[^>]+>/g, '')}
-                      </p>
-                    )}
-                  </div>
+        const card = (
+          <Card className={`h-full border-2 border-sand transition-all ${event.htmlLink ? 'hover:border-terra/40 hover:shadow-md' : ''}`}>
+            <CardContent className="p-5 flex gap-4 flex-col">
+              <div className="flex gap-4">
+                <div className="shrink-0 w-14 text-center">
+                  <p className="font-display text-2xl font-bold text-primary leading-none">{day}</p>
+                  <p className="text-muted-foreground text-xs uppercase tracking-wide mt-0.5">{monthYear}</p>
+                  {time && <p className="text-muted-foreground/60 text-xs mt-1">{time}</p>}
+                  {duration && (
+                    <span className="inline-block mt-1.5 text-[10px] bg-terra/10 text-terra px-1.5 py-0.5 rounded-full font-semibold uppercase tracking-wide">
+                      {duration}
+                    </span>
+                  )}
                 </div>
+                <div className="flex-1 min-w-0">
+                  <h3 className="font-display text-base font-bold text-bark group-hover:text-terra transition-colors leading-snug">
+                    {event.summary}
+                  </h3>
+                  {event.location && (
+                    <p className="flex items-center gap-1 text-muted-foreground text-xs mt-1.5 truncate">
+                      <MapPin className="w-3 h-3 shrink-0" aria-hidden="true" />
+                      {event.location}
+                    </p>
+                  )}
+                  {event.description && (
+                    <p className="text-soil/80 text-xs mt-2 line-clamp-2 leading-relaxed">
+                      {event.description.replace(/<[^>]+>/g, '')}
+                    </p>
+                  )}
+                </div>
+              </div>
+              {event.htmlLink && (
                 <div className="text-terra text-xs font-semibold group-hover:gap-1.5 flex items-center gap-1 transition-all" aria-hidden="true">
                   View on calendar
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5} aria-hidden="true">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                   </svg>
                 </div>
-              </CardContent>
-            </Card>
+              )}
+            </CardContent>
+          </Card>
+        )
+
+        return event.htmlLink ? (
+          <a
+            key={i}
+            href={event.htmlLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`View ${event.summary} on Google Calendar`}
+            className="group block"
+          >
+            {card}
           </a>
+        ) : (
+          <div key={i} className="group">
+            {card}
+          </div>
         )
       })}
     </div>

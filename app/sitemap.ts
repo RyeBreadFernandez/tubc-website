@@ -9,6 +9,7 @@ const staticRoutes: MetadataRoute.Sitemap = [
   { url: `${BASE}/trips`, changeFrequency: 'weekly', priority: 0.9 },
   { url: `${BASE}/trip-logs`, changeFrequency: 'weekly', priority: 0.8 },
   { url: `${BASE}/gallery`, changeFrequency: 'monthly', priority: 0.6 },
+  { url: `${BASE}/newsletter`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${BASE}/faq`, changeFrequency: 'monthly', priority: 0.6 },
   { url: `${BASE}/resources`, changeFrequency: 'monthly', priority: 0.7 },
   { url: `${BASE}/resources/la-hiking`, changeFrequency: 'monthly', priority: 0.6 },

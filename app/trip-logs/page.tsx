@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
@@ -51,7 +52,7 @@ export default async function TripLogsPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [

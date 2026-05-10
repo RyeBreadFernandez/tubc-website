@@ -22,6 +22,8 @@ export const metadata: Metadata = {
     googleBot: { index: true, follow: true },
   },
   openGraph: {
+    title: "The Backpacking Club at UCLA",
+    description: "UCLA's student backpacking club for free trips, gear rentals, outdoor education, and community on trails across California and beyond.",
     siteName: "The Backpacking Club at UCLA",
     type: "website",
     locale: "en_US",

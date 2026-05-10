@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import Image from 'next/image'
 import { createClient } from '@/utils/supabase/server'
@@ -53,7 +54,7 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'WebSite',
             name: 'The Backpacking Club at UCLA',
@@ -74,7 +75,7 @@ export default async function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'Organization',
             name: 'The Backpacking Club at UCLA',

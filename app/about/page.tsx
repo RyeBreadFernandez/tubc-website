@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld'
 import Image from 'next/image'
 import PageHero from '@/components/ui/PageHero'
 import { alumniTripLeads, staff } from '@/data/staff'
@@ -33,7 +34,7 @@ export default function AboutPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [
@@ -46,7 +47,7 @@ export default function AboutPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'Organization',
             name: 'The Backpacking Club at UCLA',

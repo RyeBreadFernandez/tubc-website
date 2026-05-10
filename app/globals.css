@@ -234,14 +234,31 @@
   transform: none;
 }
 @media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
   .reveal {
     opacity: 1;
     transform: none;
     transition: none;
   }
-  .animate-reveal {
+  .animate-reveal,
+  .animate-dropdown-in,
+  .animate-mountain-draw,
+  .animate-fade-in-up,
+  .animate-splash-fade-out,
+  .animate-progress-run,
+  .animate-pulse-ring {
     animation: none;
     opacity: 1;
+  }
+  [data-slot="button"]:active:not(:disabled) {
+    transform: none;
   }
 }
 

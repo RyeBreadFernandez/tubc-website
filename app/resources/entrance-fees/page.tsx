@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
@@ -40,7 +41,7 @@ export default function EntranceFeesPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [
@@ -74,16 +75,16 @@ export default function EntranceFeesPage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="bg-parchment-dark border-b border-sand">
-                  <th className="text-left px-5 py-3 text-bark font-semibold">Park / Forest</th>
-                  <th className="text-left px-5 py-3 text-bark font-semibold">Vehicle</th>
-                  <th className="text-left px-5 py-3 text-bark font-semibold">On Foot</th>
-                  <th className="text-left px-5 py-3 text-bark font-semibold hidden md:table-cell">Notes</th>
+                  <th scope="col" className="text-left px-5 py-3 text-bark font-semibold">Park / Forest</th>
+                  <th scope="col" className="text-left px-5 py-3 text-bark font-semibold">Vehicle</th>
+                  <th scope="col" className="text-left px-5 py-3 text-bark font-semibold">On Foot</th>
+                  <th scope="col" className="text-left px-5 py-3 text-bark font-semibold hidden md:table-cell">Notes</th>
                 </tr>
               </thead>
               <tbody>
                 {fees.map((row, i) => (
                   <tr key={row.park} className={i % 2 === 0 ? 'bg-parchment' : 'bg-parchment-dark'}>
-                    <td className="px-5 py-3 text-bark font-medium">{row.park}</td>
+                    <th scope="row" className="px-5 py-3 text-left text-bark font-medium">{row.park}</th>
                     <td className="px-5 py-3 text-soil">{row.vehicle}</td>
                     <td className="px-5 py-3 text-soil">{row.individual}</td>
                     <td className="px-5 py-3 text-soil/70 text-xs hidden md:table-cell">{row.notes}</td>

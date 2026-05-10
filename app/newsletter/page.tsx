@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld'
 import NewsletterSignup from '@/components/NewsletterSignup'
 import { fetchNewsletters } from '@/lib/mailchimp'
 import type { Metadata } from 'next'
@@ -41,7 +42,7 @@ export default async function NewsletterPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [

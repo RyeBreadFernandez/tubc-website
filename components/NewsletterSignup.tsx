@@ -1,13 +1,17 @@
 'use client'
 
-import { useState } from 'react'
-import { toast } from 'sonner'
+import { useId, useState } from 'react'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 
 export default function NewsletterSignup() {
+  const id = useId()
   const [email, setEmail] = useState('')
   const [loading, setLoading] = useState(false)
+  const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
   async function handleSubscribe() {
+    setStatus(null)
     setLoading(true)
     try {
       const res = await fetch('/api/newsletter', {
@@ -19,13 +23,13 @@ export default function NewsletterSignup() {
       const data: { success?: boolean; error?: string } = await res.json()
 
       if (!res.ok || !data.success) {
-        toast.error('Something went wrong. Try again.')
+        setStatus({ type: 'error', message: data.error ?? 'Something went wrong. Try again.' })
       } else {
-        toast.success("You're on the list!")
+        setStatus({ type: 'success', message: "You're on the list." })
         setEmail('')
       }
     } catch {
-      toast.error('Something went wrong. Try again.')
+      setStatus({ type: 'error', message: 'Something went wrong. Try again.' })
     } finally {
       setLoading(false)
     }
@@ -34,29 +38,41 @@ export default function NewsletterSignup() {
   return (
     <form
       onSubmit={(e) => { e.preventDefault(); handleSubscribe() }}
-      className="flex gap-2"
+      className="space-y-2"
       aria-label="Newsletter signup"
     >
-      <label htmlFor="newsletter-email" className="sr-only">
-        Email address
-      </label>
-      <input
-        id="newsletter-email"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="your@email.com"
-        required
-        aria-required="true"
-        className="flex-1 px-4 py-3 bg-parchment border border-border rounded-md text-bark placeholder-soil/60 focus:outline-none focus:border-terra transition-colors text-sm"
-      />
-      <button
-        type="submit"
-        disabled={loading}
-        className="px-6 py-3 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors whitespace-nowrap disabled:opacity-60 disabled:cursor-not-allowed"
+      <div className="flex gap-2">
+        <label htmlFor={`${id}-email`} className="sr-only">
+          Email address
+        </label>
+        <Input
+          id={`${id}-email`}
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="your@email.com"
+          required
+          aria-required="true"
+          aria-invalid={status?.type === 'error'}
+          aria-describedby={status ? `${id}-status` : undefined}
+          className="h-11 flex-1 bg-parchment px-4 text-bark placeholder-soil/60 focus-visible:ring-3 focus-visible:ring-terra/40"
+        />
+        <Button
+          type="submit"
+          disabled={loading}
+          className="h-11 px-6 bg-terra hover:bg-terra-dark text-parchment whitespace-nowrap focus-visible:ring-3 focus-visible:ring-terra/40"
+        >
+          {loading ? 'Subscribing...' : 'Subscribe'}
+        </Button>
+      </div>
+      <p
+        id={`${id}-status`}
+        role={status?.type === 'error' ? 'alert' : 'status'}
+        aria-live="polite"
+        className={`min-h-5 text-sm ${status?.type === 'error' ? 'text-destructive' : 'text-sage-dark'}`}
       >
-        {loading ? 'Subscribing…' : 'Subscribe'}
-      </button>
+        {status?.message}
+      </p>
     </form>
   )
 }

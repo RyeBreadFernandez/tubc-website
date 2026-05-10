@@ -5,7 +5,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/dashboard/', '/auth/'],
+      disallow: ['/dashboard', '/dashboard/', '/auth/'],
     },
     sitemap: 'https://www.uclabackpackingclub.com/sitemap.xml',
   }

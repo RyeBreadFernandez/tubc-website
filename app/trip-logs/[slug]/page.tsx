@@ -1,3 +1,4 @@
+import { serializeJsonLd } from '@/lib/json-ld'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
@@ -8,6 +9,17 @@ import { format, parse } from 'date-fns'
 
 interface Props {
   params: Promise<{ slug: string }>
+}
+
+function metadataDescription(trip: { content?: string | null; location?: string | null; difficulty?: string | null }) {
+  const cleaned = trip.content?.replace(/[#*`>_[\]()]/g, '').replace(/\s+/g, ' ').trim()
+
+  if (cleaned && cleaned.length >= 80) {
+    return cleaned.length > 155 ? `${cleaned.slice(0, 152).trim()}...` : cleaned
+  }
+
+  const details = [trip.location, trip.difficulty].filter(Boolean).join(' - ')
+  return `${details || 'A member trip'} report from The Backpacking Club at UCLA, with route notes and conditions from the trail.`
 }
 
 async function getTrip(slug: string) {
@@ -31,9 +43,7 @@ export async function generateMetadata({ params }: Props) {
   const trip = await getTrip(slug)
   if (!trip) return { title: 'Trip Not Found' }
 
-  const description = trip.content
-    ? trip.content.replace(/[#*`]/g, '').slice(0, 155).trim() + '…'
-    : `${trip.location} · ${trip.difficulty} · A trip report from The Backpacking Club at UCLA.`
+  const description = metadataDescription(trip)
 
   const ogImage = trip.cover_image_url
     ? [{ url: trip.cover_image_url, width: 1200, height: 630, alt: trip.title }]
@@ -75,7 +85,7 @@ export default async function TripLogPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'BreadcrumbList',
             itemListElement: [
@@ -89,7 +99,7 @@ export default async function TripLogPage({ params }: Props) {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: serializeJsonLd({
             '@context': 'https://schema.org',
             '@type': 'Article',
             headline: trip.title,

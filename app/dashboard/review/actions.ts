@@ -27,7 +27,21 @@ export async function setPublished(id: string, published: boolean) {
     serviceRoleKey,
     { auth: { persistSession: false } },
   )
-  await admin.from('trip_logs').update({ published }).eq('id', id)
+  const { data, error } = await admin
+    .from('trip_logs')
+    .update({ published })
+    .eq('id', id)
+    .select('id, slug')
+    .maybeSingle()
+
+  if (error) {
+    throw new Error('Could not update the trip report.')
+  }
+  if (!data) {
+    throw new Error('Trip report was not found.')
+  }
+
   revalidatePath('/dashboard/review')
   revalidatePath('/trip-logs')
+  revalidatePath(`/trip-logs/${data.slug}`)
 }

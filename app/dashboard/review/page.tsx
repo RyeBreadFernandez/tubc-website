@@ -124,6 +124,7 @@ export default async function ReviewPage() {
                   {trip.published && (
                     <a
                       href={`/trip-logs/${trip.slug}`}
+                      aria-label={`View ${trip.title}`}
                       className="text-terra text-sm font-semibold hover:text-terra-dark transition-colors whitespace-nowrap"
                     >
                       View →
@@ -132,6 +133,7 @@ export default async function ReviewPage() {
                   <form action={setPublished.bind(null, trip.id, !trip.published)}>
                     <button
                       type="submit"
+                      aria-label={`${trip.published ? 'Unpublish' : 'Publish'} ${trip.title}`}
                       className={`px-4 py-1.5 rounded-md text-sm font-semibold transition-colors whitespace-nowrap ${
                         trip.published
                           ? 'border border-sand text-soil hover:bg-sand'

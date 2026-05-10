@@ -14,6 +14,8 @@ import { Toaster } from '@/components/ui/sonner'
 const CROP_ASPECT = 3 / 2   // width ÷ height pixel ratio
 const MIN_CROP_W  = 80      // minimum crop width in container px
 const HANDLE_PX   = 14      // corner handle size
+const MAX_COVER_BYTES = 8 * 1024 * 1024
+const ALLOWED_COVER_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp'])
 
 interface CropRect { x: number; y: number; w: number; h: number }
 type Corner = 'nw' | 'ne' | 'sw' | 'se'
@@ -61,6 +63,11 @@ function initialCrop(cw: number, ch: number): CropRect {
   return { x: (cw - w) / 2, y: (ch - h) / 2, w, h }
 }
 
+function jpegFileName(fileName: string) {
+  const base = fileName.replace(/\.[^.]+$/, '') || 'cover-photo'
+  return `${base}.jpg`
+}
+
 async function extractCrop(
   src: string, fileName: string,
   crop: CropRect, cw: number, ch: number
@@ -81,7 +88,7 @@ async function extractCrop(
       canvas.toBlob(
         (blob) => {
           if (!blob) { reject(new Error('Canvas export failed')); return }
-          resolve(new File([blob], fileName, { type: 'image/jpeg' }))
+          resolve(new File([blob], jpegFileName(fileName), { type: 'image/jpeg' }))
         },
         'image/jpeg', 0.92
       )
@@ -99,6 +106,8 @@ export default function SubmitTripClient() {
   const [dropHover, setDropHover]       = useState(false)
   const [difficulty, setDifficulty]     = useState('')
   const [crop, setCrop]                 = useState<CropRect | null>(null)
+  const [coverError, setCoverError]     = useState<string | null>(null)
+  const [difficultyError, setDifficultyError] = useState<string | null>(null)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
@@ -149,10 +158,18 @@ export default function SubmitTripClient() {
   }, [crop])
 
   const handleFile = useCallback((file: File) => {
-    if (!file.type.startsWith('image/')) { toast.error('Please upload an image file.'); return }
+    if (!ALLOWED_COVER_TYPES.has(file.type)) {
+      setCoverError('Please upload a JPG, PNG, or WebP image.')
+      return
+    }
+    if (file.size > MAX_COVER_BYTES) {
+      setCoverError('Cover photo must be 8 MB or smaller.')
+      return
+    }
     setCoverFile(file)
     setCoverPreview(URL.createObjectURL(file))
     setCrop(null)
+    setCoverError(null)
   }, [])
 
   const onImageLoad = useCallback(() => {
@@ -168,13 +185,18 @@ export default function SubmitTripClient() {
   }, [handleFile])
 
   const removeCover = useCallback(() => {
-    setCoverFile(null); setCoverPreview(null); setCrop(null)
+    setCoverFile(null); setCoverPreview(null); setCrop(null); setCoverError(null)
   }, [])
 
   const onSubmit = async (data: FormData) => {
-    if (!coverFile || !coverPreview) { toast.error('Please upload a cover photo.'); return }
-    if (!difficulty)                 { toast.error('Please select a difficulty.');  return }
-    if (!crop || !containerRef.current) { toast.error('Please wait for the photo to load.'); return }
+    const missingCover = !coverFile || !coverPreview
+    const missingDifficulty = !difficulty
+
+    setCoverError(missingCover ? 'Please upload a cover photo.' : null)
+    setDifficultyError(missingDifficulty ? 'Please select a difficulty.' : null)
+
+    if (missingCover || missingDifficulty) return
+    if (!crop || !containerRef.current) { setCoverError('Please wait for the photo to load.'); return }
     setSubmitting(true)
     try {
       const { width: cw, height: ch } = containerRef.current.getBoundingClientRect()
@@ -270,8 +292,14 @@ export default function SubmitTripClient() {
           <div className="grid sm:grid-cols-3 gap-5">
             <div className="space-y-1.5">
               <Label htmlFor="difficulty">Difficulty</Label>
-              <Select onValueChange={(v: string | null) => { if (v) setDifficulty(v) }}>
-                <SelectTrigger id="difficulty" className="w-full" aria-required="true">
+              <Select onValueChange={(v: string | null) => { if (v) { setDifficulty(v); setDifficultyError(null) } }}>
+                <SelectTrigger
+                  id="difficulty"
+                  className="w-full"
+                  aria-required="true"
+                  aria-invalid={!!difficultyError}
+                  aria-describedby={difficultyError ? 'difficulty-error' : undefined}
+                >
                   <SelectValue placeholder="Select…" />
                 </SelectTrigger>
                 <SelectContent>
@@ -281,6 +309,7 @@ export default function SubmitTripClient() {
                   <SelectItem value="Expert">Expert</SelectItem>
                 </SelectContent>
               </Select>
+              {difficultyError && <p id="difficulty-error" role="alert" className="text-destructive text-xs">{difficultyError}</p>}
             </div>
             <div className="space-y-1.5">
               <Label htmlFor="miles">Miles</Label>
@@ -298,8 +327,8 @@ export default function SubmitTripClient() {
               Cover Photo <span className="text-primary text-xs">*required</span>
             </Label>
             <input
-              ref={fileInputRef} id="cover-photo" type="file" accept="image/*"
-              aria-required="true" className="hidden"
+              ref={fileInputRef} id="cover-photo" type="file" accept="image/jpeg,image/png,image/webp"
+              aria-required="true" aria-invalid={!!coverError} aria-describedby={coverError ? 'cover-photo-error' : undefined} className="hidden"
               onChange={(e) => { const f = e.target.files?.[0]; if (f) handleFile(f) }}
             />
 
@@ -389,6 +418,7 @@ export default function SubmitTripClient() {
               <div
                 role="button" tabIndex={0}
                 aria-label="Upload cover photo — drag and drop or press Enter to browse"
+                aria-describedby={coverError ? 'cover-photo-error' : undefined}
                 onDragOver={(e) => { e.preventDefault(); setDropHover(true) }}
                 onDragLeave={() => setDropHover(false)}
                 onDrop={onDrop}
@@ -405,6 +435,7 @@ export default function SubmitTripClient() {
                 <p className="text-xs text-muted-foreground/60 mt-1">One image required</p>
               </div>
             )}
+            {coverError && <p id="cover-photo-error" role="alert" className="text-destructive text-xs">{coverError}</p>}
           </div>
 
           {/* Trip report */}
