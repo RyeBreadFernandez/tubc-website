@@ -134,14 +134,17 @@ export default async function TripLogPage({ params }: Props) {
       {/* Header — clean title block, no image background */}
       <div className="bg-secondary/40 border-b border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <Link
-            href="/trip-logs"
-            aria-label="Back to trip logs"
-            className="mb-5 inline-flex size-8 items-center justify-center rounded-md text-soil transition-colors hover:bg-parchment hover:text-bark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
-          >
-            <ChevronLeftIcon className="size-4" aria-hidden="true" />
-          </Link>
-          {trip.difficulty && <Badge difficulty={trip.difficulty} className="mb-4" />}
+          <div className="mb-5 flex items-center gap-3">
+            <Link
+              href="/trip-logs"
+              aria-label="Back to trip logs"
+              title="Back to trip logs"
+              className="inline-flex size-9 items-center justify-center rounded-md border border-border bg-parchment text-bark shadow-sm transition-colors hover:bg-parchment-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+            >
+              <ChevronLeftIcon className="size-5" aria-hidden="true" />
+            </Link>
+            {trip.difficulty && <Badge difficulty={trip.difficulty} />}
+          </div>
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-2">
             {trip.title}
           </h1>
