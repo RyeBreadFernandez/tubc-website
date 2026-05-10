@@ -236,11 +236,6 @@ export const staff: StaffMember[] = [
     imageUrl: '/staff/valerie-munerman.jpg',
   },
   {
-    name: 'Will Orchard',
-    role: 'Staff Member / Trip Lead',
-    imageUrl: '/staff/will-orchard.jpg',
-  },
-  {
     name: 'Xander Pfistner',
     role: 'Staff Member / Trip Lead',
     imageUrl: '/staff/xander-pfistner.jpg',
@@ -252,5 +247,10 @@ export const alumniTripLeads: StaffMember[] = [
     name: 'Antonio Maldonado',
     role: 'Alumni Trip Lead',
     imageUrl: '/staff/antonio-maldonado.jpg',
+  },
+  {
+    name: 'Will Orchard',
+    role: 'Alumni Trip Lead',
+    imageUrl: '/staff/will-orchard.jpg',
   },
 ]
