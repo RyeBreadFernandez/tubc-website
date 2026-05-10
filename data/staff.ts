@@ -246,3 +246,11 @@ export const staff: StaffMember[] = [
     imageUrl: '/staff/xander-pfistner.jpg',
   },
 ]
+
+export const alumniTripLeads: StaffMember[] = [
+  {
+    name: 'Antonio Maldonado',
+    role: 'Alumni Trip Lead',
+    imageUrl: '/staff/antonio-maldonado.jpg',
+  },
+]
