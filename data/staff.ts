@@ -8,31 +8,45 @@ export interface StaffMember {
 }
 
 export const staff: StaffMember[] = [
-  // Dot Connector
+  // Club roles
   {
     name: 'Noah',
     role: 'Dot Connector',
-    bio: 'Keeps the wheels turning behind the scenes — wrangling logistics, connecting officers, and making sure nothing falls through the cracks.',
     imageUrl: '/staff/noah.png',
   },
   {
     name: 'Emilia Podesta',
     role: 'Dot Connector',
-    bio: 'Keeps the wheels turning behind the scenes — wrangling logistics, connecting officers, and making sure nothing falls through the cracks.',
+    bio: 'Help manage the behind the scenes stuff and make sure our club embodies the values we want to share!',
     imageUrl: '/staff/emilia-podesta.jpg',
   },
-  // Finance
   {
     name: 'Ryan',
     role: 'Finance',
-    bio: 'Writes grants and manages the club card so trip costs stay low. If your trip subsidy came through, this is why.',
     imageUrl: '/staff/ryan.jpg',
   },
-  // Gear Lead
+  {
+    name: 'Summer Frazier',
+    role: 'Potential Treasurer',
+    bio: 'Handling the money and club card next year',
+    imageUrl: '/staff/summer-frazier.jpg',
+    objectPosition: 'center 55%',
+  },
+  {
+    name: 'Everett Harriss',
+    role: 'Finance',
+    bio: 'Handling the money',
+    imageUrl: '/staff/everett-harriss.jpg',
+  },
+  {
+    name: 'Abigail Lynch',
+    role: 'Potential Treasurer',
+    imageUrl: '/staff/abigail-lynch.jpg',
+  },
   {
     name: 'Quinn Koch',
     role: 'Gear Lead',
-    bio: 'Runs the club gear stash — tents, packs, sleep systems. If you need to borrow something before a trip, Quinn is the person to ask.',
+    bio: 'I organize, acquire, distribute, and maintain backpacking and camping gear owned by TUBC.',
     imageUrl: '/staff/quinn-koch.jpg',
   },
   {
@@ -45,11 +59,15 @@ export const staff: StaffMember[] = [
   {
     name: 'Lucy Samuels',
     role: 'Social Media',
-    bio: 'Handles the Instagram — trip photos, sponsor outreach, and making sure the feed actually looks like the Sierra and not a stock photo site.',
+    bio: 'I co manage the Instagram (posting for socials, all of our pictures from trips, reaching out to sponsors) with Claire!',
     imageUrl: '/staff/lucy-samuels.jpg',
     objectPosition: 'center 55%',
   },
-  // Ikon Representative
+  {
+    name: 'Claire Miller',
+    role: 'Social Media',
+    imageUrl: '/staff/claire-miller.jpg',
+  },
   {
     name: 'Kristi Tomlinson',
     role: 'Ikon Representative',
@@ -61,14 +79,32 @@ export const staff: StaffMember[] = [
     bio: 'Lead trips to the great outdoors and help students acquire discounted IKON passes.',
     imageUrl: '/staff/georgiana-morris.jpg',
   },
-  // Staff Members / Trip Leads
   {
-    name: 'Summer Frazier',
-    role: 'Finance',
-    bio: 'Manages the club card and keeps spending on track so we can keep subsidizing trips.',
-    imageUrl: '/staff/summer-frazier.jpg',
-    objectPosition: 'center 55%',
+    name: 'Katherine Chen',
+    role: 'Trip Lead / Social Chair',
+    bio: 'plan super awesome events for everyone',
+    imageUrl: '/staff/katherine-chen.png',
   },
+  {
+    name: 'Sofia Nyez',
+    role: 'Social Planning / Newsletter',
+    bio: 'I plan social events for our wonderful club, both for members & staff to cultivate our wonderful community! We have put on a Halloween fundrager, craft night, game night, and make-your-own granola social. My personal favorite was the beaded lizard crafting night, it was so awesome to see such a great turnout! In addition, I started a TUBC newsletter that I\'ve had members & staff contribute to, showcasing our journalistic & photography skills while showing off what our club has to offer! I also can be found moonlighting some merch designs... I <3 TUBC!!!!!!!',
+    imageUrl: '/staff/sofia-nyez.jpg',
+  },
+  {
+    name: 'Meg Houseworth',
+    role: 'Socials / Trip Lead',
+    bio: 'Plan fun events that allow our staff and general members to get to know each other better!',
+    imageUrl: '/staff/meg-houseworth.jpg',
+  },
+  {
+    name: 'Yash Goyal',
+    role: 'Safety Officer',
+    bio: 'Keeping members safe in the outdoors',
+    imageUrl: '/staff/yash-goyal.jpg',
+  },
+
+  // Staff Members / Trip Leads
   {
     name: 'Maris Durant-Bender',
     role: 'Staff Member / Trip Lead',
@@ -118,44 +154,9 @@ export const staff: StaffMember[] = [
     imageUrl: '/staff/kendyl-gilbert.jpg',
   },
   {
-    name: 'Everett Harriss',
-    role: 'Finance',
-    bio: 'Tracks club finances and helps make sure grant money actually gets to the trips that need it.',
-    imageUrl: '/staff/everett-harriss.jpg',
-  },
-  {
-    name: 'Abigail Lynch',
-    role: 'Finance',
-    imageUrl: '/staff/abigail-lynch.jpg',
-  },
-  {
     name: 'Oscar Bowring',
     role: 'Staff Member / Trip Lead',
     imageUrl: '/staff/oscar-bowring.jpg',
-  },
-  {
-    name: 'Katherine Chen',
-    role: 'Trip Lead / Social Chair',
-    bio: 'Plans the off-trail stuff — socials, events, anything that happens when we\'re not on a mountain.',
-    imageUrl: '/staff/katherine-chen.png',
-  },
-  {
-    name: 'Sofia Nyez',
-    role: 'Social Planning / Newsletter',
-    bio: 'Started the TUBC newsletter and runs the social calendar. Halloween fundraisers, craft nights, make-your-own granola — all Sofia.',
-    imageUrl: '/staff/sofia-nyez.jpg',
-  },
-  {
-    name: 'Meg Houseworth',
-    role: 'Socials / Trip Lead',
-    bio: 'Organizes events that get members and staff in the same room — without a permit requirement.',
-    imageUrl: '/staff/meg-houseworth.jpg',
-  },
-  {
-    name: 'Yash Goyal',
-    role: 'Safety Officer',
-    bio: 'Makes sure trip leads are trained, first aid kits are stocked, and our risk management actually holds up in the field.',
-    imageUrl: '/staff/yash-goyal.jpg',
   },
   {
     name: 'Saskia Freedberg',
@@ -176,11 +177,6 @@ export const staff: StaffMember[] = [
     name: 'Angela Ke',
     role: 'Staff Member / Trip Lead',
     imageUrl: '/staff/angela-ke.jpg',
-  },
-  {
-    name: 'Claire Miller',
-    role: 'Social Media',
-    imageUrl: '/staff/claire-miller.jpg',
   },
   {
     name: 'Colin Soohoo',
