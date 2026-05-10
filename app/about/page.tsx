@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import PageHero from '@/components/ui/PageHero'
-import { staff } from '@/data/staff'
+import { alumniTripLeads, staff } from '@/data/staff'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
@@ -101,6 +101,50 @@ export default function AboutPage() {
                 <p className={`font-display font-bold ${highlight ? 'text-4xl text-primary-foreground' : 'text-3xl text-bark'}`}>{value}</p>
                 <p className={`text-sm mt-1 ${highlight ? 'text-primary-foreground/80' : 'text-muted-foreground'}`}>{label}</p>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Separator />
+
+      {/* Alumni grid */}
+      <section id="alumni" className="py-20 bg-parchment">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-3 text-center">The greats who have Graduated.</p>
+          <h2 className="font-display text-3xl md:text-4xl text-bark font-bold mb-12 text-center">
+            Alumni
+          </h2>
+          <div className="flex flex-wrap justify-center gap-6">
+            {alumniTripLeads.map((member) => (
+              <Card key={member.name} className="w-full max-w-sm overflow-hidden border-secondary shadow-sm bg-parchment-dark pt-0">
+                <div className="relative aspect-square w-full bg-muted flex items-center justify-center">
+                  {member.imageUrl ? (
+                    <Image
+                      src={member.imageUrl}
+                      alt={member.name}
+                      fill
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      className="object-cover"
+                      style={{
+                        ...(member.objectPosition ? { objectPosition: member.objectPosition } : {}),
+                        ...(member.imageScale ? { transform: `scale(${member.imageScale})` } : {}),
+                      }}
+                    />
+                  ) : (
+                    <Avatar className="size-20">
+                      <AvatarImage src={undefined} alt={member.name} />
+                      <AvatarFallback className="bg-secondary text-foreground text-2xl font-bold">
+                        {member.name.charAt(0)}
+                      </AvatarFallback>
+                    </Avatar>
+                  )}
+                </div>
+                <CardContent className="p-5">
+                  <p className="font-display text-lg font-bold text-bark">{member.name}</p>
+                  <p className="text-primary text-sm font-semibold">{member.role}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
