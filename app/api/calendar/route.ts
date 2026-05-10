@@ -19,7 +19,16 @@ export async function GET() {
   url.searchParams.set('singleEvents', 'true')
   url.searchParams.set('orderBy', 'startTime')
 
-  const res = await fetch(url.toString(), { next: { revalidate: 3600 } })
+  let res: Response
+  try {
+    res = await fetch(url.toString(), {
+      next: { revalidate: 3600 },
+      signal: AbortSignal.timeout(8000),
+    })
+  } catch {
+    return NextResponse.json({ error: 'Calendar request timed out' }, { status: 504 })
+  }
+
   if (!res.ok) {
     return NextResponse.json({ error: 'Failed to fetch calendar events' }, { status: 502 })
   }

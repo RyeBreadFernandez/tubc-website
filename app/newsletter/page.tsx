@@ -102,7 +102,7 @@ export default async function NewsletterPage() {
 
           {issues.length > 0 ? (
             <div className="space-y-4">
-              {rest.map((issue, index) => (
+              {rest.map((issue) => (
                 <div
                   key={issue.id}
                   className="bg-parchment border border-sand rounded-md p-6 flex flex-col sm:flex-row sm:items-center gap-4"
@@ -129,9 +129,27 @@ export default async function NewsletterPage() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-16 text-soil">
-              <p className="font-display text-xl mb-2">No issues yet</p>
-              <p className="text-sm">Subscribe above and you&apos;ll get it when the first one goes out.</p>
+            <div className="py-14">
+              <div className="max-w-2xl mx-auto text-center">
+                <p className="text-terra text-xs font-semibold uppercase tracking-widest mb-3">First dispatch</p>
+                <h2 className="font-display text-3xl text-bark font-bold">The next issue is being packed.</h2>
+                <p className="text-soil mt-3">
+                  We&apos;ll use this space for trip signups, gear notes, route beta, and the occasional
+                  after-hike lesson someone learned the memorable way.
+                </p>
+              </div>
+              <div className="grid sm:grid-cols-3 gap-4 mt-10">
+                {[
+                  ['Trip signups', 'What is going out, what skill level it is, and when to jump in.'],
+                  ['Gear notes', 'Rental reminders, packing mistakes, and what actually stayed dry.'],
+                  ['Trail reports', 'Short notes from the latest crew back from the mountains.'],
+                ].map(([title, copy]) => (
+                  <div key={title} className="rounded-md border border-sand bg-parchment p-5">
+                    <h3 className="font-display text-lg font-bold text-bark">{title}</h3>
+                    <p className="text-sm text-soil mt-2 leading-relaxed">{copy}</p>
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>

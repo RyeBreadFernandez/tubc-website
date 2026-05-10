@@ -12,11 +12,8 @@ export default function RouteProgressBar() {
     if (prevPath.current === pathname) return;
     prevPath.current = pathname;
 
-    setActive(false);
-    // Yield one frame so the class reset is committed before re-adding
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => setActive(true));
-    });
+    const frame = requestAnimationFrame(() => setActive(true));
+    return () => cancelAnimationFrame(frame);
   }, [pathname]);
 
   if (!active) return null;

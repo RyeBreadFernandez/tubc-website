@@ -1,6 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
 import { format } from 'date-fns'
 import { setPublished } from './actions'
+import { cookies } from 'next/headers'
+import { redirect } from 'next/navigation'
+import { getOfficerEmails, isOfficerEmail } from '@/lib/officers'
+import { createClient as createServerClient } from '@/utils/supabase/server'
+import { logout } from '@/app/auth/actions'
 
 import type { Metadata } from 'next'
 
@@ -16,9 +21,59 @@ export const metadata: Metadata = {
 }
 
 export default async function ReviewPage() {
+  const cookieStore = await cookies()
+  const supabase = await createServerClient(cookieStore)
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (!user) {
+    redirect('/login?next=/dashboard/review')
+  }
+
+  const officerEmails = getOfficerEmails()
+  const isOfficer = isOfficerEmail(user.email)
+
+  if (!isOfficer) {
+    return (
+      <main id="main-content" className="flex-1 pt-16 bg-parchment min-h-screen">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-1">Officer area</p>
+          <h1 className="font-display text-3xl md:text-4xl text-bark font-bold">Access Not Configured</h1>
+          <p className="text-soil mt-4 leading-relaxed">
+            You are signed in as {user.email}, but this email is not in the officer allowlist.
+            {officerEmails.length === 0
+              ? ' Add OFFICER_EMAILS to the environment before enabling this dashboard.'
+              : ' Ask a site admin to add this email to OFFICER_EMAILS.'}
+          </p>
+          <form action={logout} className="mt-6">
+            <button type="submit" className="text-terra font-semibold hover:text-terra-dark transition-colors">
+              Sign out
+            </button>
+          </form>
+        </div>
+      </main>
+    )
+  }
+
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+
+  if (!serviceRoleKey || !supabaseUrl) {
+    return (
+      <main id="main-content" className="flex-1 pt-16 bg-parchment min-h-screen">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+          <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-1">Officer area</p>
+          <h1 className="font-display text-3xl md:text-4xl text-bark font-bold">Dashboard Not Configured</h1>
+          <p className="text-soil mt-4 leading-relaxed">
+            Supabase server credentials are missing, so trip reports cannot be reviewed yet.
+          </p>
+        </div>
+      </main>
+    )
+  }
+
   const admin = createClient(
-    process.env.NEXT_PUBLIC_SUPABASE_URL!,
-    process.env.SUPABASE_SERVICE_ROLE_KEY!,
+    supabaseUrl,
+    serviceRoleKey,
     { auth: { persistSession: false } },
   )
 
@@ -36,6 +91,11 @@ export default async function ReviewPage() {
           <p className="text-terra text-sm font-semibold uppercase tracking-widest mb-1">Officer area</p>
           <h1 className="font-display text-3xl md:text-4xl text-bark font-bold">Review Trip Reports</h1>
           <p className="text-soil text-sm mt-1">{all.filter(t => !t.published).length} pending · {all.filter(t => t.published).length} published</p>
+          <form action={logout} className="mt-3">
+            <button type="submit" className="text-terra text-sm font-semibold hover:text-terra-dark transition-colors">
+              Sign out
+            </button>
+          </form>
         </div>
 
         {all.length === 0 ? (

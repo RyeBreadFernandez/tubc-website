@@ -1,4 +1,43 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
+
+const photos = [
+  {
+    src: '/cottonwood-lakes.jpg',
+    alt: 'Cottonwood Lakes basin with snow-dusted Sierra peaks',
+    title: 'Cottonwood Lakes',
+    caption: 'Alpine starts, cold water, and the kind of views that make the drive worth it.',
+    className: 'md:col-span-2 md:row-span-2',
+  },
+  {
+    src: '/staff-group.jpg',
+    alt: 'Backpacking club members gathered outdoors',
+    title: 'Camp Crew',
+    caption: 'The part where everyone finds out who packed the best snacks.',
+    className: '',
+  },
+  {
+    src: '/trips-hero.jpg',
+    alt: 'Yosemite valley at sunset',
+    title: 'Yosemite Evenings',
+    caption: 'Big walls, small headlamps, and a quiet ride home.',
+    className: '',
+  },
+  {
+    src: '/trip-logs-hero.jpg',
+    alt: 'Backcountry landscape used for trip logs',
+    title: 'From the Logs',
+    caption: 'Photos tied to the stories members bring back from the trail.',
+    className: '',
+  },
+  {
+    src: '/about-hero.jpg',
+    alt: 'TUBC members on a club outing',
+    title: 'Bruins Outside',
+    caption: 'No experience required - just enough curiosity to say yes.',
+    className: 'md:col-span-2',
+  },
+]
 
 export const metadata: Metadata = {
   title: 'Gallery | The Backpacking Club at UCLA',
@@ -46,24 +85,44 @@ export default function GalleryPage() {
         </div>
       </section>
 
-      {/* Coming soon */}
-      <section className="pb-32 pt-16 bg-secondary">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-muted mb-6">
-            <svg className="w-8 h-8 text-soil" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
-            </svg>
+      <section className="py-14 bg-secondary">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 auto-rows-[260px] gap-4">
+            {photos.map((photo) => (
+              <figure
+                key={photo.src}
+                className={`group relative overflow-hidden rounded-md bg-bark ${photo.className}`}
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-bark/80 via-bark/15 to-transparent" />
+                <figcaption className="absolute inset-x-0 bottom-0 p-5 text-parchment">
+                  <h2 className="font-display text-2xl font-bold">{photo.title}</h2>
+                  <p className="mt-1 text-sm text-parchment/80 max-w-md">{photo.caption}</p>
+                </figcaption>
+              </figure>
+            ))}
           </div>
-          <p className="font-display text-2xl text-bark font-bold mb-3">Photos coming soon</p>
-          <p className="text-soil text-base max-w-md mx-auto">We&apos;re pulling together the best shots from our trips. For now, the Instagram has it all — Whitney sunrises, Cottonwood Lakes camp setups, and everyone&apos;s post-hike faces.</p>
-          <a
-            href="https://www.instagram.com/uclabackpacking/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 mt-6 px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors"
-          >
-            Follow on Instagram
-          </a>
+
+          <div className="mt-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-border pt-8">
+            <div>
+              <h2 className="font-display text-2xl text-bark font-bold">Have photos from a trip?</h2>
+              <p className="text-soil mt-1">Send the good summit shots, camp chaos, and trail candids our way.</p>
+            </div>
+            <a
+              href="https://www.instagram.com/uclabackpacking/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-6 py-2.5 bg-terra hover:bg-terra-dark text-parchment font-semibold rounded-md text-sm transition-colors"
+            >
+              Follow on Instagram
+            </a>
+          </div>
         </div>
       </section>
     </main>

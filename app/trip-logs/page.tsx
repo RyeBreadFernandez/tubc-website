@@ -131,7 +131,7 @@ export default async function TripLogsPage() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="font-display text-3xl font-bold text-bark mb-4">Been on a TUBC trip?</h2>
           <p className="text-muted-foreground mb-8">
-            Share your experience with the club. Write up your trip and we'll add it to the log.
+            Share your experience with the club. Write up your trip and we&apos;ll add it to the log.
           </p>
           <Link
             href="/trip-logs/submit"

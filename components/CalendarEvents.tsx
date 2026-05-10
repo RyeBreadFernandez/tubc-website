@@ -41,16 +41,34 @@ export default function CalendarEvents() {
   const [status, setStatus] = useState<'loading' | 'ok' | 'error' | 'unconfigured'>('loading')
 
   useEffect(() => {
-    fetch('/api/calendar')
-      .then((r) => {
-        if (r.status === 503) return setStatus('unconfigured')
+    const controller = new AbortController()
+    const timeout = window.setTimeout(() => controller.abort(), 9000)
+    let alive = true
+
+    fetch('/api/calendar', { signal: controller.signal })
+      .then(async (r) => {
+        if (!alive) return
+        if (r.status === 503) {
+          setStatus('unconfigured')
+          return
+        }
         if (!r.ok) throw new Error()
-        return r.json().then((data) => {
+        const data: CalendarEvent[] = await r.json()
+        if (alive) {
           setEvents(data)
           setStatus('ok')
-        })
+        }
       })
-      .catch(() => setStatus('error'))
+      .catch(() => {
+        if (alive) setStatus('error')
+      })
+      .finally(() => window.clearTimeout(timeout))
+
+    return () => {
+      alive = false
+      window.clearTimeout(timeout)
+      controller.abort()
+    }
   }, [])
 
   if (status === 'loading') {
@@ -88,7 +106,9 @@ export default function CalendarEvents() {
     return (
       <div className="text-center py-12 bg-parchment rounded-md border border-secondary">
         <p className="font-display text-xl text-bark mb-2">Couldn&apos;t load events</p>
-        <p className="text-muted-foreground text-sm">Try refreshing the page.</p>
+        <p className="text-muted-foreground text-sm">
+          The calendar is taking too long. Use the monthly view below or join Slack for the latest signups.
+        </p>
       </div>
     )
   }

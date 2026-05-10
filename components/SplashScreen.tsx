@@ -9,12 +9,13 @@ export default function SplashScreen() {
   useEffect(() => {
     if (sessionStorage.getItem("tubc_splash_seen")) return;
     sessionStorage.setItem("tubc_splash_seen", "1");
-    setVisible(true);
 
+    const showTimer = setTimeout(() => setVisible(true), 0);
     const leaveTimer = setTimeout(() => setLeaving(true), 1800);
     const removeTimer = setTimeout(() => setVisible(false), 2200);
 
     return () => {
+      clearTimeout(showTimer);
       clearTimeout(leaveTimer);
       clearTimeout(removeTimer);
     };

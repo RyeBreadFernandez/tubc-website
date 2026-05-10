@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Fraunces, Nunito, DM_Mono, Geist, Raleway } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,31 +8,6 @@ import RouteProgressBar from "@/components/RouteProgressBar";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
-
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  variable: "--font-display",
-  axes: ["SOFT", "WONK"],
-});
-
-const nunito = Nunito({
-  subsets: ["latin"],
-  variable: "--font-body",
-});
-
-const dmMono = DM_Mono({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-mono",
-});
-
-const raleway = Raleway({
-  subsets: ["latin"],
-  weight: ["200", "300", "400"],
-  variable: "--font-label",
-});
 
 export const metadata: Metadata = {
   title: {
@@ -78,7 +52,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", fraunces.variable, nunito.variable, dmMono.variable, raleway.variable, "font-sans", geist.variable)}
+      className={cn("h-full", "antialiased", "font-sans")}
     >
       <body className="min-h-full flex flex-col bg-parchment text-bark font-body">
         <a

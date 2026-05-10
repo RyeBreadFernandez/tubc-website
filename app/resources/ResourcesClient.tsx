@@ -73,14 +73,37 @@ export default function ResourcesPage() {
 
       <section className="py-12 bg-parchment">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mb-10 grid lg:grid-cols-[1.2fr_2fr] gap-6 items-start">
+            <div>
+              <p className="text-primary text-sm font-semibold uppercase tracking-widest mb-2">Start here</p>
+              <h2 className="font-display text-2xl md:text-3xl text-bark font-bold">Pick the guide that matches today&apos;s problem.</h2>
+            </div>
+            <div className="grid sm:grid-cols-3 gap-3">
+              {[
+                ['First overnight', '/resources/packing-list', 'Pack list, borrowed gear, and what not to overthink.'],
+                ['No car, no problem', '/resources/la-hiking', 'Trail ideas close to campus and transit-friendly options.'],
+                ['Leading a crew', '/resources/first-aid', 'Safety basics, evacuation calls, and field judgment.'],
+              ].map(([title, href, copy]) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="rounded-md border border-sand bg-parchment-dark p-4 hover:border-primary/40 hover:shadow-sm transition-all"
+                >
+                  <h3 className="font-display text-lg font-bold text-bark">{title}</h3>
+                  <p className="text-sm text-muted-foreground mt-2 leading-relaxed">{copy}</p>
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <Tabs defaultValue="All">
-            <div className="overflow-x-auto mb-8 -mx-4 px-4 sm:mx-0 sm:px-0">
-              <TabsList className="flex flex-nowrap gap-1 h-auto bg-transparent p-0 w-max">
+            <div className="mb-8">
+              <TabsList className="flex flex-wrap gap-2 h-auto bg-transparent p-0 w-full sm:w-max">
                 {categories.map((cat) => (
                   <TabsTrigger
                     key={cat}
                     value={cat}
-                    className="rounded-md border border-secondary data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-bark transition-colors whitespace-nowrap"
+                    className="flex-none rounded-md border border-secondary data-active:bg-primary data-active:text-primary-foreground data-active:border-primary px-4 py-1.5 text-sm font-semibold text-muted-foreground hover:text-bark transition-colors whitespace-nowrap"
                   >
                     {cat}
                   </TabsTrigger>
