@@ -12,30 +12,32 @@ export const staff: StaffMember[] = [
   {
     name: 'Noah',
     role: 'Dot Connector',
+    bio: 'Help manage the behind the scenes stuff and make sure our club embodies the values we want to share.',
     imageUrl: '/staff/noah.png',
   },
   {
     name: 'Emilia Podesta',
     role: 'Dot Connector',
-    bio: 'Help manage the behind the scenes stuff and make sure our club embodies the values we want to share!',
+    bio: 'Help manage the behind the scenes stuff and make sure our club embodies the values we want to share.',
     imageUrl: '/staff/emilia-podesta.jpg',
   },
   {
     name: 'Ryan',
-    role: 'Finance',
+    role: 'Treasurer',
+    bio: 'Manages club finances, tracks trip spending, handles the club card, and helps keep TUBC trips accessible and affordable for members.',
     imageUrl: '/staff/ryan.jpg',
   },
   {
     name: 'Summer Frazier',
     role: 'Potential Treasurer',
-    bio: 'Handling the money and club card next year',
+    bio: 'Handling the money and club card next year.',
     imageUrl: '/staff/summer-frazier.jpg',
     objectPosition: 'center 55%',
   },
   {
     name: 'Everett Harriss',
-    role: 'Finance',
-    bio: 'Handling the money',
+    role: 'Potential Treasurer',
+    bio: 'Handling the money.',
     imageUrl: '/staff/everett-harriss.jpg',
   },
   {
@@ -52,14 +54,14 @@ export const staff: StaffMember[] = [
   {
     name: 'Ellie Sellman',
     role: 'Gear Lead',
-    bio: 'Organizing and distributing gear to ensure that trip participants and leads can access what they need',
+    bio: 'Organizing and distributing gear to ensure that trip participants and leads can access what they need.',
     imageUrl: '/staff/ellie-sellman.jpg',
   },
   // Social Media
   {
     name: 'Lucy Samuels',
     role: 'Social Media',
-    bio: 'I co manage the Instagram (posting for socials, all of our pictures from trips, reaching out to sponsors) with Claire!',
+    bio: 'I co manage the Instagram (posting for socials, all of our pictures from trips, reaching out to sponsors) with Claire.',
     imageUrl: '/staff/lucy-samuels.jpg',
     objectPosition: 'center 55%',
   },
@@ -70,7 +72,7 @@ export const staff: StaffMember[] = [
   },
   {
     name: 'Kristi Tomlinson',
-    role: 'Ikon Representative',
+    role: 'IKON Representative',
     imageUrl: '/staff/kristi-tomlinson.jpg',
   },
   {
@@ -82,25 +84,25 @@ export const staff: StaffMember[] = [
   {
     name: 'Katherine Chen',
     role: 'Trip Lead / Social Chair',
-    bio: 'plan super awesome events for everyone',
+    bio: 'Plan super awesome events for everyone.',
     imageUrl: '/staff/katherine-chen.png',
   },
   {
     name: 'Sofia Nyez',
     role: 'Social Planning / Newsletter',
-    bio: 'I plan social events for our wonderful club, both for members & staff to cultivate our wonderful community! We have put on a Halloween fundrager, craft night, game night, and make-your-own granola social. My personal favorite was the beaded lizard crafting night, it was so awesome to see such a great turnout! In addition, I started a TUBC newsletter that I\'ve had members & staff contribute to, showcasing our journalistic & photography skills while showing off what our club has to offer! I also can be found moonlighting some merch designs... I <3 TUBC!!!!!!!',
+    bio: 'I plan social events for our wonderful club, both for members & staff to cultivate our wonderful community. We have put on a Halloween fundrager, craft night, game night, and make-your-own granola social. My personal favorite was the beaded lizard crafting night, it was so awesome to see such a great turnout. In addition, I started a TUBC newsletter that I\'ve had members & staff contribute to, showcasing our journalistic & photography skills while showing off what our club has to offer. I also can be found moonlighting some merch designs... I <3 TUBC.',
     imageUrl: '/staff/sofia-nyez.jpg',
   },
   {
     name: 'Meg Houseworth',
     role: 'Socials / Trip Lead',
-    bio: 'Plan fun events that allow our staff and general members to get to know each other better!',
+    bio: 'Plan fun events that allow our staff and general members to get to know each other better.',
     imageUrl: '/staff/meg-houseworth.jpg',
   },
   {
     name: 'Yash Goyal',
     role: 'Safety Officer',
-    bio: 'Keeping members safe in the outdoors',
+    bio: 'Keeping members safe in the outdoors.',
     imageUrl: '/staff/yash-goyal.jpg',
   },
 
