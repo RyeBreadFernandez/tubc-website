@@ -2,10 +2,12 @@ import { serializeJsonLd } from '@/lib/json-ld'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import Badge from '@/components/ui/DifficultyBadge'
 import { getMountainPlaceholder } from '@/lib/utils/placeholder'
 import { format, parse } from 'date-fns'
+import { ChevronLeftIcon } from 'lucide-react'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -132,6 +134,13 @@ export default async function TripLogPage({ params }: Props) {
       {/* Header — clean title block, no image background */}
       <div className="bg-secondary/40 border-b border-border">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <Link
+            href="/trip-logs"
+            aria-label="Back to trip logs"
+            className="mb-5 inline-flex size-8 items-center justify-center rounded-md text-soil transition-colors hover:bg-parchment hover:text-bark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50"
+          >
+            <ChevronLeftIcon className="size-4" aria-hidden="true" />
+          </Link>
           {trip.difficulty && <Badge difficulty={trip.difficulty} className="mb-4" />}
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-2">
             {trip.title}
