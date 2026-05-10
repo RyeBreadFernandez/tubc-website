@@ -117,7 +117,7 @@ export default function AboutPage() {
           </h2>
           <div className="flex flex-wrap justify-center gap-6">
             {alumniTripLeads.map((member) => (
-              <Card key={member.name} className="w-full max-w-sm overflow-hidden border-secondary shadow-sm bg-parchment-dark pt-0">
+              <Card key={member.name} className="w-full overflow-hidden border-secondary bg-parchment-dark pt-0 shadow-sm sm:w-96">
                 <div className="relative aspect-square w-full bg-muted flex items-center justify-center">
                   {member.imageUrl ? (
                     <Image
