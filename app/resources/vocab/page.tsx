@@ -1,9 +1,11 @@
 import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Vocab | The Backpacking Club at UCLA',
+  title: 'Vocab',
   description: 'Backpacking and hiking terms explained for beginners — base weight, bear canister, bivy, LNT, thru-hike, and more. A glossary from UCLA Backpacking Club.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/vocab',
@@ -62,6 +64,26 @@ export default function VocabPage() {
               { '@type': 'ListItem', position: 3, name: 'Vocab', item: 'https://www.uclabackpackingclub.com/resources/vocab' },
             ],
           }),
+        }}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/vocab',
+          name: 'Backpacking Vocab',
+          description: 'A beginner-friendly glossary of backpacking and hiking terms from The Backpacking Club at UCLA.',
+        })}
+      />
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'DefinedTermSet',
+          '@id': 'https://www.uclabackpackingclub.com/resources/vocab#terms',
+          name: 'Backpacking vocabulary glossary',
+          hasDefinedTerm: terms.map((term) => ({
+            '@type': 'DefinedTerm',
+            name: term.term,
+            description: term.def,
+          })),
         }}
       />
       <section className="pt-16 pb-8 bg-parchment">

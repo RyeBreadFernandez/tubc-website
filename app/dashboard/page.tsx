@@ -2,10 +2,11 @@ import { redirect } from 'next/navigation'
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Dashboard | The Backpacking Club at UCLA',
+  title: 'Dashboard',
   robots: {
     index: false,
     follow: false,
+    googleBot: { index: false, follow: false },
   },
 }
 

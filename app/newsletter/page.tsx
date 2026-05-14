@@ -1,12 +1,13 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import NewsletterSignup from '@/components/NewsletterSignup'
 import { fetchNewsletters } from '@/lib/mailchimp'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 
 export const metadata: Metadata = {
-  title: 'Newsletter | The Backpacking Club at UCLA',
+  title: 'Newsletter',
   description: 'The UCLA Backpacking Club newsletter — trip recaps, gear tips, and club news. Read past issues and subscribe to get the next one in your inbox.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/newsletter',
@@ -39,18 +40,26 @@ export default async function NewsletterPage() {
 
   return (
     <main id="main-content" className="flex-1 pt-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
-              { '@type': 'ListItem', position: 2, name: 'Newsletter', item: 'https://www.uclabackpackingclub.com/newsletter' },
-            ],
-          }),
-        }}
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Newsletter', path: '/newsletter' }])} />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/newsletter',
+          name: 'Newsletter',
+          description: 'TUBC newsletter archive with trip recaps, gear notes, route beta, and club news.',
+          type: 'CollectionPage',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/newsletter',
+          name: 'TUBC newsletter archive',
+          description: 'Past newsletter issues from The Backpacking Club at UCLA.',
+          items: issues.map((issue) => ({
+            name: issue.title,
+            description: issue.subject,
+            url: issue.archiveUrl,
+          })),
+        })}
       />
       <section className="pt-16 pb-10 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

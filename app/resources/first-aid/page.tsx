@@ -1,9 +1,11 @@
 import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'First Aid | The Backpacking Club at UCLA',
+  title: 'First Aid',
   description: 'Wilderness first aid basics for backpackers — blisters, altitude sickness, hypothermia, sprains, and when to evacuate. A practical trail guide from UCLA Backpacking Club.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/first-aid',
@@ -50,6 +52,24 @@ export default function FirstAidPage() {
             ],
           }),
         }}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/first-aid',
+          name: 'First Aid',
+          description: 'Wilderness first aid basics for backpackers, including blisters, altitude sickness, hypothermia, sprains, and evacuation decisions.',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/resources/first-aid',
+          name: 'Wilderness first aid topics',
+          description: 'Common trail health and safety topics covered by TUBC.',
+          items: topics.map((topic) => ({
+            name: topic.title,
+            description: topic.content,
+          })),
+        })}
       />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

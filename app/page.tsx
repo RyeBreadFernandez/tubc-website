@@ -1,4 +1,3 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import Image from 'next/image'
 import { createClient } from '@/utils/supabase/server'
@@ -8,9 +7,13 @@ import { getMountainPlaceholder } from '@/lib/utils/placeholder'
 import { format } from 'date-fns'
 import type { Metadata } from 'next'
 import Reveal from '@/components/ui/Reveal'
+import JsonLd from '@/components/JsonLd'
+import { SITE_NAME, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'The Backpacking Club at UCLA',
+  title: {
+    absolute: SITE_NAME,
+  },
   description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com',
@@ -51,44 +54,12 @@ export default async function Home() {
 
   return (
     <main id="main-content" className="flex-1">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'WebSite',
-            name: 'The Backpacking Club at UCLA',
-            url: 'https://www.uclabackpackingclub.com',
-            description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level.',
-            publisher: {
-              '@type': 'Organization',
-              name: 'The Backpacking Club at UCLA',
-              url: 'https://www.uclabackpackingclub.com',
-              logo: {
-                '@type': 'ImageObject',
-                url: 'https://www.uclabackpackingclub.com/logo.png',
-              },
-            },
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: 'The Backpacking Club at UCLA',
-            alternateName: 'TUBC',
-            url: 'https://www.uclabackpackingclub.com',
-            logo: 'https://www.uclabackpackingclub.com/logo.png',
-            description: 'A student-run outdoor club at UCLA dedicated to making backpacking and hiking accessible to every Bruin.',
-            email: 'uclabackpackingclub@gmail.com',
-            sameAs: [
-              'https://www.instagram.com/uclabackpacking/',
-            ],
-          }),
-        }}
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/',
+          name: SITE_NAME,
+          description: "UCLA's student backpacking club for free trips, gear rentals, and outdoor education for every level.",
+        })}
       />
 
       {/* Hero */}

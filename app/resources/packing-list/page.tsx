@@ -1,9 +1,10 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Packing List | The Backpacking Club at UCLA',
+  title: 'Packing List',
   description: 'Complete backpacking packing list for overnight and multi-day trips — gear, clothing, food, safety, and Leave No Trace essentials from UCLA Backpacking Club.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/packing-list',
@@ -57,19 +58,26 @@ const categories = [
 export default function PackingListPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
-              { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.uclabackpackingclub.com/resources' },
-              { '@type': 'ListItem', position: 3, name: 'Packing List', item: 'https://www.uclabackpackingclub.com/resources/packing-list' },
-            ],
-          }),
-        }}
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: 'Packing List', path: '/resources/packing-list' }])} />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/packing-list',
+          name: 'Packing List',
+          description: 'A complete backpacking packing list for overnight and multi-day trips, organized by gear category.',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/resources/packing-list',
+          name: 'Backpacking packing list',
+          description: 'Backpacking gear, clothing, food, water, safety, and Leave No Trace essentials recommended by TUBC.',
+          items: categories.flatMap((category) =>
+            category.items.map((item) => ({
+              name: item,
+              description: category.name,
+            })),
+          ),
+        })}
       />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

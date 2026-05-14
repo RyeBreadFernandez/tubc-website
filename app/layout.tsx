@@ -8,42 +8,79 @@ import RouteProgressBar from "@/components/RouteProgressBar";
 import { cn } from "@/lib/utils";
 import { Analytics } from "@vercel/analytics/next";
 import { Toaster } from "sonner";
+import JsonLd from "@/components/JsonLd";
+import {
+  DEFAULT_OG_IMAGE,
+  DEFAULT_OG_IMAGE_ALT,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+  SITE_SHORT_NAME,
+  SITE_URL,
+  organizationJsonLd,
+  websiteJsonLd,
+} from "@/lib/seo";
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  applicationName: SITE_NAME,
   title: {
-    default: "The Backpacking Club at UCLA",
-    template: "%s — TUBC",
+    default: SITE_NAME,
+    template: `%s | ${SITE_SHORT_NAME}`,
   },
-  description: "The Backpacking Club is an inclusive community of outgoing and adventurous people who enjoy exploring the outdoors, love nature, and are dedicated to outdoor stewardship.",
-  keywords: ["UCLA", "backpacking", "hiking", "outdoor club", "UCLA hiking club", "TUBC", "backpacking club", "Los Angeles hiking"],
+  description: SITE_DESCRIPTION,
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
+  category: "Outdoor recreation",
   robots: {
     index: true,
     follow: true,
-    googleBot: { index: true, follow: true },
+    googleBot: {
+      index: true,
+      follow: true,
+      noimageindex: false,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   openGraph: {
-    title: "The Backpacking Club at UCLA",
-    description: "UCLA's student backpacking club for free trips, gear rentals, outdoor education, and community on trails across California and beyond.",
-    siteName: "The Backpacking Club at UCLA",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    siteName: SITE_NAME,
     type: "website",
     locale: "en_US",
-    url: "/",
+    url: SITE_URL,
     images: [
       {
-        url: "/staff-group.jpg",
+        url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: "The Backpacking Club at UCLA",
+        alt: DEFAULT_OG_IMAGE_ALT,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "The Backpacking Club at UCLA",
-    description: "The Backpacking Club is an inclusive community of outgoing and adventurous people who enjoy exploring the outdoors, love nature, and are dedicated to outdoor stewardship.",
-    images: ["/staff-group.jpg"],
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
   },
-  metadataBase: new URL("https://www.uclabackpackingclub.com"),
+  icons: {
+    icon: [{ url: "/favicon.ico" }, { url: "/icon.png", type: "image/png", sizes: "192x192" }],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  manifest: "/manifest.webmanifest",
+  formatDetection: {
+    address: false,
+    email: false,
+    telephone: false,
+  },
+  other: {
+    "geo.region": "US-CA",
+    "geo.placename": "Los Angeles",
+    ICBM: "34.0689, -118.4452",
+  },
 };
 
 export default function RootLayout({
@@ -66,6 +103,8 @@ export default function RootLayout({
         <SplashScreen />
         <RouteProgressBar />
         <Navbar />
+        <JsonLd data={organizationJsonLd()} />
+        <JsonLd data={websiteJsonLd()} />
         {children}
         <Footer />
         <Analytics />

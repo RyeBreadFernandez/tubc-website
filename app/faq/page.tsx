@@ -1,10 +1,11 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import type { Metadata } from 'next'
 import { faqs } from '@/data/faq'
 import FAQClient from './FAQClient'
+import JsonLd from '@/components/JsonLd'
+import { breadcrumbJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'FAQ | The Backpacking Club at UCLA',
+  title: 'FAQ',
   description: 'Answers to common questions about The Backpacking Club at UCLA — how to join, gear rental, trip sign-ups, and what to expect on your first outing.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/faq',
@@ -27,34 +28,27 @@ export const metadata: Metadata = {
 export default function FAQPage() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
-              { '@type': 'ListItem', position: 2, name: 'FAQ', item: 'https://www.uclabackpackingclub.com/faq' },
-            ],
-          }),
-        }}
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'FAQ', path: '/faq' }])} />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/faq',
+          name: 'FAQ',
+          description: 'Answers to common questions about joining TUBC, gear rental, trip sign-ups, and first backpacking trips.',
+        })}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'FAQPage',
-            mainEntity: faqs.map((faq) => ({
-              '@type': 'Question',
-              name: faq.question,
-              acceptedAnswer: {
-                '@type': 'Answer',
-                text: faq.answer,
-              },
-            })),
-          }),
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          '@id': 'https://www.uclabackpackingclub.com/faq#faq',
+          mainEntity: faqs.map((faq) => ({
+            '@type': 'Question',
+            name: faq.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: faq.answer,
+            },
+          })),
         }}
       />
       <FAQClient />

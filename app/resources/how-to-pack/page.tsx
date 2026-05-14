@@ -1,9 +1,10 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { breadcrumbJsonLd, howToJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'How to Pack | The Backpacking Club at UCLA',
+  title: 'How to Pack',
   description: 'How to load a backpack properly — weight distribution, what goes where, and fitting your pack for comfort. Practical tips from UCLA Backpacking Club trip leaders.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/how-to-pack',
@@ -61,19 +62,24 @@ const sections = [
 export default function HowToPackPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
-              { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.uclabackpackingclub.com/resources' },
-              { '@type': 'ListItem', position: 3, name: 'How to Pack', item: 'https://www.uclabackpackingclub.com/resources/how-to-pack' },
-            ],
-          }),
-        }}
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: 'How to Pack', path: '/resources/how-to-pack' }])} />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/how-to-pack',
+          name: 'How to Pack',
+          description: 'How to load a backpack properly for comfort, balance, and easier hiking.',
+        })}
+      />
+      <JsonLd
+        data={howToJsonLd({
+          path: '/resources/how-to-pack',
+          name: 'How to pack a backpack',
+          description: 'Pack heavy items close to your back, keep quick-access layers near the top, and fit the pack before you go.',
+          steps: sections.map((section) => ({
+            name: section.title,
+            text: section.content,
+          })),
+        })}
       />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

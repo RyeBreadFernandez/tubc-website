@@ -4,11 +4,12 @@ import { login } from '@/app/auth/actions'
 import { safeNextPath } from '@/lib/navigation'
 
 export const metadata: Metadata = {
-  title: 'Login | The Backpacking Club at UCLA',
+  title: 'Login',
   description: 'Officer login for The Backpacking Club at UCLA.',
   robots: {
     index: false,
     follow: false,
+    googleBot: { index: false, follow: false },
   },
 }
 

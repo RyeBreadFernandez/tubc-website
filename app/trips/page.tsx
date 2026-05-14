@@ -1,10 +1,11 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import PageHero from '@/components/ui/PageHero'
 import CalendarEvents from '@/components/CalendarEvents'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { breadcrumbJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Trips & Events | The Backpacking Club at UCLA',
+  title: 'Trips & Events',
   description: 'Browse upcoming backpacking and hiking trips from The Backpacking Club at UCLA. Free to join — all levels welcome, from day hikes to multi-day Sierra crossings.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/trips',
@@ -31,18 +32,13 @@ const CALENDAR_ADD_URL = `https://calendar.google.com/calendar/r?cid=${encodeURI
 export default function TripsPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
-              { '@type': 'ListItem', position: 2, name: 'Trips & Events', item: 'https://www.uclabackpackingclub.com/trips' },
-            ],
-          }),
-        }}
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Trips & Events', path: '/trips' }])} />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/trips',
+          name: 'Trips & Events',
+          description: 'Upcoming UCLA Backpacking Club trips, hikes, workshops, and outdoor events.',
+        })}
       />
       <PageHero
         title="Trips & Events"

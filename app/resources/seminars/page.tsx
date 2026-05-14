@@ -1,9 +1,11 @@
 import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Seminars | The Backpacking Club at UCLA',
+  title: 'Seminars',
   description: 'Free workshops from UCLA Backpacking Club — intro to backpacking, navigation, wilderness first aid, gear deep dives, Sierra permit strategy, and more.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/seminars',
@@ -49,6 +51,24 @@ export default function SeminarsPage() {
             ],
           }),
         }}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/seminars',
+          name: 'Seminars',
+          description: 'Free UCLA Backpacking Club workshops on backpacking, navigation, wilderness first aid, gear, permits, and outdoor skills.',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/resources/seminars',
+          name: 'TUBC seminars and workshops',
+          description: 'Recurring outdoor education workshops from The Backpacking Club at UCLA.',
+          items: seminars.map((seminar) => ({
+            name: seminar.title,
+            description: `${seminar.description} Frequency: ${seminar.frequency}.`,
+          })),
+        })}
       />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

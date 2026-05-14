@@ -1,9 +1,11 @@
 import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'LA Hiking | The Backpacking Club at UCLA',
+  title: 'LA Hiking',
   description: 'The best hikes near UCLA — Griffith Park, Angeles National Forest, Santa Monica Mountains, and more. Day hike recommendations from The Backpacking Club at UCLA.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/la-hiking',
@@ -50,6 +52,24 @@ export default function LAHikingPage() {
             ],
           }),
         }}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/la-hiking',
+          name: 'LA Hiking',
+          description: 'Day hike recommendations near UCLA and around Los Angeles for new and experienced hikers.',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/resources/la-hiking',
+          name: 'Hikes near UCLA',
+          description: 'Los Angeles day hikes recommended by The Backpacking Club at UCLA.',
+          items: hikes.map((hike) => ({
+            name: hike.name,
+            description: `${hike.area}. ${hike.distance}. ${hike.difficulty}. ${hike.notes}`,
+          })),
+        })}
       />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

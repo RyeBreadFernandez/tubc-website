@@ -1,9 +1,11 @@
 import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Backcountry Cooking | The Backpacking Club at UCLA',
+  title: 'Backcountry Cooking',
   description: 'Meal ideas and cooking tips for backpacking trips — what to eat, how to pack light, altitude cooking notes, and Leave No Trace food prep from TUBC.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/backcountry-cooking',
@@ -54,6 +56,30 @@ export default function BackcountryCookingPage() {
             ],
           }),
         }}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/backcountry-cooking',
+          name: 'Backcountry Cooking',
+          description: 'Backpacking meal ideas, cooking tips, altitude notes, and Leave No Trace food practices from TUBC.',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/resources/backcountry-cooking',
+          name: 'Backcountry cooking ideas and tips',
+          description: 'Meal ideas and trail cooking advice for backpacking trips.',
+          items: [
+            ...meals.map((meal) => ({
+              name: `${meal.meal} ideas`,
+              description: meal.ideas.join(', '),
+            })),
+            ...tips.map((tip) => ({
+              name: tip.tip,
+              description: tip.body,
+            })),
+          ],
+        })}
       />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

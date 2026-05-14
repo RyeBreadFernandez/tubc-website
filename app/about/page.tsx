@@ -1,4 +1,3 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import Image from 'next/image'
 import PageHero from '@/components/ui/PageHero'
 import { alumniTripLeads, staff } from '@/data/staff'
@@ -6,9 +5,11 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { breadcrumbJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'About | The Backpacking Club at UCLA',
+  title: 'About',
   description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/about',
@@ -31,40 +32,14 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
-              { '@type': 'ListItem', position: 2, name: 'About', item: 'https://www.uclabackpackingclub.com/about' },
-            ],
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: 'The Backpacking Club at UCLA',
-            alternateName: 'TUBC',
-            url: 'https://www.uclabackpackingclub.com',
-            logo: 'https://www.uclabackpackingclub.com/logo.png',
-            description: 'A student-run outdoor club at UCLA dedicated to making backpacking and hiking accessible to everyone.',
-            contactPoint: {
-              '@type': 'ContactPoint',
-              email: 'uclabackpackingclub@gmail.com',
-              contactType: 'customer support',
-            },
-            sameAs: [
-              'https://www.instagram.com/uclabackpacking/',
-            ],
-          }),
-        }}
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'About', path: '/about' }])} />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/about',
+          name: 'About TUBC',
+          description: 'Learn about The Backpacking Club at UCLA, a student-run outdoor club with 10+ years of leading Bruins into the backcountry.',
+          type: 'AboutPage',
+        })}
       />
       <PageHero
         title="About TUBC"

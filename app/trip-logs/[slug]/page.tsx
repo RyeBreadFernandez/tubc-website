@@ -1,4 +1,3 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
@@ -8,6 +7,8 @@ import Badge from '@/components/ui/DifficultyBadge'
 import { getMountainPlaceholder } from '@/lib/utils/placeholder'
 import { format, parse } from 'date-fns'
 import { ChevronLeftIcon } from 'lucide-react'
+import JsonLd from '@/components/JsonLd'
+import { absoluteUrl, breadcrumbJsonLd } from '@/lib/seo'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -52,7 +53,7 @@ export async function generateMetadata({ params }: Props) {
     : [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: trip.title }]
 
   return {
-    title: `${trip.title} | The Backpacking Club at UCLA`,
+    title: trip.title,
     description,
     alternates: {
       canonical: `https://www.uclabackpackingclub.com/trip-logs/${slug}`,
@@ -81,53 +82,43 @@ export default async function TripLogPage({ params }: Props) {
 
   const photos: { url: string; caption?: string; order_index: number }[] = []
   const author = 'A TUBC Member'
+  const description = metadataDescription(trip)
+  const canonicalPath = `/trip-logs/${trip.slug}`
 
   return (
     <main id="main-content" className="flex-1 pt-16 bg-parchment min-h-screen">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
-              { '@type': 'ListItem', position: 2, name: 'Trip Logs', item: 'https://www.uclabackpackingclub.com/trip-logs' },
-              { '@type': 'ListItem', position: 3, name: trip.title, item: `https://www.uclabackpackingclub.com/trip-logs/${trip.slug}` },
-            ],
-          }),
-        }}
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: 'Home', path: '/' },
+          { name: 'Trip Logs', path: '/trip-logs' },
+          { name: trip.title, path: canonicalPath },
+        ])}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'Article',
-            headline: trip.title,
-            description: `${trip.location}${trip.difficulty ? ' · ' + trip.difficulty : ''}`,
-            image: trip.cover_image_url ?? 'https://www.uclabackpackingclub.com/trip-logs-hero.jpg',
-            datePublished: trip.trip_date ?? undefined,
-            author: {
-              '@type': 'Organization',
-              name: 'The Backpacking Club at UCLA',
-              url: 'https://www.uclabackpackingclub.com',
-            },
-            publisher: {
-              '@type': 'Organization',
-              name: 'The Backpacking Club at UCLA',
-              url: 'https://www.uclabackpackingclub.com',
-              logo: {
-                '@type': 'ImageObject',
-                url: 'https://www.uclabackpackingclub.com/logo.png',
-              },
-            },
-            url: `https://www.uclabackpackingclub.com/trip-logs/${trip.slug}`,
-            mainEntityOfPage: {
-              '@type': 'WebPage',
-              '@id': `https://www.uclabackpackingclub.com/trip-logs/${trip.slug}`,
-            },
-          }),
+      <JsonLd
+        data={{
+          '@context': 'https://schema.org',
+          '@type': 'Article',
+          '@id': `${absoluteUrl(canonicalPath)}#article`,
+          headline: trip.title,
+          description,
+          image: absoluteUrl(trip.cover_image_url ?? '/trip-logs-hero.jpg'),
+          datePublished: trip.trip_date ?? undefined,
+          articleSection: 'Trip Logs',
+          keywords: [trip.location, trip.difficulty, 'UCLA backpacking', 'trip report'].filter(Boolean),
+          articleBody: trip.content?.replace(/[#*`>_[\]()]/g, '').replace(/\s+/g, ' ').trim(),
+          author: {
+            '@id': 'https://www.uclabackpackingclub.com/#organization',
+          },
+          publisher: {
+            '@id': 'https://www.uclabackpackingclub.com/#organization',
+          },
+          spatialCoverage: trip.location,
+          url: absoluteUrl(canonicalPath),
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': `${absoluteUrl(canonicalPath)}#webpage`,
+          },
+          inLanguage: 'en-US',
         }}
       />
 

@@ -1,29 +1,30 @@
 import type { MetadataRoute } from 'next'
 import { createClient } from '@supabase/supabase-js'
+import { absoluteUrl } from '@/lib/seo'
 
-const BASE = 'https://www.uclabackpackingclub.com'
+const lastModified = new Date()
 
 const staticRoutes: MetadataRoute.Sitemap = [
-  { url: BASE, changeFrequency: 'weekly', priority: 1 },
-  { url: `${BASE}/about`, changeFrequency: 'monthly', priority: 0.8 },
-  { url: `${BASE}/trips`, changeFrequency: 'weekly', priority: 0.9 },
-  { url: `${BASE}/trip-logs`, changeFrequency: 'weekly', priority: 0.8 },
-  { url: `${BASE}/gallery`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${BASE}/newsletter`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${BASE}/faq`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${BASE}/resources`, changeFrequency: 'monthly', priority: 0.7 },
-  { url: `${BASE}/resources/la-hiking`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${BASE}/resources/trail-guides`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${BASE}/resources/where-to-go`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${BASE}/resources/packing-list`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${BASE}/resources/how-to-pack`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${BASE}/resources/gear-rental`, changeFrequency: 'monthly', priority: 0.6 },
-  { url: `${BASE}/resources/backcountry-cooking`, changeFrequency: 'monthly', priority: 0.5 },
-  { url: `${BASE}/resources/first-aid`, changeFrequency: 'monthly', priority: 0.5 },
-  { url: `${BASE}/resources/vocab`, changeFrequency: 'monthly', priority: 0.5 },
-  { url: `${BASE}/resources/entrance-fees`, changeFrequency: 'monthly', priority: 0.5 },
-  { url: `${BASE}/resources/parks-monuments`, changeFrequency: 'monthly', priority: 0.5 },
-  { url: `${BASE}/resources/seminars`, changeFrequency: 'monthly', priority: 0.5 },
+  { url: absoluteUrl('/'), lastModified, changeFrequency: 'weekly', priority: 1, images: [absoluteUrl('/cottonwood-lakes.jpg')] },
+  { url: absoluteUrl('/about'), lastModified, changeFrequency: 'monthly', priority: 0.8, images: [absoluteUrl('/about-hero.jpg')] },
+  { url: absoluteUrl('/trips'), lastModified, changeFrequency: 'weekly', priority: 0.9, images: [absoluteUrl('/trips-hero.jpg')] },
+  { url: absoluteUrl('/trip-logs'), lastModified, changeFrequency: 'weekly', priority: 0.8, images: [absoluteUrl('/trip-logs-hero.jpg')] },
+  { url: absoluteUrl('/gallery'), lastModified, changeFrequency: 'monthly', priority: 0.6, images: [absoluteUrl('/cottonwood-lakes.jpg'), absoluteUrl('/staff-group.jpg')] },
+  { url: absoluteUrl('/newsletter'), lastModified, changeFrequency: 'monthly', priority: 0.6 },
+  { url: absoluteUrl('/faq'), lastModified, changeFrequency: 'monthly', priority: 0.7 },
+  { url: absoluteUrl('/resources'), lastModified, changeFrequency: 'monthly', priority: 0.8 },
+  { url: absoluteUrl('/resources/la-hiking'), lastModified, changeFrequency: 'monthly', priority: 0.7 },
+  { url: absoluteUrl('/resources/trail-guides'), lastModified, changeFrequency: 'monthly', priority: 0.7 },
+  { url: absoluteUrl('/resources/where-to-go'), lastModified, changeFrequency: 'monthly', priority: 0.7 },
+  { url: absoluteUrl('/resources/packing-list'), lastModified, changeFrequency: 'monthly', priority: 0.7 },
+  { url: absoluteUrl('/resources/how-to-pack'), lastModified, changeFrequency: 'monthly', priority: 0.7 },
+  { url: absoluteUrl('/resources/gear-rental'), lastModified, changeFrequency: 'monthly', priority: 0.7 },
+  { url: absoluteUrl('/resources/backcountry-cooking'), lastModified, changeFrequency: 'monthly', priority: 0.6 },
+  { url: absoluteUrl('/resources/first-aid'), lastModified, changeFrequency: 'monthly', priority: 0.6 },
+  { url: absoluteUrl('/resources/vocab'), lastModified, changeFrequency: 'monthly', priority: 0.6 },
+  { url: absoluteUrl('/resources/entrance-fees'), lastModified, changeFrequency: 'monthly', priority: 0.6 },
+  { url: absoluteUrl('/resources/parks-monuments'), lastModified, changeFrequency: 'monthly', priority: 0.6 },
+  { url: absoluteUrl('/resources/seminars'), lastModified, changeFrequency: 'monthly', priority: 0.6 },
 ]
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -36,19 +37,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     )
     const { data } = await supabase
       .from('trip_logs')
-      .select('slug, trip_date')
+      .select('slug, trip_date, cover_image_url')
       .eq('published', true)
 
     if (data) {
       tripLogRoutes = data.map((trip) => ({
-        url: `${BASE}/trip-logs/${trip.slug}`,
+        url: absoluteUrl(`/trip-logs/${trip.slug}`),
         lastModified: trip.trip_date ? new Date(trip.trip_date) : undefined,
         changeFrequency: 'monthly' as const,
         priority: 0.7,
+        images: trip.cover_image_url ? [absoluteUrl(trip.cover_image_url)] : undefined,
       }))
     }
   } catch {
-    // Supabase unavailable at build time — trip logs excluded
+    // Supabase may be unavailable at build time, so trip logs are excluded.
   }
 
   return [...staticRoutes, ...tripLogRoutes]

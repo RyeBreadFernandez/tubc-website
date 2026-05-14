@@ -1,9 +1,11 @@
 import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Parks & Monuments | The Backpacking Club at UCLA',
+  title: 'Parks & Monuments',
   description: 'Overview of national parks and forests visited by UCLA Backpacking Club — Yosemite, Kings Canyon, Joshua Tree, Zion, Angeles NF, and more. Know before you go.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/parks-monuments',
@@ -52,6 +54,24 @@ export default function ParksMonumentsPage() {
             ],
           }),
         }}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/parks-monuments',
+          name: 'Parks & Monuments',
+          description: 'Overview of national parks, forests, and public lands frequently visited by The Backpacking Club at UCLA.',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/resources/parks-monuments',
+          name: 'Parks and forests TUBC visits',
+          description: 'Public lands, parks, forests, and preserves commonly used for UCLA Backpacking Club trips.',
+          items: parks.map((park) => ({
+            name: park.name,
+            description: `${park.state}: ${park.description}`,
+          })),
+        })}
       />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

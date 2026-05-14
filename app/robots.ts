@@ -1,12 +1,14 @@
 import type { MetadataRoute } from 'next'
+import { absoluteUrl, SITE_URL } from '@/lib/seo'
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/dashboard', '/dashboard/', '/auth/'],
+      disallow: ['/api/', '/auth/', '/dashboard/', '/login', '/signup', '/trip-logs/submit'],
     },
-    sitemap: 'https://www.uclabackpackingclub.com/sitemap.xml',
+    sitemap: absoluteUrl('/sitemap.xml'),
+    host: SITE_URL,
   }
 }

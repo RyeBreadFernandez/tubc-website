@@ -1,9 +1,11 @@
 import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Where to Go | The Backpacking Club at UCLA',
+  title: 'Where to Go',
   description: 'Backpacking destinations near UCLA — the John Muir Trail, Kings Canyon, Yosemite, Joshua Tree, Channel Islands, Zion, and more curated by TUBC trip leaders.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/where-to-go',
@@ -60,6 +62,24 @@ export default function WhereToGoPage() {
             ],
           }),
         }}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/where-to-go',
+          name: 'Where to Go',
+          description: 'Backpacking and hiking destination ideas near UCLA, across California, and throughout the Southwest.',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/resources/where-to-go',
+          name: 'Backpacking destinations',
+          description: 'Destinations TUBC members recommend for backpacking, camping, and hiking.',
+          items: destinations.map((destination) => ({
+            name: destination.name,
+            description: `${destination.region}. ${destination.distance}. ${destination.difficulty}. ${destination.description}`,
+          })),
+        })}
       />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

@@ -4,11 +4,12 @@ import { signup } from '@/app/auth/actions'
 import { safeNextPath } from '@/lib/navigation'
 
 export const metadata: Metadata = {
-  title: 'Sign Up | The Backpacking Club at UCLA',
+  title: 'Sign Up',
   description: 'Create an officer account for The Backpacking Club at UCLA.',
   robots: {
     index: false,
     follow: false,
+    googleBot: { index: false, follow: false },
   },
 }
 

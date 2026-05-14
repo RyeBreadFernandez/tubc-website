@@ -1,4 +1,3 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import { createClient } from '@/utils/supabase/server'
 import { cookies } from 'next/headers'
 import Image from 'next/image'
@@ -10,9 +9,11 @@ import { format, parse } from 'date-fns'
 import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Trip Logs | The Backpacking Club at UCLA',
+  title: 'Trip Logs',
   description: 'Read trip reports from The Backpacking Club at UCLA — Sierra Nevada, Joshua Tree, Angeles National Forest, and more. Real accounts from real Bruins on the trail.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/trip-logs',
@@ -49,18 +50,26 @@ export default async function TripLogsPage() {
 
   return (
     <main id="main-content" className="flex-1 pt-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
-              { '@type': 'ListItem', position: 2, name: 'Trip Logs', item: 'https://www.uclabackpackingclub.com/trip-logs' },
-            ],
-          }),
-        }}
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Trip Logs', path: '/trip-logs' }])} />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/trip-logs',
+          name: 'Trip Logs',
+          description: 'Published trip reports from The Backpacking Club at UCLA, with routes, conditions, photos, and member notes.',
+          type: 'CollectionPage',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/trip-logs',
+          name: 'TUBC trip logs',
+          description: 'Trip reports from UCLA Backpacking Club members.',
+          items: trips.map((trip) => ({
+            name: trip.title,
+            description: [trip.location, trip.difficulty].filter(Boolean).join(' - '),
+            url: `/trip-logs/${trip.slug}`,
+          })),
+        })}
       />
       <PageHero
         title="Trip Logs"

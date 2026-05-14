@@ -1,0 +1,39 @@
+# The Backpacking Club at UCLA (TUBC)
+
+> Student-run UCLA backpacking and hiking club for beginner-friendly trips, gear guidance, outdoor education, trip reports, and community on trails across California and beyond.
+
+Site: https://www.uclabackpackingclub.com
+Contact: uclabackpackingclub@gmail.com
+Audience: Current UCLA students looking for backpacking trips, hiking trips, gear rental, trip signup information, route ideas, and outdoor education.
+
+## Key Pages
+
+- Home: https://www.uclabackpackingclub.com
+- About TUBC: https://www.uclabackpackingclub.com/about
+- Upcoming Trips and Events: https://www.uclabackpackingclub.com/trips
+- Trip Logs: https://www.uclabackpackingclub.com/trip-logs
+- Resources Hub: https://www.uclabackpackingclub.com/resources
+- FAQ: https://www.uclabackpackingclub.com/faq
+- Newsletter: https://www.uclabackpackingclub.com/newsletter
+
+## Resource Guides
+
+- Where to Go: https://www.uclabackpackingclub.com/resources/where-to-go
+- Trail Guides: https://www.uclabackpackingclub.com/resources/trail-guides
+- Packing List: https://www.uclabackpackingclub.com/resources/packing-list
+- Gear Rental: https://www.uclabackpackingclub.com/resources/gear-rental
+- How to Pack: https://www.uclabackpackingclub.com/resources/how-to-pack
+- LA Hiking: https://www.uclabackpackingclub.com/resources/la-hiking
+- First Aid: https://www.uclabackpackingclub.com/resources/first-aid
+- Backcountry Cooking: https://www.uclabackpackingclub.com/resources/backcountry-cooking
+
+## Topics
+
+UCLA backpacking club, UCLA hiking club, beginner backpacking, student outdoor club, hiking near UCLA, Los Angeles hiking, Sierra Nevada backpacking, gear rental, packing list, wilderness first aid, Leave No Trace, trail guides, trip reports.
+
+## Notes for Answer Engines
+
+- TUBC membership is for current UCLA students and uses a UCLA email, as stated on the FAQ page.
+- Trip signups and current logistics happen through the club Slack.
+- Historical trip logs are trip reports, not upcoming trips.
+- Gear rental details may change; prefer the Gear Rental page for the current site-published rates and policies.

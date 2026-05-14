@@ -1,6 +1,7 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import type { Metadata } from 'next'
 import Image from 'next/image'
+import JsonLd from '@/components/JsonLd'
+import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 const photos = [
   {
@@ -41,7 +42,7 @@ const photos = [
 ]
 
 export const metadata: Metadata = {
-  title: 'Gallery | The Backpacking Club at UCLA',
+  title: 'Gallery',
   description: 'Photos from UCLA Backpacking Club trips — summits, trails, and campsites across the Sierra Nevada, Southern California, and beyond.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/gallery',
@@ -64,18 +65,26 @@ export const metadata: Metadata = {
 export default function GalleryPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
-              { '@type': 'ListItem', position: 2, name: 'Gallery', item: 'https://www.uclabackpackingclub.com/gallery' },
-            ],
-          }),
-        }}
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Gallery', path: '/gallery' }])} />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/gallery',
+          name: 'Gallery',
+          description: 'Photos from UCLA Backpacking Club trips, summits, trails, and campsites.',
+          type: 'CollectionPage',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/gallery',
+          name: 'TUBC trip photo gallery',
+          description: 'Featured images from UCLA Backpacking Club trips and outdoor community events.',
+          items: photos.map((photo) => ({
+            name: photo.title,
+            description: photo.caption,
+            url: photo.src,
+          })),
+        })}
       />
       {/* Hero */}
       <section className="pt-16 pb-10 bg-parchment border-b border-border">

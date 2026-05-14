@@ -1,9 +1,11 @@
 import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Trail Guides | The Backpacking Club at UCLA',
+  title: 'Trail Guides',
   description: 'Trail guides for TUBC favorites — Rae Lakes Loop, Mount Whitney, Half Dome, Condor Gulch, and more. Distances, difficulty, permits, and trip beta.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/trail-guides',
@@ -55,6 +57,24 @@ export default function TrailGuidesPage() {
             ],
           }),
         }}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/trail-guides',
+          name: 'Trail Guides',
+          description: 'Trail guides for TUBC favorites with distance, difficulty, permits, and trip planning notes.',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/resources/trail-guides',
+          name: 'Backpacking and hiking trail guides',
+          description: 'Trail guides and route notes from The Backpacking Club at UCLA.',
+          items: guides.map((guide) => ({
+            name: guide.name,
+            description: `${guide.park}. ${guide.miles}. ${guide.days}. ${guide.difficulty}. ${guide.description}`,
+          })),
+        })}
       />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

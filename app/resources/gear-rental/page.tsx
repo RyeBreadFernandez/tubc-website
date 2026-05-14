@@ -1,9 +1,10 @@
-import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Gear Rental | The Backpacking Club at UCLA',
+  title: 'Gear Rental',
   description: 'Rent backpacking gear through UCLA Outdoor Adventures Equipment Rental Center — tents, sleeping bags, packs, bear canisters, and more. Recreation membership included in UCLA student fees.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/gear-rental',
@@ -143,19 +144,24 @@ function GearRow({ row, shade }: { row: GearItem; shade: boolean }) {
 export default function GearRentalPage() {
   return (
     <main id="main-content" className="flex-1 pt-16">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            '@context': 'https://schema.org',
-            '@type': 'BreadcrumbList',
-            itemListElement: [
-              { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.uclabackpackingclub.com' },
-              { '@type': 'ListItem', position: 2, name: 'Resources', item: 'https://www.uclabackpackingclub.com/resources' },
-              { '@type': 'ListItem', position: 3, name: 'Gear Rental', item: 'https://www.uclabackpackingclub.com/resources/gear-rental' },
-            ],
-          }),
-        }}
+      <JsonLd data={breadcrumbJsonLd([{ name: 'Home', path: '/' }, { name: 'Resources', path: '/resources' }, { name: 'Gear Rental', path: '/resources/gear-rental' }])} />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/gear-rental',
+          name: 'Gear Rental',
+          description: 'How UCLA students can rent backpacking gear through UCLA Outdoor Adventures Equipment Rental Center.',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/resources/gear-rental',
+          name: 'Backpacking gear rental items',
+          description: 'Representative backpacking gear available through UCLA Outdoor Adventures Equipment Rental Center.',
+          items: [...essential, ...other].map((gear) => ({
+            name: gear.item,
+            description: gear.description,
+          })),
+        })}
       />
       <section className="pt-16 pb-8 bg-background">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">

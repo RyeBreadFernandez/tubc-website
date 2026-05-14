@@ -1,9 +1,11 @@
 import { serializeJsonLd } from '@/lib/json-ld'
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import JsonLd from '@/components/JsonLd'
+import { itemListJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
-  title: 'Entrance Fees | The Backpacking Club at UCLA',
+  title: 'Entrance Fees',
   description: 'National park and forest entrance fees for TUBC destinations — Yosemite, Kings Canyon, Joshua Tree, and more. Plus how the America the Beautiful pass saves you money.',
   alternates: {
     canonical: 'https://www.uclabackpackingclub.com/resources/entrance-fees',
@@ -51,6 +53,24 @@ export default function EntranceFeesPage() {
             ],
           }),
         }}
+      />
+      <JsonLd
+        data={webPageJsonLd({
+          path: '/resources/entrance-fees',
+          name: 'Entrance Fees',
+          description: 'National park, forest, and recreation fee notes for destinations visited by The Backpacking Club at UCLA.',
+        })}
+      />
+      <JsonLd
+        data={itemListJsonLd({
+          path: '/resources/entrance-fees',
+          name: 'Park and forest entrance fees',
+          description: 'Entrance fees, pass notes, and permit reminders for common TUBC destinations.',
+          items: fees.map((fee) => ({
+            name: fee.park,
+            description: `Vehicle: ${fee.vehicle}. Individual: ${fee.individual}. Annual: ${fee.annual}. ${fee.notes}`,
+          })),
+        })}
       />
       <section className="pt-16 pb-8 bg-parchment">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
