@@ -44,6 +44,7 @@ export default function TripsPage() {
         title="Trips & Events"
         subtitle="Browse upcoming trips and add them to your calendar. Join our Slack to sign up once you spot one you want."
         image="/trips-hero.jpg"
+        imageAlt="Backpacking club members gathered on an outdoor trip."
         imagePosition="center 30%"
       />
 

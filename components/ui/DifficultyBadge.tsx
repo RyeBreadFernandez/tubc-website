@@ -4,9 +4,9 @@ import { cn } from '@/lib/utils'
 type Difficulty = 'Easy' | 'Moderate' | 'Strenuous' | 'Expert'
 
 const difficultyStyles: Record<Difficulty, string> = {
-  Easy:      'bg-moss text-sage-dark border-transparent',
-  Moderate:  'bg-sand text-soil border-transparent',
-  Strenuous: 'bg-rose text-terra-dark border-transparent',
+  Easy:      'bg-moss text-forest border-forest/25',
+  Moderate:  'bg-sand text-bark border-bark/20',
+  Strenuous: 'bg-rose text-bark border-bark/20',
   Expert:    'bg-terra text-parchment border-transparent',
 }
 

@@ -35,9 +35,9 @@ const guides = [
 ]
 
 const difficultyColor: Record<string, string> = {
-  Easy: 'bg-moss text-sage-dark',
-  Moderate: 'bg-sand text-soil',
-  Strenuous: 'bg-rose text-terra-dark',
+  Easy: 'bg-moss text-forest border border-forest/25',
+  Moderate: 'bg-sand text-bark border border-bark/20',
+  Strenuous: 'bg-rose text-bark border border-bark/20',
   Expert: 'bg-terra text-parchment',
 }
 

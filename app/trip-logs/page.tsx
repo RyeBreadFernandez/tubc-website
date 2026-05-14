@@ -75,6 +75,7 @@ export default async function TripLogsPage() {
         title="Trip Logs"
         subtitle="Reports from the trail."
         image="/trip-logs-hero.jpg"
+        imageAlt="Backcountry landscape from a UCLA Backpacking Club trip."
         imagePosition="center 80%"
       />
 

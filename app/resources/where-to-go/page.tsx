@@ -37,12 +37,12 @@ const destinations = [
 ]
 
 const difficultyColor: Record<string, string> = {
-  'Easy': 'bg-moss text-sage-dark',
-  'Moderate': 'bg-sand text-soil',
-  'Easy–Moderate': 'bg-sand text-soil',
-  'Moderate–Strenuous': 'bg-rose text-terra-dark',
-  'Moderate–Expert': 'bg-rose text-terra-dark',
-  'Strenuous': 'bg-rose text-terra-dark',
+  'Easy': 'bg-moss text-forest border border-forest/25',
+  'Moderate': 'bg-sand text-bark border border-bark/20',
+  'Easy–Moderate': 'bg-sand text-bark border border-bark/20',
+  'Moderate–Strenuous': 'bg-rose text-bark border border-bark/20',
+  'Moderate–Expert': 'bg-rose text-bark border border-bark/20',
+  'Strenuous': 'bg-rose text-bark border border-bark/20',
   'Expert': 'bg-terra text-parchment',
 }
 
@@ -98,7 +98,7 @@ export default function WhereToGoPage() {
                     <h2 className="font-display text-lg font-bold text-bark">{dest.name}</h2>
                     <p className="text-soil text-xs mt-0.5">{dest.region}</p>
                   </div>
-                  <span className={`text-xs px-2.5 py-1 rounded-md font-medium shrink-0 ${difficultyColor[dest.difficulty] ?? 'bg-sand text-soil'}`}>
+                  <span className={`text-xs px-2.5 py-1 rounded-md font-medium shrink-0 ${difficultyColor[dest.difficulty] ?? 'bg-sand text-bark border border-bark/20'}`}>
                     {dest.difficulty}
                   </span>
                 </div>

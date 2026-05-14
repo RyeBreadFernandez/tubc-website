@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     title: 'About | The Backpacking Club at UCLA',
     description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
     url: 'https://www.uclabackpackingclub.com/about',
-    images: [{ url: '/about-hero.jpg', width: 1200, height: 630, alt: 'TUBC club photo' }],
+    images: [{ url: '/about-hero.jpg', width: 1200, height: 630, alt: 'Rocky mountain trail with pine trees, snow patches, and distant blue ridges' }],
     type: 'website',
   },
   twitter: {
@@ -27,6 +27,12 @@ export const metadata: Metadata = {
     description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
     images: ['/about-hero.jpg'],
   },
+}
+
+const aboutHeroAlt = 'Rocky mountain trail with pine trees, patches of snow, and distant blue ridges under a clear sky.'
+
+function staffImageAlt(member: { name: string; role: string }) {
+  return `Portrait of ${member.name}, ${member.role} for UCLA Backpacking Club.`
 }
 
 export default function AboutPage() {
@@ -45,6 +51,7 @@ export default function AboutPage() {
         title="About TUBC"
         subtitle="A decade of taking Bruins into the backcountry — no gear, no experience, no cost to join."
         image="/about-hero.jpg"
+        imageAlt={aboutHeroAlt}
       />
 
       {/* About section */}
@@ -98,7 +105,7 @@ export default function AboutPage() {
                   {member.imageUrl ? (
                     <Image
                       src={member.imageUrl}
-                      alt={member.name}
+                      alt={staffImageAlt(member)}
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover"
@@ -108,8 +115,8 @@ export default function AboutPage() {
                       }}
                     />
                   ) : (
-                    <Avatar className="size-20">
-                      <AvatarImage src={undefined} alt={member.name} />
+                    <Avatar className="size-20" role="img" aria-label={`Portrait placeholder for ${member.name}`}>
+                      <AvatarImage src={undefined} alt="" />
                       <AvatarFallback className="bg-secondary text-foreground text-2xl font-bold">
                         {member.name.charAt(0)}
                       </AvatarFallback>
@@ -117,7 +124,7 @@ export default function AboutPage() {
                   )}
                 </div>
                 <CardContent className="p-5">
-                  <p className="font-display text-lg font-bold text-bark">{member.name}</p>
+                  <h3 className="font-display text-lg font-bold text-bark">{member.name}</h3>
                   <p className={`text-primary text-sm font-semibold ${member.bio ? 'mb-2' : ''}`}>{member.role}</p>
                   {member.bio && <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>}
                 </CardContent>
@@ -143,7 +150,7 @@ export default function AboutPage() {
                   {member.imageUrl ? (
                     <Image
                       src={member.imageUrl}
-                      alt={member.name}
+                      alt={staffImageAlt(member)}
                       fill
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                       className="object-cover"
@@ -153,8 +160,8 @@ export default function AboutPage() {
                       }}
                     />
                   ) : (
-                    <Avatar className="size-20">
-                      <AvatarImage src={undefined} alt={member.name} />
+                    <Avatar className="size-20" role="img" aria-label={`Portrait placeholder for ${member.name}`}>
+                      <AvatarImage src={undefined} alt="" />
                       <AvatarFallback className="bg-secondary text-foreground text-2xl font-bold">
                         {member.name.charAt(0)}
                       </AvatarFallback>
@@ -162,7 +169,7 @@ export default function AboutPage() {
                   )}
                 </div>
                 <CardContent className="p-5">
-                  <p className="font-display text-lg font-bold text-bark">{member.name}</p>
+                  <h3 className="font-display text-lg font-bold text-bark">{member.name}</h3>
                   <p className="text-primary text-sm font-semibold">{member.role}</p>
                 </CardContent>
               </Card>

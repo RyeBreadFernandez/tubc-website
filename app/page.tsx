@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     title: 'The Backpacking Club at UCLA',
     description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
     url: 'https://www.uclabackpackingclub.com',
-    images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Cottonwood Lakes — TUBC' }],
+    images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Snow capped mountains, trees, a prairie, and a river along Cottonwood Lakes trail during a UCLA trip' }],
     type: 'website',
   },
   twitter: {
@@ -66,28 +66,28 @@ export default async function Home() {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <Image
           src="/cottonwood-lakes.jpg"
-          alt="Cottonwood Lakes"
+          alt="Landscape that includes snow capped mountains, trees, a prairie in the foreground with a river running through it. Taken from a Cottonwood Lakes trail during a UCLA trip."
           fill
           priority
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-bark/40" />
+        <div className="absolute inset-0 bg-parchment/50" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <p
-            className="text-parchment/80 font-body text-sm uppercase tracking-widest mb-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.7)] animate-reveal"
+            className="text-bark font-body text-sm uppercase tracking-widest mb-4 [text-shadow:0_1px_10px_rgba(245,240,232,0.9)] animate-reveal"
             style={{ animationDelay: '0ms' }}
           >
             The Backpacking Club at UCLA
           </p>
           <h1
-            className="font-display text-5xl md:text-7xl text-parchment font-bold leading-tight mb-6 [text-shadow:0_2px_16px_rgba(0,0,0,0.7)] animate-reveal"
+            className="font-display text-5xl md:text-7xl text-bark font-bold leading-tight mb-6 [text-shadow:0_2px_18px_rgba(245,240,232,0.95)] animate-reveal"
             style={{ animationDelay: '120ms' }}
           >
             We take you to the outdoors.
           </h1>
           <p
-            className="text-parchment/80 text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed [text-shadow:0_1px_8px_rgba(0,0,0,0.6)] animate-reveal"
+            className="text-bark text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed [text-shadow:0_1px_12px_rgba(245,240,232,0.9)] animate-reveal"
             style={{ animationDelay: '260ms' }}
           >
             TUBC runs trips every quarter — day hikes in the Santa Monicas, car camps at Joshua Tree, multi-day Sierra crossings. Free to join. No experience required.
@@ -97,7 +97,7 @@ export default async function Home() {
               href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-all duration-200 uppercase tracking-[0.08em] font-light hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/30 active:translate-y-0 active:scale-95"
+              className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-all duration-200 uppercase tracking-[0.08em] font-semibold hover:-translate-y-0.5 hover:shadow-xl hover:shadow-black/30 active:translate-y-0 active:scale-95"
               style={{ fontFamily: "var(--font-label)" }}
             >
               Join our Slack
@@ -123,7 +123,7 @@ export default async function Home() {
             <div className="relative h-80 md:h-96 rounded-md overflow-hidden shadow-md group">
               <Image
                 src="/staff-group.jpg"
-                alt="Group around a campfire"
+                alt="Members of UCLA Backpacking Club Staff looking directly at the camera. They are wearing jackets, and stand with hills, the base of mountains, and shrubs in the background."
                 fill
                 sizes="(max-width: 768px) 100vw, 50vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -250,7 +250,7 @@ export default async function Home() {
                 href="https://jqkmlifwwqdhuwn-1314.slack.com/signup#/domain-signup"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-all duration-200 uppercase tracking-[0.08em] font-light hover:-translate-y-0.5 hover:shadow-lg hover:shadow-terra/25 active:translate-y-0 active:scale-95"
+                className="px-8 py-3.5 bg-terra hover:bg-terra-dark text-parchment rounded-md text-sm transition-all duration-200 uppercase tracking-[0.08em] font-semibold hover:-translate-y-0.5 hover:shadow-lg hover:shadow-terra/25 active:translate-y-0 active:scale-95"
                 style={{ fontFamily: "var(--font-label)" }}
               >
                 Join our Slack

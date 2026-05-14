@@ -17,7 +17,7 @@
   --card-foreground:     oklch(0.22 0.04 50);
   --popover:             oklch(0.972 0.010 80);
   --popover-foreground:  oklch(0.22 0.04 50);
-  --primary:             oklch(0.65 0.10 50);      /* terra      #C17A56 */
+  --primary:             oklch(0.44 0.095 45);     /* terra      #8A4B2D */
   --primary-foreground:  oklch(0.965 0.012 80);    /* parchment */
   --secondary:           oklch(0.88 0.04 80);      /* sand       #E0CBA8 */
   --secondary-foreground: oklch(0.22 0.04 50);     /* bark */
@@ -28,11 +28,11 @@
   --destructive:         oklch(0.577 0.245 27.325);
   --border:              oklch(0.80 0.04 70);      /* border     #C9B99A */
   --input:               oklch(0.80 0.04 70);
-  --ring:                oklch(0.65 0.10 50);      /* terra */
+  --ring:                oklch(0.44 0.095 45);     /* terra */
   --radius:              0.25rem;
 
   /* charts (not used on this site, but required by shadcn) */
-  --chart-1: oklch(0.65 0.10 50);
+  --chart-1: oklch(0.44 0.095 45);
   --chart-2: oklch(0.72 0.06 140);
   --chart-3: oklch(0.88 0.04 80);
   --chart-4: oklch(0.80 0.04 70);
@@ -41,12 +41,12 @@
   /* sidebar (not used, satisfies shadcn types) */
   --sidebar:                  oklch(0.965 0.012 80);
   --sidebar-foreground:       oklch(0.22 0.04 50);
-  --sidebar-primary:          oklch(0.65 0.10 50);
+  --sidebar-primary:          oklch(0.44 0.095 45);
   --sidebar-primary-foreground: oklch(0.965 0.012 80);
   --sidebar-accent:           oklch(0.72 0.06 140);
   --sidebar-accent-foreground: oklch(0.22 0.04 50);
   --sidebar-border:           oklch(0.80 0.04 70);
-  --sidebar-ring:             oklch(0.65 0.10 50);
+  --sidebar-ring:             oklch(0.44 0.095 45);
 }
 
 /* ── Map shadcn tokens into Tailwind v4 @theme ─────────────────────────────── */
@@ -99,8 +99,8 @@
   --color-soil:           #6B5744;
   --color-sage:           #8FAF8A;
   --color-sage-dark:      #5E7D5A;
-  --color-terra:          #C17A56;
-  --color-terra-dark:     #9A5C3A;
+  --color-terra:          #8A4B2D;
+  --color-terra-dark:     #5E2F1C;
   --color-rose:           #E8D5C4;
   --color-moss:           #D4DFD0;
   --color-sand:           #E0CBA8;
