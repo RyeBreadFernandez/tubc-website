@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     title: 'First Aid | The Backpacking Club at UCLA',
     description: 'Wilderness first aid basics for backpackers — blisters, altitude sickness, hypothermia, sprains, and when to evacuate.',
     url: 'https://www.uclabackpackingclub.com/resources/first-aid',
-    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Wilderness first aid guide' }],
+    images: [{ url: '/og/trips-hero.jpg', width: 1200, height: 630, alt: 'Wilderness first aid guide' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'First Aid | The Backpacking Club at UCLA',
     description: 'Wilderness first aid basics for backpackers — blisters, altitude sickness, hypothermia, sprains, and when to evacuate. A practical trail guide from UCLA Backpacking Club.',
-    images: ['/trips-hero.jpg'],
+    images: ['/og/trips-hero.jpg'],
   },
 }
 

@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input'
 export default function NewsletterSignup() {
   const id = useId()
   const [email, setEmail] = useState('')
+  const [company, setCompany] = useState('')
   const [loading, setLoading] = useState(false)
   const [status, setStatus] = useState<{ type: 'success' | 'error'; message: string } | null>(null)
 
@@ -17,7 +18,7 @@ export default function NewsletterSignup() {
       const res = await fetch('/api/newsletter', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ email, company }),
       })
 
       const data: { success?: boolean; error?: string } = await res.json()
@@ -25,8 +26,9 @@ export default function NewsletterSignup() {
       if (!res.ok || !data.success) {
         setStatus({ type: 'error', message: data.error ?? 'Something went wrong. Try again.' })
       } else {
-        setStatus({ type: 'success', message: "You're on the list." })
+        setStatus({ type: 'success', message: 'Check your email to confirm the signup.' })
         setEmail('')
+        setCompany('')
       }
     } catch {
       setStatus({ type: 'error', message: 'Something went wrong. Try again.' })
@@ -45,6 +47,20 @@ export default function NewsletterSignup() {
         <label htmlFor={`${id}-email`} className="sr-only">
           Email address
         </label>
+        <label htmlFor={`${id}-company`} className="hidden">
+          Company
+        </label>
+        <input
+          id={`${id}-company`}
+          name="company"
+          type="text"
+          value={company}
+          onChange={(e) => setCompany(e.target.value)}
+          className="hidden"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+        />
         <Input
           id={`${id}-email`}
           type="email"
@@ -69,7 +85,7 @@ export default function NewsletterSignup() {
         id={`${id}-status`}
         role={status?.type === 'error' ? 'alert' : 'status'}
         aria-live="polite"
-        className={`min-h-5 text-sm ${status?.type === 'error' ? 'text-destructive' : 'text-sage-dark'}`}
+        className={`min-h-5 text-sm ${status?.type === 'error' ? 'text-destructive' : 'text-forest'}`}
       >
         {status?.message}
       </p>

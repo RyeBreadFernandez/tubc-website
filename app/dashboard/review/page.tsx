@@ -1,11 +1,11 @@
 import { createClient } from '@supabase/supabase-js'
-import { format } from 'date-fns'
 import { setPublished } from './actions'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { getOfficerEmails, isOfficerEmail } from '@/lib/officers'
 import { createClient as createServerClient } from '@/utils/supabase/server'
 import { logout } from '@/app/auth/actions'
+import { formatDateOnly } from '@/lib/dates'
 
 import type { Metadata } from 'next'
 
@@ -110,13 +110,13 @@ export default async function ReviewPage() {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 flex-wrap mb-0.5">
                     <h3 className="font-semibold text-bark">{trip.title}</h3>
-                    <span className={`text-xs px-2 py-0.5 rounded-md font-medium ${trip.published ? 'bg-moss text-sage-dark' : 'bg-sand text-soil'}`}>
+                    <span className={`text-xs px-2 py-0.5 rounded-md font-medium ${trip.published ? 'bg-moss text-forest' : 'bg-sand text-soil'}`}>
                       {trip.published ? 'Published' : 'Pending'}
                     </span>
                   </div>
                   <p className="text-soil text-sm">
                     {trip.location}
-                    {trip.trip_date ? ` · ${format(new Date(trip.trip_date), 'MMM d, yyyy')}` : ''}
+                    {trip.trip_date ? ` · ${formatDateOnly(trip.trip_date, 'MMM d, yyyy')}` : ''}
                     {trip.difficulty ? ` · ${trip.difficulty}` : ''}
                     {trip.miles ? ` · ${trip.miles} mi` : ''}
                   </p>

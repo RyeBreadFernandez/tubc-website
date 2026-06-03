@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     title: 'Trips & Events | The Backpacking Club at UCLA',
     description: 'Browse upcoming backpacking and hiking trips from The Backpacking Club at UCLA. Free to join — all levels welcome.',
     url: 'https://www.uclabackpackingclub.com/trips',
-    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC trips and events' }],
+    images: [{ url: '/og/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC trips and events' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Trips & Events | The Backpacking Club at UCLA',
     description: 'Browse upcoming backpacking and hiking trips from The Backpacking Club at UCLA. Free to join — all levels welcome.',
-    images: ['/trips-hero.jpg'],
+    images: ['/og/trips-hero.jpg'],
   },
 }
 

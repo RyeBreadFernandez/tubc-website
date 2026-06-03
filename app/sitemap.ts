@@ -1,6 +1,8 @@
 import type { MetadataRoute } from 'next'
-import { createClient } from '@supabase/supabase-js'
 import { absoluteUrl } from '@/lib/seo'
+import { getPublishedTripLogs } from '@/lib/trip-logs.server'
+
+export const dynamic = 'force-dynamic'
 
 const lastModified = new Date()
 
@@ -31,24 +33,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let tripLogRoutes: MetadataRoute.Sitemap = []
 
   try {
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY!,
-    )
-    const { data } = await supabase
-      .from('trip_logs')
-      .select('slug, trip_date, cover_image_url')
-      .eq('published', true)
-
-    if (data) {
-      tripLogRoutes = data.map((trip) => ({
-        url: absoluteUrl(`/trip-logs/${trip.slug}`),
-        lastModified: trip.trip_date ? new Date(trip.trip_date) : undefined,
-        changeFrequency: 'monthly' as const,
-        priority: 0.7,
-        images: trip.cover_image_url ? [absoluteUrl(trip.cover_image_url)] : undefined,
-      }))
-    }
+    const trips = await getPublishedTripLogs()
+    tripLogRoutes = trips.map((trip) => ({
+      url: absoluteUrl(`/trip-logs/${trip.slug}`),
+      lastModified: trip.created_at ? new Date(trip.created_at) : undefined,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+      images: trip.cover_image_url ? [absoluteUrl(trip.cover_image_url)] : undefined,
+    }))
   } catch {
     // Supabase may be unavailable at build time, so trip logs are excluded.
   }

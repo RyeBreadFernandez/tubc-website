@@ -1,16 +1,11 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
-import Image from 'next/image'
 import Link from 'next/link'
+import { connection } from 'next/server'
 import PageHero from '@/components/ui/PageHero'
-import DifficultyBadge from '@/components/ui/DifficultyBadge'
-import { getMountainPlaceholder } from '@/lib/utils/placeholder'
-import { format, parse } from 'date-fns'
-import { Card, CardContent } from '@/components/ui/card'
-import { Separator } from '@/components/ui/separator'
 import type { Metadata } from 'next'
 import JsonLd from '@/components/JsonLd'
 import { breadcrumbJsonLd, itemListJsonLd, webPageJsonLd } from '@/lib/seo'
+import { getPublishedTripLogs } from '@/lib/trip-logs.server'
+import TripLogsArchive from './TripLogsArchive'
 
 export const metadata: Metadata = {
   title: 'Trip Logs',
@@ -22,31 +17,21 @@ export const metadata: Metadata = {
     title: 'Trip Logs | The Backpacking Club at UCLA',
     description: 'Read trip reports from The Backpacking Club at UCLA — Sierra Nevada, Joshua Tree, Angeles National Forest, and more.',
     url: 'https://www.uclabackpackingclub.com/trip-logs',
-    images: [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: 'TUBC trip logs' }],
+    images: [{ url: '/og/trip-logs-hero.jpg', width: 1200, height: 630, alt: 'TUBC trip logs' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Trip Logs | The Backpacking Club at UCLA',
     description: 'Read trip reports from The Backpacking Club at UCLA — Sierra Nevada, Joshua Tree, Angeles National Forest, and more.',
-    images: ['/trip-logs-hero.jpg'],
+    images: ['/og/trip-logs-hero.jpg'],
   },
 }
 
-async function getTripLogs() {
-  const cookieStore = await cookies()
-  const supabase = await createClient(cookieStore)
-  const { data, error } = await supabase
-    .from('trip_logs')
-    .select('id, title, slug, location, trip_date, difficulty, miles, elevation_gain, cover_image_url, content')
-    .eq('published', true)
-    .order('trip_date', { ascending: false })
-  if (error) console.error('trip_logs fetch error:', error)
-  return data ?? []
-}
-
 export default async function TripLogsPage() {
-  const trips = await getTripLogs()
+  await connection()
+
+  const trips = await getPublishedTripLogs()
 
   return (
     <main id="main-content" className="flex-1 pt-16">
@@ -81,60 +66,7 @@ export default async function TripLogsPage() {
 
       <section className="py-16 bg-parchment">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {trips.length > 0 ? (
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {trips.map((trip) => (
-                <Link key={trip.id} href={`/trip-logs/${trip.slug}`} className="group block h-full">
-                  <Card className="h-full gap-0 overflow-hidden border-secondary bg-parchment py-0 shadow-sm transition-shadow hover:shadow-md flex flex-col">
-                    <div className="relative aspect-[3/2] w-full overflow-hidden shrink-0">
-                      <Image
-                        src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
-                        alt={trip.title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                      />
-                    </div>
-                    <CardContent className="p-5 flex flex-col flex-1">
-                      <div className="flex items-center gap-2 mb-3 flex-wrap">
-                        {trip.difficulty && (
-                          <DifficultyBadge difficulty={trip.difficulty as 'Easy' | 'Moderate' | 'Strenuous' | 'Expert'} />
-                        )}
-                        {trip.trip_date && (
-                          <span className="text-xs text-muted-foreground">
-                            {format(parse(trip.trip_date, 'yyyy-MM-dd', new Date()), 'MMM d, yyyy')}
-                          </span>
-                        )}
-                      </div>
-                      <h3 className="font-display text-lg font-bold text-bark group-hover:text-primary transition-colors mb-1">
-                        {trip.title}
-                      </h3>
-                      <p className="text-muted-foreground text-sm mb-3">{trip.location}</p>
-                      {trip.content && (
-                        <p className="text-muted-foreground text-sm leading-relaxed line-clamp-3 flex-1">
-                          {trip.content.replace(/[#*`]/g, '').slice(0, 150)}…
-                        </p>
-                      )}
-                      {(trip.miles || trip.elevation_gain) && (
-                        <>
-                          <Separator className="mt-4 mb-3" />
-                          <div className="flex gap-4 text-xs text-muted-foreground">
-                            {trip.miles && <span>{trip.miles} mi</span>}
-                            {trip.elevation_gain && <span>{trip.elevation_gain.toLocaleString()} ft</span>}
-                          </div>
-                        </>
-                      )}
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
-            </div>
-          ) : (
-            <div className="text-center py-24">
-              <p className="font-display text-2xl text-bark mb-3">No trip logs yet</p>
-              <p className="text-muted-foreground">Check back after our next trip!</p>
-            </div>
-          )}
+          <TripLogsArchive trips={trips} />
         </div>
       </section>
 

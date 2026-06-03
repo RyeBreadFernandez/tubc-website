@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     title: 'Trail Guides | The Backpacking Club at UCLA',
     description: 'Trail guides for TUBC favorites — Rae Lakes Loop, Mount Whitney, Half Dome, and more. Distances, difficulty, permits, and trip beta.',
     url: 'https://www.uclabackpackingclub.com/resources/trail-guides',
-    images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Trail guides for backpacking' }],
+    images: [{ url: '/og/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Trail guides for backpacking' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Trail Guides | The Backpacking Club at UCLA',
     description: 'Trail guides for TUBC favorites — Rae Lakes Loop, Mount Whitney, Half Dome, Condor Gulch, and more. Distances, difficulty, permits, and trip beta.',
-    images: ['/cottonwood-lakes.jpg'],
+    images: ['/og/cottonwood-lakes.jpg'],
   },
 }
 
@@ -36,8 +36,8 @@ const guides = [
 
 const difficultyColor: Record<string, string> = {
   Easy: 'bg-moss text-forest border border-forest/25',
-  Moderate: 'bg-sand text-bark border border-bark/20',
-  Strenuous: 'bg-rose text-bark border border-bark/20',
+  Moderate: 'bg-sand text-terra-dark border border-terra/25',
+  Strenuous: 'bg-rose text-terra-dark border border-terra/25',
   Expert: 'bg-terra text-parchment',
 }
 

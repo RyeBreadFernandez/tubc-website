@@ -13,14 +13,14 @@ export const metadata: Metadata = {
     title: 'Resources | The Backpacking Club at UCLA',
     description: 'Guides and tools for UCLA backpackers — packing lists, gear rental, trail guides, backcountry cooking tips, wilderness first aid, and more.',
     url: 'https://www.uclabackpackingclub.com/resources',
-    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club Resources' }],
+    images: [{ url: '/og/trips-hero.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club Resources' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Resources | The Backpacking Club at UCLA',
     description: 'Guides and tools for UCLA backpackers — packing lists, gear rental, trail guides, backcountry cooking tips, wilderness first aid, and more.',
-    images: ['/trips-hero.jpg'],
+    images: ['/og/trips-hero.jpg'],
   },
 }
 
@@ -33,6 +33,10 @@ const resourceSchemaItems = [
   { name: 'LA Hiking', url: '/resources/la-hiking', description: 'Day hike recommendations near UCLA and around Los Angeles.' },
   { name: 'First Aid', url: '/resources/first-aid', description: 'Wilderness first aid basics for hikers and trip leaders.' },
   { name: 'Backcountry Cooking', url: '/resources/backcountry-cooking', description: 'Meal planning, trail food ideas, and camp cooking tips.' },
+  { name: 'Vocab', url: '/resources/vocab', description: 'Backpacking and hiking terms explained for newer outdoor club members.' },
+  { name: 'Parks & Monuments', url: '/resources/parks-monuments', description: 'Reference notes for parks, forests, and public lands TUBC visits.' },
+  { name: 'Entrance Fees', url: '/resources/entrance-fees', description: 'Entrance fees, passes, and permit cost notes for common destinations.' },
+  { name: 'Seminars', url: '/resources/seminars', description: 'Outdoor education workshops, skill sessions, and recurring seminar topics.' },
 ]
 
 export default function ResourcesPage() {

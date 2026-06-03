@@ -1,12 +1,18 @@
 import { Badge } from '@/components/ui/Badge'
 import { cn } from '@/lib/utils'
 
-type Difficulty = 'Easy' | 'Moderate' | 'Strenuous' | 'Expert'
+export const DIFFICULTIES = ['Easy', 'Moderate', 'Strenuous', 'Expert'] as const
+
+export type Difficulty = (typeof DIFFICULTIES)[number]
+
+export function isDifficulty(value: string | null | undefined): value is Difficulty {
+  return typeof value === 'string' && (DIFFICULTIES as readonly string[]).includes(value)
+}
 
 const difficultyStyles: Record<Difficulty, string> = {
   Easy:      'bg-moss text-forest border-forest/25',
-  Moderate:  'bg-sand text-bark border-bark/20',
-  Strenuous: 'bg-rose text-bark border-bark/20',
+  Moderate:  'bg-sand text-terra-dark border-terra/25',
+  Strenuous: 'bg-rose text-terra-dark border-terra/25',
   Expert:    'bg-terra text-parchment border-transparent',
 }
 

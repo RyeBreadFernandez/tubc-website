@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     title: 'Where to Go | The Backpacking Club at UCLA',
     description: 'Backpacking destinations near UCLA — the John Muir Trail, Kings Canyon, Yosemite, Joshua Tree, Channel Islands, Zion, and more.',
     url: 'https://www.uclabackpackingclub.com/resources/where-to-go',
-    images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Backpacking destinations guide' }],
+    images: [{ url: '/og/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Backpacking destinations guide' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Where to Go | The Backpacking Club at UCLA',
     description: 'Backpacking destinations near UCLA — the John Muir Trail, Kings Canyon, Yosemite, Joshua Tree, Channel Islands, Zion, and more curated by TUBC trip leaders.',
-    images: ['/cottonwood-lakes.jpg'],
+    images: ['/og/cottonwood-lakes.jpg'],
   },
 }
 
@@ -38,11 +38,11 @@ const destinations = [
 
 const difficultyColor: Record<string, string> = {
   'Easy': 'bg-moss text-forest border border-forest/25',
-  'Moderate': 'bg-sand text-bark border border-bark/20',
-  'Easy–Moderate': 'bg-sand text-bark border border-bark/20',
-  'Moderate–Strenuous': 'bg-rose text-bark border border-bark/20',
-  'Moderate–Expert': 'bg-rose text-bark border border-bark/20',
-  'Strenuous': 'bg-rose text-bark border border-bark/20',
+  'Moderate': 'bg-sand text-terra-dark border border-terra/25',
+  'Easy–Moderate': 'bg-sand text-terra-dark border border-terra/25',
+  'Moderate–Strenuous': 'bg-rose text-terra-dark border border-terra/25',
+  'Moderate–Expert': 'bg-rose text-terra-dark border border-terra/25',
+  'Strenuous': 'bg-rose text-terra-dark border border-terra/25',
   'Expert': 'bg-terra text-parchment',
 }
 
@@ -98,12 +98,12 @@ export default function WhereToGoPage() {
                     <h2 className="font-display text-lg font-bold text-bark">{dest.name}</h2>
                     <p className="text-soil text-xs mt-0.5">{dest.region}</p>
                   </div>
-                  <span className={`text-xs px-2.5 py-1 rounded-md font-medium shrink-0 ${difficultyColor[dest.difficulty] ?? 'bg-sand text-bark border border-bark/20'}`}>
+                  <span className={`text-xs px-2.5 py-1 rounded-md font-medium shrink-0 ${difficultyColor[dest.difficulty] ?? 'bg-sand text-terra-dark border border-terra/25'}`}>
                     {dest.difficulty}
                   </span>
                 </div>
                 <p className="text-soil text-sm leading-relaxed mb-3">{dest.description}</p>
-                <p className="text-soil/60 text-xs">{dest.distance}</p>
+                <p className="text-soil text-xs">{dest.distance}</p>
               </div>
             ))}
           </div>

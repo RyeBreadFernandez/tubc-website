@@ -18,14 +18,14 @@ export const metadata: Metadata = {
     title: 'About | The Backpacking Club at UCLA',
     description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
     url: 'https://www.uclabackpackingclub.com/about',
-    images: [{ url: '/about-hero.jpg', width: 1200, height: 630, alt: 'Rocky mountain trail with pine trees, snow patches, and distant blue ridges' }],
+    images: [{ url: '/og/about-hero.jpg', width: 1200, height: 630, alt: 'Rocky mountain trail with pine trees, snow patches, and distant blue ridges' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About | The Backpacking Club at UCLA',
     description: 'Learn about The Backpacking Club at UCLA — a student-run outdoor club with 10+ years of leading Bruins through the Sierra Nevada, Southern California, and beyond.',
-    images: ['/about-hero.jpg'],
+    images: ['/og/about-hero.jpg'],
   },
 }
 

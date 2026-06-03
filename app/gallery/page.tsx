@@ -51,14 +51,14 @@ export const metadata: Metadata = {
     title: 'Gallery | The Backpacking Club at UCLA',
     description: 'Photos from UCLA Backpacking Club trips — summits, trails, and campsites across the Sierra Nevada, Southern California, and beyond.',
     url: 'https://www.uclabackpackingclub.com/gallery',
-    images: [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: 'TUBC trip photos' }],
+    images: [{ url: '/og/trip-logs-hero.jpg', width: 1200, height: 630, alt: 'TUBC trip photos' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Gallery | The Backpacking Club at UCLA',
     description: 'Photos from UCLA Backpacking Club trips — summits, trails, and campsites across the Sierra Nevada, Southern California, and beyond.',
-    images: ['/trip-logs-hero.jpg'],
+    images: ['/og/trip-logs-hero.jpg'],
   },
 }
 

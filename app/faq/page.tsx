@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     title: 'FAQ | The Backpacking Club at UCLA',
     description: 'Answers to common questions about The Backpacking Club at UCLA — how to join, gear rental, trip sign-ups, and what to expect on your first outing.',
     url: 'https://www.uclabackpackingclub.com/faq',
-    images: [{ url: '/staff-group.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club' }],
+    images: [{ url: '/og/staff-group.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'FAQ | The Backpacking Club at UCLA',
     description: 'Answers to common questions about The Backpacking Club at UCLA — how to join, gear rental, trip sign-ups, and what to expect on your first outing.',
-    images: ['/staff-group.jpg'],
+    images: ['/og/staff-group.jpg'],
   },
 }
 

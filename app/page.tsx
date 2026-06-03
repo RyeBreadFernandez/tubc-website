@@ -1,14 +1,14 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
+import { connection } from 'next/server'
 import Badge from '@/components/ui/DifficultyBadge'
 import { getMountainPlaceholder } from '@/lib/utils/placeholder'
-import { format } from 'date-fns'
 import type { Metadata } from 'next'
 import Reveal from '@/components/ui/Reveal'
 import JsonLd from '@/components/JsonLd'
 import { SITE_NAME, webPageJsonLd } from '@/lib/seo'
+import { formatDateOnly } from '@/lib/dates'
+import { getLatestPublishedTripLogs } from '@/lib/trip-logs.server'
 
 export const metadata: Metadata = {
   title: {
@@ -22,35 +22,21 @@ export const metadata: Metadata = {
     title: 'The Backpacking Club at UCLA',
     description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
     url: 'https://www.uclabackpackingclub.com',
-    images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Snow capped mountains, trees, a prairie, and a river along Cottonwood Lakes trail during a UCLA trip' }],
+    images: [{ url: '/og/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'Snow capped mountains, trees, a prairie, and a river along Cottonwood Lakes trail during a UCLA trip' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'The Backpacking Club at UCLA',
     description: 'UCLA\'s student backpacking club — free trips, gear rentals, and outdoor education for every level. From the Santa Monica Mountains to the Sierra Nevada.',
-    images: ['/cottonwood-lakes.jpg'],
+    images: ['/og/cottonwood-lakes.jpg'],
   },
 }
 
-async function getLatestTripLogs() {
-  try {
-    const cookieStore = await cookies()
-    const supabase = await createClient(cookieStore)
-    const { data } = await supabase
-      .from('trip_logs')
-      .select('id, title, slug, location, trip_date, difficulty, cover_image_url, author_id')
-      .eq('published', true)
-      .order('trip_date', { ascending: false })
-      .limit(3)
-    return data ?? []
-  } catch {
-    return []
-  }
-}
-
 export default async function Home() {
-  const tripLogs = await getLatestTripLogs()
+  await connection()
+
+  const tripLogs = await getLatestPublishedTripLogs(3)
 
   return (
     <main id="main-content" className="flex-1">
@@ -72,22 +58,22 @@ export default async function Home() {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className="absolute inset-0 bg-parchment/50" />
+        <div className="absolute inset-0 bg-bark/40" />
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <p
-            className="text-bark font-body text-sm uppercase tracking-widest mb-4 [text-shadow:0_1px_10px_rgba(245,240,232,0.9)] animate-reveal"
+            className="text-parchment font-body text-sm uppercase tracking-widest mb-4 [text-shadow:0_1px_8px_rgba(0,0,0,0.75)] animate-reveal"
             style={{ animationDelay: '0ms' }}
           >
             The Backpacking Club at UCLA
           </p>
           <h1
-            className="font-display text-5xl md:text-7xl text-bark font-bold leading-tight mb-6 [text-shadow:0_2px_18px_rgba(245,240,232,0.95)] animate-reveal"
+            className="font-display text-5xl md:text-7xl text-parchment font-bold leading-tight mb-6 [text-shadow:0_2px_16px_rgba(0,0,0,0.72)] animate-reveal"
             style={{ animationDelay: '120ms' }}
           >
             We take you to the outdoors.
           </h1>
           <p
-            className="text-bark text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed [text-shadow:0_1px_12px_rgba(245,240,232,0.9)] animate-reveal"
+            className="text-parchment text-lg md:text-xl max-w-xl mx-auto mb-10 leading-relaxed [text-shadow:0_1px_8px_rgba(0,0,0,0.68)] animate-reveal"
             style={{ animationDelay: '260ms' }}
           >
             TUBC runs trips every quarter — day hikes in the Santa Monicas, car camps at Joshua Tree, multi-day Sierra crossings. Free to join. No experience required.
@@ -194,7 +180,7 @@ export default async function Home() {
                       <div className="relative aspect-[3/2] w-full overflow-hidden">
                         <Image
                           src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
-                          alt={trip.title}
+                          alt=""
                           fill
                           sizes="(max-width: 768px) 100vw, 33vw"
                           className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
@@ -207,8 +193,8 @@ export default async function Home() {
                         </h3>
                         <p className="text-soil text-sm">{trip.location}</p>
                         {trip.trip_date && (
-                          <p className="text-soil/60 text-xs mt-2">
-                            {format(new Date(trip.trip_date), 'MMMM d, yyyy')}
+                          <p className="text-soil text-xs mt-2">
+                            {formatDateOnly(trip.trip_date, 'MMMM d, yyyy')}
                           </p>
                         )}
                       </div>

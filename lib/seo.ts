@@ -10,7 +10,7 @@ export const SLACK_SIGNUP_URL = 'https://jqkmlifwwqdhuwn-1314.slack.com/signup#/
 export const SITE_DESCRIPTION =
   "UCLA's student backpacking club for free trips, gear guidance, outdoor education, trip reports, and beginner-friendly hiking community."
 
-export const DEFAULT_OG_IMAGE = '/cottonwood-lakes.jpg'
+export const DEFAULT_OG_IMAGE = '/og/cottonwood-lakes.jpg'
 export const DEFAULT_OG_IMAGE_ALT = 'Cottonwood Lakes in the Sierra Nevada'
 
 export const CORE_TOPICS = [

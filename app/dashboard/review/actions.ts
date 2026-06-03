@@ -1,10 +1,11 @@
 'use server'
 
 import { createClient } from '@supabase/supabase-js'
-import { revalidatePath } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { cookies } from 'next/headers'
 import { isOfficerEmail } from '@/lib/officers'
 import { createClient as createServerClient } from '@/utils/supabase/server'
+import { TRIP_LOGS_TAG } from '@/lib/trip-logs.server'
 
 export async function setPublished(id: string, published: boolean) {
   const cookieStore = await cookies()
@@ -44,4 +45,6 @@ export async function setPublished(id: string, published: boolean) {
   revalidatePath('/dashboard/review')
   revalidatePath('/trip-logs')
   revalidatePath(`/trip-logs/${data.slug}`)
+  revalidatePath('/sitemap.xml')
+  updateTag(TRIP_LOGS_TAG)
 }

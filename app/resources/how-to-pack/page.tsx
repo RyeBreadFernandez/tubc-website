@@ -13,14 +13,14 @@ export const metadata: Metadata = {
     title: 'How to Pack | The Backpacking Club at UCLA',
     description: 'How to load a backpack properly — weight distribution, what goes where, and fitting your pack for comfort on the trail.',
     url: 'https://www.uclabackpackingclub.com/resources/how-to-pack',
-    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'How to pack a backpack guide' }],
+    images: [{ url: '/og/trips-hero.jpg', width: 1200, height: 630, alt: 'How to pack a backpack guide' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'How to Pack | The Backpacking Club at UCLA',
     description: 'How to load a backpack properly — weight distribution, what goes where, and fitting your pack for comfort. Practical tips from UCLA Backpacking Club trip leaders.',
-    images: ['/trips-hero.jpg'],
+    images: ['/og/trips-hero.jpg'],
   },
 }
 

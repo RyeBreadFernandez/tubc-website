@@ -16,6 +16,8 @@ const MIN_CROP_W  = 80      // minimum crop width in container px
 const HANDLE_PX   = 14      // corner handle size
 const MAX_COVER_BYTES = 8 * 1024 * 1024
 const ALLOWED_COVER_TYPES = new Set(['image/jpeg', 'image/png', 'image/webp'])
+const CROP_GUIDE_COLOR = 'color-mix(in oklch, var(--primary-foreground) 40%, transparent)'
+const CROP_SHADOW_COLOR = 'color-mix(in oklch, var(--foreground) 45%, transparent)'
 
 interface CropRect { x: number; y: number; w: number; h: number }
 type Corner = 'nw' | 'ne' | 'sw' | 'se'
@@ -63,6 +65,15 @@ function initialCrop(cw: number, ch: number): CropRect {
   return { x: (cw - w) / 2, y: (ch - h) / 2, w, h }
 }
 
+function describeCrop(crop: CropRect, cw: number, ch: number) {
+  const left = Math.round((crop.x / cw) * 100)
+  const top = Math.round((crop.y / ch) * 100)
+  const width = Math.round((crop.w / cw) * 100)
+  const height = Math.round((crop.h / ch) * 100)
+
+  return `Crop area is ${width}% wide and ${height}% tall, positioned ${left}% from the left and ${top}% from the top.`
+}
+
 function jpegFileName(fileName: string) {
   const base = fileName.replace(/\.[^.]+$/, '') || 'cover-photo'
   return `${base}.jpg`
@@ -106,11 +117,15 @@ export default function SubmitTripClient() {
   const [dropHover, setDropHover]       = useState(false)
   const [difficulty, setDifficulty]     = useState('')
   const [crop, setCrop]                 = useState<CropRect | null>(null)
+  const [cropStatus, setCropStatus]     = useState('Crop area ready.')
   const [coverError, setCoverError]     = useState<string | null>(null)
   const [difficultyError, setDifficultyError] = useState<string | null>(null)
 
   const fileInputRef = useRef<HTMLInputElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
+  const cropBoxRef = useRef<HTMLDivElement>(null)
+  const cropValueRef = useRef<CropRect | null>(null)
+  const dropZoneRef = useRef<HTMLDivElement>(null)
   const dragRef      = useRef<DragState | null>(null)
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
@@ -141,7 +156,15 @@ export default function SubmitTripClient() {
       }
       setCrop(clampCrop(next, cw, ch))
     }
-    const onUp = () => { dragRef.current = null }
+    const onUp = () => {
+      const el = containerRef.current
+      const currentCrop = cropValueRef.current
+      if (currentCrop && el) {
+        const { width: cw, height: ch } = el.getBoundingClientRect()
+        setCropStatus(describeCrop(currentCrop, cw, ch))
+      }
+      dragRef.current = null
+    }
     document.addEventListener('pointermove', onMove)
     document.addEventListener('pointerup',   onUp)
     return () => {
@@ -157,6 +180,31 @@ export default function SubmitTripClient() {
     dragRef.current = { mode, startX: e.clientX, startY: e.clientY, startCrop: { ...crop } }
   }, [crop])
 
+  const onCropKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (!crop || !containerRef.current) return
+    if (!['ArrowUp', 'ArrowRight', 'ArrowDown', 'ArrowLeft'].includes(e.key)) return
+
+    e.preventDefault()
+    const { width: cw, height: ch } = containerRef.current.getBoundingClientRect()
+    const step = e.shiftKey ? 12 : 4
+    let next = { ...crop }
+
+    if (e.altKey) {
+      const delta = e.key === 'ArrowRight' || e.key === 'ArrowDown' ? step : -step
+      next = { ...next, w: next.w + delta, h: (next.w + delta) / CROP_ASPECT }
+    } else {
+      if (e.key === 'ArrowLeft') next.x -= step
+      if (e.key === 'ArrowRight') next.x += step
+      if (e.key === 'ArrowUp') next.y -= step
+      if (e.key === 'ArrowDown') next.y += step
+    }
+
+    const nextCrop = clampCrop(next, cw, ch)
+    cropValueRef.current = nextCrop
+    setCrop(nextCrop)
+    setCropStatus(describeCrop(nextCrop, cw, ch))
+  }, [crop])
+
   const handleFile = useCallback((file: File) => {
     if (!ALLOWED_COVER_TYPES.has(file.type)) {
       setCoverError('Please upload a JPG, PNG, or WebP image.')
@@ -168,6 +216,7 @@ export default function SubmitTripClient() {
     }
     setCoverFile(file)
     setCoverPreview(URL.createObjectURL(file))
+    cropValueRef.current = null
     setCrop(null)
     setCoverError(null)
   }, [])
@@ -176,7 +225,11 @@ export default function SubmitTripClient() {
     const el = containerRef.current
     if (!el) return
     const { width: cw, height: ch } = el.getBoundingClientRect()
-    setCrop(initialCrop(cw, ch))
+    const nextCrop = initialCrop(cw, ch)
+    cropValueRef.current = nextCrop
+    setCrop(nextCrop)
+    setCropStatus(describeCrop(nextCrop, cw, ch))
+    window.requestAnimationFrame(() => cropBoxRef.current?.focus())
   }, [])
 
   const onDrop = useCallback((e: React.DragEvent) => {
@@ -185,7 +238,7 @@ export default function SubmitTripClient() {
   }, [handleFile])
 
   const removeCover = useCallback(() => {
-    setCoverFile(null); setCoverPreview(null); setCrop(null); setCoverError(null)
+    setCoverFile(null); setCoverPreview(null); cropValueRef.current = null; setCrop(null); setCoverError(null)
   }, [])
 
   const onSubmit = async (data: FormData) => {
@@ -195,6 +248,9 @@ export default function SubmitTripClient() {
     setCoverError(missingCover ? 'Please upload a cover photo.' : null)
     setDifficultyError(missingDifficulty ? 'Please select a difficulty.' : null)
 
+    if (missingCover) {
+      window.requestAnimationFrame(() => dropZoneRef.current?.focus())
+    }
     if (missingCover || missingDifficulty) return
     if (!crop || !containerRef.current) { setCoverError('Please wait for the photo to load.'); return }
     setSubmitting(true)
@@ -227,9 +283,9 @@ export default function SubmitTripClient() {
     position:  'absolute',
     width:     HANDLE_PX,
     height:    HANDLE_PX,
-    background: 'white',
+    background: 'var(--primary-foreground)',
     borderRadius: 2,
-    boxShadow: '0 1px 3px rgba(0,0,0,0.5)',
+    boxShadow: `0 1px 3px ${CROP_SHADOW_COLOR}`,
     cursor:    `${c}-resize`,
     ...(c.includes('n') ? { top:    -HANDLE_PX / 2 } : { bottom: -HANDLE_PX / 2 }),
     ...(c.includes('w') ? { left:   -HANDLE_PX / 2 } : { right:  -HANDLE_PX / 2 }),
@@ -337,7 +393,7 @@ export default function SubmitTripClient() {
                 {/* ── Crop editor ─────────────────────────────────────────── */}
                 <div
                   ref={containerRef}
-                  className="relative rounded-md overflow-hidden border border-secondary select-none bg-black"
+                  className="relative rounded-md overflow-hidden border border-secondary select-none bg-foreground"
                   style={{ touchAction: 'none' }}
                 >
                   {/* Full image — sizes itself naturally */}
@@ -355,34 +411,40 @@ export default function SubmitTripClient() {
                       {/* Dark overlay — 4 panels around the crop rect */}
                       <div className="absolute inset-0 pointer-events-none">
                         {/* top */}
-                        <div className="absolute bg-black/60" style={{ top: 0, left: 0, right: 0, height: crop.y }} />
+                        <div className="absolute bg-foreground/65" style={{ top: 0, left: 0, right: 0, height: crop.y }} />
                         {/* bottom */}
-                        <div className="absolute bg-black/60" style={{ top: crop.y + crop.h, left: 0, right: 0, bottom: 0 }} />
+                        <div className="absolute bg-foreground/65" style={{ top: crop.y + crop.h, left: 0, right: 0, bottom: 0 }} />
                         {/* left */}
-                        <div className="absolute bg-black/60" style={{ top: crop.y, left: 0, width: crop.x, height: crop.h }} />
+                        <div className="absolute bg-foreground/65" style={{ top: crop.y, left: 0, width: crop.x, height: crop.h }} />
                         {/* right */}
-                        <div className="absolute bg-black/60" style={{ top: crop.y, left: crop.x + crop.w, right: 0, height: crop.h }} />
+                        <div className="absolute bg-foreground/65" style={{ top: crop.y, left: crop.x + crop.w, right: 0, height: crop.h }} />
                       </div>
 
-                      {/* Crop rectangle */}
-                      <div
-                        className="absolute cursor-move"
-                        style={{
-                          left:   crop.x,
+	                      {/* Crop rectangle */}
+	                      <div
+                          ref={cropBoxRef}
+	                        className="absolute cursor-move focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-foreground"
+	                        role="group"
+	                        tabIndex={0}
+	                        aria-label="Cover photo crop area"
+	                        aria-describedby="cover-crop-instructions cover-crop-status"
+	                        style={{
+	                          left:   crop.x,
                           top:    crop.y,
                           width:  crop.w,
                           height: crop.h,
-                          border: '2px solid white',
-                          boxShadow: '0 0 0 1px rgba(0,0,0,0.35)',
-                        }}
-                        onPointerDown={startDrag('move')}
-                      >
+                          border: '2px solid var(--primary-foreground)',
+                          boxShadow: `0 0 0 1px ${CROP_SHADOW_COLOR}`,
+	                        }}
+	                        onPointerDown={startDrag('move')}
+	                        onKeyDown={onCropKeyDown}
+	                      >
                         {/* Rule-of-thirds grid */}
                         <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
-                          <div className="absolute inset-y-0" style={{ left: '33.33%',  borderLeft: '1px solid rgba(255,255,255,0.25)' }} />
-                          <div className="absolute inset-y-0" style={{ left: '66.66%',  borderLeft: '1px solid rgba(255,255,255,0.25)' }} />
-                          <div className="absolute inset-x-0" style={{ top:  '33.33%', borderTop:  '1px solid rgba(255,255,255,0.25)' }} />
-                          <div className="absolute inset-x-0" style={{ top:  '66.66%', borderTop:  '1px solid rgba(255,255,255,0.25)' }} />
+                          <div className="absolute inset-y-0" style={{ left: '33.33%', borderLeft: `1px solid ${CROP_GUIDE_COLOR}` }} />
+                          <div className="absolute inset-y-0" style={{ left: '66.66%', borderLeft: `1px solid ${CROP_GUIDE_COLOR}` }} />
+                          <div className="absolute inset-x-0" style={{ top: '33.33%', borderTop: `1px solid ${CROP_GUIDE_COLOR}` }} />
+                          <div className="absolute inset-x-0" style={{ top: '66.66%', borderTop: `1px solid ${CROP_GUIDE_COLOR}` }} />
                         </div>
 
                         {/* Corner handles */}
@@ -409,16 +471,20 @@ export default function SubmitTripClient() {
                   )}
                 </div>
 
-                <p className="text-xs text-muted-foreground">
-                  Drag the rectangle to reposition · drag a corner to resize · aspect ratio is fixed at 3:2
-                </p>
+	                <p id="cover-crop-instructions" className="text-xs text-muted-foreground">
+	                  Drag the rectangle to reposition. Use arrow keys to move it, or hold Option/Alt with arrow keys to resize. Aspect ratio is fixed at 3:2.
+	                </p>
+                  <p id="cover-crop-status" className="sr-only" aria-live="polite">
+                    {cropStatus}
+                  </p>
               </div>
             ) : (
               /* ── Upload drop zone ───────────────────────────────────────── */
-              <div
-                role="button" tabIndex={0}
-                aria-label="Upload cover photo — drag and drop or press Enter to browse"
-                aria-describedby={coverError ? 'cover-photo-error' : undefined}
+	              <div
+	                ref={dropZoneRef}
+	                role="button" tabIndex={0}
+	                aria-label="Upload cover photo — drag and drop or press Enter to browse"
+	                aria-describedby={coverError ? 'cover-photo-error' : undefined}
                 onDragOver={(e) => { e.preventDefault(); setDropHover(true) }}
                 onDragLeave={() => setDropHover(false)}
                 onDrop={onDrop}
@@ -441,7 +507,7 @@ export default function SubmitTripClient() {
           {/* Trip report */}
           <div className="space-y-1.5">
             <Label htmlFor="content">Trip Report</Label>
-            <p id="content-hint" className="text-xs text-muted-foreground">Plain text or Markdown. What were conditions like? Any route-finding issues? What would you tell someone doing it next month?</p>
+	            <p id="content-hint" className="text-xs text-muted-foreground">Plain text. What were conditions like? Any route-finding issues? What would you tell someone doing it next month?</p>
             <Textarea
               id="content"
               {...register('content', { required: 'Please write your trip report' })}

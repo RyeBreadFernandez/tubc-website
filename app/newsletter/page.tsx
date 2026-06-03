@@ -16,14 +16,14 @@ export const metadata: Metadata = {
     title: 'Newsletter | The Backpacking Club at UCLA',
     description: 'The UCLA Backpacking Club newsletter — trip recaps, gear tips, and club news. Read past issues and subscribe.',
     url: 'https://www.uclabackpackingclub.com/newsletter',
-    images: [{ url: '/staff-group.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club Newsletter' }],
+    images: [{ url: '/og/staff-group.jpg', width: 1200, height: 630, alt: 'UCLA Backpacking Club Newsletter' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Newsletter | The Backpacking Club at UCLA',
     description: 'The UCLA Backpacking Club newsletter — trip recaps, gear tips, and club news. Read past issues and subscribe.',
-    images: ['/staff-group.jpg'],
+    images: ['/og/staff-group.jpg'],
   },
 }
 
@@ -35,7 +35,8 @@ function formatDate(iso: string) {
 }
 
 export default async function NewsletterPage() {
-  const issues = await fetchNewsletters()
+  const archive = await fetchNewsletters()
+  const issues = archive.issues
   const [latest, ...rest] = issues
 
   return (
@@ -84,7 +85,7 @@ export default async function NewsletterPage() {
             <p className="text-terra text-xs font-semibold uppercase tracking-widest mb-4">Latest Issue</p>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
               <div>
-                <p className="text-soil/60 text-sm mb-1">{formatDate(latest.sentAt)}</p>
+                <p className="text-soil text-sm mb-1">{formatDate(latest.sentAt)}</p>
                 <h2 className="font-display text-3xl md:text-4xl text-bark font-bold leading-tight">{latest.title}</h2>
                 {latest.subject !== latest.title && (
                   <p className="text-soil mt-2 text-base">{latest.subject}</p>
@@ -118,7 +119,7 @@ export default async function NewsletterPage() {
                   className="bg-parchment border border-sand rounded-md p-6 flex flex-col sm:flex-row sm:items-center gap-4"
                 >
                   <div className="shrink-0">
-                    <p className="text-sm text-soil/60">{formatDate(issue.sentAt)}</p>
+                    <p className="text-sm text-soil">{formatDate(issue.sentAt)}</p>
                   </div>
                   <div className="flex-1">
                     <h3 className="font-display text-lg font-bold text-bark">{issue.title}</h3>
@@ -137,6 +138,16 @@ export default async function NewsletterPage() {
                   </a>
                 </div>
               ))}
+            </div>
+          ) : archive.status === 'error' ? (
+            <div className="py-14">
+              <div className="max-w-2xl mx-auto text-center">
+                <p className="text-terra text-xs font-semibold uppercase tracking-widest mb-3">Archive unavailable</p>
+                <h2 className="font-display text-3xl text-bark font-bold">Couldn&apos;t load past issues.</h2>
+                <p className="text-soil mt-3">
+                  The newsletter archive is connected to Mailchimp, but the request failed. Try again later, or subscribe above to get the next issue.
+                </p>
+              </div>
             </div>
           ) : (
             <div className="py-14">

@@ -1,14 +1,13 @@
-import { createClient } from '@/utils/supabase/server'
-import { cookies } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import Badge from '@/components/ui/DifficultyBadge'
+import DifficultyBadge, { isDifficulty } from '@/components/ui/DifficultyBadge'
 import { getMountainPlaceholder } from '@/lib/utils/placeholder'
-import { format, parse } from 'date-fns'
 import { ChevronLeftIcon } from 'lucide-react'
 import JsonLd from '@/components/JsonLd'
 import { absoluteUrl, breadcrumbJsonLd } from '@/lib/seo'
+import { formatDateOnly } from '@/lib/dates'
+import { getPublishedTripLogBySlug } from '@/lib/trip-logs.server'
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -25,32 +24,16 @@ function metadataDescription(trip: { content?: string | null; location?: string 
   return `${details || 'A member trip'} report from The Backpacking Club at UCLA, with route notes and conditions from the trail.`
 }
 
-async function getTrip(slug: string) {
-  try {
-    const cookieStore = await cookies()
-    const supabase = await createClient(cookieStore)
-    const { data } = await supabase
-      .from('trip_logs')
-      .select('*')
-      .eq('slug', slug)
-      .eq('published', true)
-      .single()
-    return data
-  } catch {
-    return null
-  }
-}
-
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
-  const trip = await getTrip(slug)
+  const trip = await getPublishedTripLogBySlug(slug)
   if (!trip) return { title: 'Trip Not Found' }
 
   const description = metadataDescription(trip)
 
   const ogImage = trip.cover_image_url
     ? [{ url: trip.cover_image_url, width: 1200, height: 630, alt: trip.title }]
-    : [{ url: '/trip-logs-hero.jpg', width: 1200, height: 630, alt: trip.title }]
+    : [{ url: '/og/trip-logs-hero.jpg', width: 1200, height: 630, alt: trip.title }]
 
   return {
     title: trip.title,
@@ -69,21 +52,21 @@ export async function generateMetadata({ params }: Props) {
       card: 'summary_large_image',
       title: `${trip.title} | The Backpacking Club at UCLA`,
       description,
-      images: trip.cover_image_url ? [trip.cover_image_url] : ['/trip-logs-hero.jpg'],
+      images: trip.cover_image_url ? [trip.cover_image_url] : ['/og/trip-logs-hero.jpg'],
     },
   }
 }
 
 export default async function TripLogPage({ params }: Props) {
   const { slug } = await params
-  const trip = await getTrip(slug)
+  const trip = await getPublishedTripLogBySlug(slug)
 
   if (!trip) notFound()
 
-  const photos: { url: string; caption?: string; order_index: number }[] = []
-  const author = 'A TUBC Member'
   const description = metadataDescription(trip)
   const canonicalPath = `/trip-logs/${trip.slug}`
+  const contentPublishedAt = trip.created_at ?? trip.trip_date ?? undefined
+  const tripDifficulty = isDifficulty(trip.difficulty) ? trip.difficulty : null
 
   return (
     <main id="main-content" className="flex-1 pt-16 bg-parchment min-h-screen">
@@ -101,8 +84,9 @@ export default async function TripLogPage({ params }: Props) {
           '@id': `${absoluteUrl(canonicalPath)}#article`,
           headline: trip.title,
           description,
-          image: absoluteUrl(trip.cover_image_url ?? '/trip-logs-hero.jpg'),
-          datePublished: trip.trip_date ?? undefined,
+          image: absoluteUrl(trip.cover_image_url ?? '/og/trip-logs-hero.jpg'),
+          datePublished: contentPublishedAt,
+          dateModified: trip.created_at ?? undefined,
           articleSection: 'Trip Logs',
           keywords: [trip.location, trip.difficulty, 'UCLA backpacking', 'trip report'].filter(Boolean),
           articleBody: trip.content?.replace(/[#*`>_[\]()]/g, '').replace(/\s+/g, ' ').trim(),
@@ -134,7 +118,7 @@ export default async function TripLogPage({ params }: Props) {
             >
               <ChevronLeftIcon className="size-5" aria-hidden="true" />
             </Link>
-            {trip.difficulty && <Badge difficulty={trip.difficulty} />}
+            {tripDifficulty && <DifficultyBadge difficulty={tripDifficulty} />}
           </div>
           <h1 className="font-display text-4xl md:text-5xl text-bark font-bold mb-2">
             {trip.title}
@@ -145,25 +129,25 @@ export default async function TripLogPage({ params }: Props) {
           <div className="flex flex-wrap gap-6 text-sm text-soil mt-6 pt-6 border-t border-border">
             {trip.trip_date && (
               <div>
-                <span className="text-xs text-soil/60 uppercase tracking-wide block mb-0.5">Date</span>
-                {format(parse(trip.trip_date, 'yyyy-MM-dd', new Date()), 'MMMM d, yyyy')}
+                <span className="text-xs text-soil uppercase tracking-wide block mb-0.5">Date</span>
+                {formatDateOnly(trip.trip_date, 'MMMM d, yyyy')}
               </div>
             )}
             {trip.miles && (
               <div>
-                <span className="text-xs text-soil/60 uppercase tracking-wide block mb-0.5">Distance</span>
+                <span className="text-xs text-soil uppercase tracking-wide block mb-0.5">Distance</span>
                 {trip.miles} miles
               </div>
             )}
             {trip.elevation_gain && (
               <div>
-                <span className="text-xs text-soil/60 uppercase tracking-wide block mb-0.5">Elevation Gain</span>
+                <span className="text-xs text-soil uppercase tracking-wide block mb-0.5">Elevation Gain</span>
                 {trip.elevation_gain.toLocaleString()} ft
               </div>
             )}
             <div>
-              <span className="text-xs text-soil/60 uppercase tracking-wide block mb-0.5">Posted by</span>
-              {author}
+              <span className="text-xs text-soil uppercase tracking-wide block mb-0.5">Report</span>
+              TUBC member field notes
             </div>
           </div>
         </div>
@@ -174,7 +158,7 @@ export default async function TripLogPage({ params }: Props) {
         <div className="relative aspect-[3/2] rounded-xl overflow-hidden shadow-sm border border-border">
           <Image
             src={trip.cover_image_url ?? getMountainPlaceholder(trip.id)}
-            alt={trip.title}
+            alt=""
             fill
             priority
             sizes="(max-width: 896px) 100vw, 896px"
@@ -192,34 +176,6 @@ export default async function TripLogPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Photo gallery */}
-      {photos.length > 0 && (
-        <section className="py-12 bg-secondary/30">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="font-display text-2xl text-bark font-bold mb-8">Photos</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-              {photos.map((photo: { url: string; caption?: string; order_index: number }) => (
-                <div key={photo.order_index} className="relative aspect-square rounded-md overflow-hidden group">
-                  <Image
-                    src={photo.url}
-                    alt={photo.caption ?? 'Trip photo'}
-                    fill
-                    sizes="(max-width: 768px) 50vw, 33vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  {photo.caption && (
-                    <div className="absolute inset-0 bg-bark/0 group-hover:bg-bark/40 transition-colors flex items-end">
-                      <p className="text-parchment text-sm px-3 py-2 translate-y-full group-hover:translate-y-0 transition-transform">
-                        {photo.caption}
-                      </p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
     </main>
   )
 }

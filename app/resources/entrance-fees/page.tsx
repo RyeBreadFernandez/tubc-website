@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     title: 'Entrance Fees | The Backpacking Club at UCLA',
     description: 'National park entrance fees and pass tips for UCLA backpackers — Yosemite, Kings Canyon, Joshua Tree, and more.',
     url: 'https://www.uclabackpackingclub.com/resources/entrance-fees',
-    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'National park entrance fees guide' }],
+    images: [{ url: '/og/trips-hero.jpg', width: 1200, height: 630, alt: 'National park entrance fees guide' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Entrance Fees | The Backpacking Club at UCLA',
     description: 'National park and forest entrance fees for TUBC destinations — Yosemite, Kings Canyon, Joshua Tree, and more. Plus how the America the Beautiful pass saves you money.',
-    images: ['/trips-hero.jpg'],
+    images: ['/og/trips-hero.jpg'],
   },
 }
 
@@ -113,7 +113,7 @@ export default function EntranceFeesPage() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-soil/50 mt-3">Fees as of 2025. Verify current rates at nps.gov before your trip.</p>
+          <p className="text-xs text-soil mt-3">Fees as of 2025. Verify current rates at nps.gov before your trip.</p>
         </div>
       </section>
     </main>

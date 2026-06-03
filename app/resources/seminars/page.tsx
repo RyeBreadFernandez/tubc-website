@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     title: 'Seminars | The Backpacking Club at UCLA',
     description: 'Free workshops from UCLA Backpacking Club — intro to backpacking, navigation, wilderness first aid, gear deep dives, and Sierra permit strategy.',
     url: 'https://www.uclabackpackingclub.com/resources/seminars',
-    images: [{ url: '/staff-group.jpg', width: 1200, height: 630, alt: 'TUBC seminars and workshops' }],
+    images: [{ url: '/og/staff-group.jpg', width: 1200, height: 630, alt: 'TUBC seminars and workshops' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Seminars | The Backpacking Club at UCLA',
     description: 'Free workshops from UCLA Backpacking Club — intro to backpacking, navigation, wilderness first aid, gear deep dives, Sierra permit strategy, and more.',
-    images: ['/staff-group.jpg'],
+    images: ['/og/staff-group.jpg'],
   },
 }
 

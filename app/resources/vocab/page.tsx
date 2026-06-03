@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     title: 'Vocab | The Backpacking Club at UCLA',
     description: 'Backpacking and hiking terms explained for beginners — base weight, bear canister, bivy, LNT, thru-hike, and more.',
     url: 'https://www.uclabackpackingclub.com/resources/vocab',
-    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Backpacking vocabulary glossary' }],
+    images: [{ url: '/og/trips-hero.jpg', width: 1200, height: 630, alt: 'Backpacking vocabulary glossary' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Vocab | The Backpacking Club at UCLA',
     description: 'Backpacking and hiking terms explained for beginners — base weight, bear canister, bivy, LNT, thru-hike, and more. A glossary from UCLA Backpacking Club.',
-    images: ['/trips-hero.jpg'],
+    images: ['/og/trips-hero.jpg'],
   },
 }
 

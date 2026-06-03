@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     title: 'Parks & Monuments | The Backpacking Club at UCLA',
     description: 'Overview of national parks and forests visited by TUBC — Yosemite, Kings Canyon, Joshua Tree, Zion, Angeles NF, and more.',
     url: 'https://www.uclabackpackingclub.com/resources/parks-monuments',
-    images: [{ url: '/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'National parks guide' }],
+    images: [{ url: '/og/cottonwood-lakes.jpg', width: 1200, height: 630, alt: 'National parks guide' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Parks & Monuments | The Backpacking Club at UCLA',
     description: 'Overview of national parks and forests visited by UCLA Backpacking Club — Yosemite, Kings Canyon, Joshua Tree, Zion, Angeles NF, and more. Know before you go.',
-    images: ['/cottonwood-lakes.jpg'],
+    images: ['/og/cottonwood-lakes.jpg'],
   },
 }
 
@@ -85,7 +85,7 @@ export default function ParksMonumentsPage() {
           {parks.map(({ name, state, description }) => (
             <div key={name} className="bg-parchment-dark border border-sand rounded-md p-6 flex gap-5">
               <div className="shrink-0 w-14 text-center">
-                <span className="text-xs font-semibold text-soil/60 uppercase tracking-wide">{state}</span>
+                <span className="text-xs font-semibold text-soil uppercase tracking-wide">{state}</span>
               </div>
               <div>
                 <h2 className="font-display text-lg font-bold text-bark mb-2">{name}</h2>

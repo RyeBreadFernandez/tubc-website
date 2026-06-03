@@ -13,14 +13,14 @@ export const metadata: Metadata = {
     title: 'Gear Rental | The Backpacking Club at UCLA',
     description: 'Rent backpacking gear through UCLA Outdoor Adventures Equipment Rental Center — affordable rates for Recreation members (included in UCLA student fees).',
     url: 'https://www.uclabackpackingclub.com/resources/gear-rental',
-    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC gear rental' }],
+    images: [{ url: '/og/trips-hero.jpg', width: 1200, height: 630, alt: 'TUBC gear rental' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Gear Rental | The Backpacking Club at UCLA',
     description: 'Rent backpacking gear through UCLA Outdoor Adventures Equipment Rental Center — tents, sleeping bags, packs, bear canisters, and more. Recreation membership included in UCLA student fees.',
-    images: ['/trips-hero.jpg'],
+    images: ['/og/trips-hero.jpg'],
   },
 }
 
@@ -113,7 +113,7 @@ const other: GearItem[] = [
 function SectionRow({ label }: { label: string }) {
   return (
     <tr className="bg-accent">
-      <th scope="colgroup" colSpan={10} className="px-4 py-2 text-bark font-semibold text-xs uppercase tracking-wide text-left">
+      <th scope="rowgroup" colSpan={10} className="px-4 py-2 text-bark font-semibold text-xs uppercase tracking-wide text-left">
         {label}
       </th>
     </tr>
@@ -126,17 +126,17 @@ function GearRow({ row, shade }: { row: GearItem; shade: boolean }) {
     <tr className={bg}>
       <th scope="row" className="px-4 py-3 text-bark font-medium text-sm align-top min-w-[130px]">
         <span className="block">{row.item}</span>
-        <span className="block text-muted-foreground text-xs mt-0.5 font-normal hidden md:block">{row.description}</span>
+        <span className="block text-muted-foreground text-xs mt-0.5 font-normal">{row.description}</span>
       </th>
       <td className="px-3 py-3 text-center text-sm text-foreground">{row.member.d5}</td>
-      <td className="px-3 py-3 text-center text-sm text-foreground hidden sm:table-cell">{row.member.d6_9}</td>
-      <td className="px-3 py-3 text-center text-sm text-foreground hidden lg:table-cell">{row.member.d21}</td>
-      <td className="px-3 py-3 text-center text-sm text-muted-foreground hidden lg:table-cell">{row.member.late}</td>
+      <td className="px-3 py-3 text-center text-sm text-foreground">{row.member.d6_9}</td>
+      <td className="px-3 py-3 text-center text-sm text-foreground">{row.member.d21}</td>
+      <td className="px-3 py-3 text-center text-sm text-muted-foreground">{row.member.late}</td>
       <td className="px-3 py-3 text-center text-sm text-foreground">{row.nonMember.d5}</td>
-      <td className="px-3 py-3 text-center text-sm text-foreground hidden sm:table-cell">{row.nonMember.d6_9}</td>
-      <td className="px-3 py-3 text-center text-sm text-foreground hidden lg:table-cell">{row.nonMember.d21}</td>
-      <td className="px-3 py-3 text-center text-sm text-muted-foreground hidden lg:table-cell">{row.nonMember.late}</td>
-      <td className="px-3 py-3 text-center text-sm text-muted-foreground hidden xl:table-cell">{row.nonMember.replacement}</td>
+      <td className="px-3 py-3 text-center text-sm text-foreground">{row.nonMember.d6_9}</td>
+      <td className="px-3 py-3 text-center text-sm text-foreground">{row.nonMember.d21}</td>
+      <td className="px-3 py-3 text-center text-sm text-muted-foreground">{row.nonMember.late}</td>
+      <td className="px-3 py-3 text-center text-sm text-muted-foreground">{row.nonMember.replacement}</td>
     </tr>
   )
 }
@@ -199,7 +199,7 @@ export default function GearRentalPage() {
           </div>
 
           <div className="overflow-x-auto rounded-md border border-border">
-            <table className="w-full text-sm min-w-[600px]">
+            <table className="w-full text-sm min-w-[960px]">
               <thead>
                 <tr className="bg-secondary border-b border-border">
                   <th scope="col" className="px-4 py-3 text-left text-foreground font-semibold" rowSpan={2}>Item</th>
@@ -212,14 +212,14 @@ export default function GearRentalPage() {
                 </tr>
                 <tr className="bg-secondary border-b border-border">
                   <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs border-l border-border">Up to 5 days</th>
-                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden sm:table-cell">6–9 Days</th>
-                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Up to 3 Weeks</th>
-                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Late Fee/day</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs">6–9 Days</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs">Up to 3 Weeks</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs">Late Fee/day</th>
                   <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs border-l border-border">Up to 5 days</th>
-                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden sm:table-cell">6–9 Days</th>
-                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Up to 3 Weeks</th>
-                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden lg:table-cell">Late Fee/day</th>
-                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs hidden xl:table-cell">Replacement</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs">6–9 Days</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs">Up to 3 Weeks</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs">Late Fee/day</th>
+                  <th scope="col" className="px-3 py-2 text-center text-muted-foreground font-medium text-xs">Replacement</th>
                 </tr>
               </thead>
               <tbody>
@@ -227,6 +227,8 @@ export default function GearRentalPage() {
                 {essential.map((row, i) => (
                   <GearRow key={row.item} row={row} shade={i % 2 !== 0} />
                 ))}
+              </tbody>
+              <tbody>
                 <SectionRow label="Other Equipment" />
                 {other.map((row, i) => (
                   <GearRow key={row.item} row={row} shade={i % 2 !== 0} />
@@ -236,7 +238,7 @@ export default function GearRentalPage() {
           </div>
 
           <p className="text-muted-foreground text-xs mt-3">
-            Columns hidden on small screens: 6–9 Days, Up to 3 Weeks, Late Fee, Replacement. View full sheet on Box for all details.
+            Scroll sideways on small screens to compare every rate tier. View full sheet on Box for all details.
           </p>
 
           <div className="mt-8 bg-secondary border border-border rounded-md p-6 text-center">

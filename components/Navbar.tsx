@@ -97,7 +97,7 @@ export default function Navbar() {
           }}
           className="flex items-center gap-2 shrink-0"
         >
-          <span className={`font-display text-xl font-bold tracking-tight transition-colors ${transparent ? 'text-bark [text-shadow:0_1px_10px_rgba(245,240,232,0.9)]' : 'text-bark'}`}>
+          <span className={`font-display text-xl font-bold tracking-tight transition-colors ${transparent ? 'text-parchment [text-shadow:0_1px_7px_rgba(0,0,0,0.7)]' : 'text-bark'}`}>
             TUBC
           </span>
         </Link>
@@ -110,11 +110,11 @@ export default function Navbar() {
               href={href}
               aria-current={pathname === href ? 'page' : undefined}
               className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                transparent ? '[text-shadow:0_1px_10px_rgba(245,240,232,0.9)]' : ''
+                transparent ? '[text-shadow:0_1px_7px_rgba(0,0,0,0.65)]' : ''
               } ${
                 pathname === href
-                  ? transparent ? 'text-bark underline underline-offset-4' : 'text-primary'
-                  : `nav-underline ${transparent ? 'text-bark/80 hover:text-bark' : 'text-muted-foreground hover:text-bark'}`
+                  ? transparent ? 'text-parchment underline underline-offset-4' : 'text-primary'
+                  : `nav-underline ${transparent ? 'text-parchment/85 hover:text-parchment' : 'text-muted-foreground hover:text-bark'}`
               }`}
             >
               {label}
@@ -129,11 +129,11 @@ export default function Navbar() {
               aria-expanded={resourcesOpen}
               aria-controls="resources-dropdown"
               className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
-                transparent ? '[text-shadow:0_1px_10px_rgba(245,240,232,0.9)]' : ''
+                transparent ? '[text-shadow:0_1px_7px_rgba(0,0,0,0.65)]' : ''
               } ${
                 pathname.startsWith('/resources')
-                  ? transparent ? 'text-bark underline underline-offset-4' : 'text-primary'
-                  : `nav-underline ${transparent ? 'text-bark/80 hover:text-bark' : 'text-muted-foreground hover:text-bark'}`
+                  ? transparent ? 'text-parchment underline underline-offset-4' : 'text-primary'
+                  : `nav-underline ${transparent ? 'text-parchment/85 hover:text-parchment' : 'text-muted-foreground hover:text-bark'}`
               }`}
             >
               Resources
@@ -170,7 +170,7 @@ export default function Navbar() {
         {/* Mobile hamburger */}
         <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
           <SheetTrigger
-            className={`lg:hidden p-3 rounded-md transition-colors ${transparent ? 'text-bark hover:bg-bark/10' : 'text-bark hover:bg-parchment-dark'}`}
+            className={`lg:hidden p-3 rounded-md transition-colors ${transparent ? 'text-parchment hover:bg-parchment/10' : 'text-bark hover:bg-parchment-dark'}`}
             aria-label="Open navigation menu"
           >
             <svg className="size-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} aria-hidden="true">

@@ -14,14 +14,14 @@ export const metadata: Metadata = {
     title: 'Backcountry Cooking | The Backpacking Club at UCLA',
     description: 'Meal ideas and cooking tips for backpacking trips — what to eat, how to pack light, altitude cooking notes, and Leave No Trace food prep.',
     url: 'https://www.uclabackpackingclub.com/resources/backcountry-cooking',
-    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Backcountry cooking guide' }],
+    images: [{ url: '/og/trips-hero.jpg', width: 1200, height: 630, alt: 'Backcountry cooking guide' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Backcountry Cooking | The Backpacking Club at UCLA',
     description: 'Meal ideas and cooking tips for backpacking trips — what to eat, how to pack light, altitude cooking notes, and Leave No Trace food prep from TUBC.',
-    images: ['/trips-hero.jpg'],
+    images: ['/og/trips-hero.jpg'],
   },
 }
 

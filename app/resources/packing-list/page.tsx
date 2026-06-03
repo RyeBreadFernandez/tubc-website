@@ -13,14 +13,14 @@ export const metadata: Metadata = {
     title: 'Packing List | The Backpacking Club at UCLA',
     description: 'Complete backpacking packing list for overnight and multi-day trips — gear, clothing, food, safety, and Leave No Trace essentials.',
     url: 'https://www.uclabackpackingclub.com/resources/packing-list',
-    images: [{ url: '/trips-hero.jpg', width: 1200, height: 630, alt: 'Backpacking packing list' }],
+    images: [{ url: '/og/trips-hero.jpg', width: 1200, height: 630, alt: 'Backpacking packing list' }],
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Packing List | The Backpacking Club at UCLA',
     description: 'Complete backpacking packing list for overnight and multi-day trips — gear, clothing, food, safety, and Leave No Trace essentials from UCLA Backpacking Club.',
-    images: ['/trips-hero.jpg'],
+    images: ['/og/trips-hero.jpg'],
   },
 }
 
@@ -101,7 +101,7 @@ export default function PackingListPage() {
               </ul>
             </div>
           ))}
-          <p className="text-soil/60 text-xs text-center">Always check the specific requirements for your destination — some parks require bear canisters, have fire restrictions, or need specific permits.</p>
+          <p className="text-soil text-xs text-center">Always check the specific requirements for your destination — some parks require bear canisters, have fire restrictions, or need specific permits.</p>
         </div>
       </section>
     </main>

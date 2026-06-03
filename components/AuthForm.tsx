@@ -74,7 +74,7 @@ export default function AuthForm({
                 role={state.success ? 'status' : 'alert'}
                 className={`rounded-md border px-3 py-2 text-sm ${
                   state.success
-                    ? 'border-moss bg-moss/40 text-sage-dark'
+                    ? 'border-moss bg-moss/40 text-forest'
                     : 'border-destructive/30 bg-destructive/10 text-destructive'
                 }`}
               >
