@@ -17,8 +17,8 @@ export const staff: StaffMember[] = [
   },
   {
     name: 'Ryan',
-    role: 'Treasurer',
-    bio: 'Manages club finances, tracks trip spending, handles the club card, and helps keep TUBC trips accessible and affordable for members.',
+    role: 'Dot Connector',
+    bio: 'Help manage the behind the scenes stuff and make sure our club embodies the values we want to share.',
     imageUrl: '/staff/ryan.jpg',
   },
   {
@@ -30,8 +30,8 @@ export const staff: StaffMember[] = [
   },
   {
     name: 'Everett Harriss',
-    role: 'Potential Treasurer',
-    bio: 'Handling the money.',
+    role: 'Treasurer',
+    bio: 'Manages club finances, tracks trip spending, handles the club card, and helps keep TUBC trips accessible and affordable for members.',
     imageUrl: '/staff/everett-harriss.jpg',
   },
   {
