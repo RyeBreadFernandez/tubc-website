@@ -11,7 +11,6 @@ const staticRoutes: MetadataRoute.Sitemap = [
   { url: absoluteUrl('/about'), lastModified, changeFrequency: 'monthly', priority: 0.8, images: [absoluteUrl('/about-hero.jpg')] },
   { url: absoluteUrl('/trips'), lastModified, changeFrequency: 'weekly', priority: 0.9, images: [absoluteUrl('/trips-hero.jpg')] },
   { url: absoluteUrl('/trip-logs'), lastModified, changeFrequency: 'weekly', priority: 0.8, images: [absoluteUrl('/trip-logs-hero.jpg')] },
-  { url: absoluteUrl('/gallery'), lastModified, changeFrequency: 'monthly', priority: 0.6, images: [absoluteUrl('/cottonwood-lakes.jpg'), absoluteUrl('/staff-group.jpg')] },
   { url: absoluteUrl('/newsletter'), lastModified, changeFrequency: 'monthly', priority: 0.6 },
   { url: absoluteUrl('/faq'), lastModified, changeFrequency: 'monthly', priority: 0.7 },
   { url: absoluteUrl('/resources'), lastModified, changeFrequency: 'monthly', priority: 0.8 },

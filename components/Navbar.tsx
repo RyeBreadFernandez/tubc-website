@@ -25,7 +25,6 @@ const navLinks = [
   { label: 'About', href: '/about' },
   { label: 'Trips', href: '/trips' },
   { label: 'Trip Logs', href: '/trip-logs' },
-  { label: 'Gallery', href: '/gallery' },
   { label: 'Newsletter', href: '/newsletter' },
   { label: 'FAQ', href: '/faq' },
 ]
