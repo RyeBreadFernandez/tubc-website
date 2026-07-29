@@ -23,7 +23,7 @@ export const staff: StaffMember[] = [
   },
   {
     name: 'Summer Frazier',
-    role: 'Potential Treasurer',
+    role: 'Treasurer',
     bio: 'Handling the money and club card next year.',
     imageUrl: '/staff/summer-frazier.jpg',
     objectPosition: 'center 55%',
@@ -36,7 +36,7 @@ export const staff: StaffMember[] = [
   },
   {
     name: 'Abigail Lynch',
-    role: 'Potential Treasurer',
+    role: 'Treasurer',
     imageUrl: '/staff/abigail-lynch.jpg',
   },
   // Social Media
