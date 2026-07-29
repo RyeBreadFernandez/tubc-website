@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import type { Metadata } from 'next'
 import JsonLd from '@/components/JsonLd'
+import StaffBio from '@/components/StaffBio'
 import { breadcrumbJsonLd, webPageJsonLd } from '@/lib/seo'
 
 export const metadata: Metadata = {
@@ -126,7 +127,7 @@ export default function AboutPage() {
                 <CardContent className="p-5">
                   <h3 className="font-display text-lg font-bold text-bark">{member.name}</h3>
                   <p className={`text-primary text-sm font-semibold ${member.bio ? 'mb-2' : ''}`}>{member.role}</p>
-                  {member.bio && <p className="text-muted-foreground text-sm leading-relaxed">{member.bio}</p>}
+                  {member.bio && <StaffBio bio={member.bio} />}
                 </CardContent>
               </Card>
             ))}
