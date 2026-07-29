@@ -10,12 +10,6 @@ export interface StaffMember {
 export const staff: StaffMember[] = [
   // Club roles
   {
-    name: 'Noah',
-    role: 'Dot Connector',
-    bio: 'Help manage the behind the scenes stuff and make sure our club embodies the values we want to share.',
-    imageUrl: '/staff/noah.png',
-  },
-  {
     name: 'Emilia Podesta',
     role: 'Dot Connector',
     bio: 'Help manage the behind the scenes stuff and make sure our club embodies the values we want to share.',
@@ -45,18 +39,6 @@ export const staff: StaffMember[] = [
     role: 'Potential Treasurer',
     imageUrl: '/staff/abigail-lynch.jpg',
   },
-  {
-    name: 'Quinn Koch',
-    role: 'Gear Lead',
-    bio: 'I organize, acquire, distribute, and maintain backpacking and camping gear owned by TUBC.',
-    imageUrl: '/staff/quinn-koch.jpg',
-  },
-  {
-    name: 'Ellie Sellman',
-    role: 'Gear Lead',
-    bio: 'Organizing and distributing gear to ensure that trip participants and leads can access what they need.',
-    imageUrl: '/staff/ellie-sellman.jpg',
-  },
   // Social Media
   {
     name: 'Lucy Samuels',
@@ -82,12 +64,6 @@ export const staff: StaffMember[] = [
     imageUrl: '/staff/georgiana-morris.jpg',
   },
   {
-    name: 'Katherine Chen',
-    role: 'Trip Lead / Social Chair',
-    bio: 'Plan super awesome events for everyone.',
-    imageUrl: '/staff/katherine-chen.png',
-  },
-  {
     name: 'Sofia Nyez',
     role: 'Social Planning / Newsletter',
     bio: 'I plan social events for our wonderful club, both for members & staff to cultivate our wonderful community. We have put on a Halloween fundrager, craft night, game night, and make-your-own granola social. My personal favorite was the beaded lizard crafting night, it was so awesome to see such a great turnout. In addition, I started a TUBC newsletter that I\'ve had members & staff contribute to, showcasing our journalistic & photography skills while showing off what our club has to offer. I also can be found moonlighting some merch designs... I <3 TUBC.',
@@ -98,12 +74,6 @@ export const staff: StaffMember[] = [
     role: 'Socials / Trip Lead',
     bio: 'Plan fun events that allow our staff and general members to get to know each other better.',
     imageUrl: '/staff/meg-houseworth.jpg',
-  },
-  {
-    name: 'Yash Goyal',
-    role: 'Safety Officer',
-    bio: 'Keeping members safe in the outdoors.',
-    imageUrl: '/staff/yash-goyal.jpg',
   },
 
   // Staff Members / Trip Leads
@@ -176,11 +146,6 @@ export const staff: StaffMember[] = [
     imageUrl: '/staff/aleena-munshi.jpg',
   },
   {
-    name: 'Angela Ke',
-    role: 'Staff Member / Trip Lead',
-    imageUrl: '/staff/angela-ke.jpg',
-  },
-  {
     name: 'Colin Soohoo',
     role: 'Staff Member / Trip Lead',
     imageUrl: '/staff/colin-soohoo.jpg',
@@ -196,11 +161,6 @@ export const staff: StaffMember[] = [
     imageUrl: '/staff/grace-gallego.jpg',
   },
   {
-    name: 'Jack Johns',
-    role: 'Staff Member / Trip Lead',
-    imageUrl: '/staff/jack-johns.jpg',
-  },
-  {
     name: 'Kira Dirghalli',
     role: 'Staff Member / Trip Lead',
     imageUrl: '/staff/kira-dirghalli.jpg',
@@ -211,24 +171,9 @@ export const staff: StaffMember[] = [
     imageUrl: '/staff/lola-mcfarlane.jpg',
   },
   {
-    name: 'Nour Rayess',
-    role: 'Staff Member / Trip Lead',
-    imageUrl: '/staff/nour-rayess.jpg',
-  },
-  {
     name: 'Sierra Anderson',
     role: 'Staff Member / Trip Lead',
     imageUrl: '/staff/sierra-anderson.jpg',
-  },
-  {
-    name: 'Sofia Brown',
-    role: 'Staff Member / Trip Lead',
-    imageUrl: '/staff/sofia-brown.jpg',
-  },
-  {
-    name: 'Sophia Woehl',
-    role: 'Staff Member / Trip Lead',
-    imageUrl: '/staff/sophia-woehl.jpg',
   },
   {
     name: 'Valerie Munerman',
@@ -247,5 +192,55 @@ export const alumniTripLeads: StaffMember[] = [
     name: 'Will Orchard',
     role: 'Alumni Trip Lead',
     imageUrl: '/staff/will-orchard.jpg',
+  },
+  {
+    name: 'Noah',
+    role: 'Alumni',
+    imageUrl: '/staff/noah.png',
+  },
+  {
+    name: 'Quinn Koch',
+    role: 'Alumni',
+    imageUrl: '/staff/quinn-koch.jpg',
+  },
+  {
+    name: 'Ellie Sellman',
+    role: 'Alumni',
+    imageUrl: '/staff/ellie-sellman.jpg',
+  },
+  {
+    name: 'Katherine Chen',
+    role: 'Alumni',
+    imageUrl: '/staff/katherine-chen.png',
+  },
+  {
+    name: 'Yash Goyal',
+    role: 'Alumni',
+    imageUrl: '/staff/yash-goyal.jpg',
+  },
+  {
+    name: 'Angela Ke',
+    role: 'Alumni',
+    imageUrl: '/staff/angela-ke.jpg',
+  },
+  {
+    name: 'Jack Johns',
+    role: 'Alumni',
+    imageUrl: '/staff/jack-johns.jpg',
+  },
+  {
+    name: 'Nour Rayess',
+    role: 'Alumni',
+    imageUrl: '/staff/nour-rayess.jpg',
+  },
+  {
+    name: 'Sofia Brown',
+    role: 'Alumni',
+    imageUrl: '/staff/sofia-brown.jpg',
+  },
+  {
+    name: 'Sophia Woehl',
+    role: 'Alumni',
+    imageUrl: '/staff/sophia-woehl.jpg',
   },
 ]
